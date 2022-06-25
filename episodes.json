@@ -9,26 +9,42 @@
     "url_imdb": "https://www.imdb.com/title/tt0108214/",
     "characters": [
       "Benjamin Sisko",
+      "Odo",
       "Bashir",
-      "Dukat",
       "Dax",
       "Jake Sisko",
-      "Jean-Luc Picard",
-      "Jennifer Sisko",
-      "Kira Nerys",
       "Miles O'Brien",
-      "Nog",
-      "Opaka",
-      "Odo",
       "Quark",
-      "Rom"
+      "Kira Nerys",
+      "Jean-Luc Picard",
+      "Opaka",
+      "Jennifer Sisko",
+      "Dukat",
+      "Rom",
+      "Nog"
     ]
   },
   {
     "season": 1,
+    "episode": 2,
+    "title": "A Man Alone",
     "title_ja": "宇宙ステーション殺人事件",
     "netflix_id": 70205809,
-    "netflix_synopsis": "DS9に集まる異星人たちは新しい生活に慣れようとしていた。そんな中、ある男が殺され、彼を敵視していた保安主任のオドーが殺人容疑をかけられる。"
+    "netflix_synopsis": "DS9に集まる異星人たちは新しい生活に慣れようとしていた。そんな中、ある男が殺され、彼を敵視していた保安主任のオドーが殺人容疑をかけられる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708494/",
+    "characters": [
+      "Benjamin Sisko",
+      "Odo",
+      "Bashir",
+      "Dax",
+      "Jake Sisko",
+      "Miles O'Brien",
+      "Quark",
+      "Kira Nerys",
+      "Keiko O'Brien",
+      "Rom",
+      "Nog"
+    ]
   },
   {
     "season": 1,
