@@ -1,0 +1,26 @@
+[
+  {
+    "season": 1,
+    "episode": 1,
+    "title": "Emissary",
+    "title_ja": "聖なる神殿の謎",
+    "url_imdb": "https://www.imdb.com/title/tt0108214/",
+    "url_netflix": "https://www.netflix.com/watch/70205806",
+    "characters": [
+      "Benjamin Sisko",
+      "Bashir",
+      "Dukat",
+      "Dax",
+      "Jake Sisko",
+      "Jean-Luc Picard",
+      "Jennifer Sisko",
+      "Kira Nerys",
+      "Miles O'Brien",
+      "Nog",
+      "Opaka",
+      "Odo",
+      "Quark",
+      "Rom"
+    ]
+  }
+]
