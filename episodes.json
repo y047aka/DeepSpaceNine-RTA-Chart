@@ -70,9 +70,22 @@
   },
   {
     "season": 1,
+    "episode": 4,
+    "title": "Babel",
     "title_ja": "恐怖のウィルス",
     "netflix_id": 70205810,
-    "netflix_synopsis": "機械トラブルの対応に追われるオブライエンだったが、突然失語症になってしまう。それは、感染すると自律神経が侵される致死のウイルスだった。"
+    "netflix_synopsis": "機械トラブルの対応に追われるオブライエンだったが、突然失語症になってしまう。それは、感染すると自律神経が侵される致死のウイルスだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708501/",
+    "characters": [
+      { "name": "Benjamin Sisko", "importance": 3 },
+      { "name": "Odo", "importance": 3 },
+      { "name": "Bashir", "importance": 3 },
+      { "name": "Dax", "importance": 2 },
+      { "name": "Jake Sisko", "importance": 2 },
+      { "name": "Miles O'Brien", "importance": 4 },
+      { "name": "Quark", "importance": 4 },
+      { "name": "Kira Nerys", "importance": 3 }
+    ]
   },
   {
     "season": 1,
