@@ -70,9 +70,30 @@
   },
   {
     "season": 1,
+    "episode": 3,
+    "title": "Past Prologue",
     "title_ja": "“スペース・テロリスト”ターナ・ロス",
     "netflix_id": 70205808,
-    "netflix_synopsis": "ベシアは黒い噂があるカーデシア人と出会う。一方、キラの元戦友でベイジョー人のターナがカーデシアに追われ、DS9に逃げ込む。彼の真の狙いとは...。"
+    "netflix_synopsis": "ベシアは黒い噂があるカーデシア人と出会う。一方、キラの元戦友でベイジョー人のターナがカーデシアに追われ、DS9に逃げ込む。彼の真の狙いとは...。",
+    "url_imdb": "https://www.imdb.com/title/tt0708576/",
+    "characters": [
+      "Benjamin Sisko",
+      "Odo",
+      "Bashir",
+      "Dax",
+      "Jake Sisko",
+      "Miles O'Brien",
+      "Quark",
+      "Kira Nerys",
+      "Garak",
+      "B'Etor",
+      "Lursa"
+    ],
+    "tags": [
+      "Benjamin Sisko",
+      "Kira Nerys",
+      "Garak"
+    ]
   },
   {
     "season": 1,
