@@ -8,20 +8,20 @@
     "netflix_synopsis": "宇宙ステーションDS9(ディープ･スペース･ナイン)に赴任したベンジャミン･シスコ司令官。そこは安定した独特のワームホール横に位置していた。",
     "url_imdb": "https://www.imdb.com/title/tt0108214/",
     "characters": [
-      { "name": "Benjamin Sisko", "importance": 5 },
-      { "name": "Odo", "importance": 4 },
-      { "name": "Bashir", "importance": 4 },
-      { "name": "Dax", "importance": 4 },
-      { "name": "Jake Sisko", "importance": 3 },
-      { "name": "Miles O'Brien", "importance": 4 },
-      { "name": "Quark", "importance": 4 },
-      { "name": "Kira Nerys", "importance": 4 },
-      { "name": "Jean-Luc Picard", "importance": 4 },
-      { "name": "Opaka", "importance": 3 },
-      { "name": "Jennifer Sisko", "importance": 2 },
-      { "name": "Dukat", "importance": 3 },
-      { "name": "Rom", "importance": 2 },
-      { "name": "Nog", "importance": 3 }
+      { "name": "Benjamin Sisko", "contrast": 5 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 4 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Jean-Luc Picard", "contrast": 4 },
+      { "name": "Opaka", "contrast": 3 },
+      { "name": "Jennifer Sisko", "contrast": 2 },
+      { "name": "Dukat", "contrast": 3 },
+      { "name": "Rom", "contrast": 2 },
+      { "name": "Nog", "contrast": 3 }
     ]
   },
   {
@@ -33,17 +33,17 @@
     "netflix_synopsis": "DS9に集まる異星人たちは新しい生活に慣れようとしていた。そんな中、ある男が殺され、彼を敵視していた保安主任のオドーが殺人容疑をかけられる。",
     "url_imdb": "https://www.imdb.com/title/tt0708494/",
     "characters": [
-      { "name": "Benjamin Sisko", "importance": 3 },
-      { "name": "Odo", "importance": 5 },
-      { "name": "Bashir", "importance": 3 },
-      { "name": "Dax", "importance": 2 },
-      { "name": "Jake Sisko", "importance": 2 },
-      { "name": "Miles O'Brien", "importance": 3 },
-      { "name": "Quark", "importance": 3 },
-      { "name": "Kira Nerys", "importance": 3 },
-      { "name": "Keiko O'Brien", "importance": 4 },
-      { "name": "Rom", "importance": 3 },
-      { "name": "Nog", "importance": 2 }
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 5 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Keiko O'Brien", "contrast": 4 },
+      { "name": "Rom", "contrast": 3 },
+      { "name": "Nog", "contrast": 2 }
     ]
   },
   {
@@ -55,17 +55,17 @@
     "netflix_synopsis": "ベシアは黒い噂があるカーデシア人と出会う。一方、キラの元戦友でベイジョー人のターナがカーデシアに追われ、DS9に逃げ込む。彼の真の狙いとは...。",
     "url_imdb": "https://www.imdb.com/title/tt0708576/",
     "characters": [
-      { "name": "Benjamin Sisko", "importance": 3 },
-      { "name": "Odo", "importance": 3 },
-      { "name": "Bashir", "importance": 4 },
-      { "name": "Dax", "importance": 2 },
-      { "name": "Jake Sisko", "importance": 2 },
-      { "name": "Miles O'Brien", "importance": 2 },
-      { "name": "Quark", "importance": 2 },
-      { "name": "Kira Nerys", "importance": 5 },
-      { "name": "Garak", "importance": 5 },
-      { "name": "B'Etor", "type": "guest", "importance": 1 },
-      { "name": "Lursa", "type": "guest", "importance": 1 }
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 5 },
+      { "name": "Garak", "contrast": 5 },
+      { "name": "B'Etor", "type": "guest", "contrast": 1 },
+      { "name": "Lursa", "type": "guest", "contrast": 1 }
     ]
   },
   {
@@ -77,14 +77,14 @@
     "netflix_synopsis": "機械トラブルの対応に追われるオブライエンだったが、突然失語症になってしまう。それは、感染すると自律神経が侵される致死のウイルスだった。",
     "url_imdb": "https://www.imdb.com/title/tt0708501/",
     "characters": [
-      { "name": "Benjamin Sisko", "importance": 3 },
-      { "name": "Odo", "importance": 3 },
-      { "name": "Bashir", "importance": 3 },
-      { "name": "Dax", "importance": 2 },
-      { "name": "Jake Sisko", "importance": 2 },
-      { "name": "Miles O'Brien", "importance": 4 },
-      { "name": "Quark", "importance": 4 },
-      { "name": "Kira Nerys", "importance": 3 }
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 4 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 3 }
     ]
   },
   {
@@ -96,14 +96,14 @@
     "netflix_synopsis": "クワークの言動に対する苦情を聞くシスコの元に、ワームホールから異星人トスクが現れる。何やら追われているようだが、事情を話そうとしない。",
     "url_imdb": "https://www.imdb.com/title/tt0708513/",
     "characters": [
-      { "name": "Benjamin Sisko", "importance": 3 },
-      { "name": "Odo", "importance": 2 },
-      { "name": "Bashir", "importance": 2 },
-      { "name": "Dax", "importance": 2 },
-      { "name": "Jake Sisko", "importance": 2 },
-      { "name": "Miles O'Brien", "importance": 3 },
-      { "name": "Quark", "importance": 2 },
-      { "name": "Kira Nerys", "importance": 2 }
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
     ]
   },
   {
