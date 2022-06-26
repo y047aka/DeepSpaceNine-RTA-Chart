@@ -89,9 +89,22 @@
   },
   {
     "season": 1,
+    "episode": 5,
+    "title": "Captive Pursuit",
     "title_ja": "ワーム・ホールから来たエイリアン",
     "netflix_id": 70205811,
-    "netflix_synopsis": "クワークの言動に対する苦情を聞くシスコの元に、ワームホールから異星人トスクが現れる。何やら追われているようだが、事情を話そうとしない。"
+    "netflix_synopsis": "クワークの言動に対する苦情を聞くシスコの元に、ワームホールから異星人トスクが現れる。何やら追われているようだが、事情を話そうとしない。",
+    "url_imdb": "https://www.imdb.com/title/tt0708513/",
+    "characters": [
+      { "name": "Benjamin Sisko", "importance": 3 },
+      { "name": "Odo", "importance": 2 },
+      { "name": "Bashir", "importance": 2 },
+      { "name": "Dax", "importance": 2 },
+      { "name": "Jake Sisko", "importance": 2 },
+      { "name": "Miles O'Brien", "importance": 3 },
+      { "name": "Quark", "importance": 2 },
+      { "name": "Kira Nerys", "importance": 2 }
+    ]
   },
   {
     "season": 1,
