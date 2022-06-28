@@ -64,8 +64,8 @@
       { "name": "Quark", "contrast": 2 },
       { "name": "Kira Nerys", "contrast": 4 },
       { "name": "Garak", "contrast": 4 },
-      { "name": "B'Etor", "type": "guest", "contrast": 2 },
-      { "name": "Lursa", "type": "guest", "contrast": 2 }
+      { "name": "B'Etor", "contrast": 2 },
+      { "name": "Lursa", "contrast": 2 }
     ]
   },
   {
