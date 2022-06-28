@@ -108,9 +108,23 @@
   },
   {
     "season": 1,
+    "episode": 6,
+    "title": "Q-Less",
     "title_ja": "超生命体\"Q\"",
     "netflix_id": 70205812,
-    "netflix_synopsis": "ガンマ宇宙域から、ピカード艦長の元恋人バッシュと超生命体Qが現れる。行動が予測不能なQの存在に気づいたオブライエンは、警戒を呼びかける。"
+    "netflix_synopsis": "ガンマ宇宙域から、ピカード艦長の元恋人バッシュと超生命体Qが現れる。行動が予測不能なQの存在に気づいたオブライエンは、警戒を呼びかける。",
+    "url_imdb": "https://www.imdb.com/title/tt0708586/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Q", "contrast": 3 }
+    ]
   },
   {
     "season": 1,
