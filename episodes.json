@@ -128,9 +128,20 @@
   },
   {
     "season": 1,
+    "episode": 7,
+    "title": "Dax",
     "title_ja": "共生結合体生物\"トリル族\"",
     "netflix_id": 70205813,
-    "netflix_synopsis": "30年前にクレストロン4の英雄を暗殺した容疑をかけられるダックス大尉。だが、事件当時のホストは現在のジャッジアではなく、クルゾンだった。"
+    "netflix_synopsis": "30年前にクレストロン4の英雄を暗殺した容疑をかけられるダックス大尉。だが、事件当時のホストは現在のジャッジアではなく、クルゾンだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708523/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 1,
