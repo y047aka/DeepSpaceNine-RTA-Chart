@@ -2,8 +2,9 @@ module Main exposing (main)
 
 import Browser
 import Css exposing (..)
+import Css.Global as Global exposing (children, global)
 import Episode exposing (Episode, episodesDecoder)
-import Html.Styled as Html exposing (Html, a, span, td, text, toUnstyled, tr)
+import Html.Styled as Html exposing (Html, a, div, span, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Http
 
@@ -63,17 +64,46 @@ update msg model =
 
 view : Model -> Html Msg
 view { episodes } =
-    Html.table [] <|
-        List.indexedMap
-            (\index { season, episode, title, title_ja, netflix_id } ->
-                tr []
-                    [ td [] [ text <| String.fromInt (index + 1) ]
-                    , td [] [ text <| "S" ++ String.fromInt season ++ "-E" ++ String.fromInt episode ]
-                    , td []
-                        [ text title
-                        , span [ css [ display block, fontSize (em 0.6), color (hex "#666") ] ] [ text title_ja ]
-                        ]
-                    , td [] [ a [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id, Attributes.target "_blank" ] [ text "Netflix" ] ]
+    div []
+        [ global [ Global.body [ backgroundColor (hex "#000") ] ]
+        , Html.table [ css [ margin2 zero auto, borderSpacing (px 1) ] ] <|
+            List.indexedMap episodeView episodes
+        ]
+
+
+episodeView : Int -> Episode -> Html msg
+episodeView index { season, episode, title, title_ja, netflix_id } =
+    tr
+        [ css
+            [ nthChild "2n" [ backgroundColor (hsl 190 0.6 0.7) ]
+            , nthChild "2n+1" [ backgroundColor (hsl 190 0.6 0.5) ]
+            , children
+                [ Global.selector "td:not(:last-child)" [ padding2 (px 5) (px 10) ] ]
+            ]
+        ]
+        [ td [ css [ textAlign center, fontSize (px 14) ] ] [ text <| String.fromInt (index + 1) ]
+        , td [ css [ textAlign center ] ]
+            [ div [ css [ fontSize (px 10) ] ] [ text <| "Season " ++ String.fromInt season ]
+            , div [ css [ fontSize (px 12) ] ] [ text <| "" ++ String.fromInt episode ]
+            ]
+        , td []
+            [ text title
+            , div [ css [ fontSize (px 10) ] ] [ text title_ja ]
+            ]
+        , td [ css [ property "display" "contents" ] ]
+            [ a
+                [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
+                , Attributes.target "_blank"
+                , css
+                    [ display tableCell
+                    , padding2 zero (px 10)
+                    , verticalAlign middle
+                    , textDecoration none
+                    , backgroundColor (hsl 350 0.5 0.5)
+                    , color inherit
+                    , visited [ backgroundColor (hsl 350 0.5 0.2) ]
                     ]
-            )
-            episodes
+                ]
+                [ text "NETFLIX" ]
+            ]
+        ]
