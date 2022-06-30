@@ -64,10 +64,11 @@ view : Model -> Html Msg
 view { episodes } =
     table [] <|
         List.indexedMap
-            (\index { season, episode, title_ja, netflix_id } ->
+            (\index { season, episode, title, title_ja, netflix_id } ->
                 tr []
                     [ td [] [ text <| String.fromInt (index + 1) ]
                     , td [] [ text <| "S" ++ String.fromInt season ++ "-E" ++ String.fromInt episode ]
+                    , td [] [ text title ]
                     , td [] [ text title_ja ]
                     , td [] [ a [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id, target "_blank" ] [ text "Netflix" ] ]
                     ]
