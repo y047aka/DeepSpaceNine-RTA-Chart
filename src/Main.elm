@@ -2,8 +2,9 @@ module Main exposing (main)
 
 import Browser
 import Episode exposing (Episode, episodesDecoder)
-import Html exposing (Html, a, table, td, text, tr)
-import Html.Attributes exposing (href, target)
+import Html
+import Html.Styled exposing (Html, a, table, td, text, toUnstyled, tr)
+import Html.Styled.Attributes exposing (href, target)
 import Http
 
 
@@ -12,7 +13,7 @@ main =
     Browser.element
         { init = init
         , update = update
-        , view = view
+        , view = view >> toUnstyled
         , subscriptions = \_ -> Sub.none
         }
 
