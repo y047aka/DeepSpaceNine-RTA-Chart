@@ -4,7 +4,7 @@ import Browser
 import Css exposing (..)
 import Css.Global as Global exposing (children, global)
 import Episode exposing (Episode, episodesDecoder)
-import Html.Styled as Html exposing (Html, a, div, span, td, text, toUnstyled, tr)
+import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Http
 
