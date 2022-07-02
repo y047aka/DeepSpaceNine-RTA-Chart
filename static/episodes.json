@@ -153,7 +153,16 @@
     "title_ja": "宇宙囚人\"バンティカ\"",
     "importance": 2,
     "netflix_id": 70205814,
-    "netflix_synopsis": "べシアとキラは救難信号を受け、コブリアド船から女性1人と、彼女が護送していた凶悪犯を転送した。この凶悪犯は救出前に死んだと思われたが...。"
+    "netflix_synopsis": "べシアとキラは救難信号を受け、コブリアド船から女性1人と、彼女が護送していた凶悪犯を転送した。この凶悪犯は救出前に死んだと思われたが...。",
+    "url_imdb": "https://www.imdb.com/title/tt0708633/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 1,
@@ -162,7 +171,17 @@
     "title_ja": "死のゲーム",
     "importance": 2,
     "netflix_id": 70205815,
-    "netflix_synopsis": "正装をしたシスコ司令官は、ガンマ宇宙域から来た初の使節団を正式にDS9に迎えていた。やがて使節団の面々はクワークの店で危険なゲームを始める。"
+    "netflix_synopsis": "正装をしたシスコ司令官は、ガンマ宇宙域から来た初の使節団を正式にDS9に迎えていた。やがて使節団の面々はクワークの店で危険なゲームを始める。",
+    "url_imdb": "https://www.imdb.com/title/tt0708569/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 1,
