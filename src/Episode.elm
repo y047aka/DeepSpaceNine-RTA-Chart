@@ -8,6 +8,7 @@ type alias Episode =
     , episode : Int
     , title : String
     , title_ja : String
+    , importance : Int
     , netflix_id : Int
     , netflix_synopsis : String
     }
@@ -20,10 +21,11 @@ episodesDecoder =
 
 episodeDecoder : Decode.Decoder Episode
 episodeDecoder =
-    Decode.map6 Episode
+    Decode.map7 Episode
         (field "season" int)
         (field "episode" int)
         (field "title" string)
         (field "title_ja" string)
+        (field "importance" int)
         (field "netflix_id" int)
         (field "netflix_synopsis" string)

@@ -72,11 +72,10 @@ view { episodes } =
 
 
 episodeView : Int -> Episode -> Html msg
-episodeView index { season, episode, title, title_ja, netflix_id } =
+episodeView index { season, episode, title, title_ja, importance, netflix_id } =
     tr
         [ css
-            [ nthChild "2n" [ backgroundColor (hsl 190 0.6 0.7) ]
-            , nthChild "2n+1" [ backgroundColor (hsl 190 0.6 0.5) ]
+            [ backgroundColor (hsl 190 0.6 (backgroundByImportance importance))
             , children
                 [ Global.selector "td:not(:last-child)" [ padding2 (px 5) (px 10) ] ]
             ]
@@ -107,3 +106,8 @@ episodeView index { season, episode, title, title_ja, netflix_id } =
                 [ text "NETFLIX" ]
             ]
         ]
+
+
+backgroundByImportance : Int -> Float
+backgroundByImportance importance =
+    importance |> toFloat |> (*) 0.1 |> (+) 0.2
