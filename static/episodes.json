@@ -188,27 +188,62 @@
     "episode": 10,
     "title": "The Nagus",
     "title_ja": "宇宙商人フェレンギ星人",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205816,
-    "netflix_synopsis": "フェレンギ人の最高位グランド･ネーガスが来訪する。引退表明した彼は後継者にクワークを指名するが、この地位には命を狙われるリスクがあった。"
+    "netflix_synopsis": "フェレンギ人の最高位グランド･ネーガスが来訪する。引退表明した彼は後継者にクワークを指名するが、この地位には命を狙われるリスクがあった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708632/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 4 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 4 },
+      { "name": "Nog", "contrast": 4 },
+      { "name": "Zek", "contrast": 3 }
+    ]
   },
   {
     "season": 1,
     "episode": 11,
     "title": "Vortex",
     "title_ja": "エイリアン殺人事件",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205817,
-    "netflix_synopsis": "貴重な品物をめぐり売り手と交渉するクワークの前に、異星人が邪魔に入る。オドーはその異星人から自分と同じ流動体生物がガンマ宇宙域にいると聞く。"
+    "netflix_synopsis": "貴重な品物をめぐり売り手と交渉するクワークの前に、異星人が邪魔に入る。オドーはその異星人から自分と同じ流動体生物がガンマ宇宙域にいると聞く。",
+    "url_imdb": "https://www.imdb.com/title/tt0708659/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 2 }
+    ]
   },
   {
     "season": 1,
     "episode": 12,
     "title": "Battle Lines",
     "title_ja": "戦慄のガンマ宇宙域",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205818,
-    "netflix_synopsis": "ベイジョーの精神的指導者カイ･オパカがDS9を訪れ、ワームホールへ案内することに。だが何者かに攻撃され、戦いで疲弊した惑星に不時着する。"
+    "netflix_synopsis": "ベイジョーの精神的指導者カイ･オパカがDS9を訪れ、ワームホールへ案内することに。だが何者かに攻撃され、戦いで疲弊した惑星に不時着する。",
+    "url_imdb": "https://www.imdb.com/title/tt0708504/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 }
+    ]
   },
   {
     "season": 1,
