@@ -236,7 +236,7 @@
     "netflix_synopsis": "ベイジョーの精神的指導者カイ･オパカがDS9を訪れ、ワームホールへ案内することに。だが何者かに攻撃され、戦いで疲弊した惑星に不時着する。",
     "url_imdb": "https://www.imdb.com/title/tt0708504/",
     "characters": [
-      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Benjamin Sisko", "contrast": 3 },
       { "name": "Odo", "contrast": 2 },
       { "name": "Bashir", "contrast": 2 },
       { "name": "Dax", "contrast": 2 },
@@ -252,7 +252,19 @@
     "title_ja": "混迷の惑星\"ベイジョー\"",
     "importance": 3,
     "netflix_id": 70205819,
-    "netflix_synopsis": "シスコとキラは、対立を続けるベイジョーの2つの勢力を調停することに。一方、救命の要請を受けベイジョーの村に赴いたオブライエンに意外な展開が。"
+    "netflix_synopsis": "シスコとキラは、対立を続けるベイジョーの2つの勢力を調停することに。一方、救命の要請を受けベイジョーの村に赴いたオブライエンに意外な展開が。",
+    "url_imdb": "https://www.imdb.com/title/tt0708643/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Nog", "contrast": 3 }
+    ]
   },
   {
     "season": 1,
@@ -261,25 +273,61 @@
     "title_ja": "第五の月\"ジェラドー\"",
     "importance": 5,
     "netflix_id": 70205820,
-    "netflix_synopsis": "ベイジョー政府は宇宙連邦の協力の元、\"第五の月\"のエネルギー開発に着手することになる。キラは月の住人たちを退去させようとするが...。"
+    "netflix_synopsis": "ベイジョー政府は宇宙連邦の協力の元、\"第五の月\"のエネルギー開発に着手することになる。キラは月の住人たちを退去させようとするが...。",
+    "url_imdb": "https://www.imdb.com/title/tt0708584/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 5 },
+      { "name": "Nog", "contrast": 2 }
+    ]
   },
   {
     "season": 1,
     "episode": 15,
     "title": "If Wishes Were Horses",
     "title_ja": "夢幻の刻",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205821,
-    "netflix_synopsis": "宇宙域のプラズマフィールドから大量のトロン放出が検知され、シスコ、キラ、ダックスは調査を開始。亜空間断裂により人々の想像が実体化し始める。"
+    "netflix_synopsis": "宇宙域のプラズマフィールドから大量のトロン放出が検知され、シスコ、キラ、ダックスは調査を開始。亜空間断裂により人々の想像が実体化し始める。",
+    "url_imdb": "https://www.imdb.com/title/tt0708551/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 3 }
+    ]
   },
   {
     "season": 1,
     "episode": 16,
     "title": "The Forsaken",
     "title_ja": "機械じかけの命",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205822,
-    "netflix_synopsis": "べシアは嫌々、惑星連邦からの使節団の応対をする。そのひとりであるラクサナ･トロイ大使は、盗まれた髪飾りを取り戻してくれたオドーに好意を持つ。"
+    "netflix_synopsis": "べシアは嫌々、惑星連邦からの使節団の応対をする。そのひとりであるラクサナ･トロイ大使は、盗まれた髪飾りを取り戻してくれたオドーに好意を持つ。",
+    "url_imdb": "https://www.imdb.com/title/tt0708624/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 2 },
+      { "name": "Lwaxana Troi", "contrast": 3 }
+    ]
   },
   {
     "season": 1,
