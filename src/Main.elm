@@ -75,7 +75,7 @@ episodeView : Int -> Episode -> Html msg
 episodeView index { season, episode, title, title_ja, importance, netflix_id } =
     tr
         [ css
-            [ backgroundColor (hsl 190 0.6 (backgroundByImportance importance))
+            [ backgroundColor (hsl 175 0.6 (backgroundByImportance importance))
             , children
                 [ Global.selector "td:not(:last-child)" [ padding2 (px 5) (px 10) ] ]
             ]
