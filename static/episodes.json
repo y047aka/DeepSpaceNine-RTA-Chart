@@ -465,27 +465,60 @@
     "episode": 4,
     "title": "Invasive Procedures",
     "title_ja": "突然の侵入者",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205829,
-    "netflix_synopsis": "プラズマ分裂の嵐のため、数名を除いた全ての住人がDS9から避難する。そこに、ダックスが保有する共生生命体を狙うトリル人が押し入ってくる。"
+    "netflix_synopsis": "プラズマ分裂の嵐のため、数名を除いた全ての住人がDS9から避難する。そこに、ダックスが保有する共生生命体を狙うトリル人が押し入ってくる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708561/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 5,
     "title": "Cardassians",
     "title_ja": "戦慄のカーデシア星人",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205830,
-    "netflix_synopsis": "カーデシア人の少年を見かけたガラックは、仲間だと思い話しかけるが、噛まれてしまう。その少年は、べイジョー人に育てられた戦災孤児だった。"
+    "netflix_synopsis": "カーデシア人の少年を見かけたガラックは、仲間だと思い話しかけるが、噛まれてしまう。その少年は、べイジョー人に育てられた戦災孤児だった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708514/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 2 },
+      { "name": "Garak", "contrast": 3 },
+      { "name": "Dukat", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 6,
     "title": "Melora",
     "title_ja": "エレージアン星人 メローラ・パズラー少尉",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205831,
-    "netflix_synopsis": "ガンマ宇宙域の星図作成のため連邦から派遣されたエレージアン人、メローラ･パズラー少尉。ベシアは、障害に負けない努力家の彼女に恋をする。"
+    "netflix_synopsis": "ガンマ宇宙域の星図作成のため連邦から派遣されたエレージアン人、メローラ･パズラー少尉。ベシアは、障害に負けない努力家の彼女に恋をする。",
+    "url_imdb": "https://www.imdb.com/title/tt0708567/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
