@@ -398,7 +398,20 @@
     "title_ja": "帰って来た英雄 (パート1)",
     "importance": 3,
     "netflix_id": 70205826,
-    "netflix_synopsis": "クワークが差し出したイヤリングに動揺を見せるキラ。戦死したはずのベイジョーの英雄が今もカーデシアに捕らわれていると知り、救出に向かう。"
+    "netflix_synopsis": "クワークが差し出したイヤリングに動揺を見せるキラ。戦死したはずのベイジョーの英雄が今もカーデシアに捕らわれていると知り、救出に向かう。",
+    "url_imdb": "https://www.imdb.com/title/tt0708625/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Rom", "contrast": 2 },
+      { "name": "Dukat", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
@@ -407,7 +420,20 @@
     "title_ja": "帰って来た英雄 (パート2)",
     "importance": 3,
     "netflix_id": 70205827,
-    "netflix_synopsis": "ジャロ大臣は英雄のリーをキラの後任とし、キラにベイジョーへの帰還を命じる。一方、過激派組織\"サークル\"はますます勢力を増していた。"
+    "netflix_synopsis": "ジャロ大臣は英雄のリーをキラの後任とし、キラにベイジョーへの帰還を命じる。一方、過激派組織\"サークル\"はますます勢力を増していた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708618/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Bareil", "contrast": 3 },
+      { "name": "Winn", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -416,7 +442,22 @@
     "title_ja": "帰って来た英雄 (パート3)",
     "importance": 3,
     "netflix_id": 70205828,
-    "netflix_synopsis": "ベイジョーのクーデター勢力が攻め込むまであと5時間弱。ベイジョー人以外は命が危ないため、一般人や子供たちはDS9からの撤退を余儀なくされる。"
+    "netflix_synopsis": "ベイジョーのクーデター勢力が攻め込むまであと5時間弱。ベイジョー人以外は命が危ないため、一般人や子供たちはDS9からの撤退を余儀なくされる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708639/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Rom", "contrast": 2 },
+      { "name": "Nog", "contrast": 2 },
+      { "name": "Bareil", "contrast": 2 },
+      { "name": "Winn", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
