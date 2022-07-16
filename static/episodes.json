@@ -527,7 +527,19 @@
     "title_ja": "フェレンギ星人の掟",
     "importance": 3,
     "netflix_id": 70205832,
-    "netflix_synopsis": "ダックスやロムとギャンブルを楽しんでいたクワークはグランド･ネーガス･ゼクから朗報を受ける。なんとフェレンギ連盟の交渉役を任されることに。"
+    "netflix_synopsis": "ダックスやロムとギャンブルを楽しんでいたクワークはグランド･ネーガス･ゼクから朗報を受ける。なんとフェレンギ連盟の交渉役を任されることに。",
+    "url_imdb": "https://www.imdb.com/title/tt0708593/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 3 },
+      { "name": "Zek", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -536,34 +548,81 @@
     "title_ja": "殺しの密告者",
     "importance": 3,
     "netflix_id": 70205833,
-    "netflix_synopsis": "ベイジョー人の美女の依頼で、彼女の亡き夫が残した箱をDS9から持ち出そうとするクワーク。だが、クワークが箱の中を見たため、何者かに襲われる。"
+    "netflix_synopsis": "ベイジョー人の美女の依頼で、彼女の亡き夫が残した箱をDS9から持ち出そうとするクワーク。だが、クワークが箱の中を見たため、何者かに襲われる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708570/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Rom", "contrast": 3 },
+      { "name": "Dukat", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 9,
     "title": "Second Sight",
     "title_ja": "愛の幻影",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205834,
-    "netflix_synopsis": "妻の4度目の命日を迎えたシスコは眠れない夜を過ごしていた。切ない気持ちを抱えてステーション内を歩いていると、そこに謎めいた美女が現れる。"
+    "netflix_synopsis": "妻の4度目の命日を迎えたシスコは眠れない夜を過ごしていた。切ない気持ちを抱えてステーション内を歩いていると、そこに謎めいた美女が現れる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708597/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 10,
     "title": "Sanctuary",
     "title_ja": "さまよえるスクリーア星人",
-    "importance": 3,
+    "importance": 1,
     "netflix_id": 70205835,
-    "netflix_synopsis": "DS9は今にも壊れそうな異星人の船がワームホールを通過したことを検知する。その船の乗客4人をステーションに転送するが、言葉が通じない。"
+    "netflix_synopsis": "DS9は今にも壊れそうな異星人の船がワームホールを通過したことを検知する。その船の乗客4人をステーションに転送するが、言葉が通じない。",
+    "url_imdb": "https://www.imdb.com/title/tt0708596/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Nog", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 11,
     "title": "Rivals",
     "title_ja": "詐欺師エル・オーリアン星人",
-    "importance": 3,
+    "importance": 1,
     "netflix_id": 70205836,
-    "netflix_synopsis": "未亡人がクワークのバーである男に投資計画を話していると、オドーがその男を詐欺罪で逮捕。その後、拘束室で手に入れたある装置が男の運命を変える。"
+    "netflix_synopsis": "未亡人がクワークのバーである男に投資計画を話していると、オドーがその男を詐欺罪で逮捕。その後、拘束室で手に入れたある装置が男の運命を変える。",
+    "url_imdb": "https://www.imdb.com/title/tt0708591/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 2 },
+      { "name": "Rom", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
