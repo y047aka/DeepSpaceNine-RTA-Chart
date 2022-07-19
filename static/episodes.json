@@ -631,7 +631,18 @@
     "title_ja": "流動体生物の秘密",
     "importance": 3,
     "netflix_id": 70205837,
-    "netflix_synopsis": "オドーの今の姿を作ったモーラ･ポール博士が流動体生物に関する情報を持ってDS9に現れる。オドーの出自の秘密が明らかになるかもしれない。"
+    "netflix_synopsis": "オドーの今の姿を作ったモーラ･ポール博士が流動体生物に関する情報を持ってDS9に現れる。オドーの出自の秘密が明らかになるかもしれない。",
+    "url_imdb": "https://www.imdb.com/title/tt0708613/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
@@ -640,7 +651,18 @@
     "title_ja": "最終兵器解体の陰謀",
     "importance": 3,
     "netflix_id": 70205838,
-    "netflix_synopsis": "長年戦ってきた2種族が和解する。不要になった生物兵器の解体のために、べシアとオブライエンが派遣されるが、任務完了後に2人は命を狙われる。"
+    "netflix_synopsis": "長年戦ってきた2種族が和解する。不要になった生物兵器の解体のために、べシアとオブライエンが派遣されるが、任務完了後に2人は命を狙われる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708500/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -649,16 +671,35 @@
     "title_ja": "オブライエンの孤立",
     "importance": 3,
     "netflix_id": 70205839,
-    "netflix_synopsis": "パラダ星系での任務から戻ったオブライエンは、周囲の自分に対する態度がおかしいことに気づく。家族に避けられ、仕事も奪われた彼は困惑するばかり。"
+    "netflix_synopsis": "パラダ星系での任務から戻ったオブライエンは、周囲の自分に対する態度がおかしいことに気づく。家族に避けられ、仕事も奪われた彼は困惑するばかり。",
+    "url_imdb": "https://www.imdb.com/title/tt0708664/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
     "episode": 15,
     "title": "Paradise",
     "title_ja": "自然回帰",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205840,
-    "netflix_synopsis": "近隣のMクラス惑星の調査に訪れたシスコとオブライエン。機器が作動しないその星に10年間住んでいるという住民たちは、原始的な生活をしていた。"
+    "netflix_synopsis": "近隣のMクラス惑星の調査に訪れたシスコとオブライエン。機器が作動しないその星に10年間住んでいるという住民たちは、原始的な生活をしていた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708574/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
