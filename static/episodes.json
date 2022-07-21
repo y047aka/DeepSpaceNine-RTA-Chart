@@ -706,9 +706,21 @@
     "episode": 16,
     "title": "Shadowplay",
     "title_ja": "幻影の村",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205841,
-    "netflix_synopsis": "ガンマ宇宙域のある惑星の表面に異常な分子界が発見され、ダックスとオドーは調査に向かう。その星では、人々が突然失踪するという事件が起きていた。"
+    "netflix_synopsis": "ガンマ宇宙域のある惑星の表面に異常な分子界が発見され、ダックスとオドーは調査に向かう。その星では、人々が突然失踪するという事件が起きていた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708574/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 5 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Bareil", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
