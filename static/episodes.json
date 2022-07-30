@@ -747,9 +747,20 @@
     "episode": 18,
     "title": "Profit and Loss",
     "title_ja": "クワークの愛",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205843,
-    "netflix_synopsis": "シスコらは故障したカーデシア船からある教授と生徒たちを救助する。教授はクワークと旧知の仲だったが、彼女はカーデシアの政治亡命者となっていた。"
+    "netflix_synopsis": "シスコらは故障したカーデシア船からある教授と生徒たちを救助する。教授はクワークと旧知の仲だったが、彼女はカーデシアの政治亡命者となっていた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708583/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -758,7 +769,18 @@
     "title_ja": "血の誓い",
     "importance": 3,
     "netflix_id": 70205844,
-    "netflix_synopsis": "平穏な日々も束の間、殺された息子の敵討ちに3人のクリンゴン戦士がDS9に集結する。共に復讐を誓ったダックスが女性の姿になっていることに驚く。"
+    "netflix_synopsis": "平穏な日々も束の間、殺された息子の敵討ちに3人のクリンゴン戦士がDS9に集結する。共に復讐を誓ったダックスが女性の姿になっていることに驚く。",
+    "url_imdb": "https://www.imdb.com/title/tt0708507/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Kor", "contrast": 3 },
+      { "name": "Kang", "contrast": 3 },
+      { "name": "Koloth", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
