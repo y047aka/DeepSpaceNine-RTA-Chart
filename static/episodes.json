@@ -709,7 +709,7 @@
     "importance": 4,
     "netflix_id": 70205841,
     "netflix_synopsis": "ガンマ宇宙域のある惑星の表面に異常な分子界が発見され、ダックスとオドーは調査に向かう。その星では、人々が突然失踪するという事件が起きていた。",
-    "url_imdb": "https://www.imdb.com/title/tt0708574/",
+    "url_imdb": "https://www.imdb.com/title/tt0708599/",
     "characters": [
       { "name": "Benjamin Sisko", "contrast": 2 },
       { "name": "Odo", "contrast": 4 },
@@ -729,7 +729,18 @@
     "title_ja": "宇宙の原型",
     "importance": 3,
     "netflix_id": 70205842,
-    "netflix_synopsis": "ダックスはあるトリル人合体候補生の担当教官となる。彼はダックスの噂を聞いて緊張していた。一方、ベイジョー星系を脅かすエネルギー体が現れる。"
+    "netflix_synopsis": "ダックスはあるトリル人合体候補生の担当教官となる。彼はダックスの噂を聞いて緊張していた。一方、ベイジョー星系を脅かすエネルギー体が現れる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708580/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
