@@ -908,9 +908,21 @@
     "episode": 26,
     "title": "The Jem'Hadar",
     "title_ja": "新たなる脅威",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205851,
-    "netflix_synopsis": "シスコはジェイクと親子水入らずの旅行を計画するが、ノーグとクワークもついて来てしまう。旅先の惑星でシスコとクワークはある戦闘種族に捕まる。"
+    "netflix_synopsis": "シスコはジェイクと親子水入らずの旅行を計画するが、ノーグとクワークもついて来てしまう。旅先の惑星でシスコとクワークはある戦闘種族に捕まる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708627/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Nog", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
