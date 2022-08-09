@@ -789,7 +789,18 @@
     "title_ja": "戦争回避 (前編)",
     "importance": 3,
     "netflix_id": 70205845,
-    "netflix_synopsis": "カーデシアの輸送船がDS9への寄港中に何者かに爆破され、連邦とカーデシアの間に緊張が走る。デュカットは非武装地帯の入植者たちの関与を疑う。"
+    "netflix_synopsis": "カーデシアの輸送船がDS9への寄港中に何者かに爆破され、連邦とカーデシアの間に緊張が走る。デュカットは非武装地帯の入植者たちの関与を疑う。",
+    "url_imdb": "https://www.imdb.com/title/tt0708629/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Dukat", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -798,7 +809,18 @@
     "title_ja": "戦争回避 (後編)",
     "importance": 3,
     "netflix_id": 70205846,
-    "netflix_synopsis": "誘拐されたデュカットの捜索に向かったシスコ、キラ、べシアは、マキと名乗る過激派のアジトへたどり着く。そこでシスコは旧友に出くわす。"
+    "netflix_synopsis": "誘拐されたデュカットの捜索に向かったシスコ、キラ、べシアは、マキと名乗る過激派のアジトへたどり着く。そこでシスコは旧友に出くわす。",
+    "url_imdb": "https://www.imdb.com/title/tt0708630/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Dukat", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
@@ -807,34 +829,79 @@
     "title_ja": "義務と友情",
     "importance": 3,
     "netflix_id": 70205847,
-    "netflix_synopsis": "べシアとランチの列に並んでいたガラックは激しい頭痛に襲われる。しかしなぜか彼はべシアの診療を拒み、陰でクワークと怪しげな取引をするのだった。"
+    "netflix_synopsis": "べシアとランチの列に並んでいたガラックは激しい頭痛に襲われる。しかしなぜか彼はべシアの診療を拒み、陰でクワークと怪しげな取引をするのだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708648/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 4 }
+    ]
   },
   {
     "season": 2,
     "episode": 23,
     "title": "Crossover",
     "title_ja": "二人のキラ",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205848,
-    "netflix_synopsis": "ワームホールを通過中に機器トラブルに見舞われたキラとべシアは、2人して平行宇宙へとワープしてしまう。そこでキラはもう1人の自分と対面する。"
+    "netflix_synopsis": "ワームホールを通過中に機器トラブルに見舞われたキラとべシアは、2人して平行宇宙へとワープしてしまう。そこでキラはもう1人の自分と対面する。",
+    "url_imdb": "https://www.imdb.com/title/tt0708522/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Garak", "contrast": 2 }
+    ]
   },
   {
     "season": 2,
     "episode": 24,
     "title": "The Collaborator",
     "title_ja": "密告者",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205849,
-    "netflix_synopsis": "ベイジョーで新たな宗教指導者の選挙が行われ、キラの恋人バライルが有力候補となる。しかし対立候補のウィンはバライルの暗い過去を暴こうと...。"
+    "netflix_synopsis": "ベイジョーで新たな宗教指導者の選挙が行われ、キラの恋人バライルが有力候補となる。しかし対立候補のウィンはバライルの暗い過去を暴こうと...。",
+    "url_imdb": "https://www.imdb.com/title/tt0708619/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Bareil", "contrast": 4 },
+      { "name": "Opaka", "contrast": 2 },
+      { "name": "Winn", "contrast": 4 }
+    ]
   },
   {
     "season": 2,
     "episode": 25,
     "title": "Tribunal",
     "title_ja": "疑惑の法廷",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205850,
-    "netflix_synopsis": "ケイコと休暇に出かける途中、オブライエンは元同僚と再会するが、直後にカーデシアに逮捕される。そのまま有罪が確定した裁判にかけられることに。"
+    "netflix_synopsis": "ケイコと休暇に出かける途中、オブライエンは元同僚と再会するが、直後にカーデシアに逮捕される。そのまま有罪が確定した裁判にかけられることに。",
+    "url_imdb": "https://www.imdb.com/title/tt0708656/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Keiko O'Brien", "contrast": 3 }
+    ]
   },
   {
     "season": 2,
