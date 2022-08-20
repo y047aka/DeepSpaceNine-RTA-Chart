@@ -929,18 +929,43 @@
     "episode": 1,
     "title": "The Search, Part I",
     "title_ja": "ドミニオンの野望 (前編)",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205852,
-    "netflix_synopsis": "ジェム･ハダーが攻撃してくればDS9はひとたまりもないことがキラの分析で判明する。その脅威に対抗するため、シスコは最強の戦艦を手配していた。"
+    "netflix_synopsis": "ジェム･ハダーが攻撃してくればDS9はひとたまりもないことがキラの分析で判明する。その脅威に対抗するため、シスコは最強の戦艦を手配していた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708636/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Michael Eddington", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 2,
     "title": "The Search, Part II",
     "title_ja": "ドミニオンの野望 (後編)",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205853,
-    "netflix_synopsis": "ドミニオンの攻撃を受けた直後、衝動に従いキラを連れてオマリオン星系の惑星に向かったオドー。そこはオドーが長い間探し求めていた彼の故郷だった。"
+    "netflix_synopsis": "ドミニオンの攻撃を受けた直後、衝動に従いキラを連れてオマリオン星系の惑星に向かったオドー。そこはオドーが長い間探し求めていた彼の故郷だった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708637/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 2 },
+      { "name": "Michael Eddington", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
@@ -949,16 +974,38 @@
     "title_ja": "クワークの結婚",
     "importance": 3,
     "netflix_id": 70205854,
-    "netflix_synopsis": "客足が悪いクワークのバーで困り果てるロム。唯一の客であるクリンゴン人が自分は一文無しだと言っているらしい。そんな中、ある事件が起きる。"
+    "netflix_synopsis": "客足が悪いクワークのバーで困り果てるロム。唯一の客であるクリンゴン人が自分は一文無しだと言っているらしい。そんな中、ある事件が起きる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708626/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 3 },
+      { "name": "Rom", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 4,
     "title": "Equilibrium",
     "title_ja": "仮面の幻影",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205855,
-    "netflix_synopsis": "会食の席でキーボードを美しく弾き始めたダックス。しかし本人を含め、ダックスの過去のホストに音楽の心得がある者はいないはずだった。"
+    "netflix_synopsis": "会食の席でキーボードを美しく弾き始めたダックス。しかし本人を含め、ダックスの過去のホストに音楽の心得がある者はいないはずだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708533/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
