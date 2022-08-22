@@ -1014,25 +1014,59 @@
     "title_ja": "恐るべき過去",
     "importance": 3,
     "netflix_id": 70205856,
-    "netflix_synopsis": "キラは自分が10年前にカーデシアの収容所にいたと知る。その収容所に向かう途中で何者かにさらわれたキラは、目覚めるとカーデシア人になっていた。"
+    "netflix_synopsis": "キラは自分が10年前にカーデシアの収容所にいたと知る。その収容所に向かう途中で何者かにさらわれたキラは、目覚めるとカーデシア人になっていた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708598/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 5 },
+      { "name": "Garak", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
     "episode": 6,
     "title": "The Abandoned",
     "title_ja": "捨て子の秘密",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205857,
-    "netflix_synopsis": "ある女船長からガンマ宇宙域で難破した船を買い取ったクワークは、船内に赤ん坊を見つける。驚異的なスピードで成長し、青年になった彼の正体とは。"
+    "netflix_synopsis": "ある女船長からガンマ宇宙域で難破した船を買い取ったクワークは、船内に赤ん坊を見つける。驚異的なスピードで成長し、青年になった彼の正体とは。",
+    "url_imdb": "https://www.imdb.com/title/tt0708611/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 4 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 7,
     "title": "Civil Defense",
     "title_ja": "暴徒制圧モード始動",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205858,
-    "netflix_synopsis": "DS9内の鉱石加工場で古いファイルを削除していたジェイクとオブライエン。作業中に、カーデシア占領時代の暴動制圧プログラムが作動してしまう。"
+    "netflix_synopsis": "DS9内の鉱石加工場で古いファイルを削除していたジェイクとオブライエン。作業中に、カーデシア占領時代の暴動制圧プログラムが作動してしまう。",
+    "url_imdb": "https://www.imdb.com/title/tt0708519/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 2 },
+      { "name": "Dukat", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
