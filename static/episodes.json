@@ -1073,27 +1073,62 @@
     "episode": 8,
     "title": "Meridian",
     "title_ja": "次元移動惑星M",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205859,
-    "netflix_synopsis": "ガンマ宇宙域を探査していたシスコたちの前に突如、ある惑星が現れる。2つの次元を移動しているというその星の住人とダックスは恋に落ちる。"
+    "netflix_synopsis": "ガンマ宇宙域を探査していたシスコたちの前に突如、ある惑星が現れる。2つの次元を移動しているというその星の住人とダックスは恋に落ちる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708568/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 4 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
     "episode": 9,
     "title": "Defiant",
     "title_ja": "奪われたディファイアント",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205860,
-    "netflix_synopsis": "エンタープライズのウィリアム･ライカー中佐がDS9を訪れる。好意を持ったキラは、ライカーを案内しようとディファイアントに乗せるが...。"
+    "netflix_synopsis": "エンタープライズのウィリアム･ライカー中佐がDS9を訪れる。好意を持ったキラは、ライカーを案内しようとディファイアントに乗せるが...。",
+    "url_imdb": "https://www.imdb.com/title/tt0708524/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Dukat", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
     "episode": 10,
     "title": "Fascination",
     "title_ja": "恋の感謝祭",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205861,
-    "netflix_synopsis": "DS9で年に1度のベイジョーの感謝祭が行われる。愛する人の到着を待つのはキラとオブライエン。ところがお祭りの最中に異様な恋愛騒動が起きる。"
+    "netflix_synopsis": "DS9で年に1度のベイジョーの感謝祭が行われる。愛する人の到着を待つのはキラとオブライエン。ところがお祭りの最中に異様な恋愛騒動が起きる。",
+    "url_imdb": "https://www.imdb.com/title/tt0708539/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Lwaxana Troi", "contrast": 3 },
+      { "name": "Bareil", "contrast": 2 },
+      { "name": "Keiko O'Brien", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
