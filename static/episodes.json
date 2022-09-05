@@ -1137,7 +1137,17 @@
     "title_ja": "2024年暴動の夜 (前編)",
     "importance": 3,
     "netflix_id": 70205862,
-    "netflix_synopsis": "シスコ、ダックスとべシアは討論会に参加するためサンフランシスコに向かう。だが、転送中にトラブルが起こり、2024年にタイムスリップしてしまう。"
+    "netflix_synopsis": "シスコ、ダックスとべシアは討論会に参加するためサンフランシスコに向かう。だが、転送中にトラブルが起こり、2024年にタイムスリップしてしまう。",
+    "url_imdb": "https://www.imdb.com/title/tt0708577/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 1 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
@@ -1146,16 +1156,39 @@
     "title_ja": "2024年暴動の夜 (後編)",
     "importance": 3,
     "netflix_id": 70205863,
-    "netflix_synopsis": "21世紀の歴史に刻まれる英雄、ガブリエル・ベルを死なせてしまったシスコ。彼の代わりを務めるべく、ベルとして暴動事件の人質たちを守ろうとする。"
+    "netflix_synopsis": "21世紀の歴史に刻まれる英雄、ガブリエル・ベルを死なせてしまったシスコ。彼の代わりを務めるべく、ベルとして暴動事件の人質たちを守ろうとする。",
+    "url_imdb": "https://www.imdb.com/title/tt0708578/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 13,
     "title": "Life Support",
     "title_ja": "バライルの死",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205864,
-    "netflix_synopsis": "カーデシアとの和平交渉に向かう途中のベイジョー船が事故に遭い、バライルが重傷を負う。しかし、ウィンはバライルの命より交渉を優先する。"
+    "netflix_synopsis": "カーデシアとの和平交渉に向かう途中のベイジョー船が事故に遭い、バライルが重傷を負う。しかし、ウィンはバライルの命より交渉を優先する。",
+    "url_imdb": "https://www.imdb.com/title/tt0708564/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Bareil", "contrast": 4 },
+      { "name": "Nog", "contrast": 3 },
+      { "name": "Winn", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
