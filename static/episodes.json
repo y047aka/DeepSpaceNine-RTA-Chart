@@ -1197,25 +1197,62 @@
     "title_ja": "可変種の定め",
     "importance": 3,
     "netflix_id": 70205865,
-    "netflix_synopsis": "マキがリセピアンの船に攻撃を仕掛けたことを知り、追跡を始めたキラとオドー。たどり着いた惑星の洞窟で、キラは水晶体に足を取られてしまう。"
+    "netflix_synopsis": "マキがリセピアンの船に攻撃を仕掛けたことを知り、追跡を始めたキラとオドー。たどり着いた惑星の洞窟で、キラは水晶体に足を取られてしまう。",
+    "url_imdb": "https://www.imdb.com/title/tt0708546/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 5 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 3 },
+      { "name": "Rom", "contrast": 3 },
+      { "name": "Nog", "contrast": 5 }
+    ]
   },
   {
     "season": 3,
     "episode": 15,
     "title": "Destiny",
     "title_ja": "三匹の毒蛇",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205866,
-    "netflix_synopsis": "シスコはカーデシアの科学者の協力でガンマ宇宙域との通信が可能な亜空間中継機を設置することに。だがベイジョーのヴェデクが預言を理由に反対する。"
+    "netflix_synopsis": "シスコはカーデシアの科学者の協力でガンマ宇宙域との通信が可能な亜空間中継機を設置することに。だがベイジョーのヴェデクが預言を理由に反対する。",
+    "url_imdb": "https://www.imdb.com/title/tt0708525/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 3 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
     "episode": 16,
     "title": "Prophet Motive",
     "title_ja": "新・金儲けの秘訣",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205867,
-    "netflix_synopsis": "フェレンギのグランド･ネーガス･ゼクがDS9を訪れ、本の執筆のため、クワークの元に滞在するという。その本の内容は意表をつくものだった。"
+    "netflix_synopsis": "フェレンギのグランド･ネーガス･ゼクがDS9を訪れ、本の執筆のため、クワークの元に滞在するという。その本の内容は意表をつくものだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708585/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 4 },
+      { "name": "Zek", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
@@ -1224,25 +1261,62 @@
     "title_ja": "DS9破壊工作",
     "importance": 3,
     "netflix_id": 70205868,
-    "netflix_synopsis": "DS9にやってきたロミュランの使節団がドミニオンの情報を要求してくる。彼らは情報をもらう条件で、ディファイアントに遮蔽装置を貸したのだった。"
+    "netflix_synopsis": "DS9にやってきたロミュランの使節団がドミニオンの情報を要求してくる。彼らは情報をもらう条件で、ディファイアントに遮蔽装置を貸したのだった。",
+    "url_imdb": "https://www.imdb.com/title/tt0708658/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 4 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 18,
     "title": "Distant Voices",
     "title_ja": "老化促進テレパシー",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205869,
-    "netflix_synopsis": "アルトバという異星人が連邦法で禁止されている薬を売るようにベシアに要求する。断られたアルトバは診療室に侵入し、居合わせたベシアを襲う。"
+    "netflix_synopsis": "アルトバという異星人が連邦法で禁止されている薬を売るようにベシアに要求する。断られたアルトバは診療室に侵入し、居合わせたベシアを襲う。",
+    "url_imdb": "https://www.imdb.com/title/tt0708526/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
     "episode": 19,
     "title": "Through the Looking Glass",
     "title_ja": "鏡の裏のシスコ",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205870,
-    "netflix_synopsis": "シスコはオブライエンの分身に拉致され、キラとべシアが1年前に訪れた平行宇宙に連れて行かれる。その世界はシスコの助けを必要としていた。"
+    "netflix_synopsis": "シスコはオブライエンの分身に拉致され、キラとべシアが1年前に訪れた平行宇宙に連れて行かれる。その世界はシスコの助けを必要としていた。",
+    "url_imdb": "https://www.imdb.com/title/tt0708650/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 2 },
+      { "name": "Jennifer Sisko", "contrast": 3 },
+      { "name": "Rom", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
