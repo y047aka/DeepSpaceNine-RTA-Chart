@@ -1323,18 +1323,41 @@
     "episode": 20,
     "title": "Improbable Cause",
     "title_ja": "姿なき連合艦隊 (前編)",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205871,
-    "netflix_synopsis": "ガラックがランチから戻ると同時に、店で爆発が起こる。シスコらは、何者かがガラックの命を狙って爆発を事故に見せかけたのではないかと疑う。"
+    "netflix_synopsis": "ガラックがランチから戻ると同時に、店で爆発が起こる。シスコらは、何者かがガラックの命を狙って爆発を事故に見せかけたのではないかと疑う。",
+    "url_imdb": "https://www.imdb.com/title/tt0708553/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 4 }
+    ]
   },
   {
     "season": 3,
     "episode": 21,
     "title": "The Die Is Cast",
     "title_ja": "姿なき連合艦隊 (後編)",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205872,
-    "netflix_synopsis": "カーデシアの元指揮官、エナブラン・テインと再会したガラック。ロミュランと共にドミニオンへの先制攻撃を仕掛けようとするテインと手を組むことに。"
+    "netflix_synopsis": "カーデシアの元指揮官、エナブラン・テインと再会したガラック。ロミュランと共にドミニオンへの先制攻撃を仕掛けようとするテインと手を組むことに。",
+    "url_imdb": "https://www.imdb.com/title/tt0708621/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Garak", "contrast": 4 },
+      { "name": "Michael Eddington", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
