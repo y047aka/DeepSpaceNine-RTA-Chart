@@ -1367,19 +1367,41 @@
     "importance": 3,
     "netflix_id": 70205873,
     "netflix_synopsis": "シスコはベイジョーの図書館から古代の宇宙船の設計図を持ち帰る。彼は光圧を推進力とするその船を実際に作り、ジェイクと旅してみたいと言い出す。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708534/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 4 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Gul Dukat", "contrast": 2 },
+      { "name": "Leeta", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 23,
     "title": "Family Business",
     "title_ja": "クワークの母",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205874,
     "netflix_synopsis": "フェレンギ会計監査局がクワークの店に立入監査に入る。罪状は\"家族への監督不行き届き\"。クワークの母はフェレンギの法に反して金儲けをしていた。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708537/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Kasidy Yates", "contrast": 2 },
+      { "name": "Rom", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
@@ -1389,8 +1411,20 @@
     "importance": 3,
     "netflix_id": 70205875,
     "netflix_synopsis": "ベイジョー政府の首相が亡くなり、カイ･ウィンが後継者に指名される。キラはウィンが政治の世界でも実権を握ろうとしていることに嫌悪感を抱く。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708601/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Shakaar", "contrast": 3 },
+      { "name": "Lupaza", "contrast": 2 },
+      { "name": "Furel", "contrast": 2 },
+      { "name": "Winn", "contrast": 3 }
+    ]
   },
   {
     "season": 3,
