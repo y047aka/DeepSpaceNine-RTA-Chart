@@ -1,4 +1,4 @@
-module Episode exposing (Episode, episodesDecoder)
+module Episode exposing (Character, Episode, episodesDecoder)
 
 import Json.Decode as Decode exposing (field, int, string)
 
@@ -11,7 +11,12 @@ type alias Episode =
     , importance : Int
     , netflix_id : Int
     , netflix_synopsis : String
+    , characters : List Character
     }
+
+
+type alias Character =
+    { name : String, contrast : Int }
 
 
 episodesDecoder : Decode.Decoder (List Episode)
@@ -21,7 +26,7 @@ episodesDecoder =
 
 episodeDecoder : Decode.Decoder Episode
 episodeDecoder =
-    Decode.map7 Episode
+    Decode.map8 Episode
         (field "season" int)
         (field "episode" int)
         (field "title" string)
@@ -29,3 +34,11 @@ episodeDecoder =
         (field "importance" int)
         (field "netflix_id" int)
         (field "netflix_synopsis" string)
+        (field "characters" (Decode.list characterDecoder))
+
+
+characterDecoder : Decode.Decoder Character
+characterDecoder =
+    Decode.map2 Character
+        (field "name" string)
+        (field "contrast" int)

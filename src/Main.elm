@@ -3,10 +3,11 @@ module Main exposing (main)
 import Browser
 import Css exposing (..)
 import Css.Global as Global exposing (children, global)
-import Episode exposing (Episode, episodesDecoder)
+import Episode exposing (Character, Episode, episodesDecoder)
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Http
+import List.Extra as List
 
 
 main : Program () Model Msg
@@ -72,14 +73,18 @@ view { episodes } =
 
 
 episodeView : Int -> Episode -> Html msg
-episodeView index { season, episode, title, title_ja, importance, netflix_id } =
+episodeView index { season, episode, title, title_ja, importance, netflix_id, characters } =
+    let
+        { benjaminSisko, odo, bashir, dax, jakeSisko, milesObrien, quark, kiraNerys, keikoObrien, garak, dukat, rom, nog, bareil, winn } =
+            fromCharacters characters
+    in
     tr
         [ css
             [ height (px 31)
             , fontSize (px 10)
             , color (hsl 175 0.6 (stepByImportance importance))
             , children
-                [ Global.selector "td:not(:last-child)" [ padding2 (px 5) (px 10) ] ]
+                [ Global.selector "td:not(:last-child)" [ padding (px 5) ] ]
             ]
         ]
         [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
@@ -101,6 +106,21 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id } =
             []
         , td [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
         , td [] [ text title_ja ]
+        , td [] [ contrastView benjaminSisko ]
+        , td [] [ contrastView odo ]
+        , td [] [ contrastView bashir ]
+        , td [] [ contrastView dax ]
+        , td [] [ contrastView jakeSisko ]
+        , td [] [ contrastView milesObrien ]
+        , td [] [ contrastView quark ]
+        , td [] [ contrastView kiraNerys ]
+        , td [] [ contrastView keikoObrien ]
+        , td [] [ contrastView garak ]
+        , td [] [ contrastView dukat ]
+        , td [] [ contrastView rom ]
+        , td [] [ contrastView nog ]
+        , td [] [ contrastView bareil ]
+        , td [] [ contrastView winn ]
         , td []
             [ a
                 [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
@@ -119,6 +139,117 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id } =
                 [ text "NETFLIX" ]
             ]
         ]
+
+
+contrastView : Maybe Int -> Html msg
+contrastView contrast =
+    let
+        c =
+            Maybe.withDefault 0 contrast
+    in
+    div
+        [ css
+            [ before
+                [ property "content" "''"
+                , display block
+                , margin auto
+                , width <| px (toFloat c * 3)
+                , height <| px (toFloat c * 3)
+                , backgroundColor (hsl 175 0.6 0.3)
+                , borderRadius (px 50)
+                ]
+            ]
+        ]
+        []
+
+
+fromCharacters :
+    List Character
+    ->
+        { benjaminSisko : Maybe Int
+        , odo : Maybe Int
+        , bashir : Maybe Int
+        , dax : Maybe Int
+        , jakeSisko : Maybe Int
+        , milesObrien : Maybe Int
+        , quark : Maybe Int
+        , kiraNerys : Maybe Int
+        , keikoObrien : Maybe Int
+        , garak : Maybe Int
+        , dukat : Maybe Int
+        , rom : Maybe Int
+        , nog : Maybe Int
+        , bareil : Maybe Int
+        , winn : Maybe Int
+        }
+fromCharacters =
+    List.foldl
+        (\{ name, contrast } r ->
+            case name of
+                "Benjamin Sisko" ->
+                    { r | benjaminSisko = Just contrast }
+
+                "Odo" ->
+                    { r | odo = Just contrast }
+
+                "Bashir" ->
+                    { r | bashir = Just contrast }
+
+                "Dax" ->
+                    { r | dax = Just contrast }
+
+                "Jake Sisko" ->
+                    { r | jakeSisko = Just contrast }
+
+                "Miles O'Brien" ->
+                    { r | milesObrien = Just contrast }
+
+                "Quark" ->
+                    { r | quark = Just contrast }
+
+                "Kira Nerys" ->
+                    { r | kiraNerys = Just contrast }
+
+                "Keiko O'Brien" ->
+                    { r | keikoObrien = Just contrast }
+
+                "Garak" ->
+                    { r | garak = Just contrast }
+
+                "Dukat" ->
+                    { r | dukat = Just contrast }
+
+                "Rom" ->
+                    { r | rom = Just contrast }
+
+                "Nog" ->
+                    { r | nog = Just contrast }
+
+                "Bareil" ->
+                    { r | bareil = Just contrast }
+
+                "Winn" ->
+                    { r | winn = Just contrast }
+
+                _ ->
+                    r
+        )
+        { benjaminSisko = Nothing
+        , odo = Nothing
+        , bashir = Nothing
+        , dax = Nothing
+        , jakeSisko = Nothing
+        , milesObrien = Nothing
+        , quark = Nothing
+        , kiraNerys = Nothing
+        , keikoObrien = Nothing
+        , garak = Nothing
+        , dukat = Nothing
+        , rom = Nothing
+        , nog = Nothing
+        , bareil = Nothing
+        , winn = Nothing
+        }
 
 
 stepByImportance : Int -> Float
