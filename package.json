@@ -1,28 +1,14 @@
 {
   "scripts": {
-    "clean": "rimraf dist",
-    "watch:html": "cpx -w index.html dist",
-    "watch:elm": "elm-live src/Main.elm --dir=dist --start-page=index.html --hot --open -- --debug --output=dist/elm.js",
-    "watch:static": "cpx -w \"static/**/*\" dist/static",
-    "watch": "npm-run-all -p watch:*",
-    "compile:html": "cpx index.html dist",
-    "compile:elm": "elm make src/Main.elm --optimize --output=dist/elm.optimized.js",
-    "compile:static": "cpx \"static/**/*\" dist/static",
-    "compile": "npm-run-all -p compile:*",
-    "minify:elm": "google-closure-compiler --js=dist/elm.optimized.js --js_output_file=dist/elm.js",
-    "postminify:elm": "rimraf dist/elm.optimized.js",
-    "start": "npm-run-all -s clean watch",
-    "build": "npm-run-all -s clean compile minify:elm"
+    "start": "run-pty % elm-watch hot % npm run esbuild -- --serve=9000 --servedir=public",
+    "build": "elm-watch make --optimize && npm run esbuild -- --minify",
+    "esbuild": "esbuild app.ts --bundle --outdir=public/build --public-path=/build/"
   },
   "dependencies": {
-    "cpx2": "^4.2.0",
     "elm": "^0.19.1-5",
-    "google-closure-compiler": "^20220601.0.0",
-    "npm-run-all2": "^6.0.1",
-    "rimraf": "^3.0.2"
-  },
-  "devDependencies": {
     "elm-format": "^0.8.5",
-    "elm-live": "^4.0.2"
+    "elm-watch": "^1.1.0",
+    "esbuild": "^0.15.13",
+    "run-pty": "^4.0.3"
   }
 }
