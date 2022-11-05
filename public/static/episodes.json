@@ -1434,19 +1434,41 @@
     "importance": 3,
     "netflix_id": 70205876,
     "netflix_synopsis": "ダックスは過去のホストたちを呼び出して会話するというトリル族の儀式に向けて準備を進める。そのためにはシスコたちの体を借りる必要があった。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708536/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 5 },
+      { "name": "Jake Sisko", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 2 },
+      { "name": "Nog", "contrast": 3 },
+      { "name": "Leeta", "contrast": 2 }
+    ]
   },
   {
     "season": 3,
     "episode": 26,
     "title": "The Adversary",
     "title_ja": "忍び寄る可変種の脅威",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205877,
     "netflix_synopsis": "大佐に昇格したシスコ。だが祝いの席で、連邦のクラジェンスキー大使はシスコにクーデターの発生を秘密裏に明かす。シスコらは大使と現地に向かう。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708612/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Michael Eddington", "contrast": 2 }
+    ]
   },
   {
     "season": 4,
@@ -1456,8 +1478,22 @@
     "importance": 3,
     "netflix_id": 70205878,
     "netflix_synopsis": "マートク将軍率いるクリンゴン艦隊がDS9にやってくる。ドミニオンと戦うために来たというが、どうも様子がおかしい。果たして彼らの真の狙いとは。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0394906/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Worf", "contrast": 4 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Kasidy Yates", "contrast": 2 },
+      { "name": "Dukat", "contrast": 3 },
+      { "name": "Gowron", "contrast": 3 },
+      { "name": "Martok", "contrast": 3 },
+      { "name": "Garak", "contrast": 3 }
+    ]
   },
   {
     "season": 4,
