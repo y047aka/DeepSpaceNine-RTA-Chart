@@ -1475,7 +1475,7 @@
     "episode": 1,
     "title": "The Way of the Warrior",
     "title_ja": "クリンゴンの暴挙",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205878,
     "netflix_synopsis": "マートク将軍率いるクリンゴン艦隊がDS9にやってくる。ドミニオンと戦うために来たというが、どうも様子がおかしい。果たして彼らの真の狙いとは。",
     "url_imdb": "https://www.imdb.com/title/tt0394906/",
@@ -1500,55 +1500,106 @@
     "episode": 2,
     "title": "The Visitor",
     "title_ja": "父と子",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205880,
     "netflix_synopsis": "作家志望のメラニーは、40才前に断筆した作家のジェイク･シスコを訪ねる。ジェイクは事故で亜空間に消えた父のベンジャミンについて語り始める。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708645/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Worf", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 5 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Nog", "contrast": 2 }
+    ]
   },
   {
     "season": 4,
     "episode": 3,
     "title": "Hippocratic Oath",
     "title_ja": "苦悩するジェム・ハダー",
-    "importance": 3,
+    "importance": 2,
     "netflix_id": 70205881,
     "netflix_synopsis": "ガンマ宇宙域の任務から帰還中のべシアとオブライエン。難破船の発する信号を調査中にある惑星に不時着し、ジェム・ハダーに捕らわれてしまう。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708547/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 3 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Worf", "contrast": 3 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 4 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Bashir", "contrast": 4 },
+      { "name": "Kira Nerys", "contrast": 2 }
+    ]
   },
   {
     "season": 4,
     "episode": 4,
     "title": "Indiscretion",
     "title_ja": "デュカットの娘",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205882,
     "netflix_synopsis": "ベイジョーの密輸人から6年前に消えたカーデシア船の手掛かりをつかんだと聞いたキラは調査に向かう。船にはベイジョー人捕虜たちが乗っていた。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708558/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Worf", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 4 },
+      { "name": "Kasidy Yates", "contrast": 4 },
+      { "name": "Gul Dukat", "contrast": 5 },
+      { "name": "Ziyal", "contrast": 4 }
+    ]
   },
   {
     "season": 4,
     "episode": 5,
     "title": "Rejoined",
     "title_ja": "禁じられた愛の絆",
-    "importance": 3,
+    "importance": 5,
     "netflix_id": 70205883,
     "netflix_synopsis": "シスコはダックスに重要な知らせを告げる。リナーラ・カーン博士が率いるトリルの科学者チームが訪れ、ディファイアントで実験を行うというのだ。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708588/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Worf", "contrast": 2 },
+      { "name": "Dax", "contrast": 5 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 2 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Michael Eddington", "contrast": 2 }
+    ]
   },
   {
     "season": 4,
     "episode": 6,
     "title": "Starship Down",
     "title_ja": "ディファイアントの危機",
-    "importance": 3,
+    "importance": 4,
     "netflix_id": 70205884,
     "netflix_synopsis": "シスコたちはカレマとの貿易交渉のためガンマ宇宙域へと向かう。しかし道中でディファイアントはジェム･ハダーに襲われ、絶体絶命の大ピンチに。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708605/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 4 },
+      { "name": "Odo", "contrast": 2 },
+      { "name": "Worf", "contrast": 3 },
+      { "name": "Dax", "contrast": 3 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 3 },
+      { "name": "Bashir", "contrast": 3 },
+      { "name": "Kira Nerys", "contrast": 4 }
+    ]
   },
   {
     "season": 4,
@@ -1558,8 +1609,20 @@
     "importance": 3,
     "netflix_id": 70205885,
     "netflix_synopsis": "クワークはいとこのゲイラから10年間も約束されていた船をやっと譲り受け、その船で宇宙艦隊アカデミーに入学するノーグを地球へ送ることにする。",
-    "url_imdb": "https://www.imdb.com/title/",
-    "characters": []
+    "url_imdb": "https://www.imdb.com/title/tt0708565/",
+    "characters": [
+      { "name": "Benjamin Sisko", "contrast": 2 },
+      { "name": "Odo", "contrast": 3 },
+      { "name": "Worf", "contrast": 2 },
+      { "name": "Dax", "contrast": 2 },
+      { "name": "Jake Sisko", "contrast": 2 },
+      { "name": "Miles O'Brien", "contrast": 2 },
+      { "name": "Quark", "contrast": 4 },
+      { "name": "Bashir", "contrast": 2 },
+      { "name": "Kira Nerys", "contrast": 2 },
+      { "name": "Rom", "contrast": 3 },
+      { "name": "Nog", "contrast": 3 }
+    ]
   },
   {
     "season": 4,
