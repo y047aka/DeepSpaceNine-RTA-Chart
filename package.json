@@ -4,11 +4,11 @@
     "build": "elm-watch make --optimize && npm run esbuild -- --minify",
     "esbuild": "esbuild app.ts --bundle --outdir=public/build --public-path=/build/"
   },
-  "dependencies": {
+  "devDependencies": {
     "elm": "^0.19.1-5",
-    "elm-format": "^0.8.5",
-    "elm-watch": "^1.1.0",
-    "esbuild": "^0.15.13",
+    "elm-format": "^0.8.7",
+    "elm-watch": "^1.1.2",
+    "esbuild": "^0.17.16",
     "run-pty": "^4.0.3"
   }
 }
