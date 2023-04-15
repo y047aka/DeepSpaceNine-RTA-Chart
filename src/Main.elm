@@ -6,11 +6,11 @@ import Css.Global as Global exposing (children, global)
 import Episode exposing (Character, Episode, episodesDecoder)
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
-import Http
+import Json.Decode
 import List.Extra as List
 
 
-main : Program () Model Msg
+main : Program Json.Decode.Value Model Msg
 main =
     Browser.element
         { init = init
@@ -28,35 +28,27 @@ type alias Model =
     { episodes : List Episode }
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( { episodes = [] }, fetchJson )
-
-
-fetchJson : Cmd Msg
-fetchJson =
-    Http.get
-        { url = "/static/episodes.json"
-        , expect = Http.expectJson Loaded episodesDecoder
-        }
+init : Json.Decode.Value -> ( Model, Cmd Msg )
+init json =
+    ( { episodes =
+            Json.Decode.decodeValue episodesDecoder json
+                |> Result.withDefault []
+      }
+    , Cmd.none
+    )
 
 
 
 -- UPDATE
 
 
-type Msg
-    = Loaded (Result Http.Error (List Episode))
+type alias Msg =
+    {}
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        Loaded (Ok decoded) ->
-            ( { model | episodes = decoded }, Cmd.none )
-
-        Loaded (Err _) ->
-            ( model, Cmd.none )
+update _ model =
+    ( model, Cmd.none )
 
 
 
