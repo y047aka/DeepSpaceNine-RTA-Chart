@@ -1,4 +1,4 @@
-[
+const episodes = [
   {
     "season": 1,
     "episode": 1,
