@@ -14,12 +14,23 @@ when inside the directory containing this file.
 import NoExposingEverything
 import NoMissingTypeAnnotation
 import NoPrematureLetComputation
+import NoUnused.Dependencies
+import NoUnused.Exports
+import NoUnused.Modules
+import NoUnused.Variables
 import Review.Rule exposing (Rule)
 
 
 config : List Rule
 config =
-    [ NoExposingEverything.rule
+    [ -- jfmengels/elm-review-common
+      NoExposingEverything.rule
     , NoMissingTypeAnnotation.rule
     , NoPrematureLetComputation.rule
+
+    -- jfmengels/elm-review-unused
+    , NoUnused.Dependencies.rule
+    , NoUnused.Exports.rule
+    , NoUnused.Modules.rule
+    , NoUnused.Variables.rule
     ]
