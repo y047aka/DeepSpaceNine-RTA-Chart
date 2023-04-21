@@ -11,9 +11,15 @@ when inside the directory containing this file.
 
 -}
 
+import NoExposingEverything
+import NoMissingTypeAnnotation
+import NoPrematureLetComputation
 import Review.Rule exposing (Rule)
 
 
 config : List Rule
 config =
-    []
+    [ NoExposingEverything.rule
+    , NoMissingTypeAnnotation.rule
+    , NoPrematureLetComputation.rule
+    ]
