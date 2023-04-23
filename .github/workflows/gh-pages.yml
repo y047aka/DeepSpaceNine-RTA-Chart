@@ -2,8 +2,11 @@ name: Github Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: true
 
 jobs:
   build:
