@@ -1827,11 +1827,25 @@ const episodes = [
     episode: 1,
     title: "Apocalypse Rising",
     title_ja: "可変種の脅威 第二幕 (後編)",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205904,
     netflix_synopsis: "クリンゴンのガウロン宰相は可変種で、ドミニオンのスパイだという疑いが浮上。正体を暴くよう命じられたシスコは、クリンゴンに変装し帝国に向かう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708499/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 1 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Gowron", contrast: 4 },
+      { name: "Martok", contrast: 4 },
+      { name: "Gul Dukat", contrast: 3 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 5,
@@ -1841,19 +1855,38 @@ const episodes = [
     importance: 3,
     netflix_id: 70205905,
     netflix_synopsis: "シスコ、ダックス、ウォーフ、オブライエンがガンマ宇宙域の惑星を調査中にジェム・ハダーの戦艦が墜落。敵の指揮官から執拗な戦艦の返還要求が届く。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708638/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 5,
     episode: 3,
     title: "Looking for Par'Mach in All the Wrong Places",
     title_ja: "クワークの再婚",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205906,
     netflix_synopsis: "ダックスと一緒にバーにいたウォーフは、そこへ現れたクリンゴン人の美女グリルカに一目惚れする。だがグリルカは実はクワークの元妻だった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708566/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 5 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Keiko O'Brien", contrast: 3 }
+    ]
   },
   {
     season: 5,
@@ -1863,8 +1896,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205907,
     netflix_synopsis: "取材のためベシアに同行したジェイク。シャトルで移動中に救難信号を受け、クリンゴンに襲撃された連邦の植民地に急行。そこで悲惨な現実を目にする。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708493/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 5,
