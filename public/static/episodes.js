@@ -1816,11 +1816,22 @@ const episodes = [
     episode: 25,
     title: "Broken Link",
     title_ja: "可変種の脅威 第二幕 (前編)",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205903,
     netflix_synopsis: "オドーが発作を起こした。検査の結果、人間の姿を保つ能力を失いかけていると判明する。回復のためには創設者である同胞の元へ帰るしか道はなかった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708509/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 5 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Gowron", contrast: 2 },
+      { name: "Garak", contrast: 3 }
+    ]
   },
   {
     season: 5,
