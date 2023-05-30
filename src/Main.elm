@@ -58,7 +58,7 @@ update _ model =
 view : Model -> Html Msg
 view { episodes } =
     div []
-        [ global [ Global.body [ backgroundColor (hex "#000") ] ]
+        [ global [ Global.body [ backgroundColor (hsl 0 0 0.1) ] ]
         , Chart.view episodes
         , Html.table [ css [ margin2 zero auto, borderSpacing (px 1) ] ] <|
             List.indexedMap episodeView episodes
@@ -75,7 +75,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
         [ css
             [ height (px 31)
             , fontSize (px 10)
-            , color (hsl 175 0.6 (stepByImportance importance))
+            , color (hsl 0 0 (stepByImportance importance))
             , children
                 [ Global.selector "td:not(:last-child)" [ padding (px 5) ] ]
             ]
@@ -123,10 +123,10 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                     , padding2 (px 0) (px 15)
                     , fontSize (px 12)
                     , textDecoration none
-                    , backgroundColor (hsl 350 0.5 0.4)
-                    , color (hex "#000")
+                    , backgroundColor (hsl 350 0.5 0.45)
+                    , color (hsl 0 0 0.1)
                     , borderRadius (px 15)
-                    , visited [ backgroundColor (hsl 350 0.5 0.15) ]
+                    , visited [ backgroundColor (hsl 350 0.5 0.2) ]
                     ]
                 ]
                 [ text "NETFLIX" ]
@@ -148,7 +148,7 @@ contrastView contrast =
                 , margin auto
                 , width <| px (toFloat c * 3)
                 , height <| px (toFloat c * 3)
-                , backgroundColor (hsl 175 0.6 0.3)
+                , backgroundColor (hsl 0 0 0.5)
                 , borderRadius (px 50)
                 ]
             ]
@@ -248,11 +248,11 @@ fromCharacters =
 stepByImportance : Int -> Float
 stepByImportance importance =
     if importance > 3 then
-        0.5
+        0.8
         -- importance |> toFloat |> (*) 0.15
 
     else if importance > 2 then
-        0.3
+        0.5
 
     else
-        0.15
+        0.3

@@ -1,6 +1,6 @@
 module Chart exposing (view)
 
-import Css exposing (block, color, display, displayFlex, hsl)
+import Css exposing (block, display, displayFlex, hsl)
 import Episode exposing (Episode)
 import Html.Styled exposing (Html)
 import Html.Styled.Attributes exposing (css)
@@ -41,10 +41,7 @@ view episodes =
         [ width w
         , height h
         , viewBox 0 0 w h
-        , css
-            [ display block
-            , color (hsl 175 0.6 0.5)
-            ]
+        , css [ display block ]
         ]
         [ episodes |> List.indexedMap (\i { importance } -> ( (toFloat >> Scale.convert xScale) i, (toFloat >> Scale.convert yScale) importance )) |> polyline_
         , episodesView episodes
@@ -64,4 +61,4 @@ episodesView episodes =
 
 polyline_ : List ( Float, Float ) -> Svg msg
 polyline_ points_ =
-    polyline [ css [ Css.property "stroke" (hsl 175 0.6 0.5).value ], points points_ ] []
+    polyline [ css [ Css.property "fill" "none", Css.property "stroke" (hsl 0 0 0.6).value ], points points_ ] []
