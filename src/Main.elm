@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Browser
+import Chart
 import Css exposing (..)
 import Css.Global as Global exposing (children, global)
 import Episode exposing (Character, Episode, episodesDecoder)
@@ -58,6 +59,7 @@ view : Model -> Html Msg
 view { episodes } =
     div []
         [ global [ Global.body [ backgroundColor (hex "#000") ] ]
+        , Chart.view episodes
         , Html.table [ css [ margin2 zero auto, borderSpacing (px 1) ] ] <|
             List.indexedMap episodeView episodes
         ]
