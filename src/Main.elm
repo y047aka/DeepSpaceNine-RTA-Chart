@@ -92,16 +92,18 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                     [ property "content" "''"
                     , display block
                     , margin auto
-                    , width <| px (toFloat importance * 3)
-                    , height <| px (toFloat importance * 3)
+                    , width <| px (toFloat importance * 5 - 2)
+                    , height <| px (toFloat importance * 5 - 2)
                     , backgroundColor currentColor
                     , borderRadius (px 50)
                     ]
                 ]
             ]
             []
-        , td [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
-        , td [] [ text title_ja ]
+        , td [ css [ displayFlex, flexDirection column, property "row-gap" "2px" ] ]
+            [ div [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
+            , div [ css [ color (hsl 0 0 0.4) ] ] [ text title_ja ]
+            ]
         , td [] [ contrastCircle benjaminSisko ]
         , td [] [ contrastCircle odo ]
         , td [] [ contrastCircle bashir ]
