@@ -102,21 +102,21 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             []
         , td [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
         , td [] [ text title_ja ]
-        , td [] [ contrastView benjaminSisko ]
-        , td [] [ contrastView odo ]
-        , td [] [ contrastView bashir ]
-        , td [] [ contrastView dax ]
-        , td [] [ contrastView jakeSisko ]
-        , td [] [ contrastView milesObrien ]
-        , td [] [ contrastView quark ]
-        , td [] [ contrastView kiraNerys ]
-        , td [] [ contrastView keikoObrien ]
-        , td [] [ contrastView garak ]
-        , td [] [ contrastView dukat ]
-        , td [] [ contrastView rom ]
-        , td [] [ contrastView nog ]
-        , td [] [ contrastView bareil ]
-        , td [] [ contrastView winn ]
+        , td [] [ contrastCircle benjaminSisko ]
+        , td [] [ contrastCircle odo ]
+        , td [] [ contrastCircle bashir ]
+        , td [] [ contrastCircle dax ]
+        , td [] [ contrastCircle jakeSisko ]
+        , td [] [ contrastCircle milesObrien ]
+        , td [] [ contrastCircle quark ]
+        , td [] [ contrastCircle kiraNerys ]
+        , td [] [ contrastCircle keikoObrien ]
+        , td [] [ contrastCircle garak ]
+        , td [] [ contrastCircle dukat ]
+        , td [] [ contrastCircle rom ]
+        , td [] [ contrastCircle nog ]
+        , td [] [ contrastCircle bareil ]
+        , td [] [ contrastCircle winn ]
         , td []
             [ a
                 [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
@@ -137,8 +137,8 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
         ]
 
 
-contrastView : Maybe Int -> Html msg
-contrastView contrast =
+contrastCircle : Maybe Int -> Html msg
+contrastCircle contrast =
     let
         c =
             Maybe.withDefault 0 contrast
