@@ -3,7 +3,8 @@ module Main exposing (main)
 import Browser
 import Chart
 import Css exposing (..)
-import Css.Global as Global exposing (children, global)
+import Css.Global exposing (children, global)
+import Css.Transitions exposing (transition)
 import Episode exposing (Character, Episode, episodesDecoder)
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
@@ -58,9 +59,9 @@ update _ model =
 view : Model -> Html Msg
 view { episodes } =
     div []
-        [ global [ Global.body [ backgroundColor (hsl 0 0 0.1) ] ]
+        [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1) ] ]
         , Chart.view episodes
-        , Html.table [ css [ margin2 zero auto, borderSpacing (px 1) ] ] <|
+        , Html.table [ css [ margin2 zero auto, borderCollapse collapse ] ] <|
             List.indexedMap episodeView episodes
         ]
 
@@ -77,7 +78,9 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             , fontSize (px 10)
             , color (hsl 0 0 (stepByImportance importance))
             , children
-                [ Global.selector "td:not(:last-child)" [ padding (px 5) ] ]
+                [ Css.Global.td [ padding (px 5) ] ]
+            , transition [ Css.Transitions.backgroundColor 150 ]
+            , hover [ backgroundColor (hsl 0 0 0.15) ]
             ]
         ]
         [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
