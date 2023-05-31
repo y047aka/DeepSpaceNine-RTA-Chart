@@ -71,6 +71,15 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
     let
         { benjaminSisko, odo, bashir, dax, jakeSisko, milesObrien, quark, kiraNerys, keikoObrien, garak, dukat, rom, nog, bareil, winn } =
             fromCharacters characters
+
+        charactersContrastColumns =
+            [ benjaminSisko, odo, bashir, dax, jakeSisko, milesObrien, quark, kiraNerys, keikoObrien, garak, dukat, rom, nog, bareil, winn ]
+                |> List.map
+                    (\maybeCharacter ->
+                        maybeCharacter
+                            |> Maybe.map (\( name, contrast ) -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text name ])
+                            |> Maybe.withDefault (td [] [])
+                    )
     in
     tr
         [ css
@@ -83,6 +92,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             , hover [ backgroundColor (hsl 0 0 0.15) ]
             ]
         ]
+    <|
         [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
         , td [ css [ textAlign center ] ]
             [ text <| "S" ++ String.fromInt season ++ " - E" ++ String.fromInt episode ]
@@ -104,130 +114,95 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             [ div [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
             , div [ css [ color (hsl 0 0 0.4) ] ] [ text title_ja ]
             ]
-        , td [] [ contrastCircle benjaminSisko ]
-        , td [] [ contrastCircle odo ]
-        , td [] [ contrastCircle bashir ]
-        , td [] [ contrastCircle dax ]
-        , td [] [ contrastCircle jakeSisko ]
-        , td [] [ contrastCircle milesObrien ]
-        , td [] [ contrastCircle quark ]
-        , td [] [ contrastCircle kiraNerys ]
-        , td [] [ contrastCircle keikoObrien ]
-        , td [] [ contrastCircle garak ]
-        , td [] [ contrastCircle dukat ]
-        , td [] [ contrastCircle rom ]
-        , td [] [ contrastCircle nog ]
-        , td [] [ contrastCircle bareil ]
-        , td [] [ contrastCircle winn ]
-        , td []
-            [ a
-                [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
-                , Attributes.target "_blank"
-                , css
-                    [ display tableCell
-                    , padding2 (px 0) (px 15)
-                    , fontSize (px 12)
-                    , textDecoration none
-                    , backgroundColor (hsl 350 0.5 0.45)
-                    , color (hsl 0 0 0.1)
-                    , borderRadius (px 15)
-                    , visited [ backgroundColor (hsl 350 0.5 0.2) ]
+        ]
+            ++ charactersContrastColumns
+            ++ [ td []
+                    [ a
+                        [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
+                        , Attributes.target "_blank"
+                        , css
+                            [ display tableCell
+                            , padding2 (px 0) (px 15)
+                            , fontSize (px 12)
+                            , textDecoration none
+                            , backgroundColor (hsl 350 0.5 0.45)
+                            , color (hsl 0 0 0.1)
+                            , borderRadius (px 15)
+                            , visited [ backgroundColor (hsl 350 0.5 0.2) ]
+                            ]
+                        ]
+                        [ text "NETFLIX" ]
                     ]
-                ]
-                [ text "NETFLIX" ]
-            ]
-        ]
-
-
-contrastCircle : Maybe Int -> Html msg
-contrastCircle contrast =
-    let
-        c =
-            Maybe.withDefault 0 contrast
-    in
-    div
-        [ css
-            [ before
-                [ property "content" "''"
-                , display block
-                , margin auto
-                , width <| px (toFloat c * 3)
-                , height <| px (toFloat c * 3)
-                , backgroundColor (hsl 0 0 0.5)
-                , borderRadius (px 50)
-                ]
-            ]
-        ]
-        []
+               ]
 
 
 fromCharacters :
     List Character
     ->
-        { benjaminSisko : Maybe Int
-        , odo : Maybe Int
-        , bashir : Maybe Int
-        , dax : Maybe Int
-        , jakeSisko : Maybe Int
-        , milesObrien : Maybe Int
-        , quark : Maybe Int
-        , kiraNerys : Maybe Int
-        , keikoObrien : Maybe Int
-        , garak : Maybe Int
-        , dukat : Maybe Int
-        , rom : Maybe Int
-        , nog : Maybe Int
-        , bareil : Maybe Int
-        , winn : Maybe Int
+        { benjaminSisko : Maybe ( String, Int )
+        , odo : Maybe ( String, Int )
+        , bashir : Maybe ( String, Int )
+        , dax : Maybe ( String, Int )
+        , jakeSisko : Maybe ( String, Int )
+        , milesObrien : Maybe ( String, Int )
+        , quark : Maybe ( String, Int )
+        , kiraNerys : Maybe ( String, Int )
+        , keikoObrien : Maybe ( String, Int )
+        , garak : Maybe ( String, Int )
+        , dukat : Maybe ( String, Int )
+        , rom : Maybe ( String, Int )
+        , nog : Maybe ( String, Int )
+        , bareil : Maybe ( String, Int )
+        , winn : Maybe ( String, Int )
         }
 fromCharacters =
     List.foldl
         (\{ name, contrast } r ->
             case name of
                 "Benjamin Sisko" ->
-                    { r | benjaminSisko = Just contrast }
+                    { r | benjaminSisko = Just ( name, contrast ) }
 
                 "Odo" ->
-                    { r | odo = Just contrast }
+                    { r | odo = Just ( name, contrast ) }
 
                 "Bashir" ->
-                    { r | bashir = Just contrast }
+                    { r | bashir = Just ( name, contrast ) }
 
                 "Dax" ->
-                    { r | dax = Just contrast }
+                    { r | dax = Just ( name, contrast ) }
 
                 "Jake Sisko" ->
-                    { r | jakeSisko = Just contrast }
+                    { r | jakeSisko = Just ( name, contrast ) }
 
                 "Miles O'Brien" ->
-                    { r | milesObrien = Just contrast }
+                    { r | milesObrien = Just ( name, contrast ) }
 
                 "Quark" ->
-                    { r | quark = Just contrast }
+                    { r | quark = Just ( name, contrast ) }
 
                 "Kira Nerys" ->
-                    { r | kiraNerys = Just contrast }
+                    { r | kiraNerys = Just ( name, contrast ) }
 
                 "Keiko O'Brien" ->
-                    { r | keikoObrien = Just contrast }
+                    { r | keikoObrien = Just ( name, contrast ) }
 
                 "Garak" ->
-                    { r | garak = Just contrast }
+                    { r | garak = Just ( name, contrast ) }
 
                 "Dukat" ->
-                    { r | dukat = Just contrast }
+                    { r | dukat = Just ( name, contrast ) }
 
                 "Rom" ->
-                    { r | rom = Just contrast }
+                    { r | rom = Just ( name, contrast ) }
 
                 "Nog" ->
-                    { r | nog = Just contrast }
+                    { r | nog = Just ( name, contrast ) }
 
                 "Bareil" ->
-                    { r | bareil = Just contrast }
+                    { r | bareil = Just ( name, contrast ) }
 
                 "Winn" ->
-                    { r | winn = Just contrast }
+                    { r | winn = Just ( name, contrast ) }
 
                 _ ->
                     r
