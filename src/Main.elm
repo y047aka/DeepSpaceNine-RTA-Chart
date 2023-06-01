@@ -87,7 +87,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             , fontSize (px 10)
             , color (hsl 0 0 (stepByImportance importance))
             , children
-                [ Css.Global.td [ padding (px 5) ] ]
+                [ Css.Global.td [ padding2 (px 5) (px 6) ] ]
             , transition [ Css.Transitions.backgroundColor 150 ]
             , hover [ backgroundColor (hsl 0 0 0.15) ]
             ]
@@ -122,7 +122,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                         , Attributes.target "_blank"
                         , css
                             [ display tableCell
-                            , padding2 (px 0) (px 15)
+                            , padding2 (px 0) (px 10)
                             , fontSize (px 12)
                             , textDecoration none
                             , backgroundColor (hsl 350 0.5 0.45)
