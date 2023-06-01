@@ -5,7 +5,7 @@ import Chart
 import Css exposing (..)
 import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
-import Episode exposing (Character, Episode, episodesDecoder)
+import Data.Episode exposing (Character, Episode, episodesDecoder)
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Json.Decode

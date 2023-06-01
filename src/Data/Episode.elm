@@ -1,4 +1,4 @@
-module Episode exposing (Character, Episode, episodesDecoder)
+module Data.Episode exposing (Character, Episode, episodesDecoder)
 
 import Json.Decode as Decode exposing (field, int, string)
 

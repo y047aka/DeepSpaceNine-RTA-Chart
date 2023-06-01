@@ -1,7 +1,7 @@
 module Chart exposing (view)
 
 import Css exposing (block, display, displayFlex, hsl)
-import Episode exposing (Episode)
+import Data.Episode exposing (Episode)
 import Html.Styled exposing (Html)
 import Html.Styled.Attributes exposing (css)
 import Scale exposing (ContinuousScale)
