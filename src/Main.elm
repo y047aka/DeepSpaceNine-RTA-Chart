@@ -1,11 +1,13 @@
 module Main exposing (main)
 
+import AssocList as Dict
 import Browser
 import Chart
 import Css exposing (..)
 import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
-import Data.Episode exposing (Character, Episode, episodesDecoder)
+import Data.Character as Character exposing (Character(..))
+import Data.Episode exposing (Episode, episodesDecoder)
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Json.Decode
@@ -69,15 +71,21 @@ view { episodes } =
 episodeView : Int -> Episode -> Html msg
 episodeView index { season, episode, title, title_ja, importance, netflix_id, characters } =
     let
-        { benjaminSisko, odo, bashir, dax, jakeSisko, milesObrien, quark, kiraNerys, keikoObrien, garak, dukat, rom, nog, bareil, winn } =
-            fromCharacters characters
+        characterDict =
+            characters
+                |> List.filterMap
+                    (\{ name, contrast } ->
+                        Character.fromString name
+                            |> Maybe.map (\character -> ( character, contrast ))
+                    )
+                |> Dict.fromList
 
         charactersContrastColumns =
-            [ benjaminSisko, odo, bashir, dax, jakeSisko, milesObrien, quark, kiraNerys, keikoObrien, garak, dukat, rom, nog, bareil, winn ]
+            [ BenjaminSisko, Odo, Bashir, Dax, JakeSisko, MilesObrien, Quark, KiraNerys, KeikoObrien, Garak, Dukat, Rom, Nog, Bareil, Winn ]
                 |> List.map
-                    (\maybeCharacter ->
-                        maybeCharacter
-                            |> Maybe.map (\( name, contrast ) -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text name ])
+                    (\character ->
+                        Dict.get character characterDict
+                            |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
                             |> Maybe.withDefault (td [] [])
                     )
     in
@@ -134,95 +142,6 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                         [ text "NETFLIX" ]
                     ]
                ]
-
-
-fromCharacters :
-    List Character
-    ->
-        { benjaminSisko : Maybe ( String, Int )
-        , odo : Maybe ( String, Int )
-        , bashir : Maybe ( String, Int )
-        , dax : Maybe ( String, Int )
-        , jakeSisko : Maybe ( String, Int )
-        , milesObrien : Maybe ( String, Int )
-        , quark : Maybe ( String, Int )
-        , kiraNerys : Maybe ( String, Int )
-        , keikoObrien : Maybe ( String, Int )
-        , garak : Maybe ( String, Int )
-        , dukat : Maybe ( String, Int )
-        , rom : Maybe ( String, Int )
-        , nog : Maybe ( String, Int )
-        , bareil : Maybe ( String, Int )
-        , winn : Maybe ( String, Int )
-        }
-fromCharacters =
-    List.foldl
-        (\{ name, contrast } r ->
-            case name of
-                "Benjamin Sisko" ->
-                    { r | benjaminSisko = Just ( name, contrast ) }
-
-                "Odo" ->
-                    { r | odo = Just ( name, contrast ) }
-
-                "Bashir" ->
-                    { r | bashir = Just ( name, contrast ) }
-
-                "Dax" ->
-                    { r | dax = Just ( name, contrast ) }
-
-                "Jake Sisko" ->
-                    { r | jakeSisko = Just ( name, contrast ) }
-
-                "Miles O'Brien" ->
-                    { r | milesObrien = Just ( name, contrast ) }
-
-                "Quark" ->
-                    { r | quark = Just ( name, contrast ) }
-
-                "Kira Nerys" ->
-                    { r | kiraNerys = Just ( name, contrast ) }
-
-                "Keiko O'Brien" ->
-                    { r | keikoObrien = Just ( name, contrast ) }
-
-                "Garak" ->
-                    { r | garak = Just ( name, contrast ) }
-
-                "Dukat" ->
-                    { r | dukat = Just ( name, contrast ) }
-
-                "Rom" ->
-                    { r | rom = Just ( name, contrast ) }
-
-                "Nog" ->
-                    { r | nog = Just ( name, contrast ) }
-
-                "Bareil" ->
-                    { r | bareil = Just ( name, contrast ) }
-
-                "Winn" ->
-                    { r | winn = Just ( name, contrast ) }
-
-                _ ->
-                    r
-        )
-        { benjaminSisko = Nothing
-        , odo = Nothing
-        , bashir = Nothing
-        , dax = Nothing
-        , jakeSisko = Nothing
-        , milesObrien = Nothing
-        , quark = Nothing
-        , kiraNerys = Nothing
-        , keikoObrien = Nothing
-        , garak = Nothing
-        , dukat = Nothing
-        , rom = Nothing
-        , nog = Nothing
-        , bareil = Nothing
-        , winn = Nothing
-        }
 
 
 stepByImportance : Int -> Float
