@@ -17,6 +17,17 @@ type Character
     | Bareil
     | Garak
     | Dukat
+    | Zek
+    | MichaelEddington
+    | KasidyYates
+    | Leeta
+    | Gowron
+    | Martok
+    | Shakaar
+    | Ziyal
+    | Damar
+    | Brunt
+    | Weyoun
 
 
 fromString : String -> Maybe Character
@@ -66,6 +77,39 @@ fromString s =
 
         "Dukat" ->
             Just Dukat
+
+        "Zek" ->
+            Just Zek
+
+        "Michael Eddington" ->
+            Just MichaelEddington
+
+        "Kasidy Yates" ->
+            Just KasidyYates
+
+        "Leeta" ->
+            Just Leeta
+
+        "Gowron" ->
+            Just Gowron
+
+        "Martok" ->
+            Just Martok
+
+        "Shakaar" ->
+            Just Shakaar
+
+        "Ziyal" ->
+            Just Ziyal
+
+        "Damar" ->
+            Just Damar
+
+        "Brunt" ->
+            Just Brunt
+
+        "Weyoun" ->
+            Just Weyoun
 
         _ ->
             Nothing
@@ -118,3 +162,36 @@ toString c =
 
         Dukat ->
             "Dukat"
+
+        Zek ->
+            "Zek"
+
+        MichaelEddington ->
+            "Michael Eddington"
+
+        KasidyYates ->
+            "Kasidy Yates"
+
+        Leeta ->
+            "Leeta"
+
+        Gowron ->
+            "Gowron"
+
+        Martok ->
+            "Martok"
+
+        Shakaar ->
+            "Shakaar"
+
+        Ziyal ->
+            "Ziyal"
+
+        Damar ->
+            "Damar"
+
+        Brunt ->
+            "Brunt"
+
+        Weyoun ->
+            "Weyoun"
