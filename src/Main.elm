@@ -94,9 +94,12 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
             [ height (px 31)
             , fontSize (px 10)
             , color (hsl 0 0 (stepByImportance importance))
+            , nthChild "odd"
+                [ backgroundColor (hsl 0 0 0.095) ]
+            , transition
+                [ Css.Transitions.backgroundColor 500 ]
             , children
                 [ Css.Global.td [ padding2 (px 5) (px 6) ] ]
-            , transition [ Css.Transitions.backgroundColor 150 ]
             , hover [ backgroundColor (hsl 0 0 0.15) ]
             ]
         ]
