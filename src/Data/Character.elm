@@ -3,20 +3,20 @@ module Data.Character exposing (Character(..), fromString, toString)
 
 type Character
     = BenjaminSisko
-    | Odo
-    | Bashir
-    | Dax
     | JakeSisko
-    | MilesObrien
-    | Quark
+    | Dax
     | KiraNerys
+    | MilesObrien
     | KeikoObrien
-    | Garak
-    | Dukat
+    | Bashir
+    | Odo
+    | Quark
     | Rom
     | Nog
-    | Bareil
     | Winn
+    | Bareil
+    | Garak
+    | Dukat
 
 
 fromString : String -> Maybe Character
@@ -25,35 +25,29 @@ fromString s =
         "Benjamin Sisko" ->
             Just BenjaminSisko
 
-        "Odo" ->
-            Just Odo
-
-        "Bashir" ->
-            Just Bashir
+        "Jake Sisko" ->
+            Just JakeSisko
 
         "Dax" ->
             Just Dax
 
-        "Jake Sisko" ->
-            Just JakeSisko
+        "Kira Nerys" ->
+            Just KiraNerys
 
         "Miles O'Brien" ->
             Just MilesObrien
 
-        "Quark" ->
-            Just Quark
-
-        "Kira Nerys" ->
-            Just KiraNerys
-
         "Keiko O'Brien" ->
             Just KeikoObrien
 
-        "Garak" ->
-            Just Garak
+        "Bashir" ->
+            Just Bashir
 
-        "Dukat" ->
-            Just Dukat
+        "Odo" ->
+            Just Odo
+
+        "Quark" ->
+            Just Quark
 
         "Rom" ->
             Just Rom
@@ -61,11 +55,17 @@ fromString s =
         "Nog" ->
             Just Nog
 
+        "Winn" ->
+            Just Winn
+
         "Bareil" ->
             Just Bareil
 
-        "Winn" ->
-            Just Winn
+        "Garak" ->
+            Just Garak
+
+        "Dukat" ->
+            Just Dukat
 
         _ ->
             Nothing
@@ -77,35 +77,29 @@ toString c =
         BenjaminSisko ->
             "Benjamin Sisko"
 
-        Odo ->
-            "Odo"
-
-        Bashir ->
-            "Bashir"
+        JakeSisko ->
+            "Jake Sisko"
 
         Dax ->
             "Dax"
 
-        JakeSisko ->
-            "Jake Sisko"
+        KiraNerys ->
+            "Kira Nerys"
 
         MilesObrien ->
             "Miles O'Brien"
 
-        Quark ->
-            "Quark"
-
-        KiraNerys ->
-            "Kira Nerys"
-
         KeikoObrien ->
             "Keiko O'Brien"
 
-        Garak ->
-            "Garak"
+        Bashir ->
+            "Bashir"
 
-        Dukat ->
-            "Dukat"
+        Odo ->
+            "Odo"
+
+        Quark ->
+            "Quark"
 
         Rom ->
             "Rom"
@@ -113,8 +107,14 @@ toString c =
         Nog ->
             "Nog"
 
+        Winn ->
+            "Winn"
+
         Bareil ->
             "Bareil"
 
-        Winn ->
-            "Winn"
+        Garak ->
+            "Garak"
+
+        Dukat ->
+            "Dukat"
