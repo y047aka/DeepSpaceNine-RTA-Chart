@@ -81,7 +81,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                 |> Dict.fromList
 
         charactersContrastColumns =
-            [ BenjaminSisko, Odo, Bashir, Dax, JakeSisko, MilesObrien, Quark, KiraNerys, KeikoObrien, Garak, Dukat, Rom, Nog, Bareil, Winn ]
+            [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
                 |> List.map
                     (\character ->
                         Dict.get character characterDict
