@@ -82,7 +82,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
 
         charactersContrastColumns =
             [ [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
-            , [ MichaelEddington, KasidyYates, Leeta, Gowron, Martok, Shakaar, Ziyal, Damar ]
+            , [ Worf, MichaelEddington, KasidyYates, Leeta, Gowron, Martok, Shakaar, Ziyal, Damar ]
             ]
                 |> List.concat
                 |> List.map

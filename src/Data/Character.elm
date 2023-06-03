@@ -10,6 +10,7 @@ type Character
     | KeikoObrien
     | Bashir
     | Odo
+    | Worf
     | Quark
     | Rom
     | Nog
@@ -56,6 +57,9 @@ fromString s =
 
         "Odo" ->
             Just Odo
+
+        "Worf" ->
+            Just Worf
 
         "Quark" ->
             Just Quark
@@ -141,6 +145,9 @@ toString c =
 
         Odo ->
             "Odo"
+
+        Worf ->
+            "Worf"
 
         Quark ->
             "Quark"
