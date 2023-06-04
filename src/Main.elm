@@ -69,7 +69,7 @@ view { episodes, afterSeason4 } =
     div []
         [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
         , Chart.view episodes
-        , label [ css [ display block, margin4 zero zero zero auto, maxWidth maxContent ] ]
+        , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show characters after season 4"
             ]
@@ -118,7 +118,7 @@ episodeView afterSeason4 index { season, episode, title, title_ja, importance, n
         ]
     <|
         [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
-        , td [ css [ textAlign center ] ]
+        , td [ css [ minWidth (em 4.5), textAlign center ] ]
             [ text <| "S" ++ String.fromInt season ++ " - E" ++ String.fromInt episode ]
         , td
             [ css
@@ -135,7 +135,7 @@ episodeView afterSeason4 index { season, episode, title, title_ja, importance, n
             ]
             []
         , td [ css [ displayFlex, flexDirection column, property "row-gap" "2px" ] ]
-            [ div [ css [ fontSize <| px (toFloat importance + 10) ] ] [ text title ]
+            [ div [ css [ fontSize (px 12) ] ] [ text title ]
             , div [ css [ color (hsl 0 0 0.4) ] ] [ text title_ja ]
             ]
         ]
