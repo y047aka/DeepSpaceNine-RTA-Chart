@@ -8,8 +8,9 @@ import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
 import Dict
-import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
-import Html.Styled.Attributes as Attributes exposing (css, href)
+import Html.Styled as Html exposing (Html, a, div, input, label, td, text, toUnstyled, tr)
+import Html.Styled.Attributes as Attributes exposing (css, href, type_)
+import Html.Styled.Events exposing (onClick)
 import Json.Decode
 
 
@@ -28,7 +29,9 @@ main =
 
 
 type alias Model =
-    { episodes : List Episode }
+    { episodes : List Episode
+    , afterSeason4 : Bool
+    }
 
 
 init : Json.Decode.Value -> ( Model, Cmd Msg )
@@ -36,6 +39,7 @@ init json =
     ( { episodes =
             Json.Decode.decodeValue episodesDecoder json
                 |> Result.withDefault []
+      , afterSeason4 = False
       }
     , Cmd.none
     )
@@ -45,13 +49,15 @@ init json =
 -- UPDATE
 
 
-type alias Msg =
-    {}
+type Msg
+    = Toggle
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update _ model =
-    ( model, Cmd.none )
+update msg model =
+    case msg of
+        Toggle ->
+            ( { model | afterSeason4 = not model.afterSeason4 }, Cmd.none )
 
 
 
@@ -59,17 +65,21 @@ update _ model =
 
 
 view : Model -> Html Msg
-view { episodes } =
+view { episodes, afterSeason4 } =
     div []
-        [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1) ] ]
+        [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
         , Chart.view episodes
+        , label [ css [ display block, margin4 zero zero zero auto, maxWidth maxContent ] ]
+            [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
+            , text "Show characters after season 4"
+            ]
         , Html.table [ css [ margin2 zero auto, borderCollapse collapse ] ] <|
-            List.indexedMap episodeView episodes
+            List.indexedMap (episodeView afterSeason4) episodes
         ]
 
 
-episodeView : Int -> Episode -> Html msg
-episodeView index { season, episode, title, title_ja, importance, netflix_id, characters } =
+episodeView : Bool -> Int -> Episode -> Html msg
+episodeView afterSeason4 index { season, episode, title, title_ja, importance, netflix_id, characters } =
     let
         characterDict =
             characters
@@ -78,7 +88,11 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
 
         charactersContrastColumns =
             [ [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
-            , [ Worf, MichaelEddington, KasidyYates, Leeta, Gowron, Martok, Shakaar, Ziyal, Damar ]
+            , if afterSeason4 then
+                [ MichaelEddington, KasidyYates, Leeta, Worf, Gowron, Martok, Shakaar, Ziyal, Damar ]
+
+              else
+                []
             ]
                 |> List.concat
                 |> List.map
