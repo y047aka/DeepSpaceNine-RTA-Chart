@@ -66,6 +66,10 @@ update msg model =
 
 view : Model -> Html Msg
 view { episodes, afterSeason4 } =
+    let
+        characters =
+            characters_ afterSeason4
+    in
     div []
         [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
         , Chart.view episodes
@@ -74,33 +78,37 @@ view { episodes, afterSeason4 } =
             , text "Show characters after season 4"
             ]
         , Html.table [ css [ margin2 zero auto, borderCollapse collapse ] ] <|
-            List.indexedMap (episodeView afterSeason4) episodes
+            List.indexedMap (episodeView characters) episodes
         ]
 
 
-episodeView : Bool -> Int -> Episode -> Html msg
-episodeView afterSeason4 index { season, episode, title, title_ja, importance, netflix_id, characters } =
+characters_ : Bool -> List Character
+characters_ afterSeason4 =
+    [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
+        ++ (if afterSeason4 then
+                [ MichaelEddington, KasidyYates, Leeta, Worf, Gowron, Martok, Shakaar, Ziyal, Damar ]
+
+            else
+                []
+           )
+
+
+episodeView : List Character -> Int -> Episode -> Html msg
+episodeView characters index ({ season, episode, title, title_ja, importance, netflix_id } as ep) =
     let
         characterDict =
-            characters
+            ep.characters
                 |> List.map (\{ name, contrast } -> ( name, contrast ))
                 |> Dict.fromList
 
         charactersContrastColumns =
-            [ [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
-            , if afterSeason4 then
-                [ MichaelEddington, KasidyYates, Leeta, Worf, Gowron, Martok, Shakaar, Ziyal, Damar ]
-
-              else
-                []
-            ]
-                |> List.concat
-                |> List.map
-                    (\character ->
-                        Dict.get (Character.toString character) characterDict
-                            |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
-                            |> Maybe.withDefault (td [] [])
-                    )
+            List.map
+                (\character ->
+                    Dict.get (Character.toString character) characterDict
+                        |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
+                        |> Maybe.withDefault (td [] [])
+                )
+                characters
     in
     tr
         [ css
