@@ -1,6 +1,5 @@
 module Main exposing (main)
 
-import AssocList as Dict
 import Browser
 import Chart
 import Css exposing (..)
@@ -8,6 +7,7 @@ import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
+import Dict
 import Html.Styled as Html exposing (Html, a, div, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href)
 import Json.Decode
@@ -73,11 +73,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
     let
         characterDict =
             characters
-                |> List.filterMap
-                    (\{ name, contrast } ->
-                        Character.fromString name
-                            |> Maybe.map (\character -> ( character, contrast ))
-                    )
+                |> List.map (\{ name, contrast } -> ( name, contrast ))
                 |> Dict.fromList
 
         charactersContrastColumns =
@@ -87,7 +83,7 @@ episodeView index { season, episode, title, title_ja, importance, netflix_id, ch
                 |> List.concat
                 |> List.map
                     (\character ->
-                        Dict.get character characterDict
+                        Dict.get (Character.toString character) characterDict
                             |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
                             |> Maybe.withDefault (td [] [])
                     )
