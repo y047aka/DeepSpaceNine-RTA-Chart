@@ -1,7 +1,6 @@
-module TypedSvg.Styled.TypesToStrings exposing (lengthToString, paintToString, transformToString)
+module TypedSvg.Styled.TypesToStrings exposing (lengthToString)
 
-import Color exposing (toCssString)
-import TypedSvg.Types exposing (Length(..), Paint(..), Transform(..))
+import TypedSvg.Types exposing (Length(..))
 
 
 lengthToString : Length -> String
@@ -39,56 +38,3 @@ lengthToString length =
 
         Rem x ->
             String.fromFloat x ++ "rem"
-
-
-paintToString : Paint -> String
-paintToString paint =
-    case paint of
-        Paint color ->
-            toCssString color
-
-        CSSVariable string ->
-            String.concat [ "var(" ++ string ++ ")" ]
-
-        Reference string ->
-            String.concat [ "url(#", string, ")" ]
-
-        ContextFill ->
-            "context-fill"
-
-        ContextStroke ->
-            "context-stroke"
-
-        PaintNone ->
-            "none"
-
-
-transformToString : Transform -> String
-transformToString xform =
-    let
-        tr name args =
-            String.concat
-                [ name
-                , "("
-                , String.join " " (List.map String.fromFloat args)
-                , ")"
-                ]
-    in
-    case xform of
-        Matrix a b c d e f ->
-            tr "matrix" [ a, b, c, d, e, f ]
-
-        Rotate a x y ->
-            tr "rotate" [ a, x, y ]
-
-        Scale x y ->
-            tr "scale" [ x, y ]
-
-        SkewX x ->
-            tr "skewX" [ x ]
-
-        SkewY y ->
-            tr "skewY" [ y ]
-
-        Translate x y ->
-            tr "translate" [ x, y ]

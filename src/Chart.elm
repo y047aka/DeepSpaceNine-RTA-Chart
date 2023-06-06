@@ -5,7 +5,7 @@ import Data.Episode exposing (Episode)
 import Html.Styled exposing (Html)
 import Html.Styled.Attributes exposing (css)
 import Scale exposing (ContinuousScale)
-import Svg.Styled as Svg exposing (Svg, g, polyline, svg, text)
+import Svg.Styled exposing (Svg, g, polyline, svg, text)
 import TypedSvg.Styled.Attributes exposing (points, viewBox)
 import TypedSvg.Styled.Attributes.InPx exposing (height, width)
 
