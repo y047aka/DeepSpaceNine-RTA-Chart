@@ -111,14 +111,14 @@ episodeView config_ index ep =
             , hover [ backgroundColor (hsl 0 0 0.15) ]
             ]
         ]
-        (episodeSummaryColumns index ep
-            ++ charactersContrastColumns config_ ep
+        (epSummaryColumns index ep
+            ++ epCharacterColumns config_ ep
             ++ [ td [] [ netflixLink ep.netflix_id ] ]
         )
 
 
-charactersContrastColumns : { characters : List Character } -> Episode -> List (Html msg)
-charactersContrastColumns config_ ep =
+epCharacterColumns : { characters : List Character } -> Episode -> List (Html msg)
+epCharacterColumns config_ ep =
     let
         characterDict =
             ep.characters
@@ -134,8 +134,8 @@ charactersContrastColumns config_ ep =
         config_.characters
 
 
-episodeSummaryColumns : Int -> Episode -> List (Html msg)
-episodeSummaryColumns index { season, episode, title, title_ja, importance } =
+epSummaryColumns : Int -> Episode -> List (Html msg)
+epSummaryColumns index { season, episode, title, title_ja, importance } =
     [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
     , td [ css [ minWidth (em 4.5), textAlign center ] ]
         [ text <| "S" ++ String.fromInt season ++ " - E" ++ String.fromInt episode ]
