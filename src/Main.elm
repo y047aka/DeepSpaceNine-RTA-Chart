@@ -117,23 +117,6 @@ episodeView config_ index ep =
         )
 
 
-epCharacterColumns : { characters : List Character } -> Episode -> List (Html msg)
-epCharacterColumns config_ ep =
-    let
-        characterDict =
-            ep.characters
-                |> List.map (\{ name, contrast } -> ( name, contrast ))
-                |> Dict.fromList
-    in
-    List.map
-        (\character ->
-            Dict.get (Character.toString character) characterDict
-                |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
-                |> Maybe.withDefault (td [] [])
-        )
-        config_.characters
-
-
 epSummaryColumns : Int -> Episode -> List (Html msg)
 epSummaryColumns index { season, episode, title, title_ja, importance } =
     [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
@@ -158,6 +141,23 @@ epSummaryColumns index { season, episode, title, title_ja, importance } =
         , div [ css [ color (hsl 0 0 0.4) ] ] [ text title_ja ]
         ]
     ]
+
+
+epCharacterColumns : { characters : List Character } -> Episode -> List (Html msg)
+epCharacterColumns config_ ep =
+    let
+        characterDict =
+            ep.characters
+                |> List.map (\{ name, contrast } -> ( name, contrast ))
+                |> Dict.fromList
+    in
+    List.map
+        (\character ->
+            Dict.get (Character.toString character) characterDict
+                |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
+                |> Maybe.withDefault (td [] [])
+        )
+        config_.characters
 
 
 netflixLink : Int -> Html msg
