@@ -1925,33 +1925,61 @@ const episodes = [
     episode: 5,
     title: "The Assignment",
     title_ja: "ケイコのために",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205908,
     netflix_synopsis: "ベイジョーから戻った妻ケイコと再会したオブライエンは、彼女から驚愕の事実を聞かされる。ケイコの身体はある生命体に乗っ取られていたのだ。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708615/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 5 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Keiko O'Brien", contrast: 4 },
+      { name: "Rom", contrast: 4 }
+    ]
   },
   {
     season: 5,
     episode: 6,
     title: "Trials and Tribble-ations",
     title_ja: "伝説の時空へ",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205909,
     netflix_synopsis: "ダーヴィンという名のクリンゴンのスパイが歴史を変えるために時間を遡る。シスコたちは男の企みを暴き、歴史が変わる前に阻止しなければならない。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708655/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 5,
     episode: 7,
     title: "Let He Who Is Without Sin...",
     title_ja: "享楽の星・ライサ",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205910,
     netflix_synopsis: "最近のダックスの行動に不満を持つウォーフ。休暇で訪れることになった享楽の星ライサで、ダックスと2人だけでじっくり話し合おうと計画する。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708563/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Leeta", contrast: 3 }
+    ]
   },
   {
     season: 5,
