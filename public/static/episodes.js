@@ -1632,8 +1632,17 @@ const episodes = [
     importance: 3,
     netflix_id: 70205886,
     netflix_synopsis: "クリンゴンの英雄コールは、クリンゴン帝国初代皇帝の武器である伝説の\"カーレスの剣\"を探していると言う。ダックスとウォーフは彼を手伝うことに。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708644/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 4,
@@ -1643,30 +1652,65 @@ const episodes = [
     importance: 3,
     netflix_id: 70205887,
     netflix_synopsis: "ホロスイートで1960年代のスパイプログラムを楽しんでいたべシア。そこへガラックが現れ、せっかく堪能していたプログラムを台無しにしてしまう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708573/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 2 },
+      { name: "Michael Eddington", contrast: 2 },
+      { name: "Garak", contrast: 4 }
+    ]
   },
   {
     season: 4,
     episode: 10,
     title: "Homefront",
     title_ja: "地球戒厳令 (前編)",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205888,
     netflix_synopsis: "地球で開かれていた連邦とロミュランの外交会議の場で爆発事件が起こり、死亡者が27名も出てしまう。現場の映像に映っていたのは可変種だった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708549/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 3 },
+      { name: "Joseph Sisko", contrast: 3 }
+    ]
   },
   {
     season: 4,
     episode: 11,
     title: "Paradise Lost",
     title_ja: "地球戒厳令 (後編)",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205889,
     netflix_synopsis: "地球全土で大停電が起き、ドミニオンによる破壊工作が疑われる。艦隊による戒厳令が敷かれる中、シスコは士官候補生たちの不可解な動きに気づく。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708575/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 2 },
+      { name: "Joseph Sisko", contrast: 3 }
+    ]
   },
   {
     season: 4,
