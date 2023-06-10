@@ -1420,7 +1420,7 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
-      { name: "Shakaar", contrast: 3 },
+      { name: "Shakaar", contrast: 4 },
       { name: "Lupaza", contrast: 2 },
       { name: "Furel", contrast: 2 },
       { name: "Winn", contrast: 3 }
@@ -1717,22 +1717,43 @@ const episodes = [
     episode: 12,
     title: "Crossfire",
     title_ja: "ジェラシー",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205890,
     netflix_synopsis: "ベイジョーの首相シャカールが連邦加盟の交渉で訪れる。暗殺計画が判明し、オドーが護衛に付くが、キラと親しげな首相にオドーは内心穏やかではない。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708521/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Shakaar", contrast: 4 },
+    ]
   },
   {
     season: 4,
     episode: 13,
     title: "Return to Grace",
     title_ja: "新たなる戦線",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205891,
     netflix_synopsis: "シャカールに頼まれ、キラはクリンゴンについての情報交換のためカーデシアの前線基地へ出向くことに。現地へキラを送るのは左遷されたデュカットだ。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708590/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Dukat", contrast: 4},
+      { name: "Ziyal", contrast: 3 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 4,
@@ -1742,30 +1763,60 @@ const episodes = [
     importance: 3,
     netflix_id: 70205892,
     netflix_synopsis: "ウォーフの前に弟カーンが現れ、自分を殺せと頼む。ウォーフが連邦についたせいで一族の名誉は失墜したが、家族の手にかかって死ねば挽回できるという。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708641/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 3 },
+    ]
   },
   {
     season: 4,
     episode: 15,
     title: "Bar Association",
     title_ja: "ロムの反乱",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205893,
     netflix_synopsis: "耳の感染症に苦しみつつ働かされていたロムはついに倒れてしまう。クワークの搾取にうんざりした彼はフェレンギに禁じられている組合設立を決意する。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708503/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 5 },
+      { name: "Leeta", contrast: 3 }
+    ]
   },
   {
     season: 4,
     episode: 16,
     title: "Accession",
     title_ja: "選ばれし者の困惑",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205894,
     netflix_synopsis: "何世紀も前のベイジョー船が突如ワームホールから現れた。診療室に転送された乗客は伝説的なベイジョーの詩人で、自分は預言者に選ばれし者だと言う。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708497/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Keiko O'Brien", contrast: 4 },
+    ]
   },
   {
     season: 4,
@@ -1775,8 +1826,17 @@ const episodes = [
     importance: 3,
     netflix_id: 70205895,
     netflix_synopsis: "戦闘中に誤ってクリンゴンの民間船を撃墜してしまったウォーフは裁判にかけられ、強制送還の危機に。シスコはウォーフに有利な証拠を集めようとする。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708594/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+    ]
   },
   {
     season: 4,
