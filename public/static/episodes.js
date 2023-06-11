@@ -1843,22 +1843,46 @@ const episodes = [
     episode: 18,
     title: "Hard Time",
     title_ja: "つくられた記憶",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205896,
     netflix_synopsis: "スパイ容疑で逮捕されたオブライエンは人工の記憶を植え付けられる。それは20年間分の服役体験の記憶で、解放後もその記憶に悩まされることになる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708545/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Keiko O'Brien", contrast: 3 }
+    ]
   },
   {
     season: 4,
     episode: 19,
     title: "Shattered Mirror",
     title_ja: "鏡あわせのジェニファー",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205897,
     netflix_synopsis: "ジェイクはシスコからある女性を紹介される。その女性の容姿、口調や人柄までが亡き母ジェニファーにそっくりであることにジェイクは驚きを隠せない。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708602/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Jennifer Sisko", contrast: 3 },
+      { name: "Nog", contrast: 2 },
+      { name: "Garak", contrast: 2 }
+    ]
   },
   {
     season: 4,
@@ -1868,8 +1892,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205898,
     netflix_synopsis: "ラクサナがオドーを訪ね、妊娠という驚きの報告をする。だが彼女の夫は、子供が16才になるまで母親から隔離して育てると主張していると言う。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708631/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 4,
