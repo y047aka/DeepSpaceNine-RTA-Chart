@@ -2127,30 +2127,65 @@ const episodes = [
     importance: 3,
     netflix_id: 70205911,
     netflix_synopsis: "ベイジョーを訪れたシスコら4人が意識を失った。目を覚ましたのはカーデシア占領下のベイジョー。そこでオドーの意外な闇の過去が明らかになる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708649/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Dukat", contrast: 3 },
+      { name: "Garak", contrast: 3 }
+    ]
   },
   {
     season: 5,
     episode: 9,
     title: "The Ascent",
     title_ja: "あの頂を目指せ",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205912,
     netflix_synopsis: "無人の惑星に墜落したオドーとクワーク。爆発で通信機材を含め、生存に必要なものが一切失われてしまった。唯一の望みをかけ、2人は山頂を目指す。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708614/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 5 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 5 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 3 },
+      { name: "Nog", contrast: 4 }
+    ]
   },
   {
     season: 5,
     episode: 10,
     title: "Rapture",
     title_ja: "預言者シスコ",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205913,
     netflix_synopsis: "ベイジョーの失われた伝説都市バハラを描いた絵に魅了されてしまったシスコ。命の危険も顧みずに、幻視を手がかりに史跡を見つけようとする。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708587/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Kasidy Yates", contrast: 4 },
+      { name: "Winn", contrast: 3 }
+    ]
   },
   {
     season: 5,
@@ -2160,19 +2195,40 @@ const episodes = [
     importance: 3,
     netflix_id: 70205914,
     netflix_synopsis: "キラは昔のレジスタンス仲間が殺されたことを知る。コンピュータに残されたメッセージに不安を募らせるキラ。だが、これはまだ始まりに過ぎなかった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708620/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Nog", contrast: 2 }
+    ]
   },
   {
     season: 5,
     episode: 12,
     title: "The Begotten",
     title_ja: "幼き命",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205915,
     netflix_synopsis: "出産の時が迫るキラ。一方、クワークから可変種の赤ん坊を買ったオドー。病気の赤ん坊の面倒を見ながら、成長に目を細めるオドーだったが...。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708616/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 5 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 5 },
+      { name: "Keiko O'Brien", contrast: 4 },
+      { name: "Shakaar", contrast: 4 }
+    ]
   },
   {
     season: 5,
