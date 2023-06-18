@@ -3,5 +3,14 @@
   "workspaces": [
     "app",
     "review"
-  ]
+  ],
+  "scripts": {
+    "start": "npm start -w app",
+    "build": "npm run build -w app",
+    "lint": "npm run lint -w review"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "elm-format": "^0.8.7"
+  }
 }
