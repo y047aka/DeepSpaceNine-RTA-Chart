@@ -2235,11 +2235,20 @@ const episodes = [
     episode: 13,
     title: "For the Uniform",
     title_ja: "エディングトンの逆襲",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205916,
     netflix_synopsis: "シスコは自分を裏切り、マキの仲間になったエディングトンを見つける。マキの企みを知ったシスコは阻止するためにやむなく無謀な手段に出ることに。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708544/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Michael Eddington", contrast: 5 },
+      { name: "Nog", contrast: 3 }
+    ]
   },
   {
     season: 5,
