@@ -1,9 +1,3 @@
 {
-  "name": "review",
-  "scripts": {
-    "lint": "elm-review ../app/src/ --elmjson ../app/elm.json --config ./"
-  },
-  "devDependencies": {
-    "elm-review": "^2.10.2"
-  }
+  "name": "review"
 }
