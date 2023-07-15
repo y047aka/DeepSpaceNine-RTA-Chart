@@ -2255,33 +2255,71 @@ const episodes = [
     episode: 14,
     title: "In Purgatory's Shadow",
     title_ja: "敗れざる者 (前編)",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205917,
     netflix_synopsis: "DS9はカーデシア人からだと思われる暗号メッセージをガンマ宇宙域から拾う。それが恩師からの救難信号だと知ったガラックは、彼の救出に向かう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708554/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Garak", contrast: 4 },
+      { name: "Dukat", contrast: 4 },
+      { name: "Ziyal", contrast: 4 },
+      { name: "Martok", contrast: 4 }
+    ]
   },
   {
     season: 5,
     episode: 15,
     title: "By Inferno's Light",
     title_ja: "敗れざる者 (後編)",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205918,
     netflix_synopsis: "DS9が攻撃に備える中、ドミニオンはカーデシアの方向へ進路を変え、デュカットの船も後に続く。カ―デシアは裏でドミニオンと手を組んでいたのだ。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708511/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Garak", contrast: 4 },
+      { name: "Dukat", contrast: 5 },
+      { name: "Ziyal", contrast: 3 },
+      { name: "Martok", contrast: 3 },
+      { name: "Gowron", contrast: 4 }
+    ]
   },
   {
     season: 5,
     episode: 16,
     title: "Doctor Bashir, I Presume",
     title_ja: "ジュリアンの秘密",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205919,
     netflix_synopsis: "宇宙艦隊のホログラムドクターのモデルに選ばれたベシア。適正確認のために開発者のジマーマンが身元調査を行うが、ベシアの秘密がそこで明らかに。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708527/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 4 },
+      { name: "Leeta", contrast: 4 }
+    ]
   },
   {
     season: 5,
