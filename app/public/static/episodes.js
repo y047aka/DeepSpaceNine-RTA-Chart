@@ -1910,11 +1910,25 @@ const episodes = [
     episode: 21,
     title: "For the Cause",
     title_ja: "裏切り者は誰だ",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205899,
     netflix_synopsis: "クリンゴンとカーデシアの抗争が波紋を呼ぶ中、カーデシアへの輸送船がDS9を経由することに。オドーはDS9にマキの一味が潜んでいると疑う。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708543/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Kasidy Yates", contrast: 4 },
+      { name: "Michael Eddington", contrast: 4 },
+      { name: "Ziyal", contrast: 4 },
+      { name: "Garak", contrast: 4 }
+    ]
   },
   {
     season: 4,
@@ -1924,30 +1938,61 @@ const episodes = [
     importance: 3,
     netflix_id: 70205900,
     netflix_synopsis: "ジェム･ハダーがDS9を襲撃する。シスコはウォーフ、ダックス、オドー、オブライエンとディファイアントに乗り込み、敵を追ってガンマ宇宙域へ向かう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708653/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 3 },
+    ]
   },
   {
     season: 4,
     episode: 23,
     title: "The Quickening",
     title_ja: "星に死の満つる時",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205901,
     netflix_synopsis: "ガンマ宇宙域で救難信号に応答したキラとダックス、べシアはその惑星に降り立つ。そこは200年前、ジェム･ハダーにより破壊された星だった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708634/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 4,
     episode: 24,
     title: "Body Parts",
     title_ja: "クワーク、絶体絶命",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205902,
     netflix_synopsis: "故郷から戻ってきたクワークは、悲惨なニュースをロムに告げる。自分は珍しい不治の病にかかっており、余命はたったの1週間だと言うのだ。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708508/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Keiko O'Brien", contrast: 4 },
+      { name: "Rom", contrast: 3 },
+      { name: "Garak", contrast: 3 }
+    ]
   },
   {
     season: 4,
