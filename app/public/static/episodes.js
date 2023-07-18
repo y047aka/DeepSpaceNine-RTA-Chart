@@ -2374,8 +2374,17 @@ const episodes = [
     importance: 3,
     netflix_id: 70205920,
     netflix_synopsis: "オドーの目に留まった美しく観察力の鋭い女性。ステーションのコンピュータに侵入しようとした彼女をオドーは逮捕するが、次第に心惹かれてしまう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708495/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 5,
