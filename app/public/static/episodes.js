@@ -2394,8 +2394,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205921,
     netflix_synopsis: "クワークは借金に苦しんでいた。そんな時、いとこから武器販売で儲ける話を持ちかけられる。命がけの危険な駆け引きでクワークの商才が光る。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708510/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3},
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 5,
@@ -2405,8 +2415,19 @@ const episodes = [
     importance: 3,
     netflix_id: 70205922,
     netflix_synopsis: "キラはカーデシア反政府運動の指揮者ゲモールと再会する。キラは彼に新政府のドミニオン離脱を扇動してほしいと頼むが、ゲモールには死期が迫っていた。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708651/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Dukat", contrast: 3 },
+      { name: "Weyoun", contrast: 3 },
+    ]
   },
   {
     season: 5,
@@ -2416,8 +2437,20 @@ const episodes = [
     importance: 3,
     netflix_id: 70205923,
     netflix_synopsis: "フェレンギ会計監査局から目をつけられたクワーク。悪いこと続きですっかり落胆し、安らぎを求めて母を訪ねる。母は意外な相手と恋仲になっていた。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708541/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 4 },
+      { name: "Leeta", contrast: 4 },
+      { name: "Zek", contrast: 4 }
+    ]
   },
   {
     season: 5,
@@ -2427,8 +2460,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205924,
     netflix_synopsis: "カーデシアの境界付近で行方不明になった戦艦バモス。クリンゴン最高評議会よりバモスの捜索を命じられたマートク将軍は、ウォーフに同行を依頼する。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708603/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 5 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 2 },
+      { name: "Martok", contrast: 5 }
+    ]
   },
   {
     season: 5,
