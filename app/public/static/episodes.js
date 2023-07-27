@@ -2457,7 +2457,7 @@ const episodes = [
     episode: 21,
     title: "Soldiers of the Empire",
     title_ja: "我らクリンゴン",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205924,
     netflix_synopsis: "カーデシアの境界付近で行方不明になった戦艦バモス。クリンゴン最高評議会よりバモスの捜索を命じられたマートク将軍は、ウォーフに同行を依頼する。",
     url_imdb: "https://www.imdb.com/title/tt0708603/",
@@ -2478,22 +2478,43 @@ const episodes = [
     episode: 22,
     title: "Children of Time",
     title_ja: "末裔の星",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205925,
     netflix_synopsis: "帰還途中にダックスがエネルギー・バリアに覆われた惑星を調査したいと言う。エネルギーにより船内のシステムは故障し、キラが複製される事態に。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708516/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 5 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 5 }
+    ]
   },
   {
     season: 5,
     episode: 23,
     title: "Blaze of Glory",
     title_ja: "最後のテロリスト",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205926,
     netflix_synopsis: "シスコに秘密の通信が届く。マキの残党が報復のためカーデシアに大量のミサイルを発射したのだ。窮地に立たされたシスコは仇敵に助けを求める。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708506/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Michael Eddington", contrast: 5 },
+      { name: "Martok", contrast: 3 },
+      { name: "Nog", contrast: 4 }
+    ]
   },
   {
     season: 5,
