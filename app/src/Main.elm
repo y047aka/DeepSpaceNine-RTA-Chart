@@ -8,10 +8,13 @@ import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
 import Dict
-import Html.Styled as Html exposing (Html, a, div, input, label, td, text, toUnstyled, tr)
+import Html.Styled exposing (Html, a, div, input, label, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (css, href, type_)
 import Html.Styled.Events exposing (onClick)
+import Html.Styled.Keyed as Keyed
+import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
+import UI.SortableData as SortableData exposing (Column, Direction(..), intColumn)
 
 
 main : Program Json.Decode.Value Model Msg
@@ -30,6 +33,7 @@ main =
 
 type alias Model =
     { episodes : List Episode
+    , tableState : SortableData.Model Episode (Html Msg)
     , afterSeason4 : Bool
     }
 
@@ -39,10 +43,84 @@ init json =
     ( { episodes =
             Json.Decode.decodeValue episodesDecoder json
                 |> Result.withDefault []
+      , tableState = SortableData.init .title columns_
       , afterSeason4 = False
       }
     , Cmd.none
     )
+
+
+columns_ : List (SortableData.Column Episode (Html msg))
+columns_ =
+    summaryColumns ++ characterColumns (config True) ++ [ netflixColumn ]
+
+
+summaryColumns : List (SortableData.Column Episode (Html msg))
+summaryColumns =
+    [ { name = "Season - Episode"
+      , view =
+            \ep ->
+                div [ css [ minWidth (em 4.5), textAlign center ] ]
+                    [ text <| "S" ++ String.fromInt ep.season ++ " - E" ++ String.fromInt ep.episode ]
+      , sort = .title
+      , filter = \query ep -> String.startsWith (String.toLower query) (String.toLower <| String.fromInt ep.season)
+      }
+    , { name = "Importance"
+      , view = importanceCircle
+      , sort = .importance >> String.fromInt
+      , filter = \query ep -> query == String.fromInt ep.importance
+      }
+    , { name = "Title"
+      , view =
+            \ep ->
+                div [ css [ displayFlex, flexDirection column, property "row-gap" "2px" ] ]
+                    [ div [ css [ fontSize (px 12) ] ] [ text ep.title ]
+                    , div [ css [ color (hsl 0 0 0.4) ] ] [ text ep.title_ja ]
+                    ]
+      , sort = .title
+      , filter = \query ep -> String.contains (String.toLower query) (String.toLower <| ep.title ++ ep.title_ja)
+      }
+    ]
+
+
+characterColumns : { characters : List Character } -> List (SortableData.Column Episode (Html msg))
+characterColumns config_ =
+    let
+        characterDict { characters } =
+            characters
+                |> List.map (\{ name, contrast } -> ( name, contrast ))
+                |> Dict.fromList
+    in
+    List.map
+        (\character ->
+            let
+                contrast ep_ =
+                    Dict.get (Character.toString character) (characterDict ep_)
+                        |> Maybe.withDefault 0
+            in
+            { name = Character.toString character
+            , view =
+                \ep ->
+                    if contrast ep > 0 then
+                        div [ css [ color (hsl 0 0 (stepByImportance (contrast ep))) ] ]
+                            [ text (Character.toString character) ]
+
+                    else
+                        text ""
+            , sort = contrast >> String.fromInt
+            , filter =
+                \query ep ->
+                    String.toInt query
+                        |> Maybe.map (\q -> q < contrast ep)
+                        |> Maybe.withDefault False
+            }
+        )
+        config_.characters
+
+
+netflixColumn : SortableData.Column Episode (Html msg)
+netflixColumn =
+    intColumn { label = "Netflix", getter = .netflix_id, renderer = netflixLink }
 
 
 
@@ -50,12 +128,16 @@ init json =
 
 
 type Msg
-    = Toggle
+    = TableMsg SortableData.Msg
+    | Toggle
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        TableMsg tableMsg ->
+            ( { model | tableState = SortableData.update tableMsg model.tableState }, Cmd.none )
+
         Toggle ->
             ( { model | afterSeason4 = not model.afterSeason4 }, Cmd.none )
 
@@ -65,10 +147,13 @@ update msg model =
 
 
 view : Model -> Html Msg
-view { episodes, afterSeason4 } =
+view { episodes, tableState, afterSeason4 } =
     let
-        characters_ =
-            config afterSeason4
+        visibleCharacters =
+            config afterSeason4 |> .characters |> List.map Character.toString
+
+        filterCharacters ep =
+            { ep | characters = List.filter (\{ name } -> List.member name visibleCharacters) ep.characters }
     in
     div []
         [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
@@ -77,8 +162,11 @@ view { episodes, afterSeason4 } =
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show characters after season 4"
             ]
-        , Html.table [ css [ margin2 zero auto, borderCollapse collapse ] ] <|
-            List.indexedMap (episodeView characters_) episodes
+        , table tableState
+            (episodes
+                |> List.map filterCharacters
+                |> SortableData.render tableState
+            )
         ]
 
 
@@ -95,34 +183,45 @@ config afterSeason4 =
     }
 
 
-episodeView : { characters : List Character } -> Int -> Episode -> Html msg
-episodeView config_ index ep =
-    tr
-        [ css
-            [ height (px 31)
-            , fontSize (px 10)
-            , color (hsl 0 0 (stepByImportance ep.importance))
-            , nthChild "odd"
-                [ backgroundColor (hsl 0 0 0.095) ]
-            , transition
-                [ Css.Transitions.backgroundColor 500 ]
-            , children
-                [ Css.Global.td [ padding2 (px 5) (px 6) ] ]
-            , hover [ backgroundColor (hsl 0 0 0.15) ]
-            ]
-        ]
-        (epSummaryColumns index ep
-            ++ epCharacterColumns config_ ep
-            ++ [ td [] [ netflixLink ep.netflix_id ] ]
-        )
+table : SortableData.Model Episode (Html msg) -> List Episode -> Html msg
+table { columns, toId } data =
+    Html.Styled.table [ css [ margin2 zero auto, borderCollapse collapse ] ]
+        [ Keyed.node "tbody" [] (tableRows toId columns data) ]
 
 
-epSummaryColumns : Int -> Episode -> List (Html msg)
-epSummaryColumns index { season, episode, title, title_ja, importance } =
-    [ td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
-    , td [ css [ minWidth (em 4.5), textAlign center ] ]
-        [ text <| "S" ++ String.fromInt season ++ " - E" ++ String.fromInt episode ]
-    , td
+tableRows : (Episode -> String) -> List (Column Episode (Html msg)) -> List Episode -> List ( String, Html msg )
+tableRows toId columns data =
+    let
+        indexColumn index =
+            td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
+
+        row index d =
+            ( toId d
+            , lazy2 tr
+                [ css
+                    [ height (px 31)
+                    , fontSize (px 10)
+                    , color (hsl 0 0 (stepByImportance d.importance))
+                    , nthChild "odd"
+                        [ backgroundColor (hsl 0 0 0.095) ]
+                    , transition
+                        [ Css.Transitions.backgroundColor 500 ]
+                    , children
+                        [ Css.Global.td [ padding2 (px 5) (px 6) ] ]
+                    , hover [ backgroundColor (hsl 0 0 0.15) ]
+                    ]
+                ]
+              <|
+                indexColumn index
+                    :: List.map (\column -> td [] [ column.view d ]) columns
+            )
+    in
+    List.indexedMap row data
+
+
+importanceCircle : Episode -> Html msg
+importanceCircle { importance } =
+    div
         [ css
             [ before
                 [ property "content" "''"
@@ -136,34 +235,12 @@ epSummaryColumns index { season, episode, title, title_ja, importance } =
             ]
         ]
         []
-    , td [ css [ displayFlex, flexDirection column, property "row-gap" "2px" ] ]
-        [ div [ css [ fontSize (px 12) ] ] [ text title ]
-        , div [ css [ color (hsl 0 0 0.4) ] ] [ text title_ja ]
-        ]
-    ]
 
 
-epCharacterColumns : { characters : List Character } -> Episode -> List (Html msg)
-epCharacterColumns config_ ep =
-    let
-        characterDict =
-            ep.characters
-                |> List.map (\{ name, contrast } -> ( name, contrast ))
-                |> Dict.fromList
-    in
-    List.map
-        (\character ->
-            Dict.get (Character.toString character) characterDict
-                |> Maybe.map (\contrast -> td [ css [ color (hsl 0 0 (stepByImportance contrast)) ] ] [ text (Character.toString character) ])
-                |> Maybe.withDefault (td [] [])
-        )
-        config_.characters
-
-
-netflixLink : Int -> Html msg
+netflixLink : String -> Html msg
 netflixLink netflix_id =
     a
-        [ href <| "https://www.netflix.com/watch/" ++ String.fromInt netflix_id
+        [ href <| "https://www.netflix.com/watch/" ++ netflix_id
         , Attributes.target "_blank"
         , css
             [ display tableCell
