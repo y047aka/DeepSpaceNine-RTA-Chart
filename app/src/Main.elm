@@ -155,7 +155,14 @@ view { episodes, tableState, afterSeason4 } =
         filterCharacters ep =
             { ep | characters = List.filter (\{ name } -> List.member name visibleCharacters) ep.characters }
     in
-    div [ css [ displayFlex, flexDirection column, property "row-gap" "20px" ] ]
+    div
+        [ css
+            [ displayFlex
+            , flexDirection column
+            , alignItems center
+            , property "row-gap" "20px"
+            ]
+        ]
         [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
         , Chart.view episodes
         , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
@@ -188,7 +195,8 @@ chartSelector : { characters : List Character } -> Html Msg
 chartSelector { characters } =
     ul
         [ css
-            [ padding zero
+            [ width (pct 100)
+            , padding zero
             , property "display" "grid"
             , property "grid-template-columns" "repeat(auto-fit, minmax(200px, 1fr))"
             , property "gap" "10px"

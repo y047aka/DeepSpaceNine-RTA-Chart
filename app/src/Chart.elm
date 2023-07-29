@@ -1,23 +1,23 @@
 module Chart exposing (view)
 
-import Css exposing (block, display, displayFlex, hsl)
+import Css exposing (block, display, hsl)
 import Data.Episode exposing (Episode)
 import Html.Styled exposing (Html)
-import Html.Styled.Attributes exposing (css)
 import Scale exposing (ContinuousScale)
-import Svg.Styled exposing (Svg, g, polyline, svg, text)
-import TypedSvg.Styled.Attributes exposing (points, viewBox)
-import TypedSvg.Styled.Attributes.InPx exposing (height, width)
+import Svg.Styled exposing (Svg, g, rect, svg)
+import Svg.Styled.Attributes exposing (css, fill)
+import TypedSvg.Styled.Attributes exposing (viewBox)
+import TypedSvg.Styled.Attributes.InPx as InPx exposing (height, width)
 
 
 w : Float
 w =
-    1600
+    1200
 
 
 h : Float
 h =
-    w * (5 / 16)
+    20
 
 
 padding : Float
@@ -43,22 +43,43 @@ view episodes =
         , viewBox 0 0 w h
         , css [ display block ]
         ]
-        [ episodes |> List.indexedMap (\i { importance } -> ( (toFloat >> Scale.convert xScale) i, (toFloat >> Scale.convert yScale) importance )) |> polyline_
-        , episodesView episodes
+        [ histogram_
+            { x = toFloat >> Scale.convert xScale
+            , y = always 10
+            , width = always 1
+            , color = \{ importance } -> "hsl(0, 0%, " ++ stepByImportance importance ++ ")"
+            }
+            episodes
         ]
 
 
-episodesView : List Episode -> Svg msg
-episodesView episodes =
-    g [ css [ displayFlex ] ] <|
-        List.map
-            (\{ importance } ->
-                g []
-                    [ text (String.fromInt importance) ]
+histogram_ :
+    { x : Int -> Float, y : a -> Float, width : a -> Float, color : a -> String }
+    -> List a
+    -> Svg msg
+histogram_ { x, y, width, color } laps =
+    g [] <|
+        List.indexedMap
+            (\index lap ->
+                rect
+                    [ InPx.x (x index - 1)
+                    , InPx.y (y lap - 10)
+                    , InPx.width (width lap)
+                    , InPx.height 20
+                    , fill (color lap)
+                    ]
+                    []
             )
-            episodes
+            laps
 
 
-polyline_ : List ( Float, Float ) -> Svg msg
-polyline_ points_ =
-    polyline [ css [ Css.property "fill" "none", Css.property "stroke" (hsl 0 0 0.6).value ], points points_ ] []
+stepByImportance : Int -> String
+stepByImportance importance =
+    if importance > 3 then
+        "80%"
+
+    else if importance > 2 then
+        "50%"
+
+    else
+        "30%"
