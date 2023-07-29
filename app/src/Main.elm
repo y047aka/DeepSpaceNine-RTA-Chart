@@ -8,7 +8,7 @@ import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
 import Dict
-import Html.Styled exposing (Html, a, div, input, label, td, text, toUnstyled, tr)
+import Html.Styled exposing (Html, a, div, input, label, li, td, text, toUnstyled, tr, ul)
 import Html.Styled.Attributes as Attributes exposing (css, href, type_)
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Keyed as Keyed
@@ -111,7 +111,7 @@ characterColumns config_ =
             , filter =
                 \query ep ->
                     String.toInt query
-                        |> Maybe.map (\q -> q < contrast ep)
+                        |> Maybe.map (\q -> contrast ep >= q)
                         |> Maybe.withDefault False
             }
         )
@@ -155,13 +155,14 @@ view { episodes, tableState, afterSeason4 } =
         filterCharacters ep =
             { ep | characters = List.filter (\{ name } -> List.member name visibleCharacters) ep.characters }
     in
-    div []
+    div [ css [ displayFlex, flexDirection column, property "row-gap" "20px" ] ]
         [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
         , Chart.view episodes
         , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show characters after season 4"
             ]
+        , chartSelector (config afterSeason4)
         , table tableState
             (episodes
                 |> List.map filterCharacters
@@ -181,6 +182,39 @@ config afterSeason4 =
                     []
                )
     }
+
+
+chartSelector : { characters : List Character } -> Html Msg
+chartSelector { characters } =
+    ul
+        [ css
+            [ padding zero
+            , property "display" "grid"
+            , property "grid-template-columns" "repeat(auto-fit, minmax(200px, 1fr))"
+            , property "gap" "10px"
+            ]
+        ]
+        (List.map
+            (\character ->
+                li
+                    [ onClick (TableMsg (SortableData.Filter (Character.toString character) "2"))
+                    , css
+                        [ display block
+                        , padding (px 10)
+                        , borderRadius (px 5)
+                        , backgroundColor (hsl 0 0 0.15)
+                        , color (hsl 0 0 0.6)
+                        , fontSize (px 14)
+                        , cursor pointer
+                        , transition
+                            [ Css.Transitions.backgroundColor 500 ]
+                        , hover [ backgroundColor (hsl 0 0 0.2) ]
+                        ]
+                    ]
+                    [ text (Character.toString character) ]
+            )
+            characters
+        )
 
 
 table : SortableData.Model Episode (Html msg) -> List Episode -> Html msg
