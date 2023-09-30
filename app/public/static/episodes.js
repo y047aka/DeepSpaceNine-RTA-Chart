@@ -2524,8 +2524,19 @@ const episodes = [
     importance: 3,
     netflix_id: 70205927,
     netflix_synopsis: "DS9の修理に必要なカーデシア製の部品を求め、カーデシアが放棄した宇宙ステーションに乗り込むオブライエン。そこは無人のはずだったが...。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708532/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Garak", contrast: 4 },
+      { name: "Nog", contrast: 3 }
+    ]
   },
   {
     season: 5,
@@ -2535,19 +2546,51 @@ const episodes = [
     importance: 3,
     netflix_id: 70205928,
     netflix_synopsis: "ジェイクはクワークのオークションのリストからシスコの好きな野球選手のカードを見つける。元気のない父親のためになんとか落札しようと考える。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708555/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 3 },
+      { name: "Nog", contrast: 4 },
+      { name: "Leeta", contrast: 2 },
+      { name: "Winn", contrast: 3 }
+    ]
   },
   {
     season: 5,
     episode: 26,
     title: "Call to Arms",
     title_ja: "DS9撤退の日",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205929,
     netflix_synopsis: "ワームホールから次々と現れるジェム・ハダーの戦艦。アルファ宇宙域がドミニオンに占拠されつつあることに気づいたシスコは、苦渋の決断を下す。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708512/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Garak", contrast: 3 },
+      { name: "Weyoun", contrast: 4 },
+      { name: "Dukat", contrast: 4 },
+      { name: "Rom", contrast: 4 },
+      { name: "Nog", contrast: 3 },
+      { name: "Martok", contrast: 3 },
+      { name: "Leeta", contrast: 3 },
+      { name: "Ziyal", contrast: 3 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 6,
