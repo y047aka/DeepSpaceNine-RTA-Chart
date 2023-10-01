@@ -163,7 +163,13 @@ view { episodes, tableState, afterSeason4 } =
             , property "row-gap" "20px"
             ]
         ]
-        [ global [ Css.Global.body [ backgroundColor (hsl 0 0 0.1), color (hsl 0 0 0.6) ] ]
+        [ global
+            [ Css.Global.body
+                [ fontFamily sansSerif
+                , backgroundColor (hsl 0 0 0.1)
+                , color (hsl 0 0 0.6)
+                ]
+            ]
         , Chart.view episodes
         , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
