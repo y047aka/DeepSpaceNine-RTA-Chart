@@ -8,13 +8,13 @@ import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
 import Dict
-import Html.Styled exposing (Html, a, div, input, label, li, td, text, toUnstyled, tr, ul)
-import Html.Styled.Attributes as Attributes exposing (css, href, type_)
+import Html.Styled exposing (Html, a, button, div, input, label, li, td, text, toUnstyled, tr, ul)
+import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, type_)
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Keyed as Keyed
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
-import UI.SortableData as SortableData exposing (Column, Direction(..), intColumn)
+import UI.SortableData as SortableData exposing (Column, Direction(..))
 
 
 main : Program Json.Decode.Value Model Msg
@@ -52,7 +52,7 @@ init json =
 
 columns_ : List (SortableData.Column Episode (Html msg))
 columns_ =
-    summaryColumns ++ characterColumns (config True) ++ [ netflixColumn ]
+    summaryColumns ++ characterColumns (config True)
 
 
 summaryColumns : List (SortableData.Column Episode (Html msg))
@@ -116,11 +116,6 @@ characterColumns config_ =
             }
         )
         config_.characters
-
-
-netflixColumn : SortableData.Column Episode (Html msg)
-netflixColumn =
-    intColumn { label = "Netflix", getter = .netflix_id, renderer = netflixLink }
 
 
 
@@ -262,6 +257,35 @@ tableRows toId columns data =
               <|
                 indexColumn index
                     :: List.map (\column -> td [] [ column.view d ]) columns
+                    ++ [ td []
+                            [ button
+                                [ type_ "button"
+                                , attribute "popovertarget" (toId d)
+                                , css
+                                    [ cursor pointer
+                                    , padding zero
+                                    , borderWidth zero
+                                    , property "background-color" "unset"
+                                    , color inherit
+                                    ]
+                                ]
+                                [ text ">" ]
+                            , div
+                                [ attribute "popover" ""
+                                , id (toId d)
+                                , css
+                                    [ padding (px 10)
+                                    , backgroundColor (hsl 0 0 0.1)
+                                    , color (hsl 0 0 0.6)
+                                    , borderRadius (px 5)
+                                    ]
+                                ]
+                                [ div [] [ text d.title ]
+                                , div [] [ text d.title_ja ]
+                                , netflixLink (String.fromInt d.netflix_id)
+                                ]
+                            ]
+                       ]
             )
     in
     List.indexedMap row data
