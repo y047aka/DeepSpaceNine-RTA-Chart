@@ -2600,8 +2600,25 @@ const episodes = [
     importance: 3,
     netflix_id: 70205930,
     netflix_synopsis: "ドミニオンとカーデシアを相手に戦況が悪化する中、援軍の期待も打ち砕かれるDS9一行。シスコは敵の生命線である施設を破壊する任務を与えられる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708496/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Garak", contrast: 2 },
+      { name: "Weyoun", contrast: 3 },
+      { name: "Dukat", contrast: 3 },
+      { name: "Nog", contrast: 2 },
+      { name: "Martok", contrast: 2 },
+      { name: "Damar", contrast: 2 },
+      { name: "Joseph Sisko", contrast: 3 }
+    ]
   },
   {
     season: 6,
@@ -2611,8 +2628,19 @@ const episodes = [
     importance: 3,
     netflix_id: 70205931,
     netflix_synopsis: "損傷したジェム・ハダー船で航行するシスコたち。地図にない星雲に突入し、惑星に不時着すると同時にダックスは負傷。そこでジェム・ハダーに捕まる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708592/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 1 },
+      { name: "Dax", contrast: 3 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Garak", contrast: 3 },
+      { name: "Nog", contrast: 3 }
+    ]
   },
   {
     season: 6,
