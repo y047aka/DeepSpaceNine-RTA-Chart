@@ -2650,8 +2650,22 @@ const episodes = [
     importance: 3,
     netflix_id: 70205932,
     netflix_synopsis: "マートク将軍の補充要員に、疎遠になっていた息子アレキサンダーを見つけ当惑するウォーフ。兵士には向かない息子との溝をなんとか埋めたいと願う。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708604/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Dukat", contrast: 3 },
+      { name: "Martok", contrast: 4 },
+      { name: "Ziyal", contrast: 3 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 6,
