@@ -12,8 +12,8 @@
     "lint": "elm-review app/src/ --elmjson app/elm.json --config review"
   },
   "devDependencies": {
-    "elm": "^0.19.1-5",
+    "elm": "^0.19.1-6",
     "elm-format": "^0.8.7",
-    "elm-review": "^2.10.2"
+    "elm-review": "^2.10.3"
   }
 }
