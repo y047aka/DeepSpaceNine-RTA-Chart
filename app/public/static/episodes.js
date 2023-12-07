@@ -2731,7 +2731,7 @@ const episodes = [
     importance: 5,
     netflix_id: 70205935,
     netflix_synopsis: "宇宙連邦を唯一守る存在の機雷原が破壊される中、シスコはDS9を取り返すために無謀としか言えないミッションの遂行を決死の覚悟で命じる。",
-    url_imdb: "https://www.imdb.com/title/",
+    url_imdb: "https://www.imdb.com/title/tt0708595/",
     characters: [
       { name: "Benjamin Sisko", contrast: 5 },
       { name: "Odo", contrast: 4 },
@@ -2761,8 +2761,22 @@ const episodes = [
     importance: 3,
     netflix_id: 70205936,
     netflix_synopsis: "ウォーフとダックスがいよいよ結婚。だがその前に、ダックスはクリンゴンの家に入るために、マートクの妻シレラの審査に通らなければならない。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708667/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Martok", contrast: 3 },
+      { name: "Leeta", contrast: 2 },
+      { name: "Nog", contrast: 2 },
+      { name: "Rom", contrast: 2 }
+    ]
   },
   {
     season: 6,
@@ -2772,8 +2786,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205937,
     netflix_synopsis: "キラの死んだ恋人にそっくりの男が平行宇宙からやって来て、キラを人質に取る。逃亡犯であるというその男は、元の世界に戻ることを拒否する。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708589/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Bareil", contrast: 3 }
+    ]
   },
   {
     season: 6,
@@ -2783,19 +2807,42 @@ const episodes = [
     importance: 3,
     netflix_id: 70205938,
     netflix_synopsis: "遺伝子操作の過去が明らかになったベシアは、同じ経験を持つ者たちに協力することに。目的は社会に適応し、その優秀な頭脳を役立てることだった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708606/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 2 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 6,
     episode: 10,
     title: "The Magnificent Ferengi",
     title_ja: "闘う交渉人フェレンギ",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205939,
     netflix_synopsis: "ドミニオンの人質になった母親の救出を任されたクワーク。グランド・ネーガス・ゼクから高額の報酬を約束されたクワークは、弟と救出作戦を立てる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708628/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 4 },
+      { name: "Nog", contrast: 4 },
+      { name: "Leeta", contrast: 2 }
+    ]
   },
   {
     season: 6,
