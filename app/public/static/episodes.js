@@ -2849,11 +2849,22 @@ const episodes = [
     episode: 11,
     title: "Waltz",
     title_ja: "不滅の悪意",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205940,
     netflix_synopsis: "シスコがデュカットを戦争犯罪の調査会に移送中、宇宙艦がカーデシアによって攻撃される。苦悩に駆り立てられたデュカットは次第に正気を失って行く。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708660/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 2 },
+      { name: "Dukat", contrast: 5 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 6,
@@ -2863,19 +2874,43 @@ const episodes = [
     importance: 3,
     netflix_id: 70205941,
     netflix_synopsis: "モーンがイオン嵐で事故死してしまった。悲しむ一同をよそに商機と見たクワークはバーで追悼式を開くが、莫大な遺産の相続人はなんとクワークだった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708665/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 6,
     episode: 13,
     title: "Far Beyond the Stars",
     title_ja: "夢、遥かなる地にて",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205942,
     netflix_synopsis: "親友戦死の報に落胆し、引退を考え始めたシスコ。そんな中、自分が人種差別の激しい1950年代のアメリカでSF作家になっている幻視を見る。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708538/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weeyun", contrast: 2 },
+      { name: "Dukat", contrast: 2 },
+      { name: "Martok", contrast: 2 },
+      { name: "Nog", contrast: 2 },
+      { name: "Kasidy Yates", contrast: 2 }
+    ]
   },
   {
     season: 6,
@@ -2885,8 +2920,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205943,
     netflix_synopsis: "ダックスらは、亜空間圧縮現象により縮小されたランナバウトで調査に向かう。一方、ディファイアントがジェム・ハダーに占領されてしまう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708572/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Nog", contrast: 3 }
+    ]
   },
   {
     season: 6,
@@ -2896,8 +2941,17 @@ const episodes = [
     importance: 3,
     netflix_id: 70205944,
     netflix_synopsis: "犯罪組織オリオン・シンジケートに情報を流しているスパイを探るため、オブライエンは組織に潜入する。だが背後にはさらに恐ろしい敵の存在があった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708550/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 6,
