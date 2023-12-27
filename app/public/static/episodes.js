@@ -2958,44 +2958,84 @@ const episodes = [
     episode: 16,
     title: "Change of Heart",
     title_ja: "至高の絆",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205945,
     netflix_synopsis: "カーデシアの二重スパイの元に向かうダックスとウォーフ。その途中で暗号化された亜空間通信をスパイから受け取る。彼は亡命を希望していた。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708515/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 }
+    ]
   },
   {
     season: 6,
     episode: 17,
     title: "Wrongs Darker than Death or Night",
     title_ja: "憎悪を越えて",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205946,
     netflix_synopsis: "母親に関する秘密を知り、動揺するキラ。真相を探るべく、シスコに頼んで時の発光体の助けを借り、時間を遡ることに。そこにはさらに衝撃的な現実が。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708666/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 5 },
+      { name: "Dukat", contrast: 4 }
+    ]
   },
   {
     season: 6,
     episode: 18,
     title: "Inquisition",
     title_ja: "記憶なきスパイ",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205947,
     netflix_synopsis: "DS9で情報漏洩疑惑があり、調査のために内務監査局からスローン副長官が派遣される。上級士官は全員隔離され、自室で待機するように命じられる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708559/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 2 }
+    ]
   },
   {
     season: 6,
     episode: 19,
     title: "In the Pale Moonlight",
     title_ja: "消された偽造作戦",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205948,
     netflix_synopsis: "犠牲者リストを見てため息をつくシスコ。戦争に勝つにはロミュランを連邦とクリンゴン連合の味方につけるしかない。究極の手段がシスコの良心を苛む。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708557/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Garak", contrast: 4 },
+      { name: "Weyoun", contrast: 2 },
+      { name: "Damar", contrast: 2 }
+    ]
   },
   {
     season: 6,
