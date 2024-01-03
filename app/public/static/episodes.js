@@ -3042,33 +3042,63 @@ const episodes = [
     episode: 20,
     title: "His Way",
     title_ja: "心をつなぐホログラム",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205949,
     netflix_synopsis: "ベシア自慢の新しいホロスイート・キャラクター。それは60年代のラスベガスのクラブで、マティーニ片手に酔いしれる観客に歌を披露する歌手だった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708548/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 5 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Vic Fontaine", contrast: 3 }
+    ]
   },
   {
     season: 6,
     episode: 21,
     title: "The Reckoning",
     title_ja: "善と悪の叫び",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205950,
     netflix_synopsis: "選ばれし者への伝言が記された石版が発見され、ベイジョーから持ち帰ったシスコ。ダックスの解読によると、それは闘いが始まるというお告げだった。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708635/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 3 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Winn", contrast: 4 }
+    ]
   },
   {
     season: 6,
     episode: 22,
     title: "Valiant",
     title_ja: "過信",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205951,
     netflix_synopsis: "フェレンギ星に向かう途中でノーグとジェイクはジェム・ハダーの攻撃を受ける。そこへ現れたアカデミー候補生のエリート部隊により2人は救出される。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708657/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 4 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 4 }
+    ]
   },
   {
     season: 6,
@@ -3078,8 +3108,21 @@ const episodes = [
     importance: 3,
     netflix_id: 70205952,
     netflix_synopsis: "憲章に男女平等の新条項を加えることを決めたグランド・ネーガス・ゼク。その政権を守るべく、女性蔑視のクワークがなぜか女性を代弁することに。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708582/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Quark", contrast: 5 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Leeta", contrast: 2 },
+      { name: "Rom", contrast: 4 },
+      { name: "Nog", contrast: 3 },
+      { name: "Leeta", contrast: 3 },
+      { name: "Zek", contrast: 4 }
+    ]
   },
   {
     season: 6,
@@ -3089,8 +3132,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205953,
     netflix_synopsis: "久しぶりに家族と再会したオブライエン。だがピクニックの最中、幼い娘モリーが時間の渦に落ちてしまう。救出されたものの、娘の様子に両親は戸惑う。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708652/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Miles O'Brien", contrast: 5 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Keiko O'Brien", contrast: 4 }
+    ]
   },
   {
     season: 6,
@@ -3100,8 +3153,19 @@ const episodes = [
     importance: 3,
     netflix_id: 70205954,
     netflix_synopsis: "ディファイアントがリサ・キューザック艦長から救難信号を受信する。シスコたちは、脱出ポッドで辺境の惑星に不時着した彼女の救出に向かう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708642/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 4 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Kasidy Yates", contrast: 3 }
+    ]
   },
   {
     season: 6,
