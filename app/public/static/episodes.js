@@ -2896,7 +2896,7 @@ const episodes = [
     netflix_synopsis: "親友戦死の報に落胆し、引退を考え始めたシスコ。そんな中、自分が人種差別の激しい1950年代のアメリカでSF作家になっている幻視を見る。",
     url_imdb: "https://www.imdb.com/title/tt0708538/",
     characters: [
-      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Benjamin Sisko", contrast: 5 },
       { name: "Odo", contrast: 2 },
       { name: "Worf", contrast: 2 },
       { name: "Dax", contrast: 2 },
@@ -3172,33 +3172,78 @@ const episodes = [
     episode: 26,
     title: "Tears of the Prophets",
     title_ja: "決意の代償",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205955,
     netflix_synopsis: "宇宙艦隊がドミニオンを攻撃する時がついに来た。シスコはカーデシア侵攻の指揮官に任命されるが、預言者はシスコに謎めいた警告を与える。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708610/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 5 },
+      { name: "Dax", contrast: 5 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 4 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Garak", contrast: 3 },
+      { name: "Weyoun", contrast: 3 },
+      { name: "Dukat", contrast: 4 },
+      { name: "Martok", contrast: 3 },
+      { name: "Nog", contrast: 3 },
+      { name: "Damar", contrast: 3 },
+      { name: "Vic Fontaine", contrast: 2 }
+    ]
   },
   {
     season: 7,
     episode: 1,
     title: "Image in the Sand",
     title_ja: "砂漠からの呼び声",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205956,
     netflix_synopsis: "ダックスの死とワームホールの消滅から3ヵ月後、DS9の生活は大きく変化していた。地球に戻ったシスコは再び預言者からの幻視を見るようになる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708552/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 3 },
+      { name: "Dax", contrast: 5 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 3 },
+      { name: "Weyoun", contrast: 2 },
+      { name: "Damar", contrast: 2 },
+      { name: "Martok", contrast: 3 },
+      { name: "Nog", contrast: 2 },
+      { name: "Vic Fontaine", contrast: 2 }
+    ]
   },
   {
     season: 7,
     episode: 2,
     title: "Shadows and Symbols",
     title_ja: "預言者の呪縛",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205957,
     netflix_synopsis: "シスコはダックスの新しいホスト、エズリと出会う。選ばれし者の発光体を求め、地球からタイリー星に旅立つシスコ一家に彼女も同行することになる。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708600/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 5 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 4 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Weyoun", contrast: 2 },
+      { name: "Damar", contrast: 2 },
+      { name: "Martok", contrast: 3 }
+    ]
   },
   {
     season: 7,
@@ -3208,8 +3253,19 @@ const episodes = [
     importance: 3,
     netflix_id: 70205958,
     netflix_synopsis: "エズリは、前のホストの記憶に戸惑ったり、仲間の自分に対するぎこちない態度に傷いていた。居場所を見つけられない彼女に手を差し伸べたのは...。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708498/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 3 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 5 },
+      { name: "Jake Sisko", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Garak", contrast: 5 }
+    ]
   },
   {
     season: 7,
@@ -3219,52 +3275,113 @@ const episodes = [
     importance: 3,
     netflix_id: 70205959,
     netflix_synopsis: "宇宙艦の修理のためにDS9に立ち寄ったバルカン人のソロック艦長。実はシスコとソロックには深い因縁があった。2人は野球で勝負をすることに。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708609/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 3 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Rom", contrast: 3 },
+      { name: "Nog", contrast: 2 },
+      { name: "Leeta", contrast: 2 },
+      { name: "Kasidy Yates", contrast: 2 }
+    ]
   },
   {
     season: 7,
     episode: 5,
     title: "Chrysalis",
     title_ja: "愛に目覚める者",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205960,
     netflix_synopsis: "遺伝子操作を受けたミュータントたちがベシアを訪ねてDS9に現れる。セレーナにベシアの治療を受けさせるため、研究所から脱走してきたようだ。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708518/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 4 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 2 }
+    ]
   },
   {
     season: 7,
     episode: 6,
     title: "Treachery, Faith and the Great River",
     title_ja: "予期せぬ亡命者",
-    importance: 3,
+    importance: 5,
     netflix_id: 70205961,
     netflix_synopsis: "知人と偽り、オドーを呼び出したのは敵であるドミニオンのヴォルタ人リーダー、ウェイユンだった。彼がオドーに告げた要求は意外なもので...。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708654/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 4 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 3 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Weyoun", contrast: 4 },
+      { name: "Damar", contrast: 2 },
+      { name: "Martok", contrast: 2 },
+      { name: "Nog", contrast: 3 },
+      { name: "Rom", contrast: 2 }
+    ]
   },
   {
     season: 7,
     episode: 7,
     title: "Once More unto the Breach",
     title_ja: "今一度あの勇姿を",
-    importance: 3,
+    importance: 2,
     netflix_id: 70205962,
     netflix_synopsis: "クリンゴンの名将コールの突然の訪問に驚くウォーフ。野心のせいであちこちに敵を作ってしまったと話す、かつての英雄がウォーフに頼んだこととは。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708571/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 4 },
+      { name: "Dax", contrast: 3 },
+      { name: "Jake Sisko", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Martok", contrast: 3 }
+    ]
   },
   {
     season: 7,
     episode: 8,
     title: "The Siege of AR-558",
     title_ja: "戦争の影 －AR558攻防戦－",
-    importance: 3,
+    importance: 4,
     netflix_id: 70205963,
     netflix_synopsis: "星域最大のドミニオンの通信アンテナを死守する部隊と、彼らを支援するシスコたち。襲撃は激しさを増し、シスコのチームからも被害者が出てしまう。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708640/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 4 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 3 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 3 },
+      { name: "Bashir", contrast: 3 },
+      { name: "Kira Nerys", contrast: 2 },
+      { name: "Nog", contrast: 5 },
+      { name: "Rom", contrast: 2 },
+      { name: "Vic Fontaine", contrast: 2 }
+    ]
   },
   {
     season: 7,
@@ -3274,8 +3391,18 @@ const episodes = [
     importance: 3,
     netflix_id: 70205964,
     netflix_synopsis: "キラはベイジョーの恩師との再会を喜ぶが、直後にエムポック・ノールに転送されてしまう。そこではデュカットがカルト集団の長として崇められていた。",
-    url_imdb: "https://www.imdb.com/title/",
-    characters: []
+    url_imdb: "https://www.imdb.com/title/tt0708520/",
+    characters: [
+      { name: "Benjamin Sisko", contrast: 2 },
+      { name: "Odo", contrast: 2 },
+      { name: "Worf", contrast: 2 },
+      { name: "Dax", contrast: 2 },
+      { name: "Miles O'Brien", contrast: 2 },
+      { name: "Quark", contrast: 2 },
+      { name: "Bashir", contrast: 2 },
+      { name: "Kira Nerys", contrast: 4 },
+      { name: "Dukat", contrast: 4 }
+    ]
   },
   {
     season: 7,
