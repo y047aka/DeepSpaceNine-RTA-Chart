@@ -189,11 +189,12 @@ view { episodes, tableState, afterSeason4 } =
         ]
 
 
-importanceListOf : String -> List Episode -> List { importance : Int }
+importanceListOf : String -> List Episode -> List { season : Int, importance : Int }
 importanceListOf characterName episodes =
     List.map
         (\ep ->
-            { importance =
+            { season = ep.season
+            , importance =
                 List.Extra.find (.name >> (==) characterName) ep.characters
                     |> Maybe.map .contrast
                     |> Maybe.withDefault 0
