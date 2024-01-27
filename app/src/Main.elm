@@ -14,6 +14,7 @@ import Html.Styled.Events exposing (onClick)
 import Html.Styled.Keyed as Keyed
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
+import List.Extra
 import UI.SortableData as SortableData exposing (Column, Direction(..))
 
 
@@ -155,7 +156,7 @@ view { episodes, tableState, afterSeason4 } =
             [ displayFlex
             , flexDirection column
             , alignItems center
-            , property "row-gap" "20px"
+            , property "row-gap" "30px"
             ]
         ]
         [ global
@@ -165,7 +166,16 @@ view { episodes, tableState, afterSeason4 } =
                 , color (hsl 0 0 0.6)
                 ]
             ]
-        , Chart.view episodes
+        , Chart.view "Deep Space Nine" episodes
+        , div
+            [ css
+                [ displayFlex
+                , flexDirection column
+                , alignItems center
+                , property "row-gap" "30px"
+                ]
+            ]
+            (List.map (\character -> Chart.view character (episodes |> importanceListOf character)) visibleCharacters)
         , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show characters after season 4"
@@ -177,6 +187,19 @@ view { episodes, tableState, afterSeason4 } =
                 |> SortableData.render tableState
             )
         ]
+
+
+importanceListOf : String -> List Episode -> List { importance : Int }
+importanceListOf characterName episodes =
+    List.map
+        (\ep ->
+            { importance =
+                List.Extra.find (.name >> (==) characterName) ep.characters
+                    |> Maybe.map .contrast
+                    |> Maybe.withDefault 0
+            }
+        )
+        episodes
 
 
 config : Bool -> { characters : List Character }

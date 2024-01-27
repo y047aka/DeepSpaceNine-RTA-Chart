@@ -1,22 +1,21 @@
 module Chart exposing (view)
 
 import Css exposing (..)
-import Data.Episode exposing (Episode)
 import Html.Styled exposing (Html, div, text)
 import Html.Styled.Attributes exposing (css)
 
 
-view : List Episode -> Html msg
-view episodes =
+view : String -> List { a | importance : Int } -> Html msg
+view title episodes =
     div
         [ css
             [ property "display" "grid"
-            , property "grid-template-columns" "auto 1fr"
+            , property "grid-template-columns" "9em 1fr"
             , property "column-gap" "1em"
             , alignItems center
             ]
         ]
-        [ div [] [ text "Deep Space Nine" ]
+        [ div [] [ text title ]
         , histogram { color = \{ importance } -> "hsl(0, 0%, " ++ stepByImportance importance ++ ")" } episodes
         ]
 
@@ -33,13 +32,13 @@ histogram { color } episode =
         ]
     <|
         List.map
-            (\lap ->
+            (\ep ->
                 div
                     [ css
                         [ width (px 15)
                         , height (px 15)
                         , borderRadius (px 1)
-                        , property "background-color" (color lap)
+                        , property "background-color" (color ep)
                         ]
                     ]
                     []
