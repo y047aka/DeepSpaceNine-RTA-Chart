@@ -6,8 +6,8 @@ import Html.Styled.Attributes exposing (css)
 import List.Extra
 
 
-view : String -> List { a | season : Int, importance : Int } -> Html msg
-view title episodes =
+view : String -> Int -> List { a | season : Int, importance : Int } -> Html msg
+view title hue episodes =
     div
         [ css
             [ property "display" "grid"
@@ -25,7 +25,7 @@ view title episodes =
             ]
             (List.Extra.gatherEqualsBy .season episodes
                 |> List.map (\( head, tails ) -> head :: tails)
-                |> List.map (histogram { color = \{ importance } -> "hsl(0, 0%, " ++ stepByImportance importance ++ ")" })
+                |> List.map (histogram { color = \{ importance } -> "hsl(" ++ String.fromInt hue ++ ", 80%, " ++ stepByImportance importance ++ ")" })
             )
         ]
 
@@ -63,19 +63,19 @@ stepByImportance : Int -> String
 stepByImportance importance =
     (String.fromInt <|
         if importance == 5 then
-            100
+            80
 
         else if importance == 4 then
-            70
+            60
 
         else if importance == 3 then
-            40
+            30
 
         else if importance == 2 then
-            25
+            17
 
         else if importance == 1 then
-            15
+            10
 
         else
             0

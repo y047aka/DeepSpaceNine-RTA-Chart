@@ -1,4 +1,4 @@
-module Data.Character exposing (Character(..), toString)
+module Data.Character exposing (Character(..), imageHue, toString)
 
 
 type Character
@@ -114,3 +114,119 @@ toString c =
 
         Weyoun ->
             "Weyoun"
+
+
+imageHue : Character -> Int
+imageHue c =
+    let
+        command =
+            350
+
+        engineeringOrSecurity =
+            55
+
+        scienceOrMedical =
+            190
+
+        bajoranSecurity =
+            45
+
+        federation =
+            220
+
+        bajoran =
+            10
+
+        cardassian =
+            175
+
+        klingon =
+            120
+
+        ferengi =
+            25
+
+        jemHadar =
+            270
+    in
+    case c of
+        BenjaminSisko ->
+            command
+
+        JakeSisko ->
+            federation
+
+        Dax ->
+            scienceOrMedical
+
+        KiraNerys ->
+            bajoran
+
+        MilesObrien ->
+            engineeringOrSecurity
+
+        KeikoObrien ->
+            federation
+
+        Bashir ->
+            scienceOrMedical
+
+        Odo ->
+            bajoranSecurity
+
+        Worf ->
+            command
+
+        Quark ->
+            ferengi
+
+        Rom ->
+            ferengi
+
+        Nog ->
+            ferengi
+
+        Winn ->
+            bajoran
+
+        Bareil ->
+            bajoran
+
+        Garak ->
+            cardassian
+
+        Dukat ->
+            cardassian
+
+        Zek ->
+            ferengi
+
+        MichaelEddington ->
+            engineeringOrSecurity
+
+        KasidyYates ->
+            federation
+
+        Leeta ->
+            bajoran
+
+        Gowron ->
+            klingon
+
+        Martok ->
+            klingon
+
+        Shakaar ->
+            bajoran
+
+        Ziyal ->
+            cardassian
+
+        Damar ->
+            cardassian
+
+        Brunt ->
+            ferengi
+
+        Weyoun ->
+            jemHadar

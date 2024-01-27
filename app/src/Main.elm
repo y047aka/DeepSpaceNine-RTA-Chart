@@ -166,7 +166,7 @@ view { episodes, tableState, afterSeason4 } =
                 , color (hsl 0 0 0.6)
                 ]
             ]
-        , Chart.view "Deep Space Nine" episodes
+        , Chart.view "Deep Space Nine" 175 episodes
         , div
             [ css
                 [ displayFlex
@@ -175,7 +175,9 @@ view { episodes, tableState, afterSeason4 } =
                 , property "row-gap" "30px"
                 ]
             ]
-            (List.map (\character -> Chart.view character (episodes |> importanceListOf character)) visibleCharacters)
+            (List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
+                (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
+            )
         , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show characters after season 4"
