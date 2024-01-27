@@ -1,85 +1,71 @@
 module Chart exposing (view)
 
-import Css exposing (block, display, hsl)
+import Css exposing (..)
 import Data.Episode exposing (Episode)
-import Html.Styled exposing (Html)
-import Scale exposing (ContinuousScale)
-import Svg.Styled exposing (Svg, g, rect, svg)
-import Svg.Styled.Attributes exposing (css, fill)
-import TypedSvg.Styled.Attributes exposing (viewBox)
-import TypedSvg.Styled.Attributes.InPx as InPx exposing (height, width)
-
-
-w : Float
-w =
-    1200
-
-
-h : Float
-h =
-    20
-
-
-padding : Float
-padding =
-    20
-
-
-xScale : ContinuousScale Float
-xScale =
-    Scale.linear ( padding, w - padding ) ( 0, 180 )
-
-
-yScale : ContinuousScale Float
-yScale =
-    Scale.linear ( padding, h - padding ) ( 5, 0 )
+import Html.Styled exposing (Html, div, text)
+import Html.Styled.Attributes exposing (css)
 
 
 view : List Episode -> Html msg
 view episodes =
-    svg
-        [ width w
-        , height h
-        , viewBox 0 0 w h
-        , css [ display block ]
+    div
+        [ css
+            [ property "display" "grid"
+            , property "grid-template-columns" "auto 1fr"
+            , property "column-gap" "1em"
+            , alignItems center
+            ]
         ]
-        [ histogram_
-            { x = toFloat >> Scale.convert xScale
-            , y = always 10
-            , width = always 1
-            , color = \{ importance } -> "hsl(0, 0%, " ++ stepByImportance importance ++ ")"
-            }
-            episodes
+        [ div [] [ text "Deep Space Nine" ]
+        , histogram { color = \{ importance } -> "hsl(0, 0%, " ++ stepByImportance importance ++ ")" } episodes
         ]
 
 
-histogram_ :
-    { x : Int -> Float, y : a -> Float, width : a -> Float, color : a -> String }
-    -> List a
-    -> Svg msg
-histogram_ { x, y, width, color } laps =
-    g [] <|
-        List.indexedMap
-            (\index lap ->
-                rect
-                    [ InPx.x (x index - 1)
-                    , InPx.y (y lap - 10)
-                    , InPx.width (width lap)
-                    , InPx.height 20
-                    , fill (color lap)
+histogram : { color : a -> String } -> List a -> Html msg
+histogram { color } episode =
+    div
+        [ css
+            [ property "display" "grid"
+            , property "grid-auto-flow" "column"
+            , property "grid-template-rows" "auto auto auto auto auto"
+            , property "gap" "8px"
+            ]
+        ]
+    <|
+        List.map
+            (\lap ->
+                div
+                    [ css
+                        [ width (px 15)
+                        , height (px 15)
+                        , borderRadius (px 1)
+                        , property "background-color" (color lap)
+                        ]
                     ]
                     []
             )
-            laps
+            episode
 
 
 stepByImportance : Int -> String
 stepByImportance importance =
-    if importance > 3 then
-        "80%"
+    (String.fromInt <|
+        if importance == 5 then
+            100
 
-    else if importance > 2 then
-        "50%"
+        else if importance == 4 then
+            70
 
-    else
-        "30%"
+        else if importance == 3 then
+            40
+
+        else if importance == 2 then
+            25
+
+        else if importance == 1 then
+            15
+
+        else
+            0
+    )
+        ++ "%"
