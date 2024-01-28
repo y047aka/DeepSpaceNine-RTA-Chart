@@ -7,7 +7,6 @@ import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
-import Dict
 import Html.Styled exposing (Html, a, button, div, input, label, li, td, text, toUnstyled, tr, ul)
 import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, type_)
 import Html.Styled.Events exposing (onClick)
@@ -53,7 +52,7 @@ init json =
 
 columns_ : List (SortableData.Column Episode (Html msg))
 columns_ =
-    summaryColumns ++ characterColumns (config False)
+    summaryColumns ++ tagsColumn
 
 
 summaryColumns : List (SortableData.Column Episode (Html msg))
@@ -84,39 +83,35 @@ summaryColumns =
     ]
 
 
-characterColumns : { characters : List Character } -> List (SortableData.Column Episode (Html msg))
-characterColumns config_ =
-    let
-        characterDict { characters } =
-            characters
-                |> List.map (\{ name, contrast } -> ( name, contrast ))
-                |> Dict.fromList
-    in
+tagsColumn : List (SortableData.Column Episode (Html msg))
+tagsColumn =
     List.map
-        (\character ->
-            let
-                contrast ep_ =
-                    Dict.get (Character.toString character) (characterDict ep_)
-                        |> Maybe.withDefault 0
-            in
-            { name = Character.toString character
+        (\tag ->
+            { name = tag
             , view =
                 \ep ->
-                    if contrast ep > 0 then
-                        div [ css [ color (hsl 0 0 (stepByImportance (contrast ep))) ] ]
-                            [ text (Character.toString character) ]
+                    if List.member tag ep.tags then
+                        div
+                            [ css
+                                [ fontSize (px 10)
+                                , padding (px 5)
+                                , borderRadius (px 5)
+                                , backgroundColor (hsl 0 0 0.2)
+                                , color (hsl 0 0 0.6)
+                                ]
+                            ]
+                            [ text tag ]
 
                     else
                         text ""
-            , sort = contrast >> String.fromInt
+            , sort = always tag
             , filter =
                 \query ep ->
-                    String.toInt query
-                        |> Maybe.map (\q -> contrast ep >= q)
-                        |> Maybe.withDefault False
+                    String.contains (String.toLower query)
+                        (String.toLower <| String.join "," ep.tags)
             }
         )
-        config_.characters
+        tags_
 
 
 
@@ -175,16 +170,8 @@ view { episodes, tableState, afterSeason4 } =
             (List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
                 (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
             )
-        , chartSelector (config False)
-        , let
-            charactersFilter { name } =
-                List.member name (config afterSeason4 |> .characters |> List.map Character.toString)
-          in
-          table tableState
-            (episodes
-                |> List.map (\ep -> { ep | characters = List.filter charactersFilter ep.characters })
-                |> SortableData.render tableState
-            )
+        , chartSelector tags_
+        , table tableState (episodes |> SortableData.render tableState)
         ]
 
 
@@ -217,8 +204,13 @@ config afterSeason4 =
     }
 
 
-chartSelector : { characters : List Character } -> Html Msg
-chartSelector { characters } =
+tags_ : List String
+tags_ =
+    [ "Federation", "Trill", "Bajor", "Prophet", "Cardassia", "Ferengi", "Klingon", "Maquis", "Mirror Universe" ]
+
+
+chartSelector : List String -> Html Msg
+chartSelector tags =
     ul
         [ css
             [ width (pct 100)
@@ -229,9 +221,9 @@ chartSelector { characters } =
             ]
         ]
         (List.map
-            (\character ->
+            (\tag ->
                 li
-                    [ onClick (TableMsg (SortableData.Filter (Character.toString character) "2"))
+                    [ onClick (TableMsg (SortableData.Filter tag tag))
                     , css
                         [ display block
                         , padding (px 10)
@@ -245,9 +237,9 @@ chartSelector { characters } =
                         , hover [ backgroundColor (hsl 0 0 0.2) ]
                         ]
                     ]
-                    [ text (Character.toString character) ]
+                    [ text tag ]
             )
-            characters
+            tags
         )
 
 

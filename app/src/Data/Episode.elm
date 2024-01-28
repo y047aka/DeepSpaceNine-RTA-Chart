@@ -10,7 +10,7 @@ type alias Episode =
     , title_ja : String
     , importance : Int
     , netflix_id : Int
-    , netflix_synopsis : String
+    , tags : List String
     , characters : List Character
     }
 
@@ -33,7 +33,7 @@ episodeDecoder =
         (field "title_ja" string)
         (field "importance" int)
         (field "netflix_id" int)
-        (field "netflix_synopsis" string)
+        (field "tags" (Decode.list string))
         (field "characters" (Decode.list characterDecoder))
 
 
