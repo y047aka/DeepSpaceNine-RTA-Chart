@@ -144,13 +144,6 @@ update msg model =
 
 view : Model -> Html Msg
 view { episodes, tableState, afterSeason4 } =
-    let
-        visibleCharacters =
-            config afterSeason4 |> .characters |> List.map Character.toString
-
-        filterCharacters ep =
-            { ep | characters = List.filter (\{ name } -> List.member name visibleCharacters) ep.characters }
-    in
     div
         [ css
             [ displayFlex
@@ -166,6 +159,10 @@ view { episodes, tableState, afterSeason4 } =
                 , color (hsl 0 0 0.6)
                 ]
             ]
+        , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
+            [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
+            , text "Show more characters"
+            ]
         , Chart.view "Deep Space Nine" 175 episodes
         , div
             [ css
@@ -178,14 +175,14 @@ view { episodes, tableState, afterSeason4 } =
             (List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
                 (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
             )
-        , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
-            [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
-            , text "Show characters after season 4"
-            ]
-        , chartSelector (config afterSeason4)
-        , table tableState
+        , chartSelector (config False)
+        , let
+            charactersFilter { name } =
+                List.member name (config afterSeason4 |> .characters |> List.map Character.toString)
+          in
+          table tableState
             (episodes
-                |> List.map filterCharacters
+                |> List.map (\ep -> { ep | characters = List.filter charactersFilter ep.characters })
                 |> SortableData.render tableState
             )
         ]
@@ -207,14 +204,16 @@ importanceListOf characterName episodes =
 
 config : Bool -> { characters : List Character }
 config afterSeason4 =
+    let
+        characters =
+            [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, Bashir, Odo, Quark, Worf, Rom, Nog, Garak, Dukat ]
+    in
     { characters =
-        [ BenjaminSisko, JakeSisko, Dax, KiraNerys, MilesObrien, KeikoObrien, Bashir, Odo, Quark, Rom, Nog, Winn, Bareil, Garak, Dukat ]
-            ++ (if afterSeason4 then
-                    [ MichaelEddington, KasidyYates, Leeta, Worf, Gowron, Martok, Shakaar, Ziyal, Damar ]
+        if afterSeason4 then
+            characters ++ [ KeikoObrien, Winn, Bareil, MichaelEddington, KasidyYates, Leeta, Gowron, Martok, Shakaar, Ziyal, Damar ]
 
-                else
-                    []
-               )
+        else
+            characters
     }
 
 
