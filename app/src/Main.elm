@@ -53,7 +53,7 @@ init json =
 
 columns_ : List (SortableData.Column Episode (Html msg))
 columns_ =
-    summaryColumns ++ characterColumns (config True)
+    summaryColumns ++ characterColumns (config False)
 
 
 summaryColumns : List (SortableData.Column Episode (Html msg))
