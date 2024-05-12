@@ -6,8 +6,8 @@
     "esbuild": "esbuild app.ts --bundle --outdir=public/build --public-path=/build/"
   },
   "devDependencies": {
-    "elm-watch": "^1.1.2",
-    "esbuild": "^0.19.8",
-    "run-pty": "^4.1.0"
+    "elm-watch": "^1.1.3",
+    "esbuild": "^0.21.1",
+    "run-pty": "^5.0.0"
   }
 }
