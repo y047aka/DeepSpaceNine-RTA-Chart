@@ -159,29 +159,41 @@ view { episodes, tableState, afterSeason4 } =
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show more characters"
             ]
-        , div
-            [ css
-                [ property "display" "grid"
-                , property "grid-template-columns" "repeat(3, 1fr)"
-                , property "gap" "40px 60px"
-                ]
-            ]
-            (Chart.view "Deep Space Nine" 175 episodes
-                :: List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
-                    (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
+        , histogramsSection
+            ({ title = "Deep Space Nine", imageHue = 175, episodes = List.map (\{ season, importance } -> { season = season, importance = importance }) episodes }
+                :: List.map
+                    (\c ->
+                        { title = Character.toString c
+                        , imageHue = Character.imageHue c
+                        , episodes = importanceListOf c episodes
+                        }
+                    )
+                    (config afterSeason4 |> .characters)
             )
         , chartSelector tags_
         , table tableState (episodes |> SortableData.render tableState)
         ]
 
 
-importanceListOf : String -> List Episode -> List { season : Int, importance : Int }
-importanceListOf characterName episodes =
+histogramsSection : List { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
+histogramsSection items =
+    div
+        [ css
+            [ property "display" "grid"
+            , property "grid-template-columns" "repeat(3, 1fr)"
+            , property "gap" "40px 60px"
+            ]
+        ]
+        (List.map (\{ title, imageHue, episodes } -> Chart.view title imageHue episodes) items)
+
+
+importanceListOf : Character -> List Episode -> List { season : Int, importance : Int }
+importanceListOf character episodes =
     List.map
         (\ep ->
             { season = ep.season
             , importance =
-                List.Extra.find (.name >> (==) characterName) ep.characters
+                List.Extra.find (.name >> (==) (Character.toString character)) ep.characters
                     |> Maybe.map .contrast
                     |> Maybe.withDefault 0
             }
