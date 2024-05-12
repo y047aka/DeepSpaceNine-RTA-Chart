@@ -162,9 +162,8 @@ view { episodes, tableState, afterSeason4 } =
         , div
             [ css
                 [ property "display" "grid"
-                , property "grid-template-columns" "1fr 1fr"
-                , alignItems center
-                , property "gap" "30px 80px"
+                , property "grid-template-columns" "repeat(3, 1fr)"
+                , property "gap" "40px 60px"
                 ]
             ]
             (Chart.view "Deep Space Nine" 175 episodes

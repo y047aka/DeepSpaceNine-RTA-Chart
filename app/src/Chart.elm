@@ -38,7 +38,7 @@ histogram { color } episodes =
             , property "display" "grid"
             , property "grid-auto-flow" "column"
             , property "grid-template-rows" "repeat(5, auto)"
-            , property "gap" "3px"
+            , property "gap" "2px"
             , firstChild
                 [ property "padding-inline-start" "0" ]
             , nthChild "n+2"
@@ -52,8 +52,8 @@ histogram { color } episodes =
             (\ep ->
                 div
                     [ css
-                        [ width (px 12)
-                        , height (px 12)
+                        [ width (px 8)
+                        , height (px 8)
                         , borderRadius (px 1)
                         , property "background-color" (color ep)
                         ]
