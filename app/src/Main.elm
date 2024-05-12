@@ -170,6 +170,26 @@ view { episodes, tableState, afterSeason4 } =
                     )
                     (config afterSeason4 |> .characters)
             )
+        , histogramsSection
+            (List.map
+                (\tag ->
+                    { title = tag
+                    , imageHue = 175
+                    , episodes =
+                        List.map
+                            (\ep ->
+                                { season = ep.season
+                                , importance =
+                                    List.Extra.find ((==) tag) ep.tags
+                                        |> Maybe.map (\_ -> 4)
+                                        |> Maybe.withDefault 0
+                                }
+                            )
+                            episodes
+                    }
+                )
+                tags_
+            )
         , chartSelector tags_
         , table tableState (episodes |> SortableData.render tableState)
         ]
