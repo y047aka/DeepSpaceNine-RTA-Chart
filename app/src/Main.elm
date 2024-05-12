@@ -149,7 +149,8 @@ view { episodes, tableState, afterSeason4 } =
         ]
         [ global
             [ Css.Global.body
-                [ fontFamily sansSerif
+                [ margin zero
+                , fontFamily sansSerif
                 , backgroundColor (hsl 0 0 0.1)
                 , color (hsl 0 0 0.6)
                 ]
@@ -158,17 +159,17 @@ view { episodes, tableState, afterSeason4 } =
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show more characters"
             ]
-        , Chart.view "Deep Space Nine" 175 episodes
         , div
             [ css
-                [ displayFlex
-                , flexDirection column
+                [ property "display" "grid"
+                , property "grid-template-columns" "1fr 1fr"
                 , alignItems center
-                , property "row-gap" "30px"
+                , property "gap" "30px 80px"
                 ]
             ]
-            (List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
-                (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
+            (Chart.view "Deep Space Nine" 175 episodes
+                :: List.map (\( character, imageHue ) -> Chart.view character imageHue (episodes |> importanceListOf character))
+                    (config afterSeason4 |> .characters |> List.map (\c -> ( Character.toString c, Character.imageHue c )))
             )
         , chartSelector tags_
         , table tableState (episodes |> SortableData.render tableState)

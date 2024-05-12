@@ -10,13 +10,13 @@ view : String -> Int -> List { a | season : Int, importance : Int } -> Html msg
 view title hue episodes =
     div
         [ css
-            [ property "display" "grid"
-            , property "grid-template-columns" "9em 1fr"
-            , property "column-gap" "1em"
-            , alignItems center
+            [ displayFlex
+            , flexDirection column
+            , alignItems start
+            , property "row-gap" "0.5em"
             ]
         ]
-        [ div [] [ text title ]
+        [ div [ css [ fontSize (px 14) ] ] [ text title ]
         , div
             [ css
                 [ property "display" "grid"
@@ -38,9 +38,13 @@ histogram { color } episodes =
             , property "display" "grid"
             , property "grid-auto-flow" "column"
             , property "grid-template-rows" "repeat(5, auto)"
-            , property "gap" "5px"
+            , property "gap" "3px"
+            , firstChild
+                [ property "padding-inline-start" "0" ]
             , nthChild "n+2"
                 [ borderLeft3 (px 1) solid (hsl 0 0 0) ]
+            , lastChild
+                [ property "padding-inline-end" "0" ]
             ]
         ]
     <|
@@ -48,8 +52,8 @@ histogram { color } episodes =
             (\ep ->
                 div
                     [ css
-                        [ width (px 15)
-                        , height (px 15)
+                        [ width (px 12)
+                        , height (px 12)
                         , borderRadius (px 1)
                         , property "background-color" (color ep)
                         ]
