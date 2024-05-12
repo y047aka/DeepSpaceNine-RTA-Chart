@@ -7,14 +7,14 @@ import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
-import Html.Styled exposing (Html, a, button, div, input, label, li, td, text, toUnstyled, tr, ul)
+import Html.Styled exposing (Html, a, button, div, input, label, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, type_)
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Keyed as Keyed
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
 import List.Extra
-import UI.SortableData as SortableData exposing (Column, Direction(..))
+import UI.SortableData as SortableData exposing (Column)
 
 
 main : Program Json.Decode.Value Model Msg
@@ -119,16 +119,12 @@ tagsColumn =
 
 
 type Msg
-    = TableMsg SortableData.Msg
-    | Toggle
+    = Toggle
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        TableMsg tableMsg ->
-            ( { model | tableState = SortableData.update tableMsg model.tableState }, Cmd.none )
-
         Toggle ->
             ( { model | afterSeason4 = not model.afterSeason4 }, Cmd.none )
 
@@ -190,7 +186,6 @@ view { episodes, tableState, afterSeason4 } =
                 )
                 tags_
             )
-        , chartSelector tags_
         , table tableState (episodes |> SortableData.render tableState)
         ]
 
@@ -239,40 +234,6 @@ config afterSeason4 =
 tags_ : List String
 tags_ =
     [ "Federation", "Trill", "Bajor", "Prophet", "Cardassia", "Ferengi", "Klingon", "Maquis", "Mirror Universe" ]
-
-
-chartSelector : List String -> Html Msg
-chartSelector tags =
-    ul
-        [ css
-            [ width (pct 100)
-            , padding zero
-            , property "display" "grid"
-            , property "grid-template-columns" "repeat(auto-fit, minmax(200px, 1fr))"
-            , property "gap" "10px"
-            ]
-        ]
-        (List.map
-            (\tag ->
-                li
-                    [ onClick (TableMsg (SortableData.Filter tag tag))
-                    , css
-                        [ display block
-                        , padding (px 10)
-                        , borderRadius (px 5)
-                        , backgroundColor (hsl 0 0 0.15)
-                        , color (hsl 0 0 0.6)
-                        , fontSize (px 14)
-                        , cursor pointer
-                        , transition
-                            [ Css.Transitions.backgroundColor 500 ]
-                        , hover [ backgroundColor (hsl 0 0 0.2) ]
-                        ]
-                    ]
-                    [ text tag ]
-            )
-            tags
-        )
 
 
 table : SortableData.Model Episode (Html msg) -> List Episode -> Html msg
