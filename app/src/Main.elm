@@ -7,6 +7,7 @@ import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
+import Data.Organization as Organization exposing (Organization(..))
 import Html.Styled exposing (Html, a, button, div, input, label, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, type_)
 import Html.Styled.Events exposing (onClick)
@@ -86,11 +87,15 @@ summaryColumns =
 tagsColumn : List (SortableData.Column Episode (Html msg))
 tagsColumn =
     List.map
-        (\tag ->
-            { name = tag
+        (\organization ->
+            let
+                organizationLabel =
+                    Organization.toString organization
+            in
+            { name = organizationLabel
             , view =
                 \ep ->
-                    if List.member tag ep.tags then
+                    if List.member organization (List.map .name ep.organizations) then
                         div
                             [ css
                                 [ fontSize (px 10)
@@ -100,18 +105,18 @@ tagsColumn =
                                 , color (hsl 0 0 0.6)
                                 ]
                             ]
-                            [ text tag ]
+                            [ text organizationLabel ]
 
                     else
                         text ""
-            , sort = always tag
+            , sort = always organizationLabel
             , filter =
                 \query ep ->
                     String.contains (String.toLower query)
-                        (String.toLower <| String.join "," ep.tags)
+                        (String.toLower <| String.join "," <| List.map (.name >> Organization.toString) ep.organizations)
             }
         )
-        tags_
+        organizations
 
 
 
@@ -168,23 +173,23 @@ view { episodes, tableState, afterSeason4 } =
             )
         , histogramsSection
             (List.map
-                (\tag ->
-                    { title = tag
-                    , imageHue = 175
+                (\organization ->
+                    { title = Organization.toString organization
+                    , imageHue = Organization.imageHue organization
                     , episodes =
                         List.map
                             (\ep ->
                                 { season = ep.season
                                 , importance =
-                                    List.Extra.find ((==) tag) ep.tags
-                                        |> Maybe.map (\_ -> 4)
+                                    List.Extra.find (.name >> (==) organization) ep.organizations
+                                        |> Maybe.map .contrast
                                         |> Maybe.withDefault 0
                                 }
                             )
                             episodes
                     }
                 )
-                tags_
+                organizations
             )
         , table tableState (episodes |> SortableData.render tableState)
         ]
@@ -231,9 +236,9 @@ config afterSeason4 =
     }
 
 
-tags_ : List String
-tags_ =
-    [ "Federation", "Trill", "Bajor", "Prophet", "Cardassia", "Ferengi", "Klingon", "Maquis", "Mirror Universe" ]
+organizations : List Organization
+organizations =
+    [ Federation, Trill, Bajor, Prophet, Cardassia, Ferengi, Klingon, Maquis, Dominion, MirrorUniverse ]
 
 
 table : SortableData.Model Episode (Html msg) -> List Episode -> Html msg
