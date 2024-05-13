@@ -1,5 +1,6 @@
 module Data.Episode exposing (Episode, episodesDecoder)
 
+import Data.Character as Character exposing (Character)
 import Data.Organization as Organization exposing (Organization)
 import Json.Decode as Decode exposing (field, int, string)
 
@@ -11,13 +12,9 @@ type alias Episode =
     , title_ja : String
     , importance : Int
     , netflix_id : Int
-    , characters : List NameAndContrast
+    , characters : List { name : Character, contrast : Int }
     , organizations : List { name : Organization, contrast : Int }
     }
-
-
-type alias NameAndContrast =
-    { name : String, contrast : Int }
 
 
 episodesDecoder : Decode.Decoder (List Episode)
@@ -34,21 +31,20 @@ episodeDecoder =
         (field "title_ja" string)
         (field "importance" int)
         (field "netflix_id" int)
-        (field "characters" (Decode.list characterDecoder))
-        (field "organizations" (Decode.list organizationDecoder)
-            |> Decode.map (List.filterMap (\{ name, contrast } -> Organization.fromString name |> Maybe.map (\o -> { name = o, contrast = contrast })))
+        (field "characters" (Decode.list nameAndContrastDecoder)
+            |> Decode.map (List.filterMap (\c -> Character.fromString c.name |> Maybe.map (\c_ -> { name = c_, contrast = c.contrast })))
+        )
+        (field "organizations" (Decode.list nameAndContrastDecoder)
+            |> Decode.map (List.filterMap (\o -> Organization.fromString o.name |> Maybe.map (\o_ -> { name = o_, contrast = o.contrast })))
         )
 
 
-characterDecoder : Decode.Decoder NameAndContrast
-characterDecoder =
-    Decode.map2 NameAndContrast
-        (field "name" string)
-        (field "contrast" int)
+type alias NameAndContrast =
+    { name : String, contrast : Int }
 
 
-organizationDecoder : Decode.Decoder NameAndContrast
-organizationDecoder =
+nameAndContrastDecoder : Decode.Decoder NameAndContrast
+nameAndContrastDecoder =
     Decode.map2 NameAndContrast
         (field "name" string)
         (field "contrast" int)

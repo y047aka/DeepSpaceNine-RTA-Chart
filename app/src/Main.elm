@@ -213,7 +213,7 @@ importanceListOf character episodes =
         (\ep ->
             { season = ep.season
             , importance =
-                List.Extra.find (.name >> (==) (Character.toString character)) ep.characters
+                List.Extra.find (.name >> (==) character) ep.characters
                     |> Maybe.map .contrast
                     |> Maybe.withDefault 0
             }

@@ -1,4 +1,4 @@
-module Data.Character exposing (Character(..), imageHue, toString)
+module Data.Character exposing (Character(..), fromString, imageHue, toString)
 
 
 type Character
@@ -114,6 +114,94 @@ toString c =
 
         Weyoun ->
             "Weyoun"
+
+
+fromString : String -> Maybe Character
+fromString s =
+    case s of
+        "Benjamin Sisko" ->
+            Just BenjaminSisko
+
+        "Jake Sisko" ->
+            Just JakeSisko
+
+        "Dax" ->
+            Just Dax
+
+        "Kira Nerys" ->
+            Just KiraNerys
+
+        "Miles O'Brien" ->
+            Just MilesObrien
+
+        "Keiko O'Brien" ->
+            Just KeikoObrien
+
+        "Bashir" ->
+            Just Bashir
+
+        "Odo" ->
+            Just Odo
+
+        "Worf" ->
+            Just Worf
+
+        "Quark" ->
+            Just Quark
+
+        "Rom" ->
+            Just Rom
+
+        "Nog" ->
+            Just Nog
+
+        "Winn" ->
+            Just Winn
+
+        "Bareil" ->
+            Just Bareil
+
+        "Garak" ->
+            Just Garak
+
+        "Dukat" ->
+            Just Dukat
+
+        "Zek" ->
+            Just Zek
+
+        "Michael Eddington" ->
+            Just MichaelEddington
+
+        "Kasidy Yates" ->
+            Just KasidyYates
+
+        "Leeta" ->
+            Just Leeta
+
+        "Gowron" ->
+            Just Gowron
+
+        "Martok" ->
+            Just Martok
+
+        "Shakaar" ->
+            Just Shakaar
+
+        "Ziyal" ->
+            Just Ziyal
+
+        "Damar" ->
+            Just Damar
+
+        "Brunt" ->
+            Just Brunt
+
+        "Weyoun" ->
+            Just Weyoun
+
+        _ ->
+            Nothing
 
 
 imageHue : Character -> Int
