@@ -53,11 +53,6 @@ init json =
 
 columns_ : List (SortableData.Column Episode (Html msg))
 columns_ =
-    summaryColumns ++ tagsColumn
-
-
-summaryColumns : List (SortableData.Column Episode (Html msg))
-summaryColumns =
     [ { name = "Season - Episode"
       , view =
             \ep ->
@@ -82,41 +77,6 @@ summaryColumns =
       , filter = \query ep -> String.contains (String.toLower query) (String.toLower <| ep.title ++ ep.title_ja)
       }
     ]
-
-
-tagsColumn : List (SortableData.Column Episode (Html msg))
-tagsColumn =
-    List.map
-        (\organization ->
-            let
-                organizationLabel =
-                    Organization.toString organization
-            in
-            { name = organizationLabel
-            , view =
-                \ep ->
-                    if List.member organization (List.map .name ep.organizations) then
-                        div
-                            [ css
-                                [ fontSize (px 10)
-                                , padding (px 5)
-                                , borderRadius (px 5)
-                                , backgroundColor (hsl 0 0 0.2)
-                                , color (hsl 0 0 0.6)
-                                ]
-                            ]
-                            [ text organizationLabel ]
-
-                    else
-                        text ""
-            , sort = always organizationLabel
-            , filter =
-                \query ep ->
-                    String.contains (String.toLower query)
-                        (String.toLower <| String.join "," <| List.map (.name >> Organization.toString) ep.organizations)
-            }
-        )
-        organizations
 
 
 
