@@ -8,14 +8,12 @@ import Css.Transitions exposing (transition)
 import Data.Character as Character exposing (Character(..))
 import Data.Episode exposing (Episode, episodesDecoder)
 import Data.Organization as Organization exposing (Organization(..))
-import Html.Styled exposing (Html, a, button, div, input, label, td, text, toUnstyled, tr)
+import Html.Styled exposing (Html, a, button, div, input, label, tbody, td, text, toUnstyled, tr)
 import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, type_)
 import Html.Styled.Events exposing (onClick)
-import Html.Styled.Keyed as Keyed
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
 import List.Extra
-import UI.SortableData as SortableData exposing (Column)
 
 
 main : Program Json.Decode.Value Model Msg
@@ -34,7 +32,6 @@ main =
 
 type alias Model =
     { episodes : List Episode
-    , tableState : SortableData.Model Episode (Html Msg)
     , afterSeason4 : Bool
     }
 
@@ -44,27 +41,22 @@ init json =
     ( { episodes =
             Json.Decode.decodeValue episodesDecoder json
                 |> Result.withDefault []
-      , tableState = SortableData.init .title columns_
       , afterSeason4 = False
       }
     , Cmd.none
     )
 
 
-columns_ : List (SortableData.Column Episode (Html msg))
+columns_ : List { name : String, view : Episode -> Html msg }
 columns_ =
     [ { name = "Season - Episode"
       , view =
             \ep ->
                 div [ css [ minWidth (em 4.5), textAlign center ] ]
                     [ text <| "S" ++ String.fromInt ep.season ++ " - E" ++ String.fromInt ep.episode ]
-      , sort = .title
-      , filter = \query ep -> String.startsWith (String.toLower query) (String.toLower <| String.fromInt ep.season)
       }
     , { name = "Importance"
       , view = importanceCircle
-      , sort = .importance >> String.fromInt
-      , filter = \query ep -> query == String.fromInt ep.importance
       }
     , { name = "Title"
       , view =
@@ -73,8 +65,6 @@ columns_ =
                     [ div [ css [ fontSize (px 12) ] ] [ text ep.title ]
                     , div [ css [ color (hsl 0 0 0.4) ] ] [ text ep.title_ja ]
                     ]
-      , sort = .title
-      , filter = \query ep -> String.contains (String.toLower query) (String.toLower <| ep.title ++ ep.title_ja)
       }
     ]
 
@@ -99,7 +89,7 @@ update msg model =
 
 
 view : Model -> Html Msg
-view { episodes, tableState, afterSeason4 } =
+view { episodes, afterSeason4 } =
     div
         [ css
             [ displayFlex
@@ -151,7 +141,7 @@ view { episodes, tableState, afterSeason4 } =
                 )
                 organizations
             )
-        , table tableState (episodes |> SortableData.render tableState)
+        , table episodes
         ]
 
 
@@ -201,21 +191,20 @@ organizations =
     [ Federation, Trill, Bajor, Prophet, Cardassia, Ferengi, Klingon, Maquis, Dominion, MirrorUniverse ]
 
 
-table : SortableData.Model Episode (Html msg) -> List Episode -> Html msg
-table { columns, toId } data =
+table : List Episode -> Html msg
+table data =
     Html.Styled.table [ css [ margin2 zero auto, borderCollapse collapse ] ]
-        [ Keyed.node "tbody" [] (tableRows toId columns data) ]
+        [ tbody [] (tableRows columns_ data) ]
 
 
-tableRows : (Episode -> String) -> List (Column Episode (Html msg)) -> List Episode -> List ( String, Html msg )
-tableRows toId columns data =
+tableRows : List { name : String, view : Episode -> Html msg } -> List Episode -> List (Html msg)
+tableRows columns data =
     let
         indexColumn index =
             td [ css [ textAlign center, fontSize (px 12) ] ] [ text <| String.fromInt (index + 1) ]
 
         row index d =
-            ( toId d
-            , lazy2 tr
+            lazy2 tr
                 [ css
                     [ height (px 31)
                     , fontSize (px 10)
@@ -229,13 +218,13 @@ tableRows toId columns data =
                     , hover [ backgroundColor (hsl 0 0 0.15) ]
                     ]
                 ]
-              <|
+            <|
                 indexColumn index
                     :: List.map (\column -> td [] [ column.view d ]) columns
                     ++ [ td []
                             [ button
                                 [ type_ "button"
-                                , attribute "popovertarget" (toId d)
+                                , attribute "popovertarget" d.title
                                 , css
                                     [ cursor pointer
                                     , padding zero
@@ -247,7 +236,7 @@ tableRows toId columns data =
                                 [ text ">" ]
                             , div
                                 [ attribute "popover" ""
-                                , id (toId d)
+                                , id d.title
                                 , css
                                     [ padding (px 10)
                                     , backgroundColor (hsl 0 0 0.1)
@@ -261,7 +250,6 @@ tableRows toId columns data =
                                 ]
                             ]
                        ]
-            )
     in
     List.indexedMap row data
 
