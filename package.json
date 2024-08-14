@@ -12,6 +12,7 @@
     "lint": "elm-review app/src/ --elmjson app/elm.json --config review"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "elm": "^0.19.1-6",
     "elm-format": "^0.8.7",
     "elm-review": "^2.11.2"
