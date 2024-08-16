@@ -1,4 +1,4 @@
-module Chart exposing (colorString, stepByImportance, view)
+module Chart exposing (cell, colorString, stepByImportance, view)
 
 import Css exposing (..)
 import Html.Styled exposing (Html, div)
@@ -41,20 +41,34 @@ histogram { color } episodes =
                 [ property "padding-inline-end" "0" ]
             ]
         ]
-    <|
-        List.map
+        (List.map
             (\ep ->
-                div
-                    [ css
-                        [ width (px 8)
-                        , height (px 8)
-                        , borderRadius (px 1)
-                        , property "background-color" (color ep)
-                        ]
-                    ]
-                    []
+                cell
+                    { size = px 8
+                    , borderRadius = px 1
+                    , backgroundColor = color ep
+                    }
             )
             episodes
+        )
+
+
+cell :
+    { size : Px
+    , borderRadius : Px
+    , backgroundColor : String
+    }
+    -> Html msg
+cell ps =
+    div
+        [ css
+            [ width ps.size
+            , height ps.size
+            , borderRadius ps.borderRadius
+            , property "background-color" ps.backgroundColor
+            ]
+        ]
+        []
 
 
 stepByImportance : Int -> Int

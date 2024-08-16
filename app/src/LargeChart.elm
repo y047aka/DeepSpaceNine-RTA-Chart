@@ -37,17 +37,13 @@ histogram { color } episodes =
                 [ property "padding-inline-end" "0" ]
             ]
         ]
-    <|
-        List.map
+        (List.map
             (\ep ->
-                div
-                    [ css
-                        [ width (px 24)
-                        , height (px 24)
-                        , borderRadius (px 2)
-                        , property "background-color" (color ep)
-                        ]
-                    ]
-                    []
+                Chart.cell
+                    { size = px 24
+                    , borderRadius = px 2
+                    , backgroundColor = color ep
+                    }
             )
             episodes
+        )
