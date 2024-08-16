@@ -13,6 +13,7 @@ import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, 
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
+import LargeChart
 import List.Extra
 
 
@@ -95,7 +96,7 @@ view { episodes, afterSeason4 } =
             [ displayFlex
             , flexDirection column
             , alignItems center
-            , property "row-gap" "30px"
+            , property "row-gap" "50px"
             ]
         ]
         [ global
@@ -110,16 +111,20 @@ view { episodes, afterSeason4 } =
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show more characters"
             ]
+        , largeHistogramsSection
+            { title = "Deep Space Nine"
+            , imageHue = 175
+            , episodes = List.map (\{ season, importance } -> { season = season, importance = importance }) episodes
+            }
         , histogramsSection
-            ({ title = "Deep Space Nine", imageHue = 175, episodes = List.map (\{ season, importance } -> { season = season, importance = importance }) episodes }
-                :: List.map
-                    (\c ->
-                        { title = Character.toString c
-                        , imageHue = Character.imageHue c
-                        , episodes = importanceListOf c episodes
-                        }
-                    )
-                    (config afterSeason4 |> .characters)
+            (List.map
+                (\c ->
+                    { title = Character.toString c
+                    , imageHue = Character.imageHue c
+                    , episodes = importanceListOf c episodes
+                    }
+                )
+                (config afterSeason4 |> .characters)
             )
         , histogramsSection
             (List.map
@@ -143,6 +148,11 @@ view { episodes, afterSeason4 } =
             )
         , table episodes
         ]
+
+
+largeHistogramsSection : { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
+largeHistogramsSection { title, imageHue, episodes } =
+    LargeChart.view title imageHue episodes
 
 
 histogramsSection : List { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg

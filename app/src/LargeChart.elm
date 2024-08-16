@@ -1,5 +1,6 @@
-module Chart exposing (stepByImportance, view)
+module LargeChart exposing (view)
 
+import Chart exposing (stepByImportance)
 import Css exposing (..)
 import Html.Styled exposing (Html, div, text)
 import Html.Styled.Attributes exposing (css)
@@ -38,7 +39,7 @@ histogram { color } episodes =
             , property "display" "grid"
             , property "grid-auto-flow" "column"
             , property "grid-template-rows" "repeat(5, auto)"
-            , property "gap" "2px"
+            , property "gap" "3px"
             , firstChild
                 [ property "padding-inline-start" "0" ]
             , nthChild "n+2"
@@ -52,36 +53,12 @@ histogram { color } episodes =
             (\ep ->
                 div
                     [ css
-                        [ width (px 8)
-                        , height (px 8)
-                        , borderRadius (px 1)
+                        [ width (px 24)
+                        , height (px 24)
+                        , borderRadius (px 2)
                         , property "background-color" (color ep)
                         ]
                     ]
                     []
             )
             episodes
-
-
-stepByImportance : Int -> String
-stepByImportance importance =
-    (String.fromInt <|
-        if importance == 5 then
-            80
-
-        else if importance == 4 then
-            60
-
-        else if importance == 3 then
-            30
-
-        else if importance == 2 then
-            17
-
-        else if importance == 1 then
-            10
-
-        else
-            0
-    )
-        ++ "%"
