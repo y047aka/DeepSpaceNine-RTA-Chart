@@ -1,33 +1,27 @@
-module Chart exposing (stepByImportance, view)
+module Chart exposing (colorString, stepByImportance, view)
 
 import Css exposing (..)
-import Html.Styled exposing (Html, div, text)
+import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import List.Extra
 
 
-view : String -> Int -> List { a | season : Int, importance : Int } -> Html msg
-view title hue episodes =
+view : Int -> List { a | season : Int, importance : Int } -> Html msg
+view hue episodes =
     div
         [ css
-            [ displayFlex
-            , flexDirection column
-            , alignItems start
-            , property "row-gap" "0.5em"
+            [ property "display" "grid"
+            , property "grid-template-columns" "repeat(7, auto)"
             ]
         ]
-        [ div [ css [ fontSize (px 14) ] ] [ text title ]
-        , div
-            [ css
-                [ property "display" "grid"
-                , property "grid-template-columns" "repeat(7, auto)"
-                ]
-            ]
-            (List.Extra.gatherEqualsBy .season episodes
-                |> List.map (\( head, tails ) -> head :: tails)
-                |> List.map (histogram { color = \{ importance } -> "hsl(" ++ String.fromInt hue ++ ", 80%, " ++ stepByImportance importance ++ ")" })
-            )
-        ]
+        (List.Extra.gatherEqualsBy .season episodes
+            |> List.map (\( head, tails ) -> histogram { color = \{ importance } -> colorString { hue = hue, lightness = stepByImportance importance } } (head :: tails))
+        )
+
+
+colorString : { hue : Int, lightness : Int } -> String
+colorString { hue, lightness } =
+    "hsl(" ++ String.fromInt hue ++ ", 80%, " ++ String.fromInt lightness ++ "%)"
 
 
 histogram : { color : a -> String } -> List a -> Html msg
@@ -63,25 +57,22 @@ histogram { color } episodes =
             episodes
 
 
-stepByImportance : Int -> String
+stepByImportance : Int -> Int
 stepByImportance importance =
-    (String.fromInt <|
-        if importance == 5 then
-            80
+    if importance == 5 then
+        80
 
-        else if importance == 4 then
-            60
+    else if importance == 4 then
+        60
 
-        else if importance == 3 then
-            30
+    else if importance == 3 then
+        30
 
-        else if importance == 2 then
-            17
+    else if importance == 2 then
+        17
 
-        else if importance == 1 then
-            10
+    else if importance == 1 then
+        10
 
-        else
-            0
-    )
-        ++ "%"
+    else
+        0

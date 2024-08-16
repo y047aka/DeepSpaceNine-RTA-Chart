@@ -1,34 +1,23 @@
 module LargeChart exposing (view)
 
-import Chart exposing (stepByImportance)
+import Chart exposing (colorString, stepByImportance)
 import Css exposing (..)
-import Html.Styled exposing (Html, div, text)
+import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import List.Extra
 
 
-view : String -> Int -> List { a | season : Int, importance : Int } -> Html msg
-view title hue episodes =
+view : Int -> List { a | season : Int, importance : Int } -> Html msg
+view hue episodes =
     div
         [ css
-            [ displayFlex
-            , flexDirection column
-            , alignItems start
-            , property "row-gap" "0.5em"
+            [ property "display" "grid"
+            , property "grid-template-columns" "repeat(7, auto)"
             ]
         ]
-        [ div [ css [ fontSize (px 14) ] ] [ text title ]
-        , div
-            [ css
-                [ property "display" "grid"
-                , property "grid-template-columns" "repeat(7, auto)"
-                ]
-            ]
-            (List.Extra.gatherEqualsBy .season episodes
-                |> List.map (\( head, tails ) -> head :: tails)
-                |> List.map (histogram { color = \{ importance } -> "hsl(" ++ String.fromInt hue ++ ", 80%, " ++ stepByImportance importance ++ ")" })
-            )
-        ]
+        (List.Extra.gatherEqualsBy .season episodes
+            |> List.map (\( head, tails ) -> histogram { color = \{ importance } -> colorString { hue = hue, lightness = stepByImportance importance } } (head :: tails))
+        )
 
 
 histogram : { color : a -> String } -> List a -> Html msg

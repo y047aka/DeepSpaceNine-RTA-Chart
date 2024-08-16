@@ -152,7 +152,17 @@ view { episodes, afterSeason4 } =
 
 largeHistogramsSection : { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
 largeHistogramsSection { title, imageHue, episodes } =
-    LargeChart.view title imageHue episodes
+    div
+        [ css
+            [ displayFlex
+            , flexDirection column
+            , alignItems start
+            , property "row-gap" "0.5em"
+            ]
+        ]
+        [ div [ css [ fontSize (px 14) ] ] [ text title ]
+        , LargeChart.view imageHue episodes
+        ]
 
 
 histogramsSection : List { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
@@ -164,7 +174,22 @@ histogramsSection items =
             , property "gap" "40px 60px"
             ]
         ]
-        (List.map (\{ title, imageHue, episodes } -> Chart.view title imageHue episodes) items)
+        (List.map
+            (\{ title, imageHue, episodes } ->
+                div
+                    [ css
+                        [ displayFlex
+                        , flexDirection column
+                        , alignItems start
+                        , property "row-gap" "0.5em"
+                        ]
+                    ]
+                    [ div [ css [ fontSize (px 14) ] ] [ text title ]
+                    , Chart.view imageHue episodes
+                    ]
+            )
+            items
+        )
 
 
 importanceListOf : Character -> List Episode -> List { season : Int, importance : Int }
