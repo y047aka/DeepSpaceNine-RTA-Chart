@@ -28,12 +28,12 @@ histogram : (a -> Color) -> List a -> Html msg
 histogram toColor episodes =
     div
         [ css
-            [ property "padding-inline" "0.5em"
+            [ property "padding-inline" "0.3vw"
             , property "display" "grid"
             , property "grid-auto-flow" "column"
-            , property "grid-auto-columns" "8px"
-            , property "grid-template-rows" "repeat(5, 8px)"
-            , property "gap" "2px"
+            , property "grid-auto-columns" "max(5px, 0.4vw)"
+            , property "grid-template-rows" "repeat(5, max(5px, 0.4vw))"
+            , property "gap" "max(1.5px, 0.1vw)"
             , firstChild
                 [ property "padding-inline-start" "0" ]
             , nthChild "n+2"

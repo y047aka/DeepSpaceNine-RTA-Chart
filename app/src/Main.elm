@@ -93,10 +93,11 @@ view : Model -> Html Msg
 view { episodes, afterSeason4 } =
     div
         [ css
-            [ displayFlex
+            [ padding2 (px 80) (px 20)
+            , displayFlex
             , flexDirection column
             , alignItems center
-            , property "row-gap" "50px"
+            , property "row-gap" "80px"
             ]
         ]
         [ global
@@ -107,25 +108,27 @@ view { episodes, afterSeason4 } =
                 , color (hsl 0 0 0.6)
                 ]
             ]
-        , label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
-            [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
-            , text "Show more characters"
-            ]
         , largeHistogramSection
             { title = "Deep Space Nine"
             , imageHue = 175
             , episodes = List.map (\{ season, importance } -> { season = season, importance = importance }) episodes
             }
-        , histogramsSection
-            (List.map
-                (\c ->
-                    { title = Character.toString c
-                    , imageHue = Character.imageHue c
-                    , episodes = importanceListOf c episodes
-                    }
+        , div []
+            [ label [ css [ display block, marginLeft auto, maxWidth maxContent, fontSize (px 14) ] ]
+                [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
+                , text "Show more characters"
+                ]
+            , histogramsSection
+                (List.map
+                    (\c ->
+                        { title = Character.toString c
+                        , imageHue = Character.imageHue c
+                        , episodes = importanceListOf c episodes
+                        }
+                    )
+                    (config afterSeason4 |> .characters)
                 )
-                (config afterSeason4 |> .characters)
-            )
+            ]
         , histogramsSection
             (List.map
                 (\organization ->
@@ -171,7 +174,7 @@ histogramsSection items =
         [ css
             [ property "display" "grid"
             , property "grid-template-columns" "repeat(3, 1fr)"
-            , property "gap" "40px 60px"
+            , property "gap" "3vw 4vw"
             ]
         ]
         (List.map

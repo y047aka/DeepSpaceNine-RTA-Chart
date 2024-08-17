@@ -32,8 +32,8 @@ histogram toColor episodes =
             [ property "padding-inline" "0.5em"
             , property "display" "grid"
             , property "grid-auto-flow" "column"
-            , property "grid-auto-columns" "24px"
-            , property "grid-template-rows" "repeat(5, 24px)"
+            , property "grid-auto-columns" "max(16px, 1.2vw)"
+            , property "grid-template-rows" "repeat(5, max(16px, 1.2vw))"
             , property "gap" "3px"
             , firstChild
                 [ property "padding-inline-start" "0" ]
