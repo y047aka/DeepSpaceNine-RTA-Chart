@@ -1,7 +1,8 @@
 module LargeChart exposing (view)
 
-import Chart exposing (colorString, coloredCell, stepByImportance)
-import Css exposing (..)
+import Chart exposing (coloredCell, stepByImportance)
+import Color exposing (Color)
+import Css exposing (borderLeft3, firstChild, hsl, lastChild, nthChild, property, px, solid)
 import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import List.Extra
@@ -16,12 +17,12 @@ view hue episodes =
             ]
         ]
         (List.Extra.gatherEqualsBy .season episodes
-            |> List.map (\( head, tails ) -> histogram { color = \{ importance } -> colorString { hue = hue, lightness = stepByImportance importance } } (head :: tails))
+            |> List.map (\( head, tails ) -> histogram { toColor = \{ importance } -> Color.hsla (toFloat hue) 0.8 (stepByImportance importance) 1 } (head :: tails))
         )
 
 
-histogram : { color : a -> String } -> List a -> Html msg
-histogram { color } episodes =
+histogram : { toColor : a -> Color } -> List a -> Html msg
+histogram { toColor } episodes =
     div
         [ css
             [ property "padding-inline" "0.5em"
@@ -38,4 +39,4 @@ histogram { color } episodes =
                 [ property "padding-inline-end" "0" ]
             ]
         ]
-        (List.map (\ep -> coloredCell (color ep)) episodes)
+        (List.map (\ep -> coloredCell (toColor ep)) episodes)

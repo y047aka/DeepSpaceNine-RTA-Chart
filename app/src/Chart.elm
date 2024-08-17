@@ -1,6 +1,7 @@
-module Chart exposing (colorString, coloredCell, stepByImportance, view)
+module Chart exposing (coloredCell, stepByImportance, view)
 
-import Css exposing (..)
+import Color exposing (Color)
+import Css exposing (borderLeft3, borderRadius, firstChild, height, hsl, lastChild, nthChild, pct, property, px, solid, width)
 import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import List.Extra
@@ -15,17 +16,12 @@ view hue episodes =
             ]
         ]
         (List.Extra.gatherEqualsBy .season episodes
-            |> List.map (\( head, tails ) -> histogram { color = \{ importance } -> colorString { hue = hue, lightness = stepByImportance importance } } (head :: tails))
+            |> List.map (\( head, tails ) -> histogram { toColor = \{ importance } -> Color.hsla (toFloat hue) 0.8 (stepByImportance importance) 1 } (head :: tails))
         )
 
 
-colorString : { hue : Int, lightness : Int } -> String
-colorString { hue, lightness } =
-    "hsl(" ++ String.fromInt hue ++ ", 80%, " ++ String.fromInt lightness ++ "%)"
-
-
-histogram : { color : a -> String } -> List a -> Html msg
-histogram { color } episodes =
+histogram : { toColor : a -> Color } -> List a -> Html msg
+histogram { toColor } episodes =
     div
         [ css
             [ property "padding-inline" "0.5em"
@@ -42,38 +38,38 @@ histogram { color } episodes =
                 [ property "padding-inline-end" "0" ]
             ]
         ]
-        (List.map (\ep -> coloredCell (color ep)) episodes)
+        (List.map (\ep -> coloredCell (toColor ep)) episodes)
 
 
-coloredCell : String -> Html msg
+coloredCell : Color -> Html msg
 coloredCell backgroundColor =
     div
         [ css
             [ width (pct 100)
             , height (pct 100)
             , borderRadius (pct 10)
-            , property "background-color" backgroundColor
+            , property "background-color" (Color.toCssString backgroundColor)
             ]
         ]
         []
 
 
-stepByImportance : Int -> Int
+stepByImportance : Int -> Float
 stepByImportance importance =
     if importance == 5 then
-        80
+        0.8
 
     else if importance == 4 then
-        60
+        0.6
 
     else if importance == 3 then
-        30
+        0.3
 
     else if importance == 2 then
-        17
+        0.17
 
     else if importance == 1 then
-        10
+        0.1
 
     else
         0
