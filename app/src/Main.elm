@@ -111,7 +111,7 @@ view { episodes, afterSeason4 } =
             [ input [ type_ "checkbox", Attributes.checked afterSeason4, onClick Toggle ] []
             , text "Show more characters"
             ]
-        , largeHistogramsSection
+        , largeHistogramSection
             { title = "Deep Space Nine"
             , imageHue = 175
             , episodes = List.map (\{ season, importance } -> { season = season, importance = importance }) episodes
@@ -150,8 +150,8 @@ view { episodes, afterSeason4 } =
         ]
 
 
-largeHistogramsSection : { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
-largeHistogramsSection { title, imageHue, episodes } =
+largeHistogramSection : { title : String, imageHue : Int, episodes : List { season : Int, importance : Int } } -> Html Msg
+largeHistogramSection { title, imageHue, episodes } =
     div
         [ css
             [ displayFlex
