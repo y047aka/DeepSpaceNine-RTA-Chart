@@ -9,6 +9,10 @@ import List.Extra
 
 view : Int -> List { a | season : Int, importance : Int } -> Html msg
 view hue episodes =
+    let
+        toColor { importance } =
+            Color.hsla (toFloat hue) 0.8 (stepByImportance importance) 1
+    in
     div
         [ css
             [ property "display" "grid"
@@ -16,12 +20,12 @@ view hue episodes =
             ]
         ]
         (List.Extra.gatherEqualsBy .season episodes
-            |> List.map (\( head, tails ) -> histogram { toColor = \{ importance } -> Color.hsla (toFloat hue) 0.8 (stepByImportance importance) 1 } (head :: tails))
+            |> List.map (\( head, tails ) -> histogram toColor (head :: tails))
         )
 
 
-histogram : { toColor : a -> Color } -> List a -> Html msg
-histogram { toColor } episodes =
+histogram : (a -> Color) -> List a -> Html msg
+histogram toColor episodes =
     div
         [ css
             [ property "padding-inline" "0.5em"
