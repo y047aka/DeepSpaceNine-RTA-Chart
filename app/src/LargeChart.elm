@@ -1,6 +1,6 @@
 module LargeChart exposing (view)
 
-import Chart exposing (colorString, stepByImportance)
+import Chart exposing (colorString, coloredCell, stepByImportance)
 import Css exposing (..)
 import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
@@ -27,7 +27,8 @@ histogram { color } episodes =
             [ property "padding-inline" "0.5em"
             , property "display" "grid"
             , property "grid-auto-flow" "column"
-            , property "grid-template-rows" "repeat(5, auto)"
+            , property "grid-auto-columns" "24px"
+            , property "grid-template-rows" "repeat(5, 24px)"
             , property "gap" "3px"
             , firstChild
                 [ property "padding-inline-start" "0" ]
@@ -37,13 +38,4 @@ histogram { color } episodes =
                 [ property "padding-inline-end" "0" ]
             ]
         ]
-        (List.map
-            (\ep ->
-                Chart.cell
-                    { size = px 24
-                    , borderRadius = px 2
-                    , backgroundColor = color ep
-                    }
-            )
-            episodes
-        )
+        (List.map (\ep -> coloredCell (color ep)) episodes)
