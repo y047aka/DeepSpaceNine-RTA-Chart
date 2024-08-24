@@ -14,8 +14,14 @@
   },
   "formatter": {
     "enabled": true,
-    "ignore": ["elm.json", "episodes.js"],
+    "ignore": ["elm.json"],
     "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "lineWidth": 170,
+      "trailingCommas": "none"
+    }
   },
   "vcs": {
     "enabled": true,

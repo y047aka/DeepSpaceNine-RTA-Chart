@@ -23,8 +23,8 @@ const episodes = [
       { name: "Dukat", contrast: 3 },
       { name: "Rom", contrast: 2 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Federation", contrast: 5 },
       { name: "Trill", contrast: 1 },
       { name: "Bajor", contrast: 5 },
@@ -53,9 +53,8 @@ const episodes = [
       { name: "Keiko O'Brien", contrast: 4 },
       { name: "Rom", contrast: 2 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -76,8 +75,8 @@ const episodes = [
       { name: "Garak", contrast: 4 },
       { name: "B'Etor", contrast: 2 },
       { name: "Lursa", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 1 },
       { name: "Cardassia", contrast: 1 }
     ]
@@ -100,9 +99,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 3 },
       { name: "Quark", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -121,15 +119,14 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 3 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
     episode: 6,
     title: "Q-Less",
-    title_ja: "超生命体\"Q\"",
+    title_ja: '超生命体"Q"',
     importance: 1,
     netflix_id: 70205812,
     netflix_synopsis: "ガンマ宇宙域から、ピカード艦長の元恋人バッシュと超生命体Qが現れる。行動が予測不能なQの存在に気づいたオブライエンは、警戒を呼びかける。",
@@ -143,15 +140,14 @@ const episodes = [
       { name: "Quark", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Q", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
     episode: 7,
     title: "Dax",
-    title_ja: "共生結合体生物\"トリル族\"",
+    title_ja: '共生結合体生物"トリル族"',
     importance: 4,
     netflix_id: 70205813,
     netflix_synopsis: "30年前にクレストロン4の英雄を暗殺した容疑をかけられるダックス大尉。だが、事件当時のホストは現在のジャッジアではなく、クルゾンだった。",
@@ -163,16 +159,14 @@ const episodes = [
       { name: "Dax", contrast: 4 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 4 }]
   },
   {
     season: 1,
     episode: 8,
     title: "The Passenger",
-    title_ja: "宇宙囚人\"バンティカ\"",
+    title_ja: '宇宙囚人"バンティカ"',
     importance: 2,
     netflix_id: 70205814,
     netflix_synopsis: "べシアとキラは救難信号を受け、コブリアド船から女性1人と、彼女が護送していた凶悪犯を転送した。この凶悪犯は救出前に死んだと思われたが...。",
@@ -184,9 +178,8 @@ const episodes = [
       { name: "Dax", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -205,9 +198,8 @@ const episodes = [
       { name: "Jake Sisko", contrast: 2 },
       { name: "Quark", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -230,10 +222,8 @@ const episodes = [
       { name: "Rom", contrast: 4 },
       { name: "Nog", contrast: 4 },
       { name: "Zek", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 3 }]
   },
   {
     season: 1,
@@ -253,9 +243,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -274,16 +263,14 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 5 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 5 }]
   },
   {
     season: 1,
     episode: 13,
     title: "The Storyteller",
-    title_ja: "混迷の惑星\"ベイジョー\"",
+    title_ja: '混迷の惑星"ベイジョー"',
     importance: 3,
     netflix_id: 70205819,
     netflix_synopsis: "シスコとキラは、対立を続けるベイジョーの2つの勢力を調停することに。一方、救命の要請を受けベイジョーの村に赴いたオブライエンに意外な展開が。",
@@ -298,19 +285,17 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 2 }]
   },
   {
     season: 1,
     episode: 14,
     title: "Progress",
-    title_ja: "第五の月\"ジェラドー\"",
+    title_ja: '第五の月"ジェラドー"',
     importance: 5,
     netflix_id: 70205820,
-    netflix_synopsis: "ベイジョー政府は宇宙連邦の協力の元、\"第五の月\"のエネルギー開発に着手することになる。キラは月の住人たちを退去させようとするが...。",
+    netflix_synopsis: 'ベイジョー政府は宇宙連邦の協力の元、"第五の月"のエネルギー開発に着手することになる。キラは月の住人たちを退去させようとするが...。',
     url_imdb: "https://www.imdb.com/title/tt0708584/",
     characters: [
       { name: "Benjamin Sisko", contrast: 4 },
@@ -322,10 +307,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 5 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 3 }]
   },
   {
     season: 1,
@@ -346,9 +329,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -369,9 +351,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 2 },
       { name: "Lwaxana Troi", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -390,9 +371,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 1,
@@ -412,10 +392,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 5 },
       { name: "Dukat", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 4 }]
   },
   {
     season: 1,
@@ -438,8 +416,8 @@ const episodes = [
       { name: "Keiko O'Brien", contrast: 2 },
       { name: "Bareil", contrast: 3 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 3 },
       { name: "Prophet", contrast: 3 }
     ]
@@ -464,8 +442,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 3 },
       { name: "Rom", contrast: 2 },
       { name: "Dukat", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 4 },
       { name: "Cardassia", contrast: 2 }
     ]
@@ -477,7 +455,7 @@ const episodes = [
     title_ja: "帰って来た英雄 (パート2)",
     importance: 3,
     netflix_id: 70205827,
-    netflix_synopsis: "ジャロ大臣は英雄のリーをキラの後任とし、キラにベイジョーへの帰還を命じる。一方、過激派組織\"サークル\"はますます勢力を増していた。",
+    netflix_synopsis: 'ジャロ大臣は英雄のリーをキラの後任とし、キラにベイジョーへの帰還を命じる。一方、過激派組織"サークル"はますます勢力を増していた。',
     url_imdb: "https://www.imdb.com/title/tt0708618/",
     characters: [
       { name: "Benjamin Sisko", contrast: 2 },
@@ -490,10 +468,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 3 },
       { name: "Bareil", contrast: 3 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 3 }]
   },
   {
     season: 2,
@@ -518,10 +494,8 @@ const episodes = [
       { name: "Nog", contrast: 2 },
       { name: "Bareil", contrast: 2 },
       { name: "Winn", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 4 }]
   },
   {
     season: 2,
@@ -540,10 +514,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 4 }]
   },
   {
     season: 2,
@@ -565,10 +537,8 @@ const episodes = [
       { name: "Keiko O'Brien", contrast: 2 },
       { name: "Garak", contrast: 3 },
       { name: "Dukat", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 2,
@@ -587,9 +557,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -610,10 +579,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 3 },
       { name: "Zek", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 3 }]
   },
   {
     season: 2,
@@ -634,8 +601,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 3 },
       { name: "Rom", contrast: 3 },
       { name: "Dukat", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 2 },
       { name: "Cardassia", contrast: 2 }
     ]
@@ -658,9 +625,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -681,9 +647,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -704,9 +669,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 2 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -726,9 +690,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -748,9 +711,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -771,9 +733,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -789,9 +750,8 @@ const episodes = [
       { name: "Dax", contrast: 2 },
       { name: "Miles O'Brien", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -812,9 +772,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Bareil", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 2,
@@ -834,8 +793,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Trill", contrast: 3 },
       { name: "Bajor", contrast: 2 }
     ]
@@ -858,10 +817,8 @@ const episodes = [
       { name: "Quark", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 4 }]
   },
   {
     season: 2,
@@ -881,8 +838,8 @@ const episodes = [
       { name: "Kor", contrast: 3 },
       { name: "Kang", contrast: 3 },
       { name: "Koloth", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Trill", contrast: 2 },
       { name: "Klingon", contrast: 2 }
     ]
@@ -905,8 +862,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Dukat", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 4 },
       { name: "Maquis", contrast: 5 }
     ]
@@ -929,8 +886,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Dukat", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 4 },
       { name: "Maquis", contrast: 5 }
     ]
@@ -953,10 +910,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 2,
@@ -976,10 +931,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Garak", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Mirror Universe", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Mirror Universe", contrast: 3 }]
   },
   {
     season: 2,
@@ -1001,10 +954,8 @@ const episodes = [
       { name: "Bareil", contrast: 4 },
       { name: "Opaka", contrast: 2 },
       { name: "Winn", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 4 }]
   },
   {
     season: 2,
@@ -1023,10 +974,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 4 }]
   },
   {
     season: 2,
@@ -1047,9 +996,8 @@ const episodes = [
       { name: "Quark", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1070,10 +1018,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Michael Eddington", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Dominion", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Dominion", contrast: 4 }]
   },
   {
     season: 3,
@@ -1095,8 +1041,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 2 },
       { name: "Michael Eddington", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Dominion", contrast: 4 }
     ]
@@ -1120,10 +1066,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 3,
@@ -1142,10 +1086,8 @@ const episodes = [
       { name: "Jake Sisko", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 3 }]
   },
   {
     season: 3,
@@ -1164,10 +1106,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 5 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 4 }]
   },
   {
     season: 3,
@@ -1187,9 +1127,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1211,10 +1150,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 2 },
       { name: "Dukat", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 3,
@@ -1233,9 +1170,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1255,10 +1191,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Dukat", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 3,
@@ -1281,10 +1215,8 @@ const episodes = [
       { name: "Lwaxana Troi", contrast: 3 },
       { name: "Bareil", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 2 }]
   },
   {
     season: 3,
@@ -1303,9 +1235,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 1 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1323,9 +1254,8 @@ const episodes = [
       { name: "Dax", contrast: 2 },
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1348,8 +1278,8 @@ const episodes = [
       { name: "Bareil", contrast: 4 },
       { name: "Nog", contrast: 3 },
       { name: "Winn", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 4 },
       { name: "Cardassia", contrast: 4 }
     ]
@@ -1374,10 +1304,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 3 },
       { name: "Rom", contrast: 3 },
       { name: "Nog", contrast: 5 }
-    ]
-    , organizations: [
-      { name: "Maquis", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Maquis", contrast: 2 }]
   },
   {
     season: 3,
@@ -1397,8 +1325,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 3 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 3 },
       { name: "Cardassia", contrast: 3 }
     ]
@@ -1423,8 +1351,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 4 },
       { name: "Zek", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 2 },
       { name: "Ferengi", contrast: 4 }
     ]
@@ -1447,9 +1375,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 4 },
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 3,
@@ -1470,10 +1397,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 1 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 1 }]
   },
   {
     season: 3,
@@ -1496,10 +1421,8 @@ const episodes = [
       { name: "Garak", contrast: 2 },
       { name: "Jennifer Sisko", contrast: 3 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Mirror Universe", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Mirror Universe", contrast: 3 }]
   },
   {
     season: 3,
@@ -1519,10 +1442,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 3,
@@ -1543,10 +1464,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 4 },
       { name: "Michael Eddington", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 4 }]
   },
   {
     season: 3,
@@ -1568,8 +1487,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Gul Dukat", contrast: 2 },
       { name: "Leeta", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 4 },
       { name: "Cardassia", contrast: 3 }
     ]
@@ -1581,7 +1500,7 @@ const episodes = [
     title_ja: "クワークの母",
     importance: 4,
     netflix_id: 70205874,
-    netflix_synopsis: "フェレンギ会計監査局がクワークの店に立入監査に入る。罪状は\"家族への監督不行き届き\"。クワークの母はフェレンギの法に反して金儲けをしていた。",
+    netflix_synopsis: 'フェレンギ会計監査局がクワークの店に立入監査に入る。罪状は"家族への監督不行き届き"。クワークの母はフェレンギの法に反して金儲けをしていた。',
     url_imdb: "https://www.imdb.com/title/tt0708537/",
     characters: [
       { name: "Benjamin Sisko", contrast: 3 },
@@ -1594,10 +1513,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Kasidy Yates", contrast: 2 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 4 }]
   },
   {
     season: 3,
@@ -1620,10 +1537,8 @@ const episodes = [
       { name: "Lupaza", contrast: 2 },
       { name: "Furel", contrast: 2 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 4 }]
   },
   {
     season: 3,
@@ -1646,10 +1561,8 @@ const episodes = [
       { name: "Rom", contrast: 2 },
       { name: "Nog", contrast: 3 },
       { name: "Leeta", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 3 }]
   },
   {
     season: 3,
@@ -1670,9 +1583,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Michael Eddington", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -1697,8 +1609,8 @@ const episodes = [
       { name: "Gowron", contrast: 3 },
       { name: "Martok", contrast: 3 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 5 }
     ]
@@ -1723,9 +1635,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -1745,9 +1656,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -1770,8 +1680,8 @@ const episodes = [
       { name: "Kasidy Yates", contrast: 4 },
       { name: "Gul Dukat", contrast: 5 },
       { name: "Ziyal", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 2 },
       { name: "Cardassia", contrast: 2 }
     ]
@@ -1795,10 +1705,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Michael Eddington", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 4 }]
   },
   {
     season: 4,
@@ -1818,9 +1726,8 @@ const episodes = [
       { name: "Quark", contrast: 3 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -1843,10 +1750,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 3 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 3 }]
   },
   {
     season: 4,
@@ -1855,7 +1760,7 @@ const episodes = [
     title_ja: "カーレスの剣",
     importance: 3,
     netflix_id: 70205886,
-    netflix_synopsis: "クリンゴンの英雄コールは、クリンゴン帝国初代皇帝の武器である伝説の\"カーレスの剣\"を探していると言う。ダックスとウォーフは彼を手伝うことに。",
+    netflix_synopsis: 'クリンゴンの英雄コールは、クリンゴン帝国初代皇帝の武器である伝説の"カーレスの剣"を探していると言う。ダックスとウォーフは彼を手伝うことに。',
     url_imdb: "https://www.imdb.com/title/tt0708644/",
     characters: [
       { name: "Benjamin Sisko", contrast: 2 },
@@ -1866,10 +1771,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 4 }]
   },
   {
     season: 4,
@@ -1892,10 +1795,8 @@ const episodes = [
       { name: "Rom", contrast: 2 },
       { name: "Michael Eddington", contrast: 2 },
       { name: "Garak", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 1 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 1 }]
   },
   {
     season: 4,
@@ -1918,10 +1819,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 3 },
       { name: "Joseph Sisko", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Federation", contrast: 5 }
-    ]
+    ],
+    organizations: [{ name: "Federation", contrast: 5 }]
   },
   {
     season: 4,
@@ -1943,10 +1842,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 2 },
       { name: "Joseph Sisko", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Federation", contrast: 5 }
-    ]
+    ],
+    organizations: [{ name: "Federation", contrast: 5 }]
   },
   {
     season: 4,
@@ -1966,11 +1863,9 @@ const episodes = [
       { name: "Quark", contrast: 4 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
-      { name: "Shakaar", contrast: 4 },
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 3 }
-    ]
+      { name: "Shakaar", contrast: 4 }
+    ],
+    organizations: [{ name: "Bajor", contrast: 3 }]
   },
   {
     season: 4,
@@ -1989,11 +1884,11 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
-      { name: "Dukat", contrast: 4},
+      { name: "Dukat", contrast: 4 },
       { name: "Ziyal", contrast: 3 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -2015,11 +1910,9 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 2 },
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
-      { name: "Kira Nerys", contrast: 3 },
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+      { name: "Kira Nerys", contrast: 3 }
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 4,
@@ -2041,10 +1934,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 5 },
       { name: "Leeta", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 4 }]
   },
   {
     season: 4,
@@ -2064,9 +1955,9 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 4 },
-      { name: "Keiko O'Brien", contrast: 4 },
-    ]
-    , organizations: [
+      { name: "Keiko O'Brien", contrast: 4 }
+    ],
+    organizations: [
       { name: "Bajor", contrast: 5 },
       { name: "Prophet", contrast: 5 }
     ]
@@ -2088,11 +1979,9 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 3 },
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
-      { name: "Kira Nerys", contrast: 2 },
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+      { name: "Kira Nerys", contrast: 2 }
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 4,
@@ -2114,9 +2003,8 @@ const episodes = [
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -2140,10 +2028,8 @@ const episodes = [
       { name: "Jennifer Sisko", contrast: 3 },
       { name: "Nog", contrast: 2 },
       { name: "Garak", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Mirror Universe", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Mirror Universe", contrast: 3 }]
   },
   {
     season: 4,
@@ -2164,9 +2050,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -2191,8 +2076,8 @@ const episodes = [
       { name: "Michael Eddington", contrast: 4 },
       { name: "Ziyal", contrast: 4 },
       { name: "Garak", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 2 },
       { name: "Maquis", contrast: 4 }
@@ -2216,10 +2101,9 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
-      { name: "Weyoun", contrast: 3 },
-    ]
-    , organizations: [
-    ]
+      { name: "Weyoun", contrast: 3 }
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -2239,9 +2123,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 4,
@@ -2264,8 +2147,8 @@ const episodes = [
       { name: "Keiko O'Brien", contrast: 4 },
       { name: "Rom", contrast: 3 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Ferengi", contrast: 3 },
       { name: "Cardassia", contrast: 1 }
     ]
@@ -2290,8 +2173,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Gowron", contrast: 2 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 4 }
     ]
@@ -2319,8 +2202,8 @@ const episodes = [
       { name: "Martok", contrast: 4 },
       { name: "Dukat", contrast: 3 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 4 }
     ]
@@ -2343,9 +2226,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2366,10 +2248,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Keiko O'Brien", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 5,
@@ -2390,10 +2270,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 5,
@@ -2415,8 +2293,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Keiko O'Brien", contrast: 4 },
       { name: "Rom", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 3 },
       { name: "Prophet", contrast: 4 }
     ]
@@ -2439,10 +2317,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 5,
@@ -2461,9 +2337,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Leeta", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2485,8 +2360,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Dukat", contrast: 3 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 3 },
       { name: "Cardassia", contrast: 3 }
     ]
@@ -2512,9 +2387,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 3 },
       { name: "Nog", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2537,8 +2411,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 3 },
       { name: "Kasidy Yates", contrast: 4 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 4 },
       { name: "Prophet", contrast: 5 }
     ]
@@ -2562,9 +2436,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2586,9 +2459,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 5 },
       { name: "Keiko O'Brien", contrast: 4 },
       { name: "Shakaar", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2608,10 +2480,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Michael Eddington", contrast: 5 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Maquis", contrast: 4 }
-    ]
+    ],
+    organizations: [{ name: "Maquis", contrast: 4 }]
   },
   {
     season: 5,
@@ -2635,8 +2505,8 @@ const episodes = [
       { name: "Dukat", contrast: 4 },
       { name: "Ziyal", contrast: 4 },
       { name: "Martok", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -2663,8 +2533,8 @@ const episodes = [
       { name: "Ziyal", contrast: 3 },
       { name: "Martok", contrast: 3 },
       { name: "Gowron", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 5 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -2690,9 +2560,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Rom", contrast: 4 },
       { name: "Leeta", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2712,9 +2581,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2731,14 +2599,12 @@ const episodes = [
       { name: "Worf", contrast: 2 },
       { name: "Dax", contrast: 2 },
       { name: "Jake Sisko", contrast: 2 },
-      { name: "Miles O'Brien", contrast: 3},
+      { name: "Miles O'Brien", contrast: 3 },
       { name: "Quark", contrast: 4 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 3 }]
   },
   {
     season: 5,
@@ -2759,11 +2625,9 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Dukat", contrast: 3 },
-      { name: "Weyoun", contrast: 3 },
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+      { name: "Weyoun", contrast: 3 }
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 5,
@@ -2786,10 +2650,8 @@ const episodes = [
       { name: "Rom", contrast: 4 },
       { name: "Leeta", contrast: 4 },
       { name: "Zek", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 5 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 5 }]
   },
   {
     season: 5,
@@ -2810,8 +2672,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 2 },
       { name: "Martok", contrast: 5 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -2834,9 +2696,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 5 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 5,
@@ -2859,8 +2720,8 @@ const episodes = [
       { name: "Michael Eddington", contrast: 5 },
       { name: "Martok", contrast: 3 },
       { name: "Nog", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 2 },
       { name: "Maquis", contrast: 5 }
@@ -2886,10 +2747,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 4 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 5,
@@ -2913,10 +2772,8 @@ const episodes = [
       { name: "Nog", contrast: 4 },
       { name: "Leeta", contrast: 2 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Bajor", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Bajor", contrast: 2 }]
   },
   {
     season: 5,
@@ -2946,8 +2803,8 @@ const episodes = [
       { name: "Leeta", contrast: 3 },
       { name: "Ziyal", contrast: 3 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 5 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -2978,8 +2835,8 @@ const episodes = [
       { name: "Martok", contrast: 2 },
       { name: "Damar", contrast: 2 },
       { name: "Joseph Sisko", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 2 },
       { name: "Klingon", contrast: 2 }
     ]
@@ -3004,10 +2861,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 4 },
       { name: "Garak", contrast: 3 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 6,
@@ -3032,8 +2887,8 @@ const episodes = [
       { name: "Martok", contrast: 4 },
       { name: "Ziyal", contrast: 3 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -3062,10 +2917,8 @@ const episodes = [
       { name: "Rom", contrast: 4 },
       { name: "Nog", contrast: 2 },
       { name: "Damar", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 6,
@@ -3095,8 +2948,8 @@ const episodes = [
       { name: "Ziyal", contrast: 3 },
       { name: "Damar", contrast: 3 },
       { name: "Leeta", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 4 },
       { name: "Klingon", contrast: 3 }
     ]
@@ -3129,8 +2982,8 @@ const episodes = [
       { name: "Ziyal", contrast: 4 },
       { name: "Damar", contrast: 4 },
       { name: "Leeta", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 5 },
       { name: "Klingon", contrast: 4 }
     ]
@@ -3158,10 +3011,8 @@ const episodes = [
       { name: "Leeta", contrast: 2 },
       { name: "Nog", contrast: 2 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 6,
@@ -3182,8 +3033,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Bareil", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 2 },
       { name: "Mirror Universe", contrast: 3 }
     ]
@@ -3208,10 +3059,8 @@ const episodes = [
       { name: "Kira Nerys", contrast: 2 },
       { name: "Weyoun", contrast: 2 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 1 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 1 }]
   },
   {
     season: 6,
@@ -3234,10 +3083,8 @@ const episodes = [
       { name: "Rom", contrast: 4 },
       { name: "Nog", contrast: 4 },
       { name: "Leeta", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 3 }]
   },
   {
     season: 6,
@@ -3259,10 +3106,8 @@ const episodes = [
       { name: "Weyoun", contrast: 2 },
       { name: "Dukat", contrast: 5 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 6,
@@ -3282,10 +3127,8 @@ const episodes = [
       { name: "Quark", contrast: 4 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 2 }]
   },
   {
     season: 6,
@@ -3311,9 +3154,8 @@ const episodes = [
       { name: "Martok", contrast: 2 },
       { name: "Nog", contrast: 2 },
       { name: "Kasidy Yates", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3334,9 +3176,8 @@ const episodes = [
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Nog", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3356,10 +3197,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Orion Syndicate", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Orion Syndicate", contrast: 3 }]
   },
   {
     season: 6,
@@ -3379,10 +3218,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 6,
@@ -3403,10 +3240,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 5 },
       { name: "Dukat", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 6,
@@ -3427,9 +3262,8 @@ const episodes = [
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Weyoun", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3451,10 +3285,8 @@ const episodes = [
       { name: "Garak", contrast: 4 },
       { name: "Weyoun", contrast: 2 },
       { name: "Damar", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 2 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 2 }]
   },
   {
     season: 6,
@@ -3475,9 +3307,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Vic Fontaine", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3498,8 +3329,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Winn", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 4 },
       { name: "Prophet", contrast: 5 }
     ]
@@ -3523,9 +3354,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3549,10 +3379,8 @@ const episodes = [
       { name: "Nog", contrast: 3 },
       { name: "Leeta", contrast: 3 },
       { name: "Zek", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Ferengi", contrast: 5 }
-    ]
+    ],
+    organizations: [{ name: "Ferengi", contrast: 5 }]
   },
   {
     season: 6,
@@ -3573,9 +3401,8 @@ const episodes = [
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Keiko O'Brien", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3597,9 +3424,8 @@ const episodes = [
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Kasidy Yates", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 6,
@@ -3627,8 +3453,8 @@ const episodes = [
       { name: "Nog", contrast: 3 },
       { name: "Damar", contrast: 3 },
       { name: "Vic Fontaine", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 3 },
       { name: "Trill", contrast: 3 },
       { name: "Cardassia", contrast: 4 },
@@ -3659,8 +3485,8 @@ const episodes = [
       { name: "Martok", contrast: 3 },
       { name: "Nog", contrast: 2 },
       { name: "Vic Fontaine", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 4 },
       { name: "Trill", contrast: 3 },
       { name: "Cardassia", contrast: 2 },
@@ -3689,8 +3515,8 @@ const episodes = [
       { name: "Weyoun", contrast: 2 },
       { name: "Damar", contrast: 2 },
       { name: "Martok", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 5 },
       { name: "Trill", contrast: 3 },
       { name: "Cardassia", contrast: 1 },
@@ -3717,8 +3543,8 @@ const episodes = [
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 5 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Trill", contrast: 3 },
       { name: "Cardassia", contrast: 2 }
     ]
@@ -3746,9 +3572,8 @@ const episodes = [
       { name: "Nog", contrast: 2 },
       { name: "Leeta", contrast: 2 },
       { name: "Kasidy Yates", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -3769,9 +3594,8 @@ const episodes = [
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Nog", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -3796,8 +3620,8 @@ const episodes = [
       { name: "Martok", contrast: 2 },
       { name: "Nog", contrast: 3 },
       { name: "Rom", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 1 },
       { name: "Klingon", contrast: 1 }
     ]
@@ -3822,10 +3646,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Martok", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Klingon", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Klingon", contrast: 3 }]
   },
   {
     season: 7,
@@ -3848,9 +3670,8 @@ const episodes = [
       { name: "Nog", contrast: 5 },
       { name: "Rom", contrast: 2 },
       { name: "Vic Fontaine", contrast: 2 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -3871,10 +3692,8 @@ const episodes = [
       { name: "Bashir", contrast: 2 },
       { name: "Kira Nerys", contrast: 4 },
       { name: "Dukat", contrast: 4 }
-    ]
-    , organizations: [
-      { name: "Pah-Wraiths", contrast: 1 }
-    ]
+    ],
+    organizations: [{ name: "Pah-Wraiths", contrast: 1 }]
   },
   {
     season: 7,
@@ -3899,9 +3718,8 @@ const episodes = [
       { name: "Rom", contrast: 3 },
       { name: "Leeta", contrast: 2 },
       { name: "Vic Fontaine", contrast: 4 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -3920,10 +3738,8 @@ const episodes = [
       { name: "Miles O'Brien", contrast: 4 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 1 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 1 }]
   },
   {
     season: 7,
@@ -3948,8 +3764,8 @@ const episodes = [
       { name: "Martok", contrast: 2 },
       { name: "Leeta", contrast: 1 },
       { name: "Zek", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Ferengi", contrast: 3 },
       { name: "Mirror Universe", contrast: 3 }
     ]
@@ -3972,10 +3788,8 @@ const episodes = [
       { name: "Quark", contrast: 2 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 2 }
-    ]
-    , organizations: [
-      { name: "Trill", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Trill", contrast: 3 }]
   },
   {
     season: 7,
@@ -3995,9 +3809,8 @@ const episodes = [
       { name: "Quark", contrast: 3 },
       { name: "Bashir", contrast: 3 },
       { name: "Kira Nerys", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -4020,9 +3833,8 @@ const episodes = [
       { name: "Kasidy Yates", contrast: 3 },
       { name: "Nog", contrast: 3 },
       { name: "Vic Fontaine", contrast: 3 }
-    ]
-    , organizations: [
-    ]
+    ],
+    organizations: []
   },
   {
     season: 7,
@@ -4042,8 +3854,8 @@ const episodes = [
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 2 },
       { name: "Garak", contrast: 2 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Federation", contrast: 3 },
       { name: "Romulan", contrast: 3 }
     ]
@@ -4071,8 +3883,8 @@ const episodes = [
       { name: "Weyoun", contrast: 3 },
       { name: "Dukat", contrast: 5 },
       { name: "Damar", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 3 },
       { name: "Cardassia", contrast: 3 }
     ]
@@ -4102,8 +3914,8 @@ const episodes = [
       { name: "Damar", contrast: 4 },
       { name: "Nog", contrast: 2 },
       { name: "Winn", contrast: 5 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Prophet", contrast: 3 },
       { name: "Bajor", contrast: 3 },
       { name: "Cardassia", contrast: 2 }
@@ -4133,8 +3945,8 @@ const episodes = [
       { name: "Damar", contrast: 5 },
       { name: "Martok", contrast: 3 },
       { name: "Winn", contrast: 5 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 3 },
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 2 }
@@ -4165,12 +3977,12 @@ const episodes = [
       { name: "Martok", contrast: 2 },
       { name: "Nog", contrast: 2 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Federation", contrast: 5 },
       { name: "Bajor", contrast: 2 },
       { name: "Klingon", contrast: 2 },
-      { name: "Cardassian", contrast: 4 },
+      { name: "Cardassian", contrast: 4 }
     ]
   },
   {
@@ -4196,8 +4008,8 @@ const episodes = [
       { name: "Damar", contrast: 4 },
       { name: "Martok", contrast: 3 },
       { name: "Winn", contrast: 3 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Bajor", contrast: 2 },
       { name: "Cardassia", contrast: 4 },
       { name: "Klingon", contrast: 2 }
@@ -4223,8 +4035,8 @@ const episodes = [
       { name: "Garak", contrast: 3 },
       { name: "Damar", contrast: 4 },
       { name: "Martok", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 3 },
       { name: "Klingon", contrast: 2 }
     ]
@@ -4247,10 +4059,8 @@ const episodes = [
       { name: "Bashir", contrast: 4 },
       { name: "Kira Nerys", contrast: 3 },
       { name: "Garak", contrast: 3 }
-    ]
-    , organizations: [
-      { name: "Cardassia", contrast: 3 }
-    ]
+    ],
+    organizations: [{ name: "Cardassia", contrast: 3 }]
   },
   {
     season: 7,
@@ -4279,8 +4089,8 @@ const episodes = [
       { name: "Leeta", contrast: 3 },
       { name: "Nog", contrast: 3 },
       { name: "Zek", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Cardassia", contrast: 4 },
       { name: "Klingon", contrast: 2 },
       { name: "Ferengi", contrast: 2 }
@@ -4316,8 +4126,8 @@ const episodes = [
       { name: "Leeta", contrast: 2 },
       { name: "Vic Fontaine", contrast: 3 },
       { name: "Winn", contrast: 4 }
-    ]
-    , organizations: [
+    ],
+    organizations: [
       { name: "Federation", contrast: 5 },
       { name: "Bajor", contrast: 3 },
       { name: "Prophet", contrast: 5 },
@@ -4326,4 +4136,4 @@ const episodes = [
       { name: "Dominion", contrast: 5 }
     ]
   }
-]
+];
