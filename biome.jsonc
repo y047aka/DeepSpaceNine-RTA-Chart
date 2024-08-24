@@ -7,13 +7,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style" : {
+      "style": {
         "useExportType": "off"
       }
     }
   },
   "formatter": {
-    "enabled": false,
+    "enabled": true,
+    "ignore": ["elm.json", "episodes.js"],
     "indentStyle": "space"
   },
   "vcs": {

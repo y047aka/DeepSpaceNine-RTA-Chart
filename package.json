@@ -1,10 +1,6 @@
 {
   "name": "deep-space-nine-rta-chart",
-  "workspaces": [
-    "app",
-    "generator",
-    "review"
-  ],
+  "workspaces": ["app", "generator", "review"],
   "scripts": {
     "start": "npm start -w app",
     "build": "npm run build -w app",
