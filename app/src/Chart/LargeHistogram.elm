@@ -1,7 +1,8 @@
-module Chart exposing (coloredCell, stepByImportance, view)
+module Chart.LargeHistogram exposing (view)
 
+import Chart.Histogram exposing (coloredCell, stepByImportance)
 import Color exposing (Color)
-import Css exposing (borderLeft3, borderRadius, firstChild, height, hsl, lastChild, nthChild, pct, property, px, solid, width)
+import Css exposing (borderLeft3, firstChild, hsl, lastChild, nthChild, property, px, solid)
 import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import List.Extra
@@ -28,12 +29,12 @@ histogram : (a -> Color) -> List a -> Html msg
 histogram toColor episodes =
     div
         [ css
-            [ property "padding-inline" "0.3vw"
+            [ property "padding-inline" "0.5em"
             , property "display" "grid"
             , property "grid-auto-flow" "column"
-            , property "grid-auto-columns" "max(5px, 0.4vw)"
-            , property "grid-template-rows" "repeat(5, max(5px, 0.4vw))"
-            , property "gap" "max(1.5px, 0.1vw)"
+            , property "grid-auto-columns" "max(16px, 1.2vw)"
+            , property "grid-template-rows" "repeat(5, max(16px, 1.2vw))"
+            , property "gap" "3px"
             , firstChild
                 [ property "padding-inline-start" "0" ]
             , nthChild "n+2"
@@ -43,37 +44,3 @@ histogram toColor episodes =
             ]
         ]
         (List.map (\ep -> coloredCell (toColor ep)) episodes)
-
-
-coloredCell : Color -> Html msg
-coloredCell backgroundColor =
-    div
-        [ css
-            [ width (pct 100)
-            , height (pct 100)
-            , borderRadius (pct 10)
-            , property "background-color" (Color.toCssString backgroundColor)
-            ]
-        ]
-        []
-
-
-stepByImportance : Int -> Float
-stepByImportance importance =
-    if importance == 5 then
-        0.8
-
-    else if importance == 4 then
-        0.6
-
-    else if importance == 3 then
-        0.3
-
-    else if importance == 2 then
-        0.17
-
-    else if importance == 1 then
-        0.1
-
-    else
-        0

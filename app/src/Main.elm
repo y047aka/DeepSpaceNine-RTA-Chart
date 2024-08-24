@@ -1,7 +1,8 @@
 module Main exposing (main)
 
 import Browser
-import Chart
+import Chart.Histogram as Histogram
+import Chart.LargeHistogram as LargeHistogram
 import Css exposing (..)
 import Css.Global exposing (children, global)
 import Css.Transitions exposing (transition)
@@ -13,7 +14,6 @@ import Html.Styled.Attributes as Attributes exposing (attribute, css, href, id, 
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Lazy exposing (lazy2)
 import Json.Decode
-import LargeChart
 import List.Extra
 
 
@@ -164,7 +164,7 @@ largeHistogramSection { title, imageHue, episodes } =
             ]
         ]
         [ div [ css [ fontSize (px 14) ] ] [ text title ]
-        , LargeChart.view imageHue episodes
+        , LargeHistogram.view imageHue episodes
         ]
 
 
@@ -188,7 +188,7 @@ histogramsSection items =
                         ]
                     ]
                     [ div [ css [ fontSize (px 14) ] ] [ text title ]
-                    , Chart.view imageHue episodes
+                    , Histogram.view imageHue episodes
                     ]
             )
             items
