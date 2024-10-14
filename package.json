@@ -6,7 +6,7 @@
     "review"
   ],
   "scripts": {
-    "start": "npm start -w app",
+    "dev": "npm start -w app",
     "build": "npm run build -w app",
     "generate": "elm-review app/src/ --elmjson app/elm.json --config generator --fix",
     "lint": "elm-review app/src/ --elmjson app/elm.json --config review"
