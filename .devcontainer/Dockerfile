@@ -6,6 +6,12 @@ ARG USERNAME=node
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+# Install npm@latest
+RUN npm install -g npm@latest
+
+# Install nushell using npm
+RUN npm install -g nushell
+
 # Install Elm and its tools
 # https://github.com/elm/compiler/blob/master/installers/linux/README.md
 RUN apt-get update && apt-get install -y curl \
@@ -13,7 +19,7 @@ RUN apt-get update && apt-get install -y curl \
     && gunzip elm.gz \
     && chmod +x elm \
     && mv elm /usr/local/bin/ \
-    && npm install --global elm-test@latest elm-format@latest \
+    && npm install --global elm-format@latest elm-review@latest elm-watch@latest run-pty@latest esbuild@latest \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /home/$USERNAME/.elm \
     && chown $USERNAME:$USERNAME /home/$USERNAME/.elm
