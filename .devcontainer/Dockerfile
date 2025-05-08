@@ -1,4 +1,6 @@
+# https://hub.docker.com/r/denoland/deno
 FROM mcr.microsoft.com/devcontainers/javascript-node:22
+COPY --from=denoland/deno:bin-2.3.1 /deno /usr/local/bin/deno
 
 # This Dockerfile adds a non-root user with sudo access. Update the "remoteUser" property in
 # devcontainer.json to use it. More info: https://aka.ms/vscode-remote/containers/non-root-user.
