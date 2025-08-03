@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
-    "elm": "^0.19.1-6",
+    "@lydell/elm": "0.19.1-14",
     "elm-format": "^0.8.7",
     "elm-review": "2.12.0",
     "esbuild": "0.24.0"
