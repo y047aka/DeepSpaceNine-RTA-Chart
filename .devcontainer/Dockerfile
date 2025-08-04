@@ -14,6 +14,9 @@ RUN npm install -g npm@latest
 # Install nushell using npm
 RUN npm install -g nushell
 
+# Setup Claude Code
+RUN npm install -g @anthropic-ai/claude-code
+
 # Install Elm and its tools
 # https://github.com/elm/compiler/blob/master/installers/linux/README.md
 RUN apt-get update && apt-get install -y curl \
