@@ -5,6 +5,7 @@ import lustre/attribute
 import lustre/event
 import types/episode.{type Episode}
 import components/histogram
+import utils/json_decoder
 
 pub type Model {
   Model(episodes: List(Episode), after_season_4: Bool)
@@ -15,7 +16,11 @@ pub type Msg {
 }
 
 pub fn init(_flags) -> Model {
-  Model(episodes: [], after_season_4: False)
+  let episodes = case json_decoder.decode_episodes_from_js() {
+    Ok(eps) -> eps
+    Error(_) -> []
+  }
+  Model(episodes: episodes, after_season_4: False)
 }
 
 pub fn update(model: Model, msg: Msg) -> Model {

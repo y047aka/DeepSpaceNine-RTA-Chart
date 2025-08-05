@@ -14,7 +14,8 @@ pub fn model_test() {
 
 pub fn init_test() {
   let model = app.init(Nil)
-  model.episodes |> should.equal([])
+  // Should have episodes loaded from JSON decoder
+  model.episodes |> should.not_equal([])
   model.after_season_4 |> should.equal(False)
 }
 
