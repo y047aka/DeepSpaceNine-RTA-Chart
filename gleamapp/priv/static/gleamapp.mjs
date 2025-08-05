@@ -2698,6 +2698,24 @@ function text3(content) {
 function div(attrs, children) {
   return element2("div", attrs, children);
 }
+function table(attrs, children) {
+  return element2("table", attrs, children);
+}
+function tbody(attrs, children) {
+  return element2("tbody", attrs, children);
+}
+function td(attrs, children) {
+  return element2("td", attrs, children);
+}
+function th(attrs, children) {
+  return element2("th", attrs, children);
+}
+function thead(attrs, children) {
+  return element2("thead", attrs, children);
+}
+function tr(attrs, children) {
+  return element2("tr", attrs, children);
+}
 function input(attrs) {
   return element2("input", attrs, empty_list);
 }
@@ -4332,10 +4350,10 @@ var virtualiseAttribute = (attr) => {
 // build/dev/javascript/lustre/lustre/runtime/client/runtime.ffi.mjs
 var is_browser = () => !!document();
 var Runtime = class {
-  constructor(root3, [model, effects], view3, update3) {
+  constructor(root3, [model, effects], view4, update3) {
     this.root = root3;
     this.#model = model;
-    this.#view = view3;
+    this.#view = view4;
     this.#update = update3;
     this.#reconciler = new Reconciler(this.root, (event4, path, name) => {
       const [events, result] = handle(this.#events, path, name, event4);
@@ -4517,15 +4535,15 @@ function new$6(options) {
 
 // build/dev/javascript/lustre/lustre/runtime/client/spa.ffi.mjs
 var Spa = class _Spa {
-  static start({ init: init2, update: update3, view: view3 }, selector, flags) {
+  static start({ init: init2, update: update3, view: view4 }, selector, flags) {
     if (!is_browser()) return new Error(new NotABrowser());
     const root3 = selector instanceof HTMLElement ? selector : document().querySelector(selector);
     if (!root3) return new Error(new ElementNotFound(selector));
-    return new Ok(new _Spa(root3, init2(flags), update3, view3));
+    return new Ok(new _Spa(root3, init2(flags), update3, view4));
   }
   #runtime;
-  constructor(root3, [init2, effects], update3, view3) {
-    this.#runtime = new Runtime(root3, [init2, effects], view3, update3);
+  constructor(root3, [init2, effects], update3, view4) {
+    this.#runtime = new Runtime(root3, [init2, effects], view4, update3);
   }
   send(message) {
     switch (message.constructor) {
@@ -4552,11 +4570,11 @@ var start = Spa.start;
 
 // build/dev/javascript/lustre/lustre.mjs
 var App = class extends CustomType {
-  constructor(init2, update3, view3, config) {
+  constructor(init2, update3, view4, config) {
     super();
     this.init = init2;
     this.update = update3;
-    this.view = view3;
+    this.view = view4;
     this.config = config;
   }
 };
@@ -4568,17 +4586,17 @@ var ElementNotFound = class extends CustomType {
 };
 var NotABrowser = class extends CustomType {
 };
-function application(init2, update3, view3) {
-  return new App(init2, update3, view3, new$6(empty_list));
+function application(init2, update3, view4) {
+  return new App(init2, update3, view4, new$6(empty_list));
 }
-function simple(init2, update3, view3) {
+function simple(init2, update3, view4) {
   let init$1 = (start_args) => {
     return [init2(start_args), none()];
   };
   let update$1 = (model, msg) => {
     return [update3(model, msg), none()];
   };
-  return application(init$1, update$1, view3);
+  return application(init$1, update$1, view4);
 }
 function start3(app, selector, start_args) {
   return guard(
@@ -4628,6 +4646,129 @@ function on_click(msg) {
   return on("click", success(msg));
 }
 
+// build/dev/javascript/gleamapp/types/character.mjs
+var BenjaminSisko = class extends CustomType {
+};
+var Dax = class extends CustomType {
+};
+
+// build/dev/javascript/gleamapp/types/organization.mjs
+var Federation = class extends CustomType {
+};
+var Bajor = class extends CustomType {
+};
+
+// build/dev/javascript/gleamapp/types/episode.mjs
+var CharacterAndContrast = class extends CustomType {
+  constructor(character, contrast) {
+    super();
+    this.character = character;
+    this.contrast = contrast;
+  }
+};
+var OrganizationAndContrast = class extends CustomType {
+  constructor(organization, contrast) {
+    super();
+    this.organization = organization;
+    this.contrast = contrast;
+  }
+};
+var Episode = class extends CustomType {
+  constructor(season, episode, title, title_ja, importance, netflix_id, characters, organizations) {
+    super();
+    this.season = season;
+    this.episode = episode;
+    this.title = title;
+    this.title_ja = title_ja;
+    this.importance = importance;
+    this.netflix_id = netflix_id;
+    this.characters = characters;
+    this.organizations = organizations;
+  }
+};
+
+// build/dev/javascript/gleamapp/components/episode_table.mjs
+function importance_circle(importance) {
+  let _block;
+  if (importance === 5) {
+    _block = "20px";
+  } else if (importance === 4) {
+    _block = "16px";
+  } else if (importance === 3) {
+    _block = "12px";
+  } else if (importance === 2) {
+    _block = "8px";
+  } else if (importance === 1) {
+    _block = "6px";
+  } else {
+    _block = "4px";
+  }
+  let circle_size = _block;
+  return div(
+    toList([
+      class$("importance-circle"),
+      style("width", circle_size),
+      style("height", circle_size),
+      style("background-color", "#ffffff"),
+      style("border-radius", "50%"),
+      style("display", "inline-block")
+    ]),
+    toList([])
+  );
+}
+function episode_row(episode) {
+  return tr(
+    toList([
+      class$("episode-row"),
+      style("cursor", "pointer")
+    ]),
+    toList([
+      td(
+        toList([]),
+        toList([
+          text3(
+            "S" + to_string(episode.season) + "E" + to_string(
+              episode.episode
+            )
+          )
+        ])
+      ),
+      td(
+        toList([style("text-align", "center")]),
+        toList([importance_circle(episode.importance)])
+      ),
+      td(toList([]), toList([text3(episode.title)]))
+    ])
+  );
+}
+function view(episodes) {
+  return table(
+    toList([class$("episode-table")]),
+    toList([
+      thead(
+        toList([]),
+        toList([
+          tr(
+            toList([]),
+            toList([
+              th(toList([]), toList([text3("Season-Episode")])),
+              th(toList([]), toList([text3("Importance")])),
+              th(toList([]), toList([text3("Title")]))
+            ])
+          )
+        ])
+      ),
+      tbody(
+        toList([]),
+        (() => {
+          let _pipe = episodes;
+          return map(_pipe, episode_row);
+        })()
+      )
+    ])
+  );
+}
+
 // build/dev/javascript/gleamapp/components/histogram.mjs
 var Color = class extends CustomType {
   constructor(hue, saturation, lightness, alpha) {
@@ -4673,9 +4814,7 @@ function color_to_css_string(color) {
 function colored_cell(background_color) {
   return div(
     toList([
-      style("width", "100%"),
-      style("height", "100%"),
-      style("border-radius", "10%"),
+      class$("histogram-cell"),
       style(
         "background-color",
         color_to_css_string(background_color)
@@ -4684,16 +4823,12 @@ function colored_cell(background_color) {
     toList([])
   );
 }
-function view(hue, episodes) {
+function view2(hue, episodes) {
   let to_color = (ep) => {
     return hsl_color(hue, 0.8, step_by_importance(ep.importance));
   };
   return div(
-    toList([
-      style("display", "grid"),
-      style("grid-template-columns", "repeat(7, auto)"),
-      style("gap", "0.3vw")
-    ]),
+    toList([class$("small-histogram")]),
     map(episodes, (ep) => {
       return colored_cell(to_color(ep));
     })
@@ -4704,14 +4839,34 @@ function large_view(hue, episodes) {
     return hsl_color(hue, 0.8, step_by_importance(ep.importance));
   };
   return div(
-    toList([
-      style("display", "grid"),
-      style("grid-template-columns", "repeat(7, auto)"),
-      style("gap", "3px")
-    ]),
+    toList([class$("large-histogram")]),
     map(episodes, (ep) => {
       return colored_cell(to_color(ep));
     })
+  );
+}
+
+// build/dev/javascript/gleamapp/utils/json_decoder.mjs
+function decode_episodes_from_js() {
+  return new Ok(
+    toList([
+      new Episode(
+        1,
+        1,
+        "Emissary",
+        "\u8056\u306A\u308B\u795E\u6BBF\u306E\u8B0E",
+        4,
+        70205806,
+        toList([
+          new CharacterAndContrast(new BenjaminSisko(), 4),
+          new CharacterAndContrast(new Dax(), 4)
+        ]),
+        toList([
+          new OrganizationAndContrast(new Federation(), 5),
+          new OrganizationAndContrast(new Bajor(), 5)
+        ])
+      )
+    ])
   );
 }
 
@@ -4727,13 +4882,22 @@ var Model = class extends CustomType {
 var Toggle = class extends CustomType {
 };
 function init(_) {
-  return new Model(toList([]), false);
+  let _block;
+  let $ = decode_episodes_from_js();
+  if ($ instanceof Ok) {
+    let eps = $[0];
+    _block = eps;
+  } else {
+    _block = toList([]);
+  }
+  let episodes = _block;
+  return new Model(episodes, false);
 }
 function update2(model, msg) {
   let _record = model;
   return new Model(_record.episodes, !model.after_season_4);
 }
-function view2(model) {
+function view3(model) {
   let sample_episodes = toList([
     new SeasonImportance(1, 5),
     new SeasonImportance(1, 4),
@@ -4781,7 +4945,7 @@ function view2(model) {
                     toList([class$("section-title")]),
                     toList([text3("Benjamin Sisko")])
                   ),
-                  view(350, sample_episodes)
+                  view2(350, sample_episodes)
                 ])
               ),
               div(
@@ -4791,7 +4955,7 @@ function view2(model) {
                     toList([class$("section-title")]),
                     toList([text3("Dax")])
                   ),
-                  view(190, sample_episodes)
+                  view2(190, sample_episodes)
                 ])
               ),
               div(
@@ -4801,7 +4965,7 @@ function view2(model) {
                     toList([class$("section-title")]),
                     toList([text3("Kira Nerys")])
                   ),
-                  view(10, sample_episodes)
+                  view2(10, sample_episodes)
                 ])
               )
             ])
@@ -4818,7 +4982,7 @@ function view2(model) {
                 toList([class$("section-title")]),
                 toList([text3("Federation")])
               ),
-              view(220, sample_episodes)
+              view2(220, sample_episodes)
             ])
           ),
           div(
@@ -4828,7 +4992,7 @@ function view2(model) {
                 toList([class$("section-title")]),
                 toList([text3("Bajor")])
               ),
-              view(10, sample_episodes)
+              view2(10, sample_episodes)
             ])
           ),
           div(
@@ -4838,31 +5002,41 @@ function view2(model) {
                 toList([class$("section-title")]),
                 toList([text3("Cardassia")])
               ),
-              view(175, sample_episodes)
+              view2(175, sample_episodes)
             ])
           )
+        ])
+      ),
+      div(
+        toList([class$("section")]),
+        toList([
+          div(
+            toList([class$("section-title")]),
+            toList([text3("Episode List")])
+          ),
+          view(model.episodes)
         ])
       )
     ])
   );
 }
 function main() {
-  let app = simple(init, update2, view2);
+  let app = simple(init, update2, view3);
   let $ = start3(app, "#app", void 0);
   if (!($ instanceof Ok)) {
     throw makeError(
       "let_assert",
       FILEPATH,
       "app",
-      90,
+      102,
       "main",
       "Pattern match failed, no pattern matched the value.",
       {
         value: $,
-        start: 2851,
-        end: 2900,
-        pattern_start: 2862,
-        pattern_end: 2867
+        start: 3229,
+        end: 3278,
+        pattern_start: 3240,
+        pattern_end: 3245
       }
     );
   }

@@ -42,34 +42,29 @@ pub fn color_to_css_string(color: Color) -> String {
 
 pub fn colored_cell(background_color: Color) -> Element(msg) {
   html.div([
-    attribute.style("width", "100%"),
-    attribute.style("height", "100%"),
-    attribute.style("border-radius", "10%"),
+    attribute.class("histogram-cell"),
     attribute.style("background-color", color_to_css_string(background_color))
   ], [])
 }
 
 pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  // For now, create a simple view without complex grouping
+  // Small histogram with CSS classes
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
   
   html.div([
-    attribute.style("display", "grid"),
-    attribute.style("grid-template-columns", "repeat(7, auto)"),
-    attribute.style("gap", "0.3vw")
+    attribute.class("small-histogram")
   ], list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }))
 }
 
 pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
+  // Large histogram with CSS classes
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
   
   html.div([
-    attribute.style("display", "grid"),
-    attribute.style("grid-template-columns", "repeat(7, auto)"),
-    attribute.style("gap", "3px")
+    attribute.class("large-histogram")
   ], list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }))
 }

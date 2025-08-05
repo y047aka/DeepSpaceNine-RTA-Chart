@@ -1,5 +1,6 @@
 import gleam/result
 import gleam/json
+import gleam/list
 import types/episode.{type Episode, Episode, NameAndContrast, CharacterAndContrast, OrganizationAndContrast}
 import types/character.{type Character, BenjaminSisko, Dax}
 import types/organization.{type Organization, Federation, Bajor}
@@ -77,16 +78,39 @@ pub fn organization_from_string(name: String) -> Result(Organization, Nil) {
 // TODO: Implement proper filtering logic
 
 pub fn get_character_episodes(character: Character, episodes: List(Episode)) -> List(SeasonImportance) {
-  // TODO: Implement proper character filtering
-  []
+  // TDD Green Phase: Implement character filtering logic
+  episodes
+  |> list.map(fn(episode) {
+    // Find the character in this episode
+    let contrast = episode.characters
+    |> list.find(fn(char_contrast) { 
+      char_contrast.character == character 
+    })
+    |> result.map(fn(char_contrast) { char_contrast.contrast })
+    |> result.unwrap(0) // Default to 0 if character not found
+    
+    SeasonImportance(season: episode.season, importance: contrast)
+  })
 }
 
 pub fn get_organization_episodes(organization: Organization, episodes: List(Episode)) -> List(SeasonImportance) {
-  // TODO: Implement proper organization filtering
-  []
+  // TDD Green Phase: Implement organization filtering logic
+  episodes
+  |> list.map(fn(episode) {
+    // Find the organization in this episode
+    let contrast = episode.organizations
+    |> list.find(fn(org_contrast) { 
+      org_contrast.organization == organization 
+    })
+    |> result.map(fn(org_contrast) { org_contrast.contrast })
+    |> result.unwrap(0) // Default to 0 if organization not found
+    
+    SeasonImportance(season: episode.season, importance: contrast)
+  })
 }
 
 pub fn should_show_character(character: Character, after_season_4: Bool) -> Bool {
-  // TODO: Implement proper season-based filtering
+  // TDD Green Phase: Basic implementation - for now show all characters
+  // TODO: Implement actual season-4 based filtering logic
   True
 }

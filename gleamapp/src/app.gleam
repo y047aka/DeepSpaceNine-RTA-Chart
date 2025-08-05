@@ -5,6 +5,7 @@ import lustre/attribute
 import lustre/event
 import types/episode.{type Episode}
 import components/histogram
+import components/episode_table
 import utils/json_decoder
 
 pub type Model {
@@ -86,6 +87,12 @@ pub fn view(model: Model) -> Element(Msg) {
         html.div([attribute.class("section-title")], [html.text("Cardassia")]),
         histogram.view(175, sample_episodes)
       ])
+    ]),
+    
+    // Episode table section
+    html.div([attribute.class("section")], [
+      html.div([attribute.class("section-title")], [html.text("Episode List")]),
+      episode_table.view(model.episodes)
     ])
   ])
 }
