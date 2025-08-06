@@ -1,3 +1,5 @@
+// IMPORTS ---------------------------------------------------------------------
+
 import components/episode_table
 import components/histogram
 import lustre
@@ -8,12 +10,18 @@ import lustre/event
 import types/episode.{type Episode}
 import utils/json_decoder
 
-pub type Model {
-  Model(episodes: List(Episode), after_season_4: Bool)
+// MAIN ------------------------------------------------------------------------
+
+pub fn main() {
+  let app = lustre.simple(init, update, view)
+  let assert Ok(_) = lustre.start(app, "#app", Nil)
+  Nil
 }
 
-pub type Msg {
-  Toggle
+// MODEL -----------------------------------------------------------------------
+
+pub type Model {
+  Model(episodes: List(Episode), after_season_4: Bool)
 }
 
 pub fn init(_flags) -> Model {
@@ -24,11 +32,19 @@ pub fn init(_flags) -> Model {
   Model(episodes: episodes, after_season_4: False)
 }
 
+// UPDATE ----------------------------------------------------------------------
+
+pub type Msg {
+  Toggle
+}
+
 pub fn update(model: Model, msg: Msg) -> Model {
   case msg {
     Toggle -> Model(..model, after_season_4: !model.after_season_4)
   }
 }
+
+// VIEW ------------------------------------------------------------------------
 
 pub fn view(model: Model) -> Element(Msg) {
   let sample_episodes = [
@@ -96,10 +112,4 @@ pub fn view(model: Model) -> Element(Msg) {
       episode_table.view(model.episodes),
     ]),
   ])
-}
-
-pub fn main() {
-  let app = lustre.simple(init, update, view)
-  let assert Ok(_) = lustre.start(app, "#app", Nil)
-  Nil
 }
