@@ -42,7 +42,8 @@ pub fn get_character_hue(character_name: String) -> Int {
     "Damar" -> cardassian
     "Brunt" -> ferengi
     "Weyoun" -> jem_hadar
-    _ -> federation // Default fallback
+    _ -> federation
+    // Default fallback
   }
 }
 
@@ -68,6 +69,7 @@ pub fn get_organization_hue(organization_name: String) -> Int {
     "Maquis" -> command
     "Dominion" -> dominion
     "Mirror Universe" -> command
-    _ -> federation // Default fallback
+    _ -> federation
+    // Default fallback
   }
 }

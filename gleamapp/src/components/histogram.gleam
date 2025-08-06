@@ -1,9 +1,9 @@
-import lustre/element.{type Element}
-import lustre/element/html
-import lustre/attribute
 import gleam/float
 import gleam/int
 import gleam/list
+import lustre/attribute
+import lustre/element.{type Element}
+import lustre/element/html
 
 pub type Color {
   Color(hue: Int, saturation: Float, lightness: Float, alpha: Float)
@@ -41,10 +41,13 @@ pub fn color_to_css_string(color: Color) -> String {
 }
 
 pub fn colored_cell(background_color: Color) -> Element(msg) {
-  html.div([
-    attribute.class("histogram-cell"),
-    attribute.style("background-color", color_to_css_string(background_color))
-  ], [])
+  html.div(
+    [
+      attribute.class("histogram-cell"),
+      attribute.style("background-color", color_to_css_string(background_color)),
+    ],
+    [],
+  )
 }
 
 pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
@@ -52,10 +55,11 @@ pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
-  
-  html.div([
-    attribute.class("small-histogram")
-  ], list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }))
+
+  html.div(
+    [attribute.class("small-histogram")],
+    list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }),
+  )
 }
 
 pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
@@ -63,8 +67,9 @@ pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
-  
-  html.div([
-    attribute.class("large-histogram")
-  ], list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }))
+
+  html.div(
+    [attribute.class("large-histogram")],
+    list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }),
+  )
 }

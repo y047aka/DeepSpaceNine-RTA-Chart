@@ -1,11 +1,11 @@
+import components/episode_table
+import components/histogram
 import lustre
+import lustre/attribute
 import lustre/element.{type Element}
 import lustre/element/html
-import lustre/attribute
 import lustre/event
 import types/episode.{type Episode}
-import components/histogram
-import components/episode_table
 import utils/json_decoder
 
 pub type Model {
@@ -43,57 +43,58 @@ pub fn view(model: Model) -> Element(Msg) {
   html.div([attribute.class("container")], [
     // Large histogram section
     html.div([attribute.class("section")], [
-      html.div([attribute.class("section-title")], [html.text("Deep Space Nine")]),
-      histogram.large_view(175, sample_episodes)
+      html.div([attribute.class("section-title")], [
+        html.text("Deep Space Nine"),
+      ]),
+      histogram.large_view(175, sample_episodes),
     ]),
-    
     // Characters section
     html.div([], [
       html.label([attribute.class("checkbox-label")], [
         html.input([
           attribute.type_("checkbox"),
           attribute.checked(model.after_season_4),
-          event.on_click(Toggle)
+          event.on_click(Toggle),
         ]),
-        html.text("Show more characters")
+        html.text("Show more characters"),
       ]),
       html.div([attribute.class("histograms-grid")], [
         html.div([attribute.class("section")], [
-          html.div([attribute.class("section-title")], [html.text("Benjamin Sisko")]),
-          histogram.view(350, sample_episodes)
+          html.div([attribute.class("section-title")], [
+            html.text("Benjamin Sisko"),
+          ]),
+          histogram.view(350, sample_episodes),
         ]),
         html.div([attribute.class("section")], [
           html.div([attribute.class("section-title")], [html.text("Dax")]),
-          histogram.view(190, sample_episodes)
+          histogram.view(190, sample_episodes),
         ]),
         html.div([attribute.class("section")], [
           html.div([attribute.class("section-title")], [html.text("Kira Nerys")]),
-          histogram.view(10, sample_episodes)
-        ])
-      ])
+          histogram.view(10, sample_episodes),
+        ]),
+      ]),
     ]),
-    
     // Organizations section
     html.div([attribute.class("histograms-grid")], [
       html.div([attribute.class("section")], [
         html.div([attribute.class("section-title")], [html.text("Federation")]),
-        histogram.view(220, sample_episodes)
+        histogram.view(220, sample_episodes),
       ]),
       html.div([attribute.class("section")], [
         html.div([attribute.class("section-title")], [html.text("Bajor")]),
-        histogram.view(10, sample_episodes)
+        histogram.view(10, sample_episodes),
       ]),
       html.div([attribute.class("section")], [
         html.div([attribute.class("section-title")], [html.text("Cardassia")]),
-        histogram.view(175, sample_episodes)
-      ])
+        histogram.view(175, sample_episodes),
+      ]),
     ]),
-    
     // Episode table section
     html.div([attribute.class("section")], [
       html.div([attribute.class("section-title")], [html.text("Episode List")]),
-      episode_table.view(model.episodes)
-    ])
+      episode_table.view(model.episodes),
+    ]),
   ])
 }
 

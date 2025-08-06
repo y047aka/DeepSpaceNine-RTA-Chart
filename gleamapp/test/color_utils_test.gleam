@@ -1,6 +1,6 @@
+import components/histogram
 import gleeunit
 import gleeunit/should
-import components/histogram
 import utils/color_utils
 
 pub fn main() {
@@ -31,7 +31,7 @@ pub fn hsl_color_test() {
 pub fn color_to_css_string_test() {
   let color = histogram.hsl_color(120, 0.8, 0.6)
   let css_string = histogram.color_to_css_string(color)
-  
+
   css_string |> should.equal("hsla(120, 80.0%, 60.0%, 1.0)")
 }
 
@@ -40,16 +40,18 @@ pub fn character_hue_calculation_test() {
   // This will test using the hue values from character types
   let sisko_hue = color_utils.get_character_hue("Benjamin Sisko")
   let dax_hue = color_utils.get_character_hue("Dax")
-  
-  sisko_hue |> should.equal(350) // Command color
-  dax_hue |> should.equal(190)   // Science/Medical color
+
+  sisko_hue |> should.equal(350)
+  // Command color
+  dax_hue |> should.equal(190)
+  // Science/Medical color
 }
 
 // TDD Red Phase: Test organization hue calculation  
 pub fn organization_hue_calculation_test() {
   let federation_hue = color_utils.get_organization_hue("Federation")
   let bajor_hue = color_utils.get_organization_hue("Bajor")
-  
+
   federation_hue |> should.equal(220)
   bajor_hue |> should.equal(10)
 }

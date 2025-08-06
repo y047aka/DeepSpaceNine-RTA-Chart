@@ -1,6 +1,6 @@
+import components/histogram
 import gleeunit
 import gleeunit/should
-import components/histogram
 
 pub fn main() {
   gleeunit.main()
