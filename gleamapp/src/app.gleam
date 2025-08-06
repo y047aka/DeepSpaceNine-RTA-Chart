@@ -8,7 +8,6 @@ import lustre/element.{type Element}
 import lustre/element/html
 import lustre/event
 import types/episode.{type Episode}
-import utils/json_decoder
 
 // MAIN ------------------------------------------------------------------------
 
@@ -25,7 +24,7 @@ pub type Model {
 }
 
 pub fn init(_flags) -> Model {
-  let episodes = case json_decoder.decode_episodes_from_js() {
+  let episodes = case episode.decode_episodes_from_js() {
     Ok(eps) -> eps
     Error(_) -> []
   }

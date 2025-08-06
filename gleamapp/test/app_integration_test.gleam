@@ -3,7 +3,6 @@ import gleam/list
 import gleeunit
 import gleeunit/should
 import types/episode
-import utils/json_decoder
 
 pub fn main() {
   gleeunit.main()
@@ -44,7 +43,7 @@ pub fn app_toggle_test() {
 
 // TDD Red Phase: Test JSON decoder integration
 pub fn json_decoder_integration_test() {
-  let result = json_decoder.decode_episodes_from_js()
+  let result = episode.decode_episodes_from_js()
 
   case result {
     Ok(episodes) -> {

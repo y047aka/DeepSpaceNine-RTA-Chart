@@ -4,7 +4,6 @@ import gleeunit/should
 import types/character
 import types/episode
 import types/organization
-import utils/json_decoder
 
 pub fn main() {
   gleeunit.main()
@@ -14,7 +13,7 @@ pub fn main() {
 pub fn decode_name_and_contrast_test() {
   let json_string = "{\"name\": \"Benjamin Sisko\", \"contrast\": 85}"
 
-  let result = json_decoder.decode_name_and_contrast(json_string)
+  let result = episode.decode_name_and_contrast(json_string)
 
   result
   |> should.be_ok()
@@ -41,7 +40,7 @@ pub fn decode_episode_test() {
     ]
   }"
 
-  let result = json_decoder.decode_episode(json_string)
+  let result = episode.decode_episode(json_string)
 
   case result {
     Ok(ep) -> {
@@ -62,7 +61,7 @@ pub fn decode_episode_test() {
 // TDD Red Phase: This test will fail until we implement the decoder
 pub fn decode_episodes_from_js_test() {
   // This will test loading from the actual episodes.js file
-  let result = json_decoder.decode_episodes_from_js()
+  let result = episode.decode_episodes_from_js()
 
   case result {
     Ok(episodes) -> {
@@ -86,18 +85,18 @@ pub fn decode_episodes_from_js_test() {
 pub fn character_conversion_test() {
   // Test character to string
   character.BenjaminSisko
-  |> json_decoder.character_to_string()
+  |> character.to_string()
   |> should.equal("Benjamin Sisko")
 
   // Test string to character
   "Benjamin Sisko"
-  |> json_decoder.character_from_string()
+  |> character.from_string()
   |> should.be_ok()
   |> should.equal(character.BenjaminSisko)
 
   // Test invalid character string
   "Invalid Character"
-  |> json_decoder.character_from_string()
+  |> character.from_string()
   |> should.be_error()
 }
 
@@ -105,17 +104,17 @@ pub fn character_conversion_test() {
 pub fn organization_conversion_test() {
   // Test organization to string
   organization.Federation
-  |> json_decoder.organization_to_string()
+  |> organization.to_string()
   |> should.equal("Federation")
 
   // Test string to organization
   "Federation"
-  |> json_decoder.organization_from_string()
+  |> organization.from_string()
   |> should.be_ok()
   |> should.equal(organization.Federation)
 
   // Test invalid organization string
   "Invalid Organization"
-  |> json_decoder.organization_from_string()
+  |> organization.from_string()
   |> should.be_error()
 }

@@ -5,7 +5,6 @@ import gleeunit/should
 import types/character.{Bashir, BenjaminSisko, Dax, KiraNerys}
 import types/episode.{CharacterAndContrast, Episode, OrganizationAndContrast}
 import types/organization.{Bajor, Federation}
-import utils/json_decoder
 
 pub fn main() {
   gleeunit.main()
@@ -46,7 +45,7 @@ pub fn get_character_episodes_test() {
 
   // Test filtering for Benjamin Sisko
   let sisko_episodes =
-    json_decoder.get_character_episodes(BenjaminSisko, episodes)
+    episode.get_character_episodes(BenjaminSisko, episodes)
 
   sisko_episodes |> list.length() |> should.equal(2)
 
@@ -63,7 +62,7 @@ pub fn get_character_episodes_test() {
   }
 
   // Test filtering for character not in all episodes
-  let bashir_episodes = json_decoder.get_character_episodes(Bashir, episodes)
+  let bashir_episodes = episode.get_character_episodes(Bashir, episodes)
 
   bashir_episodes |> list.length() |> should.equal(2)
 
@@ -109,7 +108,7 @@ pub fn get_organization_episodes_test() {
   ]
 
   let federation_episodes =
-    json_decoder.get_organization_episodes(Federation, episodes)
+    episode.get_organization_episodes(Federation, episodes)
 
   federation_episodes |> list.length() |> should.equal(2)
 
@@ -135,10 +134,10 @@ pub fn filter_after_season4_test() {
   let characters_before_s4 = [KiraNerys, Bashir]
   // Mock: these should be hidden when afterSeason4=False
 
-  let result_show_all = json_decoder.should_show_character(BenjaminSisko, True)
+  let result_show_all = episode.should_show_character(BenjaminSisko, True)
   result_show_all |> should.equal(True)
 
-  let result_hide_early = json_decoder.should_show_character(KiraNerys, False)
+  let result_hide_early = episode.should_show_character(KiraNerys, False)
   result_hide_early |> should.equal(True)
   // For now, show all - will refine logic later
 }
