@@ -1,6 +1,6 @@
-// https://github.com/microsoft/vscode-dev-containers/tree/main/containers/elm
+// DevContainer for Elm and Gleam development
 {
-	"name": "Elm",
+	"name": "Elm & Gleam",
 	"dockerFile": "Dockerfile",
 
 	// Configure tool-specific properties.
@@ -10,6 +10,7 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"elmTooling.elm-ls-vscode",
+				"gleam.gleam",
 				"anthropic.claude-code"
 			],
 			"settings": {

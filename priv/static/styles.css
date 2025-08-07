@@ -1,0 +1,350 @@
+/* Deep Space Nine Chart Styles - Migrated from elm-css */
+
+:root {
+  --bg-color: hsl(0, 0%, 10%);
+  --text-color: hsl(0, 0%, 60%);
+  --hover-bg: hsl(0, 0%, 15%);
+  --section-title-color: hsl(0, 0%, 80%);
+}
+
+/* Global Styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+/* Container Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Section Styles */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--section-title-color);
+}
+
+/* Histogram Grid Layout */
+.histograms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Large Histogram (Deep Space Nine section) */
+.large-histogram {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  max-width: 600px;
+}
+
+.large-histogram .season {
+  padding-inline: 0.5em;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max(16px, 1.2vw);
+  grid-template-rows: repeat(5, max(16px, 1.2vw));
+  gap: 3px;
+
+  &:first-child {
+    padding-inline-start: 0;
+  }
+
+  &:nth-child(n+2) {
+    border-left: 1px solid hsl(0 0 0);
+  }
+
+  &:last-child {
+    padding-inline-end: 0;
+  }
+}
+
+.large-histogram .histogram-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
+/* Small Histograms (Character/Organization sections) */
+.small-histogram {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  max-width: 300px;
+}
+
+.small-histogram .season {
+  padding-inline: 0.3vw;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max(5px, 0.4vw);
+  grid-template-rows: repeat(5, max(5px, 0.4vw));
+  gap: max(1.5px, 0.1vw);
+
+  &:first-child {
+    padding-inline-start: 0;
+  }
+
+  &:nth-child(n+2) {
+    border-left: 1px solid hsl(0 0 0);
+  }
+
+  &:last-child {
+    padding-inline-end: 0;
+  }
+}
+
+.small-histogram .histogram-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
+/* Episode Table Styles */
+.episode-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-color);
+  margin: 0 auto;
+}
+
+.episode-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid hsl(0, 0%, 20%);
+}
+
+.episode-row {
+  height: 31px;
+  font-size: 10px;
+  transition: background-color 500ms ease;
+}
+
+/* Alternating row colors */
+.episode-row:nth-child(odd) {
+  background-color: hsl(0, 0%, 9.5%);
+}
+
+.episode-row:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Episode columns */
+.episode-index {
+  text-align: center;
+  font-size: 12px;
+}
+
+.season-episode {
+  min-width: 4.5em;
+  text-align: center;
+}
+
+.importance-col {
+  text-align: center;
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title-en {
+  font-size: 12px;
+}
+
+.title-ja {
+  color: hsl(0, 0%, 40%);
+}
+
+.action-button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background-color: unset;
+  color: inherit;
+}
+
+/* Importance-based row coloring (like Elm's stepByImportance) */
+.episode-row[data-importance="5"], 
+.episode-row[data-importance="4"] {
+  color: hsl(0, 0%, 80%);
+}
+
+.episode-row[data-importance="3"] {
+  color: hsl(0, 0%, 50%);
+}
+
+.episode-row[data-importance="2"],
+.episode-row[data-importance="1"],
+.episode-row[data-importance="0"] {
+  color: hsl(0, 0%, 30%);
+}
+
+/* Importance Circle (using CSS pseudo-element like Elm) */
+.importance-circle::before {
+  content: '';
+  display: block;
+  margin: auto;
+  background-color: currentColor;
+  border-radius: 50px;
+}
+
+/* Importance circle sizes (matches Elm implementation) */
+.importance-circle[data-importance="5"]::before {
+  width: 23px;
+  height: 23px;
+}
+
+.importance-circle[data-importance="4"]::before {
+  width: 18px;
+  height: 18px;
+}
+
+.importance-circle[data-importance="3"]::before {
+  width: 13px;
+  height: 13px;
+}
+
+.importance-circle[data-importance="2"]::before {
+  width: 8px;
+  height: 8px;
+}
+
+.importance-circle[data-importance="1"]::before {
+  width: 3px;
+  height: 3px;
+}
+
+/* Episode Popover Styles */
+.episode-popover {
+  padding: 10px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 30%);
+  max-width: 300px;
+}
+
+.episode-popover div {
+  margin-bottom: 5px;
+}
+
+.episode-popover div:last-child {
+  margin-bottom: 0;
+}
+
+/* Netflix Link Styles */
+.netflix-link {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 12px;
+  text-decoration: none;
+  background-color: hsl(350, 50%, 45%);
+  color: hsl(0, 0%, 10%);
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+.netflix-link:visited {
+  background-color: hsl(350, 50%, 20%);
+}
+
+/* Checkbox Styles */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .histograms-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .large-histogram .histogram-cell {
+    width: min(8vw, 40px);
+    height: min(8vw, 40px);
+  }
+
+  .small-histogram .histogram-cell {
+    width: min(5vw, 25px);
+    height: min(5vw, 25px);
+  }
+
+  .episode-table {
+    font-size: 0.9em;
+  }
+
+  .episode-table th,
+  .episode-table td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.1em;
+  }
+
+  .large-histogram .histogram-cell {
+    width: min(10vw, 35px);
+    height: min(10vw, 35px);
+  }
+
+  .small-histogram .histogram-cell {
+    width: min(7vw, 20px);
+    height: min(7vw, 20px);
+  }
+
+  .episode-table {
+    font-size: 0.8em;
+  }
+}
+
+/* Color Utilities for Histograms */
+.histogram-cell {
+  transition: opacity 0.2s ease;
+}
+
+.histogram-cell:hover {
+  opacity: 0.8;
+}
+
+/* Season-based layout helpers */
+.season-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
