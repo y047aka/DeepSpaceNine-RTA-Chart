@@ -69,15 +69,33 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
 
 fn get_characters(after_season_4: Bool) -> List(Character) {
   let base_characters = [
-    character.BenjaminSisko, character.JakeSisko, character.Dax, character.KiraNerys,
-    character.MilesObrien, character.Bashir, character.Odo, character.Quark,
-    character.Worf, character.Rom, character.Nog, character.Garak, character.Dukat
+    character.BenjaminSisko,
+    character.JakeSisko,
+    character.Dax,
+    character.KiraNerys,
+    character.MilesObrien,
+    character.Bashir,
+    character.Odo,
+    character.Quark,
+    character.Worf,
+    character.Rom,
+    character.Nog,
+    character.Garak,
+    character.Dukat,
   ]
-  
+
   let extended_characters = [
-    character.KeikoObrien, character.Winn, character.Bareil, character.MichaelEddington,
-    character.KasidyYates, character.Leeta, character.Gowron, character.Martok,
-    character.Shakaar, character.Ziyal, character.Damar
+    character.KeikoObrien,
+    character.Winn,
+    character.Bareil,
+    character.MichaelEddington,
+    character.KasidyYates,
+    character.Leeta,
+    character.Gowron,
+    character.Martok,
+    character.Shakaar,
+    character.Ziyal,
+    character.Damar,
   ]
 
   case after_season_4 {
@@ -88,9 +106,16 @@ fn get_characters(after_season_4: Bool) -> List(Character) {
 
 fn get_organizations() -> List(Organization) {
   [
-    organization.Federation, organization.Trill, organization.Bajor, organization.Prophet,
-    organization.Cardassia, organization.Ferengi, organization.Klingon, organization.Maquis,
-    organization.Dominion, organization.MirrorUniverse
+    organization.Federation,
+    organization.Trill,
+    organization.Bajor,
+    organization.Prophet,
+    organization.Cardassia,
+    organization.Ferengi,
+    organization.Klingon,
+    organization.Maquis,
+    organization.Dominion,
+    organization.MirrorUniverse,
   ]
 }
 
@@ -98,9 +123,13 @@ fn get_organizations() -> List(Organization) {
 
 pub fn view(model: Model) -> Element(Msg) {
   // Convert episodes to SeasonImportance format for main histogram
-  let episodes_data = 
+  let episodes_data =
     list.map(model.episodes, fn(ep) {
-      histogram.SeasonImportance(season: ep.season, episode: ep.episode, importance: ep.importance)
+      histogram.SeasonImportance(
+        season: ep.season,
+        episode: ep.episode,
+        importance: ep.importance,
+      )
     })
 
   html.div([attribute.class("container")], [
@@ -121,29 +150,33 @@ pub fn view(model: Model) -> Element(Msg) {
         ]),
         html.text("Show more characters"),
       ]),
-      html.div([attribute.class("histograms-grid")], 
+      html.div(
+        [attribute.class("histograms-grid")],
         list.map(get_characters(model.after_season_4), fn(char) {
-          let char_episodes = episode.get_character_episodes(char, model.episodes)
+          let char_episodes =
+            episode.get_character_episodes(char, model.episodes)
           html.div([attribute.class("section")], [
             html.div([attribute.class("section-title")], [
               html.text(character.to_string(char)),
             ]),
             histogram.view(character.image_hue(char), char_episodes),
           ])
-        })
+        }),
       ),
     ]),
     // Organizations section
-    html.div([attribute.class("histograms-grid")], 
+    html.div(
+      [attribute.class("histograms-grid")],
       list.map(get_organizations(), fn(org) {
-        let org_episodes = episode.get_organization_episodes(org, model.episodes)
+        let org_episodes =
+          episode.get_organization_episodes(org, model.episodes)
         html.div([attribute.class("section")], [
           html.div([attribute.class("section-title")], [
             html.text(organization.to_string(org)),
           ]),
           histogram.view(organization.image_hue(org), org_episodes),
         ])
-      })
+      }),
     ),
     // Episode table section
     html.div([attribute.class("section")], [

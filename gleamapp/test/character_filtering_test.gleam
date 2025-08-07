@@ -44,8 +44,7 @@ pub fn get_character_episodes_test() {
   ]
 
   // Test filtering for Benjamin Sisko
-  let sisko_episodes =
-    episode.get_character_episodes(BenjaminSisko, episodes)
+  let sisko_episodes = episode.get_character_episodes(BenjaminSisko, episodes)
 
   sisko_episodes |> list.length() |> should.equal(2)
 

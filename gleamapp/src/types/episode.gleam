@@ -145,7 +145,6 @@ pub fn decode_episode(json_string: String) -> Result(Episode, json.DecodeError) 
   json.parse(json_string, episode_decoder())
 }
 
-
 // Episode filtering functions (moved from json_decoder.gleam)
 
 pub fn get_character_episodes(
@@ -160,7 +159,11 @@ pub fn get_character_episodes(
       |> result.map(fn(char_contrast) { char_contrast.contrast })
       |> result.unwrap(0)
 
-    SeasonImportance(season: episode.season, episode: episode.episode, importance: contrast)
+    SeasonImportance(
+      season: episode.season,
+      episode: episode.episode,
+      importance: contrast,
+    )
   })
 }
 
@@ -178,7 +181,11 @@ pub fn get_organization_episodes(
       |> result.map(fn(org_contrast) { org_contrast.contrast })
       |> result.unwrap(0)
 
-    SeasonImportance(season: episode.season, episode: episode.episode, importance: contrast)
+    SeasonImportance(
+      season: episode.season,
+      episode: episode.episode,
+      importance: contrast,
+    )
   })
 }
 
