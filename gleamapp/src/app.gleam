@@ -4,15 +4,17 @@ import components/episode_table
 import components/histogram
 import lustre
 import lustre/attribute
+import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html
 import lustre/event
+import rsvp
 import types/episode.{type Episode}
 
 // MAIN ------------------------------------------------------------------------
 
 pub fn main() {
-  let app = lustre.simple(init, update, view)
+  let app = lustre.application(init, update, view)
   let assert Ok(_) = lustre.start(app, "#app", Nil)
   Nil
 }
@@ -23,23 +25,40 @@ pub type Model {
   Model(episodes: List(Episode), after_season_4: Bool)
 }
 
-pub fn init(_flags) -> Model {
-  let episodes = case episode.decode_episodes_from_js() {
-    Ok(eps) -> eps
-    Error(_) -> []
-  }
-  Model(episodes: episodes, after_season_4: False)
+pub fn init(_) -> #(Model, Effect(Msg)) {
+  let model = Model(episodes: [], after_season_4: False)
+  let effect = fetch_episodes(on_response: LoadedEpisodes)
+
+  #(model, effect)
+}
+
+fn fetch_episodes(
+  on_response handle_response: fn(Result(List(Episode), rsvp.Error)) -> msg,
+) -> Effect(msg) {
+  let url = "/priv/static/episodes.json"
+  let handler = rsvp.expect_json(episode.episodes_decoder(), handle_response)
+
+  rsvp.get(url, handler)
 }
 
 // UPDATE ----------------------------------------------------------------------
 
 pub type Msg {
   Toggle
+  LoadedEpisodes(Result(List(Episode), rsvp.Error))
 }
 
-pub fn update(model: Model, msg: Msg) -> Model {
+pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   case msg {
-    Toggle -> Model(..model, after_season_4: !model.after_season_4)
+    Toggle -> #(
+      Model(..model, after_season_4: !model.after_season_4),
+      effect.none(),
+    )
+    LoadedEpisodes(Ok(episodes)) -> #(
+      Model(..model, episodes: episodes),
+      effect.none(),
+    )
+    LoadedEpisodes(Error(_)) -> #(model, effect.none())
   }
 }
 

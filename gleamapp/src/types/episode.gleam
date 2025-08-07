@@ -145,13 +145,6 @@ pub fn decode_episode(json_string: String) -> Result(Episode, json.DecodeError) 
   json.parse(json_string, episode_decoder())
 }
 
-pub fn decode_episodes_from_js() -> Result(List(Episode), json.DecodeError) {
-  // TODO: Load actual episodes.js file content
-  let episodes_json =
-    "[{\"season\":1,\"episode\":1,\"title\":\"Emissary\",\"title_ja\":\"聖なる神殿の謎\",\"importance\":4,\"netflix_id\":70205806,\"characters\":[{\"name\":\"Benjamin Sisko\",\"contrast\":4},{\"name\":\"Dax\",\"contrast\":4}],\"organizations\":[{\"name\":\"Federation\",\"contrast\":5},{\"name\":\"Bajor\",\"contrast\":5}]}]"
-
-  json.parse(episodes_json, episodes_decoder())
-}
 
 // Episode filtering functions (moved from json_decoder.gleam)
 
