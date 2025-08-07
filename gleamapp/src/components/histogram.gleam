@@ -1,3 +1,4 @@
+import gleam/dict
 import gleam/float
 import gleam/int
 import gleam/list
@@ -51,25 +52,41 @@ pub fn colored_cell(background_color: Color) -> Element(msg) {
 }
 
 pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  // Small histogram with CSS classes
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
 
+  let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
+
   html.div(
     [attribute.class("small-histogram")],
-    list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }),
+    dict.to_list(grouped_episodes)
+      |> list.map(fn(season_group) {
+        let #(_season, season_episodes) = season_group
+        html.div(
+          [attribute.class("season")],
+          list.map(season_episodes, fn(ep) { colored_cell(to_color(ep)) }),
+        )
+      }),
   )
 }
 
 pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  // Large histogram with CSS classes
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
 
+  let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
+
   html.div(
     [attribute.class("large-histogram")],
-    list.map(episodes, fn(ep) { colored_cell(to_color(ep)) }),
+    dict.to_list(grouped_episodes)
+      |> list.map(fn(season_group) {
+        let #(_season, season_episodes) = season_group
+        html.div(
+          [attribute.class("season")],
+          list.map(season_episodes, fn(ep) { colored_cell(to_color(ep)) }),
+        )
+      }),
   )
 }
