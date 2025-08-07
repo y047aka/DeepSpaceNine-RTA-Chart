@@ -117,35 +117,149 @@ body {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--bg-color);
-  margin-top: 1rem;
-}
-
-.episode-table th {
-  background-color: var(--hover-bg);
-  color: var(--section-title-color);
-  padding: 12px;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 1px solid var(--text-color);
+  margin: 0 auto;
 }
 
 .episode-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid hsl(0, 0%, 25%);
+  padding: 5px 6px;
+  border-bottom: 1px solid hsl(0, 0%, 20%);
 }
 
 .episode-row {
-  transition: background-color 0.2s ease;
+  height: 31px;
+  font-size: 10px;
+  transition: background-color 500ms ease;
+}
+
+/* Alternating row colors */
+.episode-row:nth-child(odd) {
+  background-color: hsl(0, 0%, 9.5%);
 }
 
 .episode-row:hover {
   background-color: var(--hover-bg);
 }
 
-/* Importance Circle */
-.importance-circle {
-  border: 1px solid var(--text-color);
-  opacity: 0.8;
+/* Episode columns */
+.episode-index {
+  text-align: center;
+  font-size: 12px;
+}
+
+.season-episode {
+  min-width: 4.5em;
+  text-align: center;
+}
+
+.importance-col {
+  text-align: center;
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title-en {
+  font-size: 12px;
+}
+
+.title-ja {
+  color: hsl(0, 0%, 40%);
+}
+
+.action-button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background-color: unset;
+  color: inherit;
+}
+
+/* Importance-based row coloring (like Elm's stepByImportance) */
+.episode-row[data-importance="5"], 
+.episode-row[data-importance="4"] {
+  color: hsl(0, 0%, 80%);
+}
+
+.episode-row[data-importance="3"] {
+  color: hsl(0, 0%, 50%);
+}
+
+.episode-row[data-importance="2"],
+.episode-row[data-importance="1"],
+.episode-row[data-importance="0"] {
+  color: hsl(0, 0%, 30%);
+}
+
+/* Importance Circle (using CSS pseudo-element like Elm) */
+.importance-circle::before {
+  content: '';
+  display: block;
+  margin: auto;
+  background-color: currentColor;
+  border-radius: 50px;
+}
+
+/* Importance circle sizes (matches Elm implementation) */
+.importance-circle[data-importance="5"]::before {
+  width: 23px;
+  height: 23px;
+}
+
+.importance-circle[data-importance="4"]::before {
+  width: 18px;
+  height: 18px;
+}
+
+.importance-circle[data-importance="3"]::before {
+  width: 13px;
+  height: 13px;
+}
+
+.importance-circle[data-importance="2"]::before {
+  width: 8px;
+  height: 8px;
+}
+
+.importance-circle[data-importance="1"]::before {
+  width: 3px;
+  height: 3px;
+}
+
+/* Episode Popover Styles */
+.episode-popover {
+  padding: 10px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 30%);
+  max-width: 300px;
+}
+
+.episode-popover div {
+  margin-bottom: 5px;
+}
+
+.episode-popover div:last-child {
+  margin-bottom: 0;
+}
+
+/* Netflix Link Styles */
+.netflix-link {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 12px;
+  text-decoration: none;
+  background-color: hsl(350, 50%, 45%);
+  color: hsl(0, 0%, 10%);
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+.netflix-link:visited {
+  background-color: hsl(350, 50%, 20%);
 }
 
 /* Checkbox Styles */

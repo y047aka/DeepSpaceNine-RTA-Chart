@@ -37,7 +37,7 @@ pub fn episode_table_structure_test() {
   // Test that episode table view function exists and returns an Element
   let _table_element = episode_table.view(test_episodes)
 
-  // Basic test: function exists and compiles 
+  // Basic test: function exists and compiles
   should.equal(True, True)
 }
 
@@ -88,7 +88,7 @@ pub fn episode_row_test() {
       organizations: [],
     )
 
-  let row_element = episode_table.episode_row(test_episode)
+  let row_element = episode_table.episode_row(test_episode, 0)
 
   // Test that episode row renders as an element
   let _row_element = row_element
