@@ -1,4 +1,3 @@
-import components/histogram.{SeasonImportance}
 import gleam/list
 import gleeunit
 import gleeunit/should
@@ -128,9 +127,9 @@ pub fn get_organization_episodes_test() {
 pub fn filter_after_season4_test() {
   // This will test filtering characters that appear after season 4
   // For now, using mock data to test the logic
-  let characters_after_s4 = [BenjaminSisko, Dax]
+  let _characters_after_s4 = [BenjaminSisko, Dax]
   // Mock: these should be shown always
-  let characters_before_s4 = [KiraNerys, Bashir]
+  let _characters_before_s4 = [KiraNerys, Bashir]
   // Mock: these should be hidden when afterSeason4=False
 
   let result_show_all = episode.should_show_character(BenjaminSisko, True)
