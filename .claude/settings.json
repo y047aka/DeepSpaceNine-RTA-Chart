@@ -12,11 +12,9 @@
       "Bash(rg:*)",
       "Bash(git:*)",
       "Bash(npm:*)",
-      "Bash(elm:*)",
       "Bash(gleam:*)",
       "WebFetch(domain:docs.anthropic.com)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:package.elm-lang.org)"
+      "WebFetch(domain:github.com)"
     ],
     "deny": [
       "Read(.env*)",
