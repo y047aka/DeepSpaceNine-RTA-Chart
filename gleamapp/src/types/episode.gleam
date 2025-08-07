@@ -160,7 +160,7 @@ pub fn get_character_episodes(
       |> result.map(fn(char_contrast) { char_contrast.contrast })
       |> result.unwrap(0)
 
-    SeasonImportance(season: episode.season, importance: contrast)
+    SeasonImportance(season: episode.season, episode: episode.episode, importance: contrast)
   })
 }
 
@@ -178,7 +178,7 @@ pub fn get_organization_episodes(
       |> result.map(fn(org_contrast) { org_contrast.contrast })
       |> result.unwrap(0)
 
-    SeasonImportance(season: episode.season, importance: contrast)
+    SeasonImportance(season: episode.season, episode: episode.episode, importance: contrast)
   })
 }
 

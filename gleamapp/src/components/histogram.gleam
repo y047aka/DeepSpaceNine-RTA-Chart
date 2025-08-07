@@ -11,7 +11,7 @@ pub type Color {
 }
 
 pub type SeasonImportance {
-  SeasonImportance(season: Int, importance: Int)
+  SeasonImportance(season: Int, episode: Int, importance: Int)
 }
 
 pub fn step_by_importance(importance: Int) -> Float {
@@ -61,11 +61,13 @@ pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
   html.div(
     [attribute.class("small-histogram")],
     dict.to_list(grouped_episodes)
+      |> list.sort(fn(a, b) { int.compare(a.0, b.0) })
       |> list.map(fn(season_group) {
         let #(_season, season_episodes) = season_group
+        let sorted_episodes = list.sort(season_episodes, fn(a, b) { int.compare(a.episode, b.episode) })
         html.div(
           [attribute.class("season")],
-          list.map(season_episodes, fn(ep) { colored_cell(to_color(ep)) }),
+          list.map(sorted_episodes, fn(ep) { colored_cell(to_color(ep)) }),
         )
       }),
   )
@@ -81,11 +83,13 @@ pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
   html.div(
     [attribute.class("large-histogram")],
     dict.to_list(grouped_episodes)
+      |> list.sort(fn(a, b) { int.compare(a.0, b.0) })
       |> list.map(fn(season_group) {
         let #(_season, season_episodes) = season_group
+        let sorted_episodes = list.sort(season_episodes, fn(a, b) { int.compare(a.episode, b.episode) })
         html.div(
           [attribute.class("season")],
-          list.map(season_episodes, fn(ep) { colored_cell(to_color(ep)) }),
+          list.map(sorted_episodes, fn(ep) { colored_cell(to_color(ep)) }),
         )
       }),
   )

@@ -100,7 +100,7 @@ pub fn view(model: Model) -> Element(Msg) {
   // Convert episodes to SeasonImportance format for main histogram
   let episodes_data = 
     list.map(model.episodes, fn(ep) {
-      histogram.SeasonImportance(season: ep.season, importance: ep.importance)
+      histogram.SeasonImportance(season: ep.season, episode: ep.episode, importance: ep.importance)
     })
 
   html.div([attribute.class("container")], [
