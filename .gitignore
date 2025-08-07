@@ -2,12 +2,3 @@
 *.ez
 /build
 erl_crash.dump
-
-# Dependency directories
-node_modules
-
-# elm-package generated files
-elm-stuff
-
-# Distribution
-build
