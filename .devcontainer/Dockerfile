@@ -5,7 +5,7 @@ FROM node:22-bookworm-slim AS node-stage
 RUN npm install -g npm@latest
 
 # Stage 2: Gleam compiler with Erlang/OTP runtime
-FROM ghcr.io/gleam-lang/gleam:v1.11.1-erlang AS gleam-stage
+FROM ghcr.io/gleam-lang/gleam:v1.12.0-erlang AS gleam-stage
 
 # Stage 3: Final development environment
 FROM mcr.microsoft.com/devcontainers/javascript-node:22
