@@ -1,5 +1,6 @@
 import gleam/int
 import gleam/list
+import gleam/string
 import lustre/attribute
 import lustre/element.{type Element}
 import lustre/element/html
@@ -50,10 +51,13 @@ pub fn episode_row(episode: Episode, index: Int) -> Element(msg) {
       // Season-Episode column (updated format: "S1 - E1")
       html.td([attribute.class("season-episode")], [
         html.text(
-          "S"
-          <> int.to_string(episode.season)
-          <> " - E"
-          <> int.to_string(episode.episode),
+          [
+            "S",
+            int.to_string(episode.season),
+            " - E",
+            int.to_string(episode.episode),
+          ]
+          |> string.concat(),
         ),
       ]),
       // Importance column with circle

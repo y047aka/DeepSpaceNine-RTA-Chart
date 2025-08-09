@@ -134,7 +134,8 @@ fn get_organizations() -> List(Organization) {
 pub fn view(model: Model) -> Element(Msg) {
   // Convert episodes to SeasonImportance format for main histogram
   let episodes_data =
-    list.map(model.episodes, fn(ep) {
+    model.episodes
+    |> list.map(fn(ep) {
       histogram.SeasonImportance(
         season: ep.season,
         episode: ep.episode,
@@ -162,31 +163,33 @@ pub fn view(model: Model) -> Element(Msg) {
       ]),
       html.div(
         [attribute.class("histograms-grid")],
-        list.map(get_characters(model.after_season_4), fn(char) {
-          let char_episodes =
-            episode.get_character_episodes(char, model.episodes)
-          html.div([attribute.class("section")], [
-            html.div([attribute.class("section-title")], [
-              html.text(character.to_string(char)),
-            ]),
-            histogram.view(character.image_hue(char), char_episodes),
-          ])
-        }),
+        get_characters(model.after_season_4)
+          |> list.map(fn(char) {
+            let char_episodes =
+              episode.get_character_episodes(char, model.episodes)
+            html.div([attribute.class("section")], [
+              html.div([attribute.class("section-title")], [
+                html.text(character.to_string(char)),
+              ]),
+              histogram.view(character.image_hue(char), char_episodes),
+            ])
+          }),
       ),
     ]),
     // Organizations section
     html.div(
       [attribute.class("histograms-grid")],
-      list.map(get_organizations(), fn(org) {
-        let org_episodes =
-          episode.get_organization_episodes(org, model.episodes)
-        html.div([attribute.class("section")], [
-          html.div([attribute.class("section-title")], [
-            html.text(organization.to_string(org)),
-          ]),
-          histogram.view(organization.image_hue(org), org_episodes),
-        ])
-      }),
+      get_organizations()
+        |> list.map(fn(org) {
+          let org_episodes =
+            episode.get_organization_episodes(org, model.episodes)
+          html.div([attribute.class("section")], [
+            html.div([attribute.class("section-title")], [
+              html.text(organization.to_string(org)),
+            ]),
+            histogram.view(organization.image_hue(org), org_episodes),
+          ])
+        }),
     ),
     // Episode table section
     html.div([attribute.class("section")], [
