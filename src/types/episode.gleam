@@ -4,6 +4,7 @@ import gleam/json
 import gleam/list
 import gleam/result
 import types/character.{type Character} as char_module
+import types/error.{type AppError}
 import types/organization.{type Organization} as org_module
 
 pub type Episode {
@@ -62,20 +63,20 @@ fn episode_primitive_to_episode(primitive: EpisodePrimitive) -> Episode {
 // Helper function to convert NameAndContrast to CharacterAndContrast
 fn name_and_contrast_to_character(
   nac: NameAndContrast,
-) -> Result(CharacterAndContrast, Nil) {
+) -> Result(CharacterAndContrast, AppError) {
   case char_module.from_string(nac.name) {
     Ok(character) -> Ok(CharacterAndContrast(character, nac.contrast))
-    Error(_) -> Error(Nil)
+    Error(_) -> Error(error.UnknownCharacterError(nac.name))
   }
 }
 
 // Helper function to convert NameAndContrast to OrganizationAndContrast
 fn name_and_contrast_to_organization(
   nac: NameAndContrast,
-) -> Result(OrganizationAndContrast, Nil) {
+) -> Result(OrganizationAndContrast, AppError) {
   case org_module.from_string(nac.name) {
     Ok(organization) -> Ok(OrganizationAndContrast(organization, nac.contrast))
-    Error(_) -> Error(Nil)
+    Error(_) -> Error(error.UnknownOrganizationError(nac.name))
   }
 }
 

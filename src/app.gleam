@@ -3,6 +3,7 @@
 import components/episode_table
 import components/histogram
 import gleam/list
+import gleam/result
 import lustre
 import lustre/attribute
 import lustre/effect.{type Effect}
@@ -12,6 +13,7 @@ import lustre/event
 import rsvp
 import types/character.{type Character}
 import types/episode.{type Episode}
+import types/error
 import types/organization.{type Organization}
 
 // MAIN ------------------------------------------------------------------------
@@ -36,10 +38,15 @@ pub fn init(_) -> #(Model, Effect(Msg)) {
 }
 
 fn fetch_episodes(
-  on_response handle_response: fn(Result(List(Episode), rsvp.Error)) -> msg,
+  on_response handle_response: fn(Result(List(Episode), error.AppError)) -> msg,
 ) -> Effect(msg) {
   let url = "./priv/static/episodes.json"
-  let handler = rsvp.expect_json(episode.episodes_decoder(), handle_response)
+  let handler =
+    rsvp.expect_json(episode.episodes_decoder(), fn(result) {
+      result
+      |> result.map_error(error.HttpRequestError)
+      |> handle_response
+    })
 
   rsvp.get(url, handler)
 }
@@ -48,7 +55,7 @@ fn fetch_episodes(
 
 pub type Msg {
   Toggle
-  LoadedEpisodes(Result(List(Episode), rsvp.Error))
+  LoadedEpisodes(Result(List(Episode), error.AppError))
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
@@ -61,7 +68,10 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       Model(..model, episodes: episodes),
       effect.none(),
     )
-    LoadedEpisodes(Error(_)) -> #(model, effect.none())
+    LoadedEpisodes(Error(app_error)) -> {
+      error.log_error(app_error)
+      #(model, effect.none())
+    }
   }
 }
 
