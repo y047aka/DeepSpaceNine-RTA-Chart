@@ -132,9 +132,17 @@ fn get_organizations() -> List(Organization) {
 // VIEW ------------------------------------------------------------------------
 
 pub fn view(model: Model) -> Element(Msg) {
-  // Convert episodes to SeasonImportance format for main histogram
+  html.div([attribute.class("container")], [
+    view_main_histogram(model.episodes),
+    view_character_section(model.after_season_4, model.episodes),
+    view_organization_section(model.episodes),
+    view_episode_table_section(model.episodes),
+  ])
+}
+
+fn view_main_histogram(episodes: List(Episode)) -> Element(Msg) {
   let episodes_data =
-    model.episodes
+    episodes
     |> list.map(fn(ep) {
       histogram.SeasonImportance(
         season: ep.season,
@@ -143,58 +151,62 @@ pub fn view(model: Model) -> Element(Msg) {
       )
     })
 
-  html.div([attribute.class("container")], [
-    // Large histogram section
-    html.div([attribute.class("section")], [
-      html.div([attribute.class("section-title")], [
-        html.text("Deep Space Nine"),
-      ]),
-      histogram.large_view(175, episodes_data),
+  html.div([attribute.class("section")], [
+    html.div([attribute.class("section-title")], [
+      html.text("Deep Space Nine"),
     ]),
-    // Characters section
-    html.div([], [
-      html.label([attribute.class("checkbox-label")], [
-        html.input([
-          attribute.type_("checkbox"),
-          attribute.checked(model.after_season_4),
-          event.on_click(Toggle),
-        ]),
-        html.text("Show more characters"),
+    histogram.large_view(175, episodes_data),
+  ])
+}
+
+fn view_character_section(
+  after_season_4: Bool,
+  episodes: List(Episode),
+) -> Element(Msg) {
+  html.div([], [
+    html.label([attribute.class("checkbox-label")], [
+      html.input([
+        attribute.type_("checkbox"),
+        attribute.checked(after_season_4),
+        event.on_click(Toggle),
       ]),
-      html.div(
-        [attribute.class("histograms-grid")],
-        get_characters(model.after_season_4)
-          |> list.map(fn(char) {
-            let char_episodes =
-              episode.get_character_episodes(char, model.episodes)
-            html.div([attribute.class("section")], [
-              html.div([attribute.class("section-title")], [
-                html.text(character.to_string(char)),
-              ]),
-              histogram.view(character.image_hue(char), char_episodes),
-            ])
-          }),
-      ),
+      html.text("Show more characters"),
     ]),
-    // Organizations section
     html.div(
       [attribute.class("histograms-grid")],
-      get_organizations()
-        |> list.map(fn(org) {
-          let org_episodes =
-            episode.get_organization_episodes(org, model.episodes)
+      get_characters(after_season_4)
+        |> list.map(fn(char) {
+          let char_episodes = episode.get_character_episodes(char, episodes)
           html.div([attribute.class("section")], [
             html.div([attribute.class("section-title")], [
-              html.text(organization.to_string(org)),
+              html.text(character.to_string(char)),
             ]),
-            histogram.view(organization.image_hue(org), org_episodes),
+            histogram.view(character.image_hue(char), char_episodes),
           ])
         }),
     ),
-    // Episode table section
-    html.div([attribute.class("section")], [
-      html.div([attribute.class("section-title")], [html.text("Episode List")]),
-      episode_table.view(model.episodes),
-    ]),
+  ])
+}
+
+fn view_organization_section(episodes: List(Episode)) -> Element(Msg) {
+  html.div(
+    [attribute.class("histograms-grid")],
+    get_organizations()
+      |> list.map(fn(org) {
+        let org_episodes = episode.get_organization_episodes(org, episodes)
+        html.div([attribute.class("section")], [
+          html.div([attribute.class("section-title")], [
+            html.text(organization.to_string(org)),
+          ]),
+          histogram.view(organization.image_hue(org), org_episodes),
+        ])
+      }),
+  )
+}
+
+fn view_episode_table_section(episodes: List(Episode)) -> Element(Msg) {
+  html.div([attribute.class("section")], [
+    html.div([attribute.class("section-title")], [html.text("Episode List")]),
+    episode_table.view(episodes),
   ])
 }
