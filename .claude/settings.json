@@ -1,5 +1,18 @@
 {
   "includeCoAuthoredBy": false,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path | select(endswith(\".gleam\"))' | xargs -I {} gleam format {}"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "mcp__ide__getDiagnostics",
@@ -21,7 +34,6 @@
       "Bash(sudo:*)",
       "Bash(chmod:*)",
       "Bash(chown:*)",
-      "Bash(rm:*)",
       "Bash(rm -rf:*)",
       "Bash(find * -delete:*)",
       "Bash(find * -exec:*)",
