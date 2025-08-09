@@ -51,7 +51,11 @@ pub fn colored_cell(background_color: Color) -> Element(msg) {
   )
 }
 
-pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
+fn render_histogram_with_class(
+  class_name: String,
+  hue: Int,
+  episodes: List(SeasonImportance),
+) -> Element(msg) {
   let to_color = fn(ep: SeasonImportance) {
     hsl_color(hue, 0.8, step_by_importance(ep.importance))
   }
@@ -59,44 +63,28 @@ pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
   let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
 
   html.div(
-    [attribute.class("small-histogram")],
-    dict.to_list(grouped_episodes)
+    [attribute.class(class_name)],
+    grouped_episodes
+      |> dict.to_list
       |> list.sort(fn(a, b) { int.compare(a.0, b.0) })
       |> list.map(fn(season_group) {
         let #(_season, season_episodes) = season_group
         let sorted_episodes =
-          list.sort(season_episodes, fn(a, b) {
-            int.compare(a.episode, b.episode)
-          })
+          season_episodes
+          |> list.sort(fn(a, b) { int.compare(a.episode, b.episode) })
         html.div(
           [attribute.class("season")],
-          list.map(sorted_episodes, fn(ep) { colored_cell(to_color(ep)) }),
+          sorted_episodes
+            |> list.map(fn(ep) { colored_cell(to_color(ep)) }),
         )
       }),
   )
 }
 
+pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
+  render_histogram_with_class("small-histogram", hue, episodes)
+}
+
 pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  let to_color = fn(ep: SeasonImportance) {
-    hsl_color(hue, 0.8, step_by_importance(ep.importance))
-  }
-
-  let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
-
-  html.div(
-    [attribute.class("large-histogram")],
-    dict.to_list(grouped_episodes)
-      |> list.sort(fn(a, b) { int.compare(a.0, b.0) })
-      |> list.map(fn(season_group) {
-        let #(_season, season_episodes) = season_group
-        let sorted_episodes =
-          list.sort(season_episodes, fn(a, b) {
-            int.compare(a.episode, b.episode)
-          })
-        html.div(
-          [attribute.class("season")],
-          list.map(sorted_episodes, fn(ep) { colored_cell(to_color(ep)) }),
-        )
-      }),
-  )
+  render_histogram_with_class("large-histogram", hue, episodes)
 }
