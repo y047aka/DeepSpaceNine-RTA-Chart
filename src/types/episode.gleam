@@ -188,12 +188,3 @@ pub fn get_organization_episodes(
     )
   })
 }
-
-pub fn should_show_character(
-  _character: Character,
-  _after_season_4: Bool,
-) -> Bool {
-  // TDD Green Phase: Basic implementation - for now show all characters
-  // TODO: Implement actual season-4 based filtering logic
-  True
-}
