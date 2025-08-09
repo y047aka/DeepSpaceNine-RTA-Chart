@@ -13,7 +13,8 @@ Intelligently create or update steering documents in `.kiro/steering/` to mainta
 - Product overview: !`[ -f ".kiro/steering/product.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
 - Technology stack: !`[ -f ".kiro/steering/tech.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
 - Project structure: !`[ -f ".kiro/steering/structure.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
-- Custom steering files: !`if [ -d ".kiro/steering" ]; then count=$(find .kiro/steering -maxdepth 1 -type f -name '*.md' ! -name 'product.md' ! -name 'tech.md' ! -name 'structure.md' | grep -c .); if [ "$count" -gt 0 ]; then echo "🔧 $count custom file(s) found - Will be preserved"; else echo "📋 No custom files"; fi; else echo "📋 No steering directory yet"; fi`
+- Steering directory status: !`[ -d ".kiro/steering" ] && echo "📁 Directory exists" || echo "📋 No steering directory yet"`
+- Custom steering files: !`if [ -d ".kiro/steering" ]; then find .kiro/steering -maxdepth 1 -type f -name '*.md' -not -name 'product.md' -not -name 'tech.md' -not -name 'structure.md' | wc -l | awk '$1 > 0 { print "🔧", $1, "custom file(s) found - Will be preserved" } $1 == 0 { print "📋 No custom files" }'; else echo "📋 No custom files"; fi`
 
 ## Project Analysis
 
