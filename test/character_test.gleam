@@ -32,14 +32,25 @@ pub fn character_from_string_test() {
 }
 
 pub fn character_image_hue_test() {
+  // Federation characters use role-based hue
   character.image_hue(character.BenjaminSisko)
   |> should.equal(350)
 
   character.image_hue(character.Dax)
   |> should.equal(190)
 
+  // Non-Federation characters use species-based hue
   character.image_hue(character.KiraNerys)
   |> should.equal(10)
+
+  character.image_hue(character.Quark)
+  |> should.equal(25)
+
+  character.image_hue(character.Garak)
+  |> should.equal(175)
+
+  character.image_hue(character.Gowron)
+  |> should.equal(120)
 }
 
 // CharacterMetadata tests

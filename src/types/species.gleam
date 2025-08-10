@@ -52,3 +52,21 @@ pub fn from_string(s: String) -> Result(Species, String) {
     _ -> Error("Unknown species: " <> s)
   }
 }
+
+pub fn to_hue(species: Species) -> Int {
+  case species {
+    Human -> 220
+    Bajoran -> 10
+    Cardassian -> 175
+    Klingon -> 120
+    Ferengi -> 25
+    Trill -> 280
+    Changeling -> 300
+    Vorta -> 270
+    JemHadar -> 270
+    Vulcan -> 160
+    Andorian -> 200
+    Betazoid -> 240
+    ElAurian -> 320
+  }
+}

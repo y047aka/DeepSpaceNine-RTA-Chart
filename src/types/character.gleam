@@ -109,7 +109,7 @@ pub fn image_hue(character: Character) -> Int {
   let metadata = get_metadata(character)
   case metadata.organization {
     organization.Federation(role) -> role.to_hue(role)
-    org -> organization.to_hue(org)
+    _ -> species.to_hue(metadata.species)
   }
 }
 

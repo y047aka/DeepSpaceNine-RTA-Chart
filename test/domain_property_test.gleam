@@ -4,6 +4,7 @@ import gleeunit/should
 import types/character
 import types/organization
 import types/role
+import types/species
 
 pub fn main() {
   gleeunit.main()
@@ -166,11 +167,12 @@ pub fn hue_calculation_consistency_property() {
     let hue = character.image_hue(char)
     let role = character.get_role(char)
     let org = character.get_organization(char)
+    let species = character.get_species(char)
 
-    // Hue should be calculated consistently from role/organization
+    // Hue should be calculated consistently from role/species
     let expected_hue = case org {
       organization.Federation(_) -> role.to_hue(role)
-      _ -> organization.to_hue(org)
+      _ -> species.to_hue(species)
     }
 
     hue |> should.equal(expected_hue)
