@@ -78,10 +78,7 @@ pub fn get_organization_episodes_test() {
       ],
       organizations: [
         episode.OrganizationAndContrast(organization.Federation(""), 4),
-        episode.OrganizationAndContrast(
-          organization.BajoranProvisionalGov(""),
-          3,
-        ),
+        episode.OrganizationAndContrast(organization.Bajor(""), 3),
       ],
     ),
     episode.Episode(

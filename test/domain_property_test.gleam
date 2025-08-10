@@ -77,7 +77,7 @@ fn is_valid_role_organization_combination(
         _ -> False
       }
     }
-    organization.BajoranProvisionalGov(_) -> {
+    organization.Bajor(_) -> {
       case role {
         role.BajoranMilitia | role.BajoranReligious -> True
         _ -> False
@@ -107,13 +107,7 @@ fn is_valid_role_organization_combination(
         _ -> False
       }
     }
-    organization.BajoranReligion -> {
-      case role {
-        role.BajoranReligious -> True
-        _ -> False
-      }
-    }
-    organization.ProphetsTemple -> {
+    organization.Prophets -> {
       case role {
         role.BajoranReligious -> True
         _ -> False

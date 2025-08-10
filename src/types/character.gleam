@@ -138,7 +138,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: KiraNerys,
         species: species.Bajoran,
-        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+        organization: organization.Bajor(role.BajoranMilitia),
       )
     MilesObrien ->
       CharacterMetadata(
@@ -192,13 +192,13 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Winn,
         species: species.Bajoran,
-        organization: organization.BajoranReligion,
+        organization: organization.Bajor(role.BajoranReligious),
       )
     Bareil ->
       CharacterMetadata(
         character: Bareil,
         species: species.Bajoran,
-        organization: organization.BajoranReligion,
+        organization: organization.Bajor(role.BajoranReligious),
       )
     Garak ->
       CharacterMetadata(
@@ -252,7 +252,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Shakaar,
         species: species.Bajoran,
-        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+        organization: organization.Bajor(role.BajoranMilitia),
       )
     Ziyal ->
       CharacterMetadata(
@@ -291,13 +291,12 @@ pub fn get_role(character: Character) -> Role {
   let metadata = get_metadata(character)
   case metadata.organization {
     organization.Federation(role) -> role
-    organization.BajoranProvisionalGov(role) -> role
+    organization.Bajor(role) -> role
     organization.DominionForces(role) -> role
     organization.FerengiAlliance -> role.FerengiCommerce
     organization.CardassianUnion -> role.CardassianMilitary
     organization.KlingonEmpire -> role.KlingonWarrior
-    organization.BajoranReligion -> role.BajoranReligious
-    organization.ProphetsTemple -> role.BajoranReligious
+    organization.Prophets -> role.BajoranReligious
     organization.TrillSymbiosisCommission -> role.StarfleetScience
     organization.Maquis -> role.StarfleetSecurity
     organization.MirrorUniverse -> role.StarfleetCommand

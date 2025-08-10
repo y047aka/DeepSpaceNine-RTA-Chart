@@ -118,8 +118,8 @@ fn get_organizations() -> List(Organization(String)) {
   [
     organization.Federation(""),
     organization.TrillSymbiosisCommission,
-    organization.BajoranProvisionalGov(""),
-    organization.ProphetsTemple,
+    organization.Bajor(""),
+    organization.Prophets,
     organization.CardassianUnion,
     organization.FerengiAlliance,
     organization.KlingonEmpire,

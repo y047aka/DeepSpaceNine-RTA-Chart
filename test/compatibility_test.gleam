@@ -31,15 +31,15 @@ pub fn public_api_consistency_test() {
   organization.to_string(organization.Federation(role.StarfleetCommand))
   |> should.equal("Federation")
 
-  organization.to_string(organization.BajoranProvisionalGov(role.BajoranMilitia))
-  |> should.equal("Bajoran Provisional Government")
+  organization.to_string(organization.Bajor(role.BajoranMilitia))
+  |> should.equal("Bajor")
 
   // Organization from_string consistency
   organization.from_string("Federation")
   |> should.equal(Ok(organization.Federation(member_role: "")))
 
-  organization.from_string("Bajoran Provisional Government")
-  |> should.equal(Ok(organization.BajoranProvisionalGov(member_role: "")))
+  organization.from_string("Bajor")
+  |> should.equal(Ok(organization.Bajor(member_role: "")))
 }
 
 // Backward compatible hue calculation tests
@@ -56,7 +56,7 @@ pub fn backward_compatible_hue_test() {
 
   let kira_hue = character.image_hue(character.KiraNerys)
   kira_hue |> should.equal(10)
-  // Bajoran Provisional Government
+  // Bajor
 
   let quark_hue = character.image_hue(character.Quark)
   quark_hue |> should.equal(25)
@@ -111,10 +111,7 @@ pub fn episode_backward_compatibility_test() {
       ],
       organizations: [
         episode.OrganizationAndContrast(organization.Federation(""), 4),
-        episode.OrganizationAndContrast(
-          organization.BajoranProvisionalGov(""),
-          3,
-        ),
+        episode.OrganizationAndContrast(organization.Bajor(""), 3),
       ],
     ),
   ]

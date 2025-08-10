@@ -31,7 +31,7 @@ pub fn episode_table_structure_test() {
       netflix_id: 70_205_809,
       characters: [CharacterAndContrast(Dax, 3)],
       organizations: [
-        OrganizationAndContrast(organization.BajoranProvisionalGov(""), 4),
+        OrganizationAndContrast(organization.Bajor(""), 4),
       ],
     ),
   ]

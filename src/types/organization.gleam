@@ -4,12 +4,11 @@ pub type Organization(role) {
   CardassianUnion
   KlingonEmpire
   DominionForces(member_role: role)
-  BajoranProvisionalGov(member_role: role)
+  Bajor(member_role: role)
   FerengiAlliance
 
   // Religious/Cultural Organizations
-  BajoranReligion
-  ProphetsTemple
+  Prophets
   TrillSymbiosisCommission
 
   // Special Organizations
@@ -29,10 +28,9 @@ pub fn to_string(org: Organization(role)) -> String {
     CardassianUnion -> "Cardassian Union"
     KlingonEmpire -> "Klingon Empire"
     DominionForces(_) -> "Dominion"
-    BajoranProvisionalGov(_) -> "Bajoran Provisional Government"
+    Bajor(_) -> "Bajor"
     FerengiAlliance -> "Ferengi Alliance"
-    BajoranReligion -> "Bajoran Religion"
-    ProphetsTemple -> "Prophets Temple"
+    Prophets -> "Prophets"
     TrillSymbiosisCommission -> "Trill Symbiosis Commission"
     Maquis -> "Maquis"
     MirrorUniverse -> "Mirror Universe"
@@ -47,11 +45,9 @@ pub fn from_string(s: String) -> Result(Organization(String), String) {
     "Cardassian Union" | "Cardassia" -> Ok(CardassianUnion)
     "Klingon Empire" | "Klingon" -> Ok(KlingonEmpire)
     "Dominion" -> Ok(DominionForces(member_role: ""))
-    "Bajoran Provisional Government" | "Bajor" ->
-      Ok(BajoranProvisionalGov(member_role: ""))
+    "Bajor" -> Ok(Bajor(member_role: ""))
+    "Prophets" | "Prophet" -> Ok(Prophets)
     "Ferengi Alliance" | "Ferengi" -> Ok(FerengiAlliance)
-    "Bajoran Religion" -> Ok(BajoranReligion)
-    "Prophets Temple" | "Prophet" -> Ok(ProphetsTemple)
     "Trill Symbiosis Commission" | "Trill" -> Ok(TrillSymbiosisCommission)
     "Maquis" -> Ok(Maquis)
     "Mirror Universe" -> Ok(MirrorUniverse)
@@ -76,10 +72,9 @@ pub fn to_hue(org: Organization(role)) -> Int {
     CardassianUnion -> cardassian
     KlingonEmpire -> klingon
     DominionForces(_) -> dominion
-    BajoranProvisionalGov(_) -> bajoran
+    Bajor(_) -> bajoran
     FerengiAlliance -> ferengi
-    BajoranReligion -> bajoran
-    ProphetsTemple -> bajoran
+    Prophets -> bajoran
     TrillSymbiosisCommission -> science_or_medical
     Maquis -> command
     MirrorUniverse -> command

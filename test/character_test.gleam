@@ -91,7 +91,7 @@ pub fn get_organization_test() {
   |> should.equal(organization.Federation(role.StarfleetCommand))
 
   character.get_organization(character.KiraNerys)
-  |> should.equal(organization.BajoranProvisionalGov(role.BajoranMilitia))
+  |> should.equal(organization.Bajor(role.BajoranMilitia))
 }
 // Note: Backward compatibility tests have been moved to test/compatibility_test.gleam
 // for better test organization as per specification requirements
