@@ -5,7 +5,7 @@ import gleam/list
 import gleam/result
 import types/character.{type Character} as char_module
 import types/error.{type AppError}
-import types/organization.{type Organization} as org_module
+import types/organization.{type Organization}
 
 pub type Episode {
   Episode(
@@ -25,7 +25,7 @@ pub type CharacterAndContrast {
 }
 
 pub type OrganizationAndContrast {
-  OrganizationAndContrast(organization: Organization, contrast: Int)
+  OrganizationAndContrast(organization: Organization(String), contrast: Int)
 }
 
 pub fn episodes_decoder() -> decode.Decoder(List(Episode)) {
@@ -74,7 +74,7 @@ fn name_and_contrast_to_character(
 fn name_and_contrast_to_organization(
   nac: NameAndContrast,
 ) -> Result(OrganizationAndContrast, AppError) {
-  case org_module.from_string(nac.name) {
+  case organization.from_string(nac.name) {
     Ok(organization) -> Ok(OrganizationAndContrast(organization, nac.contrast))
     Error(_) -> Error(error.UnknownOrganizationError(nac.name))
   }
@@ -169,7 +169,7 @@ pub fn get_character_episodes(
 }
 
 pub fn get_organization_episodes(
-  organization: Organization,
+  organization: Organization(String),
   episodes: List(Episode),
 ) -> List(SeasonImportance) {
   episodes
@@ -177,7 +177,8 @@ pub fn get_organization_episodes(
     let contrast =
       episode.organizations
       |> list.find(fn(org_contrast) {
-        org_contrast.organization == organization
+        organization.to_string(org_contrast.organization)
+        == organization.to_string(organization)
       })
       |> result.map(fn(org_contrast) { org_contrast.contrast })
       |> result.unwrap(0)

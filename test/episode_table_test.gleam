@@ -3,7 +3,7 @@ import gleeunit
 import gleeunit/should
 import types/character.{BenjaminSisko, Dax}
 import types/episode.{CharacterAndContrast, Episode, OrganizationAndContrast}
-import types/organization.{Bajor, Federation}
+import types/organization
 
 pub fn main() {
   gleeunit.main()
@@ -20,7 +20,7 @@ pub fn episode_table_structure_test() {
       importance: 4,
       netflix_id: 70_205_806,
       characters: [CharacterAndContrast(BenjaminSisko, 4)],
-      organizations: [OrganizationAndContrast(Federation, 5)],
+      organizations: [OrganizationAndContrast(organization.Federation(""), 5)],
     ),
     Episode(
       season: 1,
@@ -30,7 +30,9 @@ pub fn episode_table_structure_test() {
       importance: 3,
       netflix_id: 70_205_809,
       characters: [CharacterAndContrast(Dax, 3)],
-      organizations: [OrganizationAndContrast(Bajor, 4)],
+      organizations: [
+        OrganizationAndContrast(organization.BajoranProvisionalGov(""), 4),
+      ],
     ),
   ]
 

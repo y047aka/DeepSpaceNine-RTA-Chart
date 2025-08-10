@@ -6,61 +6,46 @@ import types/character
 import types/episode
 import types/organization
 import types/role
-import types/species
 
 pub fn main() {
   gleeunit.main()
 }
 
-// Legacy organization mapping compatibility tests
-pub fn legacy_organization_mapping_test() {
-  character.legacy_organization_mapping("Federation")
-  |> should.equal(Ok(organization.GenericFederation(role.StarfleetOperations)))
+// Public API consistency tests
+pub fn public_api_consistency_test() {
+  // Character to_string consistency
+  character.to_string(character.BenjaminSisko)
+  |> should.equal("Benjamin Sisko")
 
-  character.legacy_organization_mapping("Bajor")
-  |> should.equal(Ok(organization.BajoranProvisionalGov(role.BajoranMilitia)))
+  character.to_string(character.KiraNerys)
+  |> should.equal("Kira Nerys")
 
-  character.legacy_organization_mapping("Cardassia")
-  |> should.equal(Ok(organization.CardassianUnion))
+  // Character from_string consistency
+  character.from_string("Benjamin Sisko")
+  |> should.equal(Ok(character.BenjaminSisko))
 
-  character.legacy_organization_mapping("Klingon")
-  |> should.equal(Ok(organization.KlingonEmpire))
+  character.from_string("Kira Nerys")
+  |> should.equal(Ok(character.KiraNerys))
 
-  character.legacy_organization_mapping("Ferengi")
-  |> should.equal(Ok(organization.FerengiAlliance))
+  // Organization to_string consistency
+  organization.to_string(organization.Federation(role.StarfleetCommand))
+  |> should.equal("Federation")
 
-  character.legacy_organization_mapping("Dominion")
-  |> should.equal(Ok(organization.DominionForces(role.DominionService)))
+  organization.to_string(organization.BajoranProvisionalGov(role.BajoranMilitia))
+  |> should.equal("Bajoran Provisional Government")
 
-  character.legacy_organization_mapping("Maquis")
-  |> should.equal(Ok(organization.GenericMaquis))
-}
+  // Organization from_string consistency
+  organization.from_string("Federation")
+  |> should.equal(Ok(organization.Federation(member_role: "")))
 
-pub fn legacy_species_from_organization_test() {
-  character.legacy_species_from_organization("Trill")
-  |> should.equal(Ok(species.Trill))
-
-  character.legacy_species_from_organization("Bajor")
-  |> should.equal(Ok(species.Bajoran))
-
-  character.legacy_species_from_organization("Cardassia")
-  |> should.equal(Ok(species.Cardassian))
-
-  character.legacy_species_from_organization("Ferengi")
-  |> should.equal(Ok(species.Ferengi))
-
-  character.legacy_species_from_organization("Klingon")
-  |> should.equal(Ok(species.Klingon))
-
-  character.legacy_species_from_organization("Federation")
-  |> should.equal(Ok(species.Human))
-  // Default assumption
+  organization.from_string("Bajoran Provisional Government")
+  |> should.equal(Ok(organization.BajoranProvisionalGov(member_role: "")))
 }
 
 // Backward compatible hue calculation tests
 pub fn backward_compatible_hue_test() {
-  // Test that image_hue function still produces valid results
-  // even with the new metadata system
+  // Test that image_hue function produces expected results
+  // with the new metadata system
   let sisko_hue = character.image_hue(character.BenjaminSisko)
   sisko_hue |> should.equal(350)
   // Command role
@@ -80,37 +65,6 @@ pub fn backward_compatible_hue_test() {
   let worf_hue = character.image_hue(character.Worf)
   worf_hue |> should.equal(350)
   // Starfleet Command
-}
-
-// Public API consistency tests
-pub fn public_api_consistency_test() {
-  // Character to_string consistency
-  character.to_string(character.BenjaminSisko)
-  |> should.equal("Benjamin Sisko")
-
-  character.to_string(character.KiraNerys)
-  |> should.equal("Kira Nerys")
-
-  // Character from_string consistency
-  character.from_string("Benjamin Sisko")
-  |> should.equal(Ok(character.BenjaminSisko))
-
-  character.from_string("Kira Nerys")
-  |> should.equal(Ok(character.KiraNerys))
-
-  // Organization to_string consistency (legacy)
-  organization.to_string(organization.Federation)
-  |> should.equal("Federation")
-
-  organization.to_string(organization.Bajor)
-  |> should.equal("Bajor")
-
-  // Organization from_string consistency (legacy)
-  organization.from_string("Federation")
-  |> should.equal(Ok(organization.Federation))
-
-  organization.from_string("Bajor")
-  |> should.equal(Ok(organization.Bajor))
 }
 
 // Histogram hue value integration test
@@ -156,8 +110,11 @@ pub fn episode_backward_compatibility_test() {
         episode.CharacterAndContrast(character.Dax, 2),
       ],
       organizations: [
-        episode.OrganizationAndContrast(organization.Federation, 4),
-        episode.OrganizationAndContrast(organization.Bajor, 3),
+        episode.OrganizationAndContrast(organization.Federation(""), 4),
+        episode.OrganizationAndContrast(
+          organization.BajoranProvisionalGov(""),
+          3,
+        ),
       ],
     ),
   ]
@@ -170,9 +127,12 @@ pub fn episode_backward_compatibility_test() {
     histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
   ])
 
-  // Test organization episodes functionality
+  // Test organization episodes functionality (now string-based)
   let federation_episodes =
-    episode.get_organization_episodes(organization.Federation, test_episodes)
+    episode.get_organization_episodes(
+      organization.Federation(""),
+      test_episodes,
+    )
   federation_episodes
   |> should.equal([
     histogram.SeasonImportance(season: 1, episode: 1, importance: 4),

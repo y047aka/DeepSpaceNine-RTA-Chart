@@ -1,20 +1,6 @@
-// Legacy Organization type for backward compatibility
-pub type Organization {
-  Federation
-  Trill
-  Bajor
-  Prophet
-  Cardassia
-  Ferengi
-  Klingon
-  Maquis
-  Dominion
-  MirrorUniverse
-}
-
-// Generic Organization type with role constraints
-pub type GenericOrganization(role) {
-  GenericFederation(member_role: role)
+// Organization type with role constraints
+pub type Organization(role) {
+  Federation(member_role: role)
   CardassianUnion
   KlingonEmpire
   DominionForces(member_role: role)
@@ -27,72 +13,16 @@ pub type GenericOrganization(role) {
   TrillSymbiosisCommission
 
   // Special Organizations
-  GenericMaquis
-  GenericMirrorUniverse
+  Maquis
+  MirrorUniverse
 
   // Independent
   Independent
 }
 
-pub fn to_string(organization: Organization) -> String {
-  case organization {
-    Federation -> "Federation"
-    Trill -> "Trill"
-    Bajor -> "Bajor"
-    Prophet -> "Prophet"
-    Cardassia -> "Cardassia"
-    Ferengi -> "Ferengi"
-    Klingon -> "Klingon"
-    Maquis -> "Maquis"
-    Dominion -> "Dominion"
-    MirrorUniverse -> "Mirror Universe"
-  }
-}
-
-pub fn from_string(s: String) -> Result(Organization, String) {
-  case s {
-    "Federation" -> Ok(Federation)
-    "Trill" -> Ok(Trill)
-    "Bajor" -> Ok(Bajor)
-    "Prophet" -> Ok(Prophet)
-    "Cardassia" -> Ok(Cardassia)
-    "Ferengi" -> Ok(Ferengi)
-    "Klingon" -> Ok(Klingon)
-    "Maquis" -> Ok(Maquis)
-    "Dominion" -> Ok(Dominion)
-    "Mirror Universe" -> Ok(MirrorUniverse)
-    _ -> Error("Unknown organization: " <> s)
-  }
-}
-
-pub fn image_hue(organization: Organization) -> Int {
-  let command = 350
-  let science_or_medical = 190
-  let federation = 220
-  let bajoran = 10
-  let cardassian = 175
-  let klingon = 120
-  let ferengi = 25
-  let dominion = 270
-
-  case organization {
-    Federation -> federation
-    Trill -> science_or_medical
-    Bajor -> bajoran
-    Prophet -> bajoran
-    Cardassia -> cardassian
-    Ferengi -> ferengi
-    Klingon -> klingon
-    Maquis -> command
-    Dominion -> dominion
-    MirrorUniverse -> command
-  }
-}
-
-// GenericOrganization functions
-pub fn generic_to_string(org: GenericOrganization(role)) -> String {
+pub fn to_string(org: Organization(role)) -> String {
   case org {
-    GenericFederation(_) -> "Federation"
+    Federation(_) -> "Federation"
     CardassianUnion -> "Cardassian Union"
     KlingonEmpire -> "Klingon Empire"
     DominionForces(_) -> "Dominion"
@@ -101,34 +31,32 @@ pub fn generic_to_string(org: GenericOrganization(role)) -> String {
     BajoranReligion -> "Bajoran Religion"
     ProphetsTemple -> "Prophets Temple"
     TrillSymbiosisCommission -> "Trill Symbiosis Commission"
-    GenericMaquis -> "Maquis"
-    GenericMirrorUniverse -> "Mirror Universe"
+    Maquis -> "Maquis"
+    MirrorUniverse -> "Mirror Universe"
     Independent -> "Independent"
   }
 }
 
-pub fn generic_from_string(
-  s: String,
-) -> Result(GenericOrganization(String), String) {
+pub fn from_string(s: String) -> Result(Organization(String), String) {
   case s {
-    "Federation" -> Ok(GenericFederation(member_role: ""))
-    "Cardassian Union" -> Ok(CardassianUnion)
-    "Klingon Empire" -> Ok(KlingonEmpire)
+    "Federation" -> Ok(Federation(member_role: ""))
+    "Cardassian Union" | "Cardassia" -> Ok(CardassianUnion)
+    "Klingon Empire" | "Klingon" -> Ok(KlingonEmpire)
     "Dominion" -> Ok(DominionForces(member_role: ""))
-    "Bajoran Provisional Government" ->
+    "Bajoran Provisional Government" | "Bajor" ->
       Ok(BajoranProvisionalGov(member_role: ""))
-    "Ferengi Alliance" -> Ok(FerengiAlliance)
+    "Ferengi Alliance" | "Ferengi" -> Ok(FerengiAlliance)
     "Bajoran Religion" -> Ok(BajoranReligion)
-    "Prophets Temple" -> Ok(ProphetsTemple)
-    "Trill Symbiosis Commission" -> Ok(TrillSymbiosisCommission)
-    "Maquis" -> Ok(GenericMaquis)
-    "Mirror Universe" -> Ok(GenericMirrorUniverse)
+    "Prophets Temple" | "Prophet" -> Ok(ProphetsTemple)
+    "Trill Symbiosis Commission" | "Trill" -> Ok(TrillSymbiosisCommission)
+    "Maquis" -> Ok(Maquis)
+    "Mirror Universe" -> Ok(MirrorUniverse)
     "Independent" -> Ok(Independent)
     _ -> Error("Unknown organization: " <> s)
   }
 }
 
-pub fn generic_to_hue(org: GenericOrganization(role)) -> Int {
+pub fn to_hue(org: Organization(role)) -> Int {
   let command = 350
   let science_or_medical = 190
   let federation = 220
@@ -139,7 +67,7 @@ pub fn generic_to_hue(org: GenericOrganization(role)) -> Int {
   let dominion = 270
 
   case org {
-    GenericFederation(_) -> federation
+    Federation(_) -> federation
     CardassianUnion -> cardassian
     KlingonEmpire -> klingon
     DominionForces(_) -> dominion
@@ -148,8 +76,8 @@ pub fn generic_to_hue(org: GenericOrganization(role)) -> Int {
     BajoranReligion -> bajoran
     ProphetsTemple -> bajoran
     TrillSymbiosisCommission -> science_or_medical
-    GenericMaquis -> command
-    GenericMirrorUniverse -> command
+    Maquis -> command
+    MirrorUniverse -> command
     Independent -> federation
   }
 }

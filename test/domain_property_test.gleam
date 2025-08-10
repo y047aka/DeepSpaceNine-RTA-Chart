@@ -62,10 +62,10 @@ pub fn all_characters_have_metadata_property() {
 // Helper function to validate role-organization combination
 fn is_valid_role_organization_combination(
   role: role.Role,
-  org: organization.GenericOrganization(role.Role),
+  org: organization.Organization(role.Role),
 ) -> Bool {
   case org {
-    organization.GenericFederation(_) -> {
+    organization.Federation(_) -> {
       case role {
         role.StarfleetCommand
         | role.StarfleetEngineering
@@ -124,13 +124,13 @@ fn is_valid_role_organization_combination(
         _ -> False
       }
     }
-    organization.GenericMaquis -> {
+    organization.Maquis -> {
       case role {
         role.StarfleetSecurity -> True
         _ -> False
       }
     }
-    organization.GenericMirrorUniverse -> {
+    organization.MirrorUniverse -> {
       case role {
         role.StarfleetCommand -> True
         _ -> False
@@ -169,8 +169,8 @@ pub fn hue_calculation_consistency_property() {
 
     // Hue should be calculated consistently from role/organization
     let expected_hue = case org {
-      organization.GenericFederation(_) -> role.to_hue(role)
-      _ -> organization.generic_to_hue(org)
+      organization.Federation(_) -> role.to_hue(role)
+      _ -> organization.to_hue(org)
     }
 
     hue |> should.equal(expected_hue)

@@ -1,4 +1,4 @@
-import types/organization.{type GenericOrganization}
+import types/organization.{type Organization}
 import types/role.{type Role}
 import types/species.{type Species}
 
@@ -36,7 +36,7 @@ pub type CharacterMetadata {
   CharacterMetadata(
     character: Character,
     species: Species,
-    organization: GenericOrganization(Role),
+    organization: Organization(Role),
   )
 }
 
@@ -108,8 +108,8 @@ pub fn from_string(s: String) -> Result(Character, String) {
 pub fn image_hue(character: Character) -> Int {
   let metadata = get_metadata(character)
   case metadata.organization {
-    organization.GenericFederation(role) -> role.to_hue(role)
-    org -> organization.generic_to_hue(org)
+    organization.Federation(role) -> role.to_hue(role)
+    org -> organization.to_hue(org)
   }
 }
 
@@ -120,7 +120,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: BenjaminSisko,
         species: species.Human,
-        organization: organization.GenericFederation(role.StarfleetCommand),
+        organization: organization.Federation(role.StarfleetCommand),
       )
     JakeSisko ->
       CharacterMetadata(
@@ -132,7 +132,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Dax,
         species: species.Trill,
-        organization: organization.GenericFederation(role.StarfleetScience),
+        organization: organization.Federation(role.StarfleetScience),
       )
     KiraNerys ->
       CharacterMetadata(
@@ -144,7 +144,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: MilesObrien,
         species: species.Human,
-        organization: organization.GenericFederation(role.StarfleetEngineering),
+        organization: organization.Federation(role.StarfleetEngineering),
       )
     KeikoObrien ->
       CharacterMetadata(
@@ -156,19 +156,19 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Bashir,
         species: species.Human,
-        organization: organization.GenericFederation(role.StarfleetMedical),
+        organization: organization.Federation(role.StarfleetMedical),
       )
     Odo ->
       CharacterMetadata(
         character: Odo,
         species: species.Changeling,
-        organization: organization.GenericFederation(role.StarfleetSecurity),
+        organization: organization.Federation(role.StarfleetSecurity),
       )
     Worf ->
       CharacterMetadata(
         character: Worf,
         species: species.Klingon,
-        organization: organization.GenericFederation(role.StarfleetCommand),
+        organization: organization.Federation(role.StarfleetCommand),
       )
     Quark ->
       CharacterMetadata(
@@ -222,7 +222,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: MichaelEddington,
         species: species.Human,
-        organization: organization.GenericFederation(role.StarfleetSecurity),
+        organization: organization.Federation(role.StarfleetSecurity),
       )
     KasidyYates ->
       CharacterMetadata(
@@ -290,7 +290,7 @@ pub fn get_species(character: Character) -> Species {
 pub fn get_role(character: Character) -> Role {
   let metadata = get_metadata(character)
   case metadata.organization {
-    organization.GenericFederation(role) -> role
+    organization.Federation(role) -> role
     organization.BajoranProvisionalGov(role) -> role
     organization.DominionForces(role) -> role
     organization.FerengiAlliance -> role.FerengiCommerce
@@ -299,48 +299,13 @@ pub fn get_role(character: Character) -> Role {
     organization.BajoranReligion -> role.BajoranReligious
     organization.ProphetsTemple -> role.BajoranReligious
     organization.TrillSymbiosisCommission -> role.StarfleetScience
-    organization.GenericMaquis -> role.StarfleetSecurity
-    organization.GenericMirrorUniverse -> role.StarfleetCommand
+    organization.Maquis -> role.StarfleetSecurity
+    organization.MirrorUniverse -> role.StarfleetCommand
     organization.Independent -> role.StarfleetOperations
   }
 }
 
-pub fn get_organization(character: Character) -> GenericOrganization(Role) {
+pub fn get_organization(character: Character) -> Organization(Role) {
   let metadata = get_metadata(character)
   metadata.organization
-}
-
-// Legacy compatibility layer
-pub fn legacy_organization_mapping(
-  legacy_org_name: String,
-) -> Result(GenericOrganization(Role), String) {
-  case legacy_org_name {
-    "Federation" -> Ok(organization.GenericFederation(role.StarfleetOperations))
-    "Trill" -> Ok(organization.TrillSymbiosisCommission)
-    "Bajor" -> Ok(organization.BajoranProvisionalGov(role.BajoranMilitia))
-    "Prophet" -> Ok(organization.BajoranReligion)
-    "Cardassia" -> Ok(organization.CardassianUnion)
-    "Ferengi" -> Ok(organization.FerengiAlliance)
-    "Klingon" -> Ok(organization.KlingonEmpire)
-    "Maquis" -> Ok(organization.GenericMaquis)
-    "Dominion" -> Ok(organization.DominionForces(role.DominionService))
-    "Mirror Universe" -> Ok(organization.GenericMirrorUniverse)
-    _ -> Error("Unknown legacy organization: " <> legacy_org_name)
-  }
-}
-
-pub fn legacy_species_from_organization(
-  legacy_org_name: String,
-) -> Result(Species, String) {
-  case legacy_org_name {
-    "Trill" -> Ok(species.Trill)
-    "Bajor" -> Ok(species.Bajoran)
-    "Cardassia" -> Ok(species.Cardassian)
-    "Ferengi" -> Ok(species.Ferengi)
-    "Klingon" -> Ok(species.Klingon)
-    "Federation" -> Ok(species.Human)
-    // Default assumption
-    _ -> Ok(species.Human)
-    // Safe default
-  }
 }

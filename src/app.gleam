@@ -114,17 +114,17 @@ fn get_characters(after_season_4: Bool) -> List(Character) {
   }
 }
 
-fn get_organizations() -> List(Organization) {
+fn get_organizations() -> List(Organization(String)) {
   [
-    organization.Federation,
-    organization.Trill,
-    organization.Bajor,
-    organization.Prophet,
-    organization.Cardassia,
-    organization.Ferengi,
-    organization.Klingon,
+    organization.Federation(""),
+    organization.TrillSymbiosisCommission,
+    organization.BajoranProvisionalGov(""),
+    organization.ProphetsTemple,
+    organization.CardassianUnion,
+    organization.FerengiAlliance,
+    organization.KlingonEmpire,
     organization.Maquis,
-    organization.Dominion,
+    organization.DominionForces(""),
     organization.MirrorUniverse,
   ]
 }
@@ -198,7 +198,7 @@ fn view_organization_section(episodes: List(Episode)) -> Element(Msg) {
           html.div([attribute.class("section-title")], [
             html.text(organization.to_string(org)),
           ]),
-          histogram.view(organization.image_hue(org), org_episodes),
+          histogram.view(organization.to_hue(org), org_episodes),
         ])
       }),
   )

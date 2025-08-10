@@ -77,7 +77,7 @@ pub fn get_role_test() {
 
 pub fn get_organization_test() {
   character.get_organization(character.BenjaminSisko)
-  |> should.equal(organization.GenericFederation(role.StarfleetCommand))
+  |> should.equal(organization.Federation(role.StarfleetCommand))
 
   character.get_organization(character.KiraNerys)
   |> should.equal(organization.BajoranProvisionalGov(role.BajoranMilitia))

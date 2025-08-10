@@ -18,8 +18,9 @@ pub fn character_and_contrast_test() {
 }
 
 pub fn organization_and_contrast_test() {
-  let org_contrast = episode.OrganizationAndContrast(organization.Federation, 3)
-  org_contrast.organization |> should.equal(organization.Federation)
+  let org_contrast =
+    episode.OrganizationAndContrast(organization.Federation(""), 3)
+  org_contrast.organization |> should.equal(organization.Federation(""))
   org_contrast.contrast |> should.equal(3)
 }
 
@@ -37,7 +38,7 @@ pub fn get_character_episodes_test() {
         episode.CharacterAndContrast(character.KiraNerys, 3),
       ],
       organizations: [
-        episode.OrganizationAndContrast(organization.Federation, 4),
+        episode.OrganizationAndContrast(organization.Federation(""), 4),
       ],
     ),
     episode.Episode(
@@ -76,8 +77,11 @@ pub fn get_organization_episodes_test() {
         episode.CharacterAndContrast(character.BenjaminSisko, 4),
       ],
       organizations: [
-        episode.OrganizationAndContrast(organization.Federation, 4),
-        episode.OrganizationAndContrast(organization.Bajor, 3),
+        episode.OrganizationAndContrast(organization.Federation(""), 4),
+        episode.OrganizationAndContrast(
+          organization.BajoranProvisionalGov(""),
+          3,
+        ),
       ],
     ),
     episode.Episode(
@@ -89,13 +93,16 @@ pub fn get_organization_episodes_test() {
       netflix_id: 2,
       characters: [],
       organizations: [
-        episode.OrganizationAndContrast(organization.Dominion, 2),
+        episode.OrganizationAndContrast(organization.DominionForces(""), 2),
       ],
     ),
   ]
 
   let federation_episodes =
-    episode.get_organization_episodes(organization.Federation, test_episodes)
+    episode.get_organization_episodes(
+      organization.Federation(""),
+      test_episodes,
+    )
   federation_episodes
   |> should.equal([
     histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
