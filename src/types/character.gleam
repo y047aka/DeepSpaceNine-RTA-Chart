@@ -126,7 +126,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: JakeSisko,
         species: species.Human,
-        organization: organization.Independent,
+        organization: organization.Citizen,
       )
     Dax ->
       CharacterMetadata(
@@ -150,7 +150,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: KeikoObrien,
         species: species.Human,
-        organization: organization.Independent,
+        organization: organization.Citizen,
       )
     Bashir ->
       CharacterMetadata(
@@ -186,7 +186,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Nog,
         species: species.Ferengi,
-        organization: organization.FerengiAlliance,
+        organization: organization.Citizen,
       )
     Winn ->
       CharacterMetadata(
@@ -204,7 +204,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Garak,
         species: species.Cardassian,
-        organization: organization.CardassianUnion,
+        organization: organization.Citizen,
       )
     Dukat ->
       CharacterMetadata(
@@ -228,13 +228,13 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: KasidyYates,
         species: species.Human,
-        organization: organization.Independent,
+        organization: organization.Citizen,
       )
     Leeta ->
       CharacterMetadata(
         character: Leeta,
         species: species.Bajoran,
-        organization: organization.BajoranReligion,
+        organization: organization.Citizen,
       )
     Gowron ->
       CharacterMetadata(
@@ -258,7 +258,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Ziyal,
         species: species.Cardassian,
-        organization: organization.CardassianUnion,
+        organization: organization.Citizen,
       )
     Damar ->
       CharacterMetadata(
@@ -302,6 +302,7 @@ pub fn get_role(character: Character) -> Role {
     organization.Maquis -> role.StarfleetSecurity
     organization.MirrorUniverse -> role.StarfleetCommand
     organization.Independent -> role.StarfleetOperations
+    organization.Citizen -> role.StarfleetOperations
   }
 }
 

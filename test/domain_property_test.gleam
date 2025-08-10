@@ -143,6 +143,12 @@ fn is_valid_role_organization_combination(
         _ -> False
       }
     }
+    organization.Citizen -> {
+      case role {
+        role.StarfleetOperations -> True
+        _ -> False
+      }
+    }
   }
 }
 

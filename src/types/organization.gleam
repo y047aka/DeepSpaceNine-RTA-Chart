@@ -18,6 +18,9 @@ pub type Organization(role) {
 
   // Independent
   Independent
+
+  // Civilian
+  Citizen
 }
 
 pub fn to_string(org: Organization(role)) -> String {
@@ -34,6 +37,7 @@ pub fn to_string(org: Organization(role)) -> String {
     Maquis -> "Maquis"
     MirrorUniverse -> "Mirror Universe"
     Independent -> "Independent"
+    Citizen -> "Citizen"
   }
 }
 
@@ -52,6 +56,7 @@ pub fn from_string(s: String) -> Result(Organization(String), String) {
     "Maquis" -> Ok(Maquis)
     "Mirror Universe" -> Ok(MirrorUniverse)
     "Independent" -> Ok(Independent)
+    "Citizen" -> Ok(Citizen)
     _ -> Error("Unknown organization: " <> s)
   }
 }
@@ -79,5 +84,6 @@ pub fn to_hue(org: Organization(role)) -> Int {
     Maquis -> command
     MirrorUniverse -> command
     Independent -> federation
+    Citizen -> federation
   }
 }
