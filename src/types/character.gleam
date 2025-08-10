@@ -162,7 +162,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Odo,
         species: species.Changeling,
-        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+        organization: organization.GenericFederation(role.StarfleetSecurity),
       )
     Worf ->
       CharacterMetadata(
@@ -186,7 +186,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Nog,
         species: species.Ferengi,
-        organization: organization.Independent,
+        organization: organization.FerengiAlliance,
       )
     Winn ->
       CharacterMetadata(
@@ -234,7 +234,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Leeta,
         species: species.Bajoran,
-        organization: organization.Independent,
+        organization: organization.BajoranReligion,
       )
     Gowron ->
       CharacterMetadata(
@@ -258,7 +258,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Ziyal,
         species: species.Cardassian,
-        organization: organization.Independent,
+        organization: organization.CardassianUnion,
       )
     Damar ->
       CharacterMetadata(
