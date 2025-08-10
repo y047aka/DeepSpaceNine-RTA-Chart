@@ -1,3 +1,7 @@
+import types/organization.{type GenericOrganization}
+import types/role.{type Role}
+import types/species.{type Species}
+
 pub type Character {
   BenjaminSisko
   JakeSisko
@@ -26,6 +30,14 @@ pub type Character {
   Damar
   Brunt
   Weyoun
+}
+
+pub type CharacterMetadata {
+  CharacterMetadata(
+    character: Character,
+    species: Species,
+    organization: GenericOrganization(Role),
+  )
 }
 
 pub fn to_string(character: Character) -> String {
@@ -94,44 +106,241 @@ pub fn from_string(s: String) -> Result(Character, String) {
 }
 
 pub fn image_hue(character: Character) -> Int {
-  let command = 350
-  let engineering_or_security = 55
-  let science_or_medical = 190
-  let bajoran_security = 45
-  let federation = 220
-  let bajoran = 10
-  let cardassian = 175
-  let klingon = 120
-  let ferengi = 25
-  let jem_hadar = 270
+  let metadata = get_metadata(character)
+  case metadata.organization {
+    organization.GenericFederation(role) -> role.to_hue(role)
+    org -> organization.generic_to_hue(org)
+  }
+}
 
+// Character metadata map
+pub fn get_metadata(character: Character) -> CharacterMetadata {
   case character {
-    BenjaminSisko -> command
-    JakeSisko -> federation
-    Dax -> science_or_medical
-    KiraNerys -> bajoran
-    MilesObrien -> engineering_or_security
-    KeikoObrien -> federation
-    Bashir -> science_or_medical
-    Odo -> bajoran_security
-    Worf -> command
-    Quark -> ferengi
-    Rom -> ferengi
-    Nog -> ferengi
-    Winn -> bajoran
-    Bareil -> bajoran
-    Garak -> cardassian
-    Dukat -> cardassian
-    Zek -> ferengi
-    MichaelEddington -> engineering_or_security
-    KasidyYates -> federation
-    Leeta -> bajoran
-    Gowron -> klingon
-    Martok -> klingon
-    Shakaar -> bajoran
-    Ziyal -> cardassian
-    Damar -> cardassian
-    Brunt -> ferengi
-    Weyoun -> jem_hadar
+    BenjaminSisko ->
+      CharacterMetadata(
+        character: BenjaminSisko,
+        species: species.Human,
+        organization: organization.GenericFederation(role.StarfleetCommand),
+      )
+    JakeSisko ->
+      CharacterMetadata(
+        character: JakeSisko,
+        species: species.Human,
+        organization: organization.Independent,
+      )
+    Dax ->
+      CharacterMetadata(
+        character: Dax,
+        species: species.Trill,
+        organization: organization.GenericFederation(role.StarfleetScience),
+      )
+    KiraNerys ->
+      CharacterMetadata(
+        character: KiraNerys,
+        species: species.Bajoran,
+        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+      )
+    MilesObrien ->
+      CharacterMetadata(
+        character: MilesObrien,
+        species: species.Human,
+        organization: organization.GenericFederation(role.StarfleetEngineering),
+      )
+    KeikoObrien ->
+      CharacterMetadata(
+        character: KeikoObrien,
+        species: species.Human,
+        organization: organization.Independent,
+      )
+    Bashir ->
+      CharacterMetadata(
+        character: Bashir,
+        species: species.Human,
+        organization: organization.GenericFederation(role.StarfleetMedical),
+      )
+    Odo ->
+      CharacterMetadata(
+        character: Odo,
+        species: species.Changeling,
+        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+      )
+    Worf ->
+      CharacterMetadata(
+        character: Worf,
+        species: species.Klingon,
+        organization: organization.GenericFederation(role.StarfleetCommand),
+      )
+    Quark ->
+      CharacterMetadata(
+        character: Quark,
+        species: species.Ferengi,
+        organization: organization.FerengiAlliance,
+      )
+    Rom ->
+      CharacterMetadata(
+        character: Rom,
+        species: species.Ferengi,
+        organization: organization.FerengiAlliance,
+      )
+    Nog ->
+      CharacterMetadata(
+        character: Nog,
+        species: species.Ferengi,
+        organization: organization.Independent,
+      )
+    Winn ->
+      CharacterMetadata(
+        character: Winn,
+        species: species.Bajoran,
+        organization: organization.BajoranReligion,
+      )
+    Bareil ->
+      CharacterMetadata(
+        character: Bareil,
+        species: species.Bajoran,
+        organization: organization.BajoranReligion,
+      )
+    Garak ->
+      CharacterMetadata(
+        character: Garak,
+        species: species.Cardassian,
+        organization: organization.CardassianUnion,
+      )
+    Dukat ->
+      CharacterMetadata(
+        character: Dukat,
+        species: species.Cardassian,
+        organization: organization.CardassianUnion,
+      )
+    Zek ->
+      CharacterMetadata(
+        character: Zek,
+        species: species.Ferengi,
+        organization: organization.FerengiAlliance,
+      )
+    MichaelEddington ->
+      CharacterMetadata(
+        character: MichaelEddington,
+        species: species.Human,
+        organization: organization.GenericFederation(role.StarfleetSecurity),
+      )
+    KasidyYates ->
+      CharacterMetadata(
+        character: KasidyYates,
+        species: species.Human,
+        organization: organization.Independent,
+      )
+    Leeta ->
+      CharacterMetadata(
+        character: Leeta,
+        species: species.Bajoran,
+        organization: organization.Independent,
+      )
+    Gowron ->
+      CharacterMetadata(
+        character: Gowron,
+        species: species.Klingon,
+        organization: organization.KlingonEmpire,
+      )
+    Martok ->
+      CharacterMetadata(
+        character: Martok,
+        species: species.Klingon,
+        organization: organization.KlingonEmpire,
+      )
+    Shakaar ->
+      CharacterMetadata(
+        character: Shakaar,
+        species: species.Bajoran,
+        organization: organization.BajoranProvisionalGov(role.BajoranMilitia),
+      )
+    Ziyal ->
+      CharacterMetadata(
+        character: Ziyal,
+        species: species.Cardassian,
+        organization: organization.Independent,
+      )
+    Damar ->
+      CharacterMetadata(
+        character: Damar,
+        species: species.Cardassian,
+        organization: organization.CardassianUnion,
+      )
+    Brunt ->
+      CharacterMetadata(
+        character: Brunt,
+        species: species.Ferengi,
+        organization: organization.FerengiAlliance,
+      )
+    Weyoun ->
+      CharacterMetadata(
+        character: Weyoun,
+        species: species.Vorta,
+        organization: organization.DominionForces(role.VortaDiplomat),
+      )
+  }
+}
+
+// Convenience accessor functions
+pub fn get_species(character: Character) -> Species {
+  let metadata = get_metadata(character)
+  metadata.species
+}
+
+pub fn get_role(character: Character) -> Role {
+  let metadata = get_metadata(character)
+  case metadata.organization {
+    organization.GenericFederation(role) -> role
+    organization.BajoranProvisionalGov(role) -> role
+    organization.DominionForces(role) -> role
+    organization.FerengiAlliance -> role.FerengiCommerce
+    organization.CardassianUnion -> role.CardassianMilitary
+    organization.KlingonEmpire -> role.KlingonWarrior
+    organization.BajoranReligion -> role.BajoranReligious
+    organization.ProphetsTemple -> role.BajoranReligious
+    organization.TrillSymbiosisCommission -> role.StarfleetScience
+    organization.GenericMaquis -> role.StarfleetSecurity
+    organization.GenericMirrorUniverse -> role.StarfleetCommand
+    organization.Independent -> role.StarfleetOperations
+  }
+}
+
+pub fn get_organization(character: Character) -> GenericOrganization(Role) {
+  let metadata = get_metadata(character)
+  metadata.organization
+}
+
+// Legacy compatibility layer
+pub fn legacy_organization_mapping(
+  legacy_org_name: String,
+) -> Result(GenericOrganization(Role), String) {
+  case legacy_org_name {
+    "Federation" -> Ok(organization.GenericFederation(role.StarfleetOperations))
+    "Trill" -> Ok(organization.TrillSymbiosisCommission)
+    "Bajor" -> Ok(organization.BajoranProvisionalGov(role.BajoranMilitia))
+    "Prophet" -> Ok(organization.BajoranReligion)
+    "Cardassia" -> Ok(organization.CardassianUnion)
+    "Ferengi" -> Ok(organization.FerengiAlliance)
+    "Klingon" -> Ok(organization.KlingonEmpire)
+    "Maquis" -> Ok(organization.GenericMaquis)
+    "Dominion" -> Ok(organization.DominionForces(role.DominionService))
+    "Mirror Universe" -> Ok(organization.GenericMirrorUniverse)
+    _ -> Error("Unknown legacy organization: " <> legacy_org_name)
+  }
+}
+
+pub fn legacy_species_from_organization(
+  legacy_org_name: String,
+) -> Result(Species, String) {
+  case legacy_org_name {
+    "Trill" -> Ok(species.Trill)
+    "Bajor" -> Ok(species.Bajoran)
+    "Cardassia" -> Ok(species.Cardassian)
+    "Ferengi" -> Ok(species.Ferengi)
+    "Klingon" -> Ok(species.Klingon)
+    "Federation" -> Ok(species.Human)
+    // Default assumption
+    _ -> Ok(species.Human)
+    // Safe default
   }
 }
