@@ -1,16 +1,33 @@
 import gleam/json
 import rsvp
+import types/character.{type Character}
 
 pub type AppError {
+  // Existing errors (backward compatibility)
   HttpRequestError(rsvp.Error)
   JsonDecodeError(json.DecodeError)
   UnknownCharacterError(name: String)
   UnknownOrganizationError(name: String)
   DataProcessingError(message: String)
+
+  // New domain model errors
+  UnknownSpeciesError(name: String)
+  UnknownRoleError(name: String)
+  InvalidOrganizationRoleCombination(org_name: String, role_name: String)
+  MetadataNotFoundError(character: Character)
+
+  // Type variable related errors
+  RoleOrganizationMismatchError(role_name: String, org_name: String)
+  GenericTypeConstraintError(message: String)
+
+  // JSON processing errors
+  LegacyDataMappingError(message: String)
+  MetadataDecodingError(message: String)
 }
 
 pub fn to_string(error: AppError) -> String {
   case error {
+    // Existing errors
     HttpRequestError(rsvp_error) ->
       "HTTP request failed: " <> rsvp_error_to_string(rsvp_error)
     JsonDecodeError(json_error) ->
@@ -18,6 +35,24 @@ pub fn to_string(error: AppError) -> String {
     UnknownCharacterError(name) -> "Unknown character: " <> name
     UnknownOrganizationError(name) -> "Unknown organization: " <> name
     DataProcessingError(message) -> "Data processing error: " <> message
+
+    // New domain model errors
+    UnknownSpeciesError(name) -> "Unknown species: " <> name
+    UnknownRoleError(name) -> "Unknown role: " <> name
+    InvalidOrganizationRoleCombination(org_name, role_name) ->
+      "Invalid combination: " <> org_name <> " cannot have role " <> role_name
+    MetadataNotFoundError(character) ->
+      "Metadata not found for character: " <> character.to_string(character)
+
+    // Type variable related errors
+    RoleOrganizationMismatchError(role_name, org_name) ->
+      "Role " <> role_name <> " does not match organization " <> org_name
+    GenericTypeConstraintError(message) ->
+      "Generic type constraint error: " <> message
+
+    // JSON processing errors
+    LegacyDataMappingError(message) -> "Legacy data mapping error: " <> message
+    MetadataDecodingError(message) -> "Metadata decoding error: " <> message
   }
 }
 
@@ -46,8 +81,22 @@ pub fn log_error(error: AppError) -> Nil {
   // TODO: Replace with proper logging when available
   // For now, we'll use a simple approach that works in browser console
   case error {
-    UnknownCharacterError(_) | UnknownOrganizationError(_) -> {
+    UnknownCharacterError(_)
+    | UnknownOrganizationError(_)
+    | UnknownSpeciesError(_)
+    | UnknownRoleError(_)
+    | MetadataNotFoundError(_) -> {
       // Log unknown data errors for debugging
+      log_warning(message)
+    }
+    InvalidOrganizationRoleCombination(_, _)
+    | RoleOrganizationMismatchError(_, _)
+    | GenericTypeConstraintError(_) -> {
+      // Log validation errors as warnings
+      log_warning(message)
+    }
+    LegacyDataMappingError(_) | MetadataDecodingError(_) -> {
+      // Log data processing errors for debugging
       log_warning(message)
     }
     _ -> {
