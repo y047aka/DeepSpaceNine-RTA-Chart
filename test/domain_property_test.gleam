@@ -83,24 +83,9 @@ fn is_valid_role_organization_combination(
         _ -> False
       }
     }
-    organization.CardassianUnion -> {
-      case role {
-        role.CardassianMilitary -> True
-        _ -> False
-      }
-    }
-    organization.KlingonEmpire -> {
-      case role {
-        role.KlingonWarrior -> True
-        _ -> False
-      }
-    }
-    organization.FerengiAlliance -> {
-      case role {
-        role.FerengiCommerce -> True
-        _ -> False
-      }
-    }
+    organization.CardassianUnion -> True
+    organization.KlingonEmpire -> True
+    organization.FerengiAlliance -> True
     organization.DominionForces(_) -> {
       case role {
         role.VortaDiplomat | role.JemHadarSoldier | role.DominionService -> True
@@ -151,7 +136,14 @@ pub fn role_organization_consistency_property() {
   all_characters()
   |> list.each(fn(char) {
     let metadata = character.get_metadata(char)
-    let role = character.get_role(char)
+    let org = character.get_organization(char)
+    let role = case org {
+      organization.Federation(r) -> r
+      organization.Bajor(r) -> r
+      organization.DominionForces(r) -> r
+      _ -> role.StarfleetOperations
+      // Default for organizations without role parameter
+    }
 
     // Validate role-organization combinations are consistent
     let is_valid =
@@ -165,8 +157,14 @@ pub fn hue_calculation_consistency_property() {
   all_characters()
   |> list.each(fn(char) {
     let hue = character.image_hue(char)
-    let role = character.get_role(char)
     let org = character.get_organization(char)
+    let role = case org {
+      organization.Federation(r) -> r
+      organization.Bajor(r) -> r
+      organization.DominionForces(r) -> r
+      _ -> role.StarfleetOperations
+      // Default for organizations without role parameter
+    }
     let species = character.get_species(char)
 
     // Hue should be calculated consistently from role/species

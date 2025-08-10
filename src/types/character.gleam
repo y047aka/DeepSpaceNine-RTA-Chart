@@ -287,24 +287,6 @@ pub fn get_species(character: Character) -> Species {
   metadata.species
 }
 
-pub fn get_role(character: Character) -> Role {
-  let metadata = get_metadata(character)
-  case metadata.organization {
-    organization.Federation(role) -> role
-    organization.Bajor(role) -> role
-    organization.DominionForces(role) -> role
-    organization.FerengiAlliance -> role.FerengiCommerce
-    organization.CardassianUnion -> role.CardassianMilitary
-    organization.KlingonEmpire -> role.KlingonWarrior
-    organization.Prophets -> role.BajoranReligious
-    organization.TrillSymbiosisCommission -> role.StarfleetScience
-    organization.Maquis -> role.StarfleetSecurity
-    organization.MirrorUniverse -> role.StarfleetCommand
-    organization.Independent -> role.StarfleetOperations
-    organization.Citizen -> role.StarfleetOperations
-  }
-}
-
 pub fn get_organization(character: Character) -> Organization(Role) {
   let metadata = get_metadata(character)
   metadata.organization

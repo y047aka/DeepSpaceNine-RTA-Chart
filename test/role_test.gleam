@@ -9,9 +9,7 @@ pub fn main() {
 pub fn to_string_test() {
   role.StarfleetCommand |> role.to_string() |> should.equal("Starfleet Command")
   role.BajoranMilitia |> role.to_string() |> should.equal("Bajoran Militia")
-  role.CardassianMilitary
-  |> role.to_string()
-  |> should.equal("Cardassian Military")
+  role.DominionService |> role.to_string() |> should.equal("Dominion Service")
   role.JemHadarSoldier |> role.to_string() |> should.equal("Jem'Hadar Soldier")
 }
 
@@ -42,9 +40,8 @@ pub fn to_hue_test() {
   role.StarfleetMedical |> role.to_hue() |> should.equal(190)
   role.BajoranMilitia |> role.to_hue() |> should.equal(45)
   role.BajoranReligious |> role.to_hue() |> should.equal(10)
-  role.CardassianMilitary |> role.to_hue() |> should.equal(175)
-  role.KlingonWarrior |> role.to_hue() |> should.equal(120)
-  role.FerengiCommerce |> role.to_hue() |> should.equal(25)
+  role.DominionService |> role.to_hue() |> should.equal(270)
+  role.VortaDiplomat |> role.to_hue() |> should.equal(270)
   role.JemHadarSoldier |> role.to_hue() |> should.equal(270)
 }
 

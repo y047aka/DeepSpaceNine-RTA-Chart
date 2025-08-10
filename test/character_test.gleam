@@ -75,17 +75,6 @@ pub fn get_species_test() {
   |> should.equal(species.Klingon)
 }
 
-pub fn get_role_test() {
-  character.get_role(character.BenjaminSisko)
-  |> should.equal(role.StarfleetCommand)
-
-  character.get_role(character.Dax)
-  |> should.equal(role.StarfleetScience)
-
-  character.get_role(character.MilesObrien)
-  |> should.equal(role.StarfleetEngineering)
-}
-
 pub fn get_organization_test() {
   character.get_organization(character.BenjaminSisko)
   |> should.equal(organization.Federation(role.StarfleetCommand))

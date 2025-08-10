@@ -4,7 +4,6 @@ import gleeunit/should
 import types/character
 import types/episode
 import types/organization
-import types/role
 import types/species
 
 pub fn main() {
@@ -115,7 +114,4 @@ pub fn new_metadata_compatibility_test() {
   // Test that new functions return expected values
   character.get_species(character.BenjaminSisko)
   |> should.equal(species.Human)
-
-  character.get_role(character.BenjaminSisko)
-  |> should.equal(role.StarfleetCommand)
 }
