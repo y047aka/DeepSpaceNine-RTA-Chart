@@ -5,6 +5,7 @@ import gleeunit/should
 import types/character
 import types/episode
 import types/organization
+import types/role
 
 pub fn main() {
   gleeunit.main()
@@ -20,8 +21,12 @@ pub fn episode_types_test() {
   char_contrast.contrast |> should.equal(90)
 
   let org_contrast =
-    episode.OrganizationAndContrast(organization.Federation(""), 75)
-  org_contrast.organization |> should.equal(organization.Federation(""))
+    episode.OrganizationAndContrast(
+      organization.Federation(role.Starfleet(role.Operations)),
+      75,
+    )
+  org_contrast.organization
+  |> should.equal(organization.Federation(role.Starfleet(role.Operations)))
   org_contrast.contrast |> should.equal(75)
 }
 
@@ -137,27 +142,51 @@ pub fn character_conversion_test() {
   |> should.be_error()
 }
 
-// Test organization string conversion with gleam/dynamic/decode
+// Test organization string conversion with new default role system
 pub fn organization_conversion_test() {
   // Test organization to string with role
-  organization.Federation("")
+  organization.Federation(role.Starfleet(role.Operations))
   |> organization.to_string()
   |> should.equal("Federation")
 
-  // Test string to organization
+  // Test string to organization - now returns default role
   "Federation"
   |> organization.from_string()
-  |> should.be_ok()
-  |> fn(result) {
-    case result {
-      organization.Federation(_) -> True
-      _ -> False
-    }
-  }
-  |> should.equal(True)
+  |> should.equal(Ok(organization.Federation(role.Citizen)))
+
+  // Test Bajor string to organization with default role
+  "Bajor"
+  |> organization.from_string()
+  |> should.equal(Ok(organization.Bajor))
 
   // Test invalid organization string
   "Invalid Organization"
   |> organization.from_string()
   |> should.be_error()
+}
+
+// Test new organization role system
+pub fn organization_with_roles_test() {
+  // Test Federation with different roles
+  organization.Federation(role.Starfleet(role.Command))
+  |> organization.to_string()
+  |> should.equal("Federation")
+
+  organization.Federation(role.Starfleet(role.Science))
+  |> organization.to_string()
+  |> should.equal("Federation")
+
+  // Test Bajor
+  organization.Bajor
+  |> organization.to_string()
+  |> should.equal("Bajor")
+
+  // Test organizations without roles
+  organization.CardassianUnion
+  |> organization.to_string()
+  |> should.equal("Cardassian Union")
+
+  organization.DominionForces
+  |> organization.to_string()
+  |> should.equal("Dominion")
 }

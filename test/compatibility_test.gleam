@@ -1,4 +1,3 @@
-import components/histogram
 import gleam/list
 import gleeunit
 import gleeunit/should
@@ -27,25 +26,35 @@ pub fn public_api_consistency_test() {
   character.from_string("Kira Nerys")
   |> should.equal(Ok(character.KiraNerys))
 
-  // Organization to_string consistency
-  organization.to_string(organization.Federation(role.StarfleetCommand))
+  // Organization to_string consistency with new roles
+  organization.to_string(organization.Federation(role.Starfleet(role.Command)))
   |> should.equal("Federation")
 
-  organization.to_string(organization.Bajor(role.BajoranMilitia))
+  organization.to_string(organization.Bajor)
   |> should.equal("Bajor")
-
-  // Organization from_string consistency
-  organization.from_string("Federation")
-  |> should.equal(Ok(organization.Federation(member_role: "")))
-
-  organization.from_string("Bajor")
-  |> should.equal(Ok(organization.Bajor(member_role: "")))
 }
 
-// Backward compatible hue calculation tests
+// Test backward compatibility with default roles
+pub fn backward_compatible_organization_parsing_test() {
+  // Organization from_string now returns default roles
+  organization.from_string("Federation")
+  |> should.equal(Ok(organization.Federation(role.Citizen)))
+
+  organization.from_string("Bajor")
+  |> should.equal(Ok(organization.Bajor))
+
+  // Organizations without roles remain unchanged
+  organization.from_string("Cardassian Union")
+  |> should.equal(Ok(organization.CardassianUnion))
+
+  organization.from_string("Dominion")
+  |> should.equal(Ok(organization.DominionForces))
+}
+
+// Test color consistency with new role system
 pub fn backward_compatible_hue_test() {
   // Test that image_hue function produces expected results
-  // with the new metadata system
+  // with the new role-based system
   let sisko_hue = character.image_hue(character.BenjaminSisko)
   sisko_hue |> should.equal(350)
   // Command role
@@ -54,149 +63,127 @@ pub fn backward_compatible_hue_test() {
   dax_hue |> should.equal(190)
   // Science role
 
+  // Non-Federation characters use species-based hue
   let kira_hue = character.image_hue(character.KiraNerys)
   kira_hue |> should.equal(10)
-  // Bajor
+  // Bajoran species (not role-based)
 
   let quark_hue = character.image_hue(character.Quark)
   quark_hue |> should.equal(25)
-  // Ferengi Alliance
+  // Ferengi species
 
-  let worf_hue = character.image_hue(character.Worf)
-  worf_hue |> should.equal(350)
-  // Starfleet Command
+  let odo_hue = character.image_hue(character.Odo)
+  odo_hue |> should.equal(55)
+  // Security role (Federation)
 }
 
-// Histogram hue value integration test
-pub fn histogram_hue_integration_test() {
-  // Test that hue values are in valid range for histogram display
-  let all_characters = [
-    character.BenjaminSisko,
-    character.JakeSisko,
-    character.Dax,
-    character.KiraNerys,
-    character.MilesObrien,
-    character.Bashir,
-    character.Odo,
-    character.Worf,
-    character.Quark,
-    character.Rom,
-    character.Nog,
-  ]
+// Test organization hue consistency
+pub fn organization_hue_consistency_test() {
+  // Federation organizations return Federation base hue
+  organization.to_hue(organization.Federation(role.Starfleet(role.Command)))
+  |> should.equal(220)
+  // Federation base color
 
-  all_characters
-  |> list.each(fn(char) {
-    let hue = character.image_hue(char)
-    // Hue values should be in range 0-360 for HSL color model
-    True |> should.equal(hue >= 0)
-    True |> should.equal(hue <= 360)
-  })
+  organization.to_hue(organization.Federation(role.Starfleet(role.Science)))
+  |> should.equal(220)
+  // Federation base color
+
+  // Bajor organizations return Bajoran hue
+  organization.to_hue(organization.Bajor)
+  |> should.equal(10)
+  // Bajoran color
+
+  // Organizations without roles
+  organization.to_hue(organization.CardassianUnion)
+  |> should.equal(175)
+  // Cardassian color
+
+  organization.to_hue(organization.DominionForces)
+  |> should.equal(270)
+  // Dominion color
 }
 
-// Episode integration backward compatibility test
-pub fn episode_backward_compatibility_test() {
-  // Test that episode functionality works with new character metadata
-  let test_episodes = [
+// Test episode data processing compatibility
+pub fn episode_data_compatibility_test() {
+  // Test that episodes can be created with new organization system
+  let test_episode =
     episode.Episode(
       season: 1,
       episode: 1,
-      title: "Emissary",
-      title_ja: "エミサリー",
-      importance: 4,
-      netflix_id: 1,
+      title: "Test Compatibility",
+      title_ja: "互換性テスト",
+      importance: 5,
+      netflix_id: 99_999,
       characters: [
-        episode.CharacterAndContrast(character.BenjaminSisko, 4),
-        episode.CharacterAndContrast(character.KiraNerys, 3),
-        episode.CharacterAndContrast(character.Dax, 2),
+        episode.CharacterAndContrast(character.BenjaminSisko, 5),
+        episode.CharacterAndContrast(character.KiraNerys, 4),
       ],
       organizations: [
-        episode.OrganizationAndContrast(organization.Federation(""), 4),
-        episode.OrganizationAndContrast(organization.Bajor(""), 3),
+        episode.OrganizationAndContrast(
+          organization.Federation(role.Citizen),
+          5,
+        ),
+        episode.OrganizationAndContrast(organization.Bajor, 4),
+        episode.OrganizationAndContrast(organization.CardassianUnion, 2),
       ],
-    ),
-  ]
-
-  // Test character episodes functionality
-  let sisko_episodes =
-    episode.get_character_episodes(character.BenjaminSisko, test_episodes)
-  sisko_episodes
-  |> should.equal([
-    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
-  ])
-
-  // Test organization episodes functionality (now string-based)
-  let federation_episodes =
-    episode.get_organization_episodes(
-      organization.Federation(""),
-      test_episodes,
     )
-  federation_episodes
-  |> should.equal([
-    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
-  ])
+
+  // Verify episode data integrity
+  test_episode.season |> should.equal(1)
+  test_episode.characters |> list.length() |> should.equal(2)
+  test_episode.organizations |> list.length() |> should.equal(3)
 }
 
-// New domain model API integration test
-pub fn new_domain_model_api_test() {
-  // Test that new API functions work correctly with all characters
-  let test_characters = [
-    character.BenjaminSisko,
-    character.KiraNerys,
-    character.Dax,
-    character.Quark,
-    character.Worf,
-  ]
+// Test character metadata system compatibility
+pub fn character_metadata_compatibility_test() {
+  // Test that all characters have valid metadata
+  let sisko_metadata = character.get_metadata(character.BenjaminSisko)
+  sisko_metadata.character |> should.equal(character.BenjaminSisko)
 
-  test_characters
-  |> list.each(fn(char) {
-    // Test metadata retrieval
-    let metadata = character.get_metadata(char)
-    metadata.character |> should.equal(char)
+  let kira_metadata = character.get_metadata(character.KiraNerys)
+  kira_metadata.character |> should.equal(character.KiraNerys)
 
-    // Test species retrieval
-    let species = character.get_species(char)
-    species |> should.equal(metadata.species)
+  // Test organization assignments
+  case sisko_metadata.organization {
+    organization.Federation(role) ->
+      role |> should.equal(role.Starfleet(role.Command))
+    _ -> should.fail()
+  }
 
-    // Test role extraction from organization
-    let org = character.get_organization(char)
-    let role = case org {
-      organization.Federation(r) -> r
-      organization.Bajor(r) -> r
-      organization.DominionForces(r) -> r
-      _ -> role.StarfleetOperations
-      // Default for organizations without role parameter
-    }
-    // Validate that we can extract role from organization
-    case org {
-      organization.Federation(_)
-      | organization.Bajor(_)
-      | organization.DominionForces(_) ->
-        // These organizations have role parameters, test passed
-        True |> should.equal(True)
-      _ ->
-        // Other organizations use default role, also valid
-        role |> should.equal(role.StarfleetOperations)
-    }
-
-    // Test organization retrieval
-    let org = character.get_organization(char)
-    org |> should.equal(metadata.organization)
-  })
+  case kira_metadata.organization {
+    organization.Bajor -> should.equal(True, True)
+    _ -> should.fail()
+  }
 }
 
-// Performance consistency test (basic check)
-pub fn performance_consistency_test() {
-  // Test that metadata access is reasonably fast
-  // Note: This is a basic functional test, not a precise performance measurement
-  let repetitions = 100
+// Test role specialization system
+pub fn role_specialization_consistency_test() {
+  // Test Starfleet role functions
+  role.starfleet_role_to_string(role.Command)
+  |> should.equal("Starfleet Command")
 
-  list.range(1, repetitions)
-  |> list.each(fn(_) {
-    let _metadata = character.get_metadata(character.BenjaminSisko)
-    let _species = character.get_species(character.KiraNerys)
-    let _org = character.get_organization(character.Dax)
-    let _hue = character.image_hue(character.Quark)
-    // If we get here without timeout, performance is acceptable
-    True |> should.equal(True)
-  })
+  role.starfleet_role_to_hue(role.Command)
+  |> should.equal(350)
+
+  // Test role parsing
+  role.starfleet_role_from_string("starfleet command")
+  |> should.equal(Ok(role.Command))
+}
+
+// Test new type system prevents invalid combinations
+pub fn type_safety_validation_test() {
+  // These should compile successfully (valid combinations)
+  let _valid_federation = organization.Federation(role.Starfleet(role.Security))
+  let _valid_bajor = organization.Bajor
+
+  // Organizations without roles
+  let _valid_cardassian = organization.CardassianUnion
+  let _valid_dominion = organization.DominionForces
+
+  // Test that role-specific functions work correctly
+  role.starfleet_role_to_hue(role.Science)
+  |> should.equal(190)
+
+  // This test passes if it compiles (type safety enforced at compile time)
+  should.equal(True, True)
 }

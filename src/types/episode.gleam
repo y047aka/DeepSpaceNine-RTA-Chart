@@ -6,6 +6,7 @@ import gleam/result
 import types/character.{type Character} as char_module
 import types/error.{type AppError}
 import types/organization.{type Organization}
+import types/role
 
 pub type Episode {
   Episode(
@@ -25,7 +26,7 @@ pub type CharacterAndContrast {
 }
 
 pub type OrganizationAndContrast {
-  OrganizationAndContrast(organization: Organization(String), contrast: Int)
+  OrganizationAndContrast(organization: Organization, contrast: Int)
 }
 
 pub fn episodes_decoder() -> decode.Decoder(List(Episode)) {
@@ -74,9 +75,21 @@ fn name_and_contrast_to_character(
 fn name_and_contrast_to_organization(
   nac: NameAndContrast,
 ) -> Result(OrganizationAndContrast, AppError) {
-  case organization.from_string(nac.name) {
-    Ok(organization) -> Ok(OrganizationAndContrast(organization, nac.contrast))
-    Error(_) -> Error(error.UnknownOrganizationError(nac.name))
+  // For episode data, we need to handle organizations that may not have specific roles
+  // This is a temporary mapping until we have full role information in the episode data
+  case nac.name {
+    "Federation" ->
+      Ok(OrganizationAndContrast(
+        organization.Federation(role.Starfleet(role.Operations)),
+        nac.contrast,
+      ))
+    "Bajor" -> Ok(OrganizationAndContrast(organization.Bajor, nac.contrast))
+    _ ->
+      case organization.from_string(nac.name) {
+        Ok(organization) ->
+          Ok(OrganizationAndContrast(organization, nac.contrast))
+        Error(_) -> Error(error.UnknownOrganizationError(nac.name))
+      }
   }
 }
 
@@ -169,7 +182,7 @@ pub fn get_character_episodes(
 }
 
 pub fn get_organization_episodes(
-  organization: Organization(String),
+  organization: Organization,
   episodes: List(Episode),
 ) -> List(SeasonImportance) {
   episodes

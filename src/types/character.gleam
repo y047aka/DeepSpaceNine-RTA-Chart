@@ -1,5 +1,5 @@
 import types/organization.{type Organization}
-import types/role.{type Role}
+import types/role
 import types/species.{type Species}
 
 pub type Character {
@@ -36,7 +36,7 @@ pub type CharacterMetadata {
   CharacterMetadata(
     character: Character,
     species: Species,
-    organization: Organization(Role),
+    organization: Organization,
   )
 }
 
@@ -108,7 +108,7 @@ pub fn from_string(s: String) -> Result(Character, String) {
 pub fn image_hue(character: Character) -> Int {
   let metadata = get_metadata(character)
   case metadata.organization {
-    organization.Federation(role) -> role.to_hue(role)
+    organization.Federation(role) -> role.federation_role_to_hue(role)
     _ -> species.to_hue(metadata.species)
   }
 }
@@ -120,55 +120,55 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: BenjaminSisko,
         species: species.Human,
-        organization: organization.Federation(role.StarfleetCommand),
+        organization: organization.Federation(role.Starfleet(role.Command)),
       )
     JakeSisko ->
       CharacterMetadata(
         character: JakeSisko,
         species: species.Human,
-        organization: organization.Citizen,
+        organization: organization.Federation(role.Citizen),
       )
     Dax ->
       CharacterMetadata(
         character: Dax,
         species: species.Trill,
-        organization: organization.Federation(role.StarfleetScience),
+        organization: organization.Federation(role.Starfleet(role.Science)),
       )
     KiraNerys ->
       CharacterMetadata(
         character: KiraNerys,
         species: species.Bajoran,
-        organization: organization.Bajor(role.BajoranMilitia),
+        organization: organization.Bajor,
       )
     MilesObrien ->
       CharacterMetadata(
         character: MilesObrien,
         species: species.Human,
-        organization: organization.Federation(role.StarfleetEngineering),
+        organization: organization.Federation(role.Starfleet(role.Operations)),
       )
     KeikoObrien ->
       CharacterMetadata(
         character: KeikoObrien,
         species: species.Human,
-        organization: organization.Citizen,
+        organization: organization.Federation(role.Citizen),
       )
     Bashir ->
       CharacterMetadata(
         character: Bashir,
         species: species.Human,
-        organization: organization.Federation(role.StarfleetMedical),
+        organization: organization.Federation(role.Starfleet(role.Medical)),
       )
     Odo ->
       CharacterMetadata(
         character: Odo,
         species: species.Changeling,
-        organization: organization.Federation(role.StarfleetSecurity),
+        organization: organization.Federation(role.Starfleet(role.Security)),
       )
     Worf ->
       CharacterMetadata(
         character: Worf,
         species: species.Klingon,
-        organization: organization.Federation(role.StarfleetCommand),
+        organization: organization.Federation(role.Starfleet(role.Command)),
       )
     Quark ->
       CharacterMetadata(
@@ -192,13 +192,13 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Winn,
         species: species.Bajoran,
-        organization: organization.Bajor(role.BajoranReligious),
+        organization: organization.Bajor,
       )
     Bareil ->
       CharacterMetadata(
         character: Bareil,
         species: species.Bajoran,
-        organization: organization.Bajor(role.BajoranReligious),
+        organization: organization.Bajor,
       )
     Garak ->
       CharacterMetadata(
@@ -222,13 +222,13 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: MichaelEddington,
         species: species.Human,
-        organization: organization.Federation(role.StarfleetSecurity),
+        organization: organization.Federation(role.Starfleet(role.Security)),
       )
     KasidyYates ->
       CharacterMetadata(
         character: KasidyYates,
         species: species.Human,
-        organization: organization.Citizen,
+        organization: organization.Federation(role.Citizen),
       )
     Leeta ->
       CharacterMetadata(
@@ -252,7 +252,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Shakaar,
         species: species.Bajoran,
-        organization: organization.Bajor(role.BajoranMilitia),
+        organization: organization.Bajor,
       )
     Ziyal ->
       CharacterMetadata(
@@ -276,7 +276,7 @@ pub fn get_metadata(character: Character) -> CharacterMetadata {
       CharacterMetadata(
         character: Weyoun,
         species: species.Vorta,
-        organization: organization.DominionForces(role.VortaDiplomat),
+        organization: organization.DominionForces,
       )
   }
 }
@@ -287,7 +287,7 @@ pub fn get_species(character: Character) -> Species {
   metadata.species
 }
 
-pub fn get_organization(character: Character) -> Organization(Role) {
+pub fn get_organization(character: Character) -> Organization {
   let metadata = get_metadata(character)
   metadata.organization
 }

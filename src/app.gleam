@@ -15,6 +15,7 @@ import types/character.{type Character}
 import types/episode.{type Episode}
 import types/error
 import types/organization.{type Organization}
+import types/role
 
 // MAIN ------------------------------------------------------------------------
 
@@ -114,17 +115,17 @@ fn get_characters(after_season_4: Bool) -> List(Character) {
   }
 }
 
-fn get_organizations() -> List(Organization(String)) {
+fn get_organizations() -> List(Organization) {
   [
-    organization.Federation(""),
+    organization.Federation(role.Starfleet(role.Operations)),
     organization.TrillSymbiosisCommission,
-    organization.Bajor(""),
+    organization.Bajor,
     organization.Prophets,
     organization.CardassianUnion,
     organization.FerengiAlliance,
     organization.KlingonEmpire,
     organization.Maquis,
-    organization.DominionForces(""),
+    organization.DominionForces,
     organization.MirrorUniverse,
   ]
 }

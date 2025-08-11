@@ -1,10 +1,12 @@
-// Organization type with role constraints
-pub type Organization(role) {
-  Federation(member_role: role)
+import types/role.{type FederationRole}
+
+// Organization type with specific role constraints
+pub type Organization {
+  Federation(member_role: FederationRole)
   CardassianUnion
   KlingonEmpire
-  DominionForces(member_role: role)
-  Bajor(member_role: role)
+  DominionForces
+  Bajor
   FerengiAlliance
 
   // Religious/Cultural Organizations
@@ -22,13 +24,13 @@ pub type Organization(role) {
   Citizen
 }
 
-pub fn to_string(org: Organization(role)) -> String {
+pub fn to_string(org: Organization) -> String {
   case org {
     Federation(_) -> "Federation"
     CardassianUnion -> "Cardassian Union"
     KlingonEmpire -> "Klingon Empire"
-    DominionForces(_) -> "Dominion"
-    Bajor(_) -> "Bajor"
+    DominionForces -> "Dominion"
+    Bajor -> "Bajor"
     FerengiAlliance -> "Ferengi Alliance"
     Prophets -> "Prophets"
     TrillSymbiosisCommission -> "Trill Symbiosis Commission"
@@ -39,13 +41,14 @@ pub fn to_string(org: Organization(role)) -> String {
   }
 }
 
-pub fn from_string(s: String) -> Result(Organization(String), String) {
+pub fn from_string(s: String) -> Result(Organization, String) {
   case s {
-    "Federation" -> Ok(Federation(member_role: ""))
+    "Federation" -> Ok(Federation(role.Citizen))
+    "Federation Citizen" -> Ok(Federation(role.Citizen))
     "Cardassian Union" | "Cardassia" -> Ok(CardassianUnion)
     "Klingon Empire" | "Klingon" -> Ok(KlingonEmpire)
-    "Dominion" -> Ok(DominionForces(member_role: ""))
-    "Bajor" -> Ok(Bajor(member_role: ""))
+    "Dominion" -> Ok(DominionForces)
+    "Bajor" -> Ok(Bajor)
     "Prophets" | "Prophet" -> Ok(Prophets)
     "Ferengi Alliance" | "Ferengi" -> Ok(FerengiAlliance)
     "Trill Symbiosis Commission" | "Trill" -> Ok(TrillSymbiosisCommission)
@@ -57,7 +60,7 @@ pub fn from_string(s: String) -> Result(Organization(String), String) {
   }
 }
 
-pub fn to_hue(org: Organization(role)) -> Int {
+pub fn to_hue(org: Organization) -> Int {
   let command = 350
   let science_or_medical = 190
   let federation = 220
@@ -71,8 +74,8 @@ pub fn to_hue(org: Organization(role)) -> Int {
     Federation(_) -> federation
     CardassianUnion -> cardassian
     KlingonEmpire -> klingon
-    DominionForces(_) -> dominion
-    Bajor(_) -> bajoran
+    DominionForces -> dominion
+    Bajor -> bajoran
     FerengiAlliance -> ferengi
     Prophets -> bajoran
     TrillSymbiosisCommission -> science_or_medical

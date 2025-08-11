@@ -1,68 +1,73 @@
 import gleam/string
 
-pub type Role {
-  // Starfleet Roles
-  StarfleetCommand
-  StarfleetEngineering
-  StarfleetSecurity
-  StarfleetScience
-  StarfleetMedical
-  StarfleetOperations
-
-  // Bajoran Roles
-  BajoranMilitia
-  BajoranReligious
-
-  // Other Organizations
-  DominionService
-
-  // Special Roles
-  VortaDiplomat
-  JemHadarSoldier
+// Federation role hierarchy
+pub type FederationRole {
+  Starfleet(StarfleetRole)
+  Citizen
 }
 
-pub fn to_string(role: Role) -> String {
+// Starfleet-specific roles
+pub type StarfleetRole {
+  Command
+  Security
+  Science
+  Medical
+  Operations
+}
+
+// Federation role functions
+pub fn federation_role_to_string(role: FederationRole) -> String {
   case role {
-    StarfleetCommand -> "Starfleet Command"
-    StarfleetEngineering -> "Starfleet Engineering"
-    StarfleetSecurity -> "Starfleet Security"
-    StarfleetScience -> "Starfleet Science"
-    StarfleetMedical -> "Starfleet Medical"
-    StarfleetOperations -> "Starfleet Operations"
-    BajoranMilitia -> "Bajoran Militia"
-    BajoranReligious -> "Bajoran Religious"
-    DominionService -> "Dominion Service"
-    VortaDiplomat -> "Vorta Diplomat"
-    JemHadarSoldier -> "Jem'Hadar Soldier"
+    Starfleet(starfleet_role) -> starfleet_role_to_string(starfleet_role)
+    Citizen -> "Federation Citizen"
   }
 }
 
-pub fn from_string(s: String) -> Result(Role, String) {
+// Starfleet role functions
+pub fn starfleet_role_to_string(role: StarfleetRole) -> String {
+  case role {
+    Command -> "Starfleet Command"
+    Security -> "Starfleet Security"
+    Science -> "Starfleet Science"
+    Medical -> "Starfleet Medical"
+    Operations -> "Starfleet Operations"
+  }
+}
+
+pub fn federation_role_from_string(s: String) -> Result(FederationRole, String) {
   case string.lowercase(s) {
-    "starfleet command" -> Ok(StarfleetCommand)
-    "starfleet engineering" -> Ok(StarfleetEngineering)
-    "starfleet security" -> Ok(StarfleetSecurity)
-    "starfleet science" -> Ok(StarfleetScience)
-    "starfleet medical" -> Ok(StarfleetMedical)
-    "starfleet operations" -> Ok(StarfleetOperations)
-    "bajoran militia" -> Ok(BajoranMilitia)
-    "bajoran religious" -> Ok(BajoranReligious)
-    "dominion service" -> Ok(DominionService)
-    "vorta diplomat" -> Ok(VortaDiplomat)
-    "jem'hadar soldier" -> Ok(JemHadarSoldier)
-    _ -> Error("Unknown role: " <> s)
+    "starfleet command" -> Ok(Starfleet(Command))
+    "starfleet security" -> Ok(Starfleet(Security))
+    "starfleet science" -> Ok(Starfleet(Science))
+    "starfleet medical" -> Ok(Starfleet(Medical))
+    "starfleet operations" -> Ok(Starfleet(Operations))
+    "federation citizen" -> Ok(Citizen)
+    _ -> Error("Unknown Federation role: " <> s)
   }
 }
 
-pub fn to_hue(role: Role) -> Int {
+pub fn starfleet_role_from_string(s: String) -> Result(StarfleetRole, String) {
+  case string.lowercase(s) {
+    "starfleet command" -> Ok(Command)
+    "starfleet security" -> Ok(Security)
+    "starfleet science" -> Ok(Science)
+    "starfleet medical" -> Ok(Medical)
+    "starfleet operations" -> Ok(Operations)
+    _ -> Error("Unknown Starfleet role: " <> s)
+  }
+}
+
+pub fn federation_role_to_hue(role: FederationRole) -> Int {
   case role {
-    StarfleetCommand -> 350
-    StarfleetEngineering | StarfleetSecurity -> 55
-    StarfleetScience | StarfleetMedical -> 190
-    StarfleetOperations -> 220
-    BajoranMilitia -> 45
-    BajoranReligious -> 10
-    DominionService | JemHadarSoldier -> 270
-    VortaDiplomat -> 270
+    Starfleet(starfleet_role) -> starfleet_role_to_hue(starfleet_role)
+    Citizen -> 220
+  }
+}
+
+pub fn starfleet_role_to_hue(role: StarfleetRole) -> Int {
+  case role {
+    Command -> 350
+    Operations | Security -> 55
+    Science | Medical -> 190
   }
 }

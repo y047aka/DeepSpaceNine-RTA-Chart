@@ -77,10 +77,10 @@ pub fn get_species_test() {
 
 pub fn get_organization_test() {
   character.get_organization(character.BenjaminSisko)
-  |> should.equal(organization.Federation(role.StarfleetCommand))
+  |> should.equal(organization.Federation(role.Starfleet(role.Command)))
 
   character.get_organization(character.KiraNerys)
-  |> should.equal(organization.Bajor(role.BajoranMilitia))
+  |> should.equal(organization.Bajor)
 }
 // Note: Backward compatibility tests have been moved to test/compatibility_test.gleam
 // for better test organization as per specification requirements

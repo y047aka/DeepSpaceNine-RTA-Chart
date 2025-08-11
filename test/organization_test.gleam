@@ -8,10 +8,10 @@ pub fn main() {
 }
 
 pub fn organization_to_string_test() {
-  organization.to_string(organization.Federation(role.StarfleetCommand))
+  organization.to_string(organization.Federation(role.Starfleet(role.Command)))
   |> should.equal("Federation")
 
-  organization.to_string(organization.Bajor(role.BajoranMilitia))
+  organization.to_string(organization.Bajor)
   |> should.equal("Bajor")
 
   organization.to_string(organization.MirrorUniverse)
@@ -20,22 +20,22 @@ pub fn organization_to_string_test() {
 
 pub fn organization_from_string_test() {
   organization.from_string("Federation")
-  |> should.equal(Ok(organization.Federation(member_role: "")))
+  |> should.equal(Ok(organization.Federation(role.Citizen)))
 
   organization.from_string("Bajor")
-  |> should.equal(Ok(organization.Bajor(member_role: "")))
+  |> should.equal(Ok(organization.Bajor))
 
   organization.from_string("Unknown Org")
   |> should.be_error()
 }
 
 pub fn organization_to_hue_test() {
-  organization.to_hue(organization.Federation(role.StarfleetCommand))
+  organization.to_hue(organization.Federation(role.Starfleet(role.Command)))
   |> should.equal(220)
 
-  organization.to_hue(organization.Bajor(role.BajoranMilitia))
+  organization.to_hue(organization.Bajor)
   |> should.equal(10)
 
-  organization.to_hue(organization.DominionForces(role.DominionService))
+  organization.to_hue(organization.DominionForces)
   |> should.equal(270)
 }

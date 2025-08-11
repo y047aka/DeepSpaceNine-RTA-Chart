@@ -4,6 +4,7 @@ import gleeunit/should
 import types/character.{BenjaminSisko, Dax}
 import types/episode.{CharacterAndContrast, Episode, OrganizationAndContrast}
 import types/organization
+import types/role
 
 pub fn main() {
   gleeunit.main()
@@ -20,7 +21,12 @@ pub fn episode_table_structure_test() {
       importance: 4,
       netflix_id: 70_205_806,
       characters: [CharacterAndContrast(BenjaminSisko, 4)],
-      organizations: [OrganizationAndContrast(organization.Federation(""), 5)],
+      organizations: [
+        OrganizationAndContrast(
+          organization.Federation(role.Starfleet(role.Operations)),
+          5,
+        ),
+      ],
     ),
     Episode(
       season: 1,
@@ -31,7 +37,7 @@ pub fn episode_table_structure_test() {
       netflix_id: 70_205_809,
       characters: [CharacterAndContrast(Dax, 3)],
       organizations: [
-        OrganizationAndContrast(organization.Bajor(""), 4),
+        OrganizationAndContrast(organization.Bajor, 4),
       ],
     ),
   ]
@@ -94,5 +100,64 @@ pub fn episode_row_test() {
 
   // Test that episode row renders as an element
   let _row_element = row_element
+  should.equal(True, True)
+}
+
+// Test episode table with new organization role system
+pub fn episode_table_new_organizations_test() {
+  let test_episodes = [
+    Episode(
+      season: 1,
+      episode: 1,
+      title: "Test Episode with Roles",
+      title_ja: "役割テストエピソード",
+      importance: 5,
+      netflix_id: 99_999,
+      characters: [CharacterAndContrast(BenjaminSisko, 5)],
+      organizations: [
+        OrganizationAndContrast(
+          organization.Federation(role.Starfleet(role.Command)),
+          5,
+        ),
+        OrganizationAndContrast(organization.Bajor, 3),
+        OrganizationAndContrast(organization.DominionForces, 2),
+      ],
+    ),
+  ]
+
+  // Test that episode table handles different organization types
+  let _table_element = episode_table.view(test_episodes)
+
+  // Test passes if it compiles and renders without error
+  should.equal(True, True)
+}
+
+// Test mixed organization types in episode table
+pub fn episode_table_mixed_organizations_test() {
+  let test_episodes = [
+    Episode(
+      season: 2,
+      episode: 1,
+      title: "Mixed Organizations",
+      title_ja: "混合組織",
+      importance: 4,
+      netflix_id: 88_888,
+      characters: [],
+      organizations: [
+        OrganizationAndContrast(
+          organization.Federation(role.Starfleet(role.Science)),
+          4,
+        ),
+        OrganizationAndContrast(organization.CardassianUnion, 3),
+        OrganizationAndContrast(organization.KlingonEmpire, 2),
+        OrganizationAndContrast(organization.FerengiAlliance, 1),
+      ],
+    ),
+  ]
+
+  // Test rendering of organizations both with and without roles
+  let _table_element = episode_table.view(test_episodes)
+
+  // Test passes if it compiles without error
   should.equal(True, True)
 }

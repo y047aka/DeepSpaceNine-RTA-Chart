@@ -12,12 +12,14 @@ pub type AppError {
 
   // New domain model errors
   UnknownSpeciesError(name: String)
-  UnknownRoleError(name: String)
+  UnknownStarfleetRoleError(name: String)
+  UnknownBajoranRoleError(name: String)
   InvalidOrganizationRoleCombination(org_name: String, role_name: String)
   MetadataNotFoundError(character: Character)
 
   // Type variable related errors
-  RoleOrganizationMismatchError(role_name: String, org_name: String)
+  StarfleetRoleOrganizationMismatchError(role_name: String, org_name: String)
+  BajoranRoleOrganizationMismatchError(role_name: String, org_name: String)
   GenericTypeConstraintError(message: String)
 
   // JSON processing errors
@@ -38,15 +40,24 @@ pub fn to_string(error: AppError) -> String {
 
     // New domain model errors
     UnknownSpeciesError(name) -> "Unknown species: " <> name
-    UnknownRoleError(name) -> "Unknown role: " <> name
+    UnknownStarfleetRoleError(name) -> "Unknown Starfleet role: " <> name
+    UnknownBajoranRoleError(name) -> "Unknown Bajoran role: " <> name
     InvalidOrganizationRoleCombination(org_name, role_name) ->
       "Invalid combination: " <> org_name <> " cannot have role " <> role_name
     MetadataNotFoundError(character) ->
       "Metadata not found for character: " <> character.to_string(character)
 
     // Type variable related errors
-    RoleOrganizationMismatchError(role_name, org_name) ->
-      "Role " <> role_name <> " does not match organization " <> org_name
+    StarfleetRoleOrganizationMismatchError(role_name, org_name) ->
+      "Starfleet role "
+      <> role_name
+      <> " does not match organization "
+      <> org_name
+    BajoranRoleOrganizationMismatchError(role_name, org_name) ->
+      "Bajoran role "
+      <> role_name
+      <> " does not match organization "
+      <> org_name
     GenericTypeConstraintError(message) ->
       "Generic type constraint error: " <> message
 
@@ -84,13 +95,15 @@ pub fn log_error(error: AppError) -> Nil {
     UnknownCharacterError(_)
     | UnknownOrganizationError(_)
     | UnknownSpeciesError(_)
-    | UnknownRoleError(_)
+    | UnknownStarfleetRoleError(_)
+    | UnknownBajoranRoleError(_)
     | MetadataNotFoundError(_) -> {
       // Log unknown data errors for debugging
       log_warning(message)
     }
     InvalidOrganizationRoleCombination(_, _)
-    | RoleOrganizationMismatchError(_, _)
+    | StarfleetRoleOrganizationMismatchError(_, _)
+    | BajoranRoleOrganizationMismatchError(_, _)
     | GenericTypeConstraintError(_) -> {
       // Log validation errors as warnings
       log_warning(message)
