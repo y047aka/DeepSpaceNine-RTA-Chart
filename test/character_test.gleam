@@ -82,5 +82,3 @@ pub fn get_organization_test() {
   character.get_organization(character.KiraNerys)
   |> should.equal(organization.Bajor)
 }
-// Note: Backward compatibility tests have been moved to test/compatibility_test.gleam
-// for better test organization as per specification requirements

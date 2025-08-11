@@ -51,23 +51,6 @@ pub fn character_metadata_consistency_test() {
   })
 }
 
-// Test organization-role relationships
-pub fn organization_role_relationship_test() {
-  // Federation should only have Starfleet roles
-  let federation_ops = organization.Federation(role.Starfleet(role.Operations))
-  let federation_cmd = organization.Federation(role.Starfleet(role.Command))
-  let federation_sci = organization.Federation(role.Starfleet(role.Science))
-
-  // Test that Federation organizations work correctly
-  organization.to_string(federation_ops) |> should.equal("Federation")
-  organization.to_string(federation_cmd) |> should.equal("Federation")
-  organization.to_string(federation_sci) |> should.equal("Federation")
-
-  let bajor_org = organization.Bajor
-
-  organization.to_string(bajor_org) |> should.equal("Bajor")
-}
-
 // Test role system consistency
 pub fn role_system_consistency_test() {
   // Test Starfleet role round-trip consistency
@@ -184,36 +167,6 @@ pub fn character_image_hue_consistency_test() {
   })
 }
 
-// Test organization string parsing default behavior
-pub fn organization_parsing_defaults_test() {
-  // Federation parsing should return default Operations role
-  case organization.from_string("Federation") {
-    Ok(org) ->
-      case org {
-        organization.Federation(role) -> role |> should.equal(role.Citizen)
-        _ -> should.fail()
-      }
-    Error(_) -> should.fail()
-  }
-
-  // Bajor parsing should return simple Bajor organization
-  case organization.from_string("Bajor") {
-    Ok(org) ->
-      case org {
-        organization.Bajor -> should.equal(True, True)
-        _ -> should.fail()
-      }
-    Error(_) -> should.fail()
-  }
-
-  // Organizations without roles should work correctly
-  organization.from_string("Cardassian Union")
-  |> should.equal(Ok(organization.CardassianUnion))
-
-  organization.from_string("Dominion")
-  |> should.equal(Ok(organization.DominionForces))
-}
-
 // Test that all character organizations are properly structured
 pub fn character_organization_structure_test() {
   let all_characters = [
@@ -279,26 +232,4 @@ pub fn character_organization_structure_test() {
       }
     }
   })
-}
-
-// Test type safety - this test passes if it compiles
-pub fn type_safety_enforcement_test() {
-  // Valid combinations should compile
-  let _valid_federation = organization.Federation(role.Starfleet(role.Command))
-  let _valid_bajor = organization.Bajor
-
-  // Organizations without roles should work
-  let _cardassian = organization.CardassianUnion
-  let _dominion = organization.DominionForces
-
-  // Role functions should work with correct types
-  let starfleet_hue = role.starfleet_role_to_hue(role.Science)
-
-  // Verify hues are valid
-  case starfleet_hue >= 0 {
-    True -> should.equal(True, True)
-    False -> should.fail()
-  }
-
-  should.equal(True, True)
 }

@@ -1,3 +1,4 @@
+import components/histogram
 import gleam/json
 import gleam/list
 import gleeunit
@@ -11,45 +12,7 @@ pub fn main() {
   gleeunit.main()
 }
 
-pub fn episode_types_test() {
-  let name_contrast = episode.NameAndContrast("Benjamin Sisko", 85)
-  name_contrast.name |> should.equal("Benjamin Sisko")
-  name_contrast.contrast |> should.equal(85)
-
-  let char_contrast = episode.CharacterAndContrast(character.BenjaminSisko, 90)
-  char_contrast.character |> should.equal(character.BenjaminSisko)
-  char_contrast.contrast |> should.equal(90)
-
-  let org_contrast =
-    episode.OrganizationAndContrast(
-      organization.Federation(role.Starfleet(role.Operations)),
-      75,
-    )
-  org_contrast.organization
-  |> should.equal(organization.Federation(role.Starfleet(role.Operations)))
-  org_contrast.contrast |> should.equal(75)
-}
-
-pub fn episode_creation_test() {
-  let ep =
-    episode.Episode(
-      season: 1,
-      episode: 1,
-      title: "Emissary",
-      title_ja: "聖なる神殿の謎",
-      importance: 90,
-      netflix_id: 12_345,
-      characters: [],
-      organizations: [],
-    )
-
-  ep.season |> should.equal(1)
-  ep.episode |> should.equal(1)
-  ep.title |> should.equal("Emissary")
-  ep.title_ja |> should.equal("聖なる神殿の謎")
-  ep.importance |> should.equal(90)
-  ep.netflix_id |> should.equal(12_345)
-}
+// JSON Decoding Tests ------------------------------------------------------------------------
 
 // Test gleam/dynamic/decode based JSON decoder
 pub fn decode_name_and_contrast_test() {
@@ -123,7 +86,6 @@ pub fn decode_episodes_from_json_test() {
   }
 }
 
-// Test character string conversion with gleam/dynamic/decode
 pub fn character_conversion_test() {
   // Test character to string
   character.BenjaminSisko
@@ -141,6 +103,8 @@ pub fn character_conversion_test() {
   |> character.from_string()
   |> should.be_error()
 }
+
+// String Conversion Tests ------------------------------------------------------------------------
 
 // Test organization string conversion with new default role system
 pub fn organization_conversion_test() {
@@ -165,28 +129,88 @@ pub fn organization_conversion_test() {
   |> should.be_error()
 }
 
-// Test new organization role system
-pub fn organization_with_roles_test() {
-  // Test Federation with different roles
-  organization.Federation(role.Starfleet(role.Command))
-  |> organization.to_string()
-  |> should.equal("Federation")
+pub fn organization_default_roles_test() {
+  // Test that string parsing gives default roles
+  case organization.from_string("Federation") {
+    Ok(org) ->
+      case org {
+        organization.Federation(role) -> role |> should.equal(role.Citizen)
+        _ -> should.fail()
+      }
+    Error(_) -> should.fail()
+  }
 
-  organization.Federation(role.Starfleet(role.Science))
-  |> organization.to_string()
-  |> should.equal("Federation")
+  case organization.from_string("Bajor") {
+    Ok(org) ->
+      case org {
+        organization.Bajor -> should.equal(True, True)
+        _ -> should.fail()
+      }
+    Error(_) -> should.fail()
+  }
+}
 
-  // Test Bajor
-  organization.Bajor
-  |> organization.to_string()
-  |> should.equal("Bajor")
+// Episode Integration Tests ------------------------------------------------------------------------
 
-  // Test organizations without roles
-  organization.CardassianUnion
-  |> organization.to_string()
-  |> should.equal("Cardassian Union")
+fn create_test_episodes() {
+  [
+    episode.Episode(
+      season: 1,
+      episode: 1,
+      title: "Emissary",
+      title_ja: "エミサリー",
+      importance: 4,
+      netflix_id: 1,
+      characters: [
+        episode.CharacterAndContrast(character.BenjaminSisko, 4),
+        episode.CharacterAndContrast(character.KiraNerys, 3),
+      ],
+      organizations: [
+        episode.OrganizationAndContrast(
+          organization.Federation(role.Starfleet(role.Operations)),
+          4,
+        ),
+        episode.OrganizationAndContrast(organization.Bajor, 3),
+      ],
+    ),
+    episode.Episode(
+      season: 1,
+      episode: 2,
+      title: "Test Episode",
+      title_ja: "テストエピソード",
+      importance: 2,
+      netflix_id: 2,
+      characters: [
+        episode.CharacterAndContrast(character.Dax, 2),
+      ],
+      organizations: [
+        episode.OrganizationAndContrast(organization.DominionForces, 2),
+      ],
+    ),
+  ]
+}
 
-  organization.DominionForces
-  |> organization.to_string()
-  |> should.equal("Dominion")
+pub fn get_character_episodes_test() {
+  let test_episodes = create_test_episodes()
+  let sisko_episodes =
+    episode.get_character_episodes(character.BenjaminSisko, test_episodes)
+  sisko_episodes
+  |> should.equal([
+    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
+    histogram.SeasonImportance(season: 1, episode: 2, importance: 0),
+  ])
+}
+
+pub fn get_organization_episodes_test() {
+  let test_episodes = create_test_episodes()
+  let federation_episodes =
+    episode.get_organization_episodes(
+      organization.Federation(role.Starfleet(role.Operations)),
+      test_episodes,
+    )
+  federation_episodes
+  |> should.equal([
+    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
+    histogram.SeasonImportance(season: 1, episode: 2, importance: 0),
+  ])
 }

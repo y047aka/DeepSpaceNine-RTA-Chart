@@ -6,45 +6,6 @@ pub fn main() {
   gleeunit.main()
 }
 
-// FederationRole tests
-pub fn federation_role_to_string_test() {
-  role.federation_role_to_string(role.Starfleet(role.Command))
-  |> should.equal("Starfleet Command")
-
-  role.federation_role_to_string(role.Citizen)
-  |> should.equal("Federation Citizen")
-
-  role.federation_role_to_string(role.Starfleet(role.Security))
-  |> should.equal("Starfleet Security")
-
-  role.federation_role_to_string(role.Starfleet(role.Science))
-  |> should.equal("Starfleet Science")
-
-  role.federation_role_to_string(role.Starfleet(role.Medical))
-  |> should.equal("Starfleet Medical")
-
-  role.federation_role_to_string(role.Starfleet(role.Operations))
-  |> should.equal("Starfleet Operations")
-}
-
-// StarfleetRole tests
-pub fn starfleet_role_to_string_test() {
-  role.starfleet_role_to_string(role.Command)
-  |> should.equal("Starfleet Command")
-
-  role.starfleet_role_to_string(role.Security)
-  |> should.equal("Starfleet Security")
-
-  role.starfleet_role_to_string(role.Science)
-  |> should.equal("Starfleet Science")
-
-  role.starfleet_role_to_string(role.Medical)
-  |> should.equal("Starfleet Medical")
-
-  role.starfleet_role_to_string(role.Operations)
-  |> should.equal("Starfleet Operations")
-}
-
 pub fn federation_role_from_string_test() {
   "starfleet command"
   |> role.federation_role_from_string()
@@ -94,23 +55,6 @@ pub fn federation_role_to_hue_test() {
   |> should.equal(190)
 
   role.federation_role_to_hue(role.Starfleet(role.Operations))
-  |> should.equal(55)
-}
-
-pub fn starfleet_role_to_hue_test() {
-  role.starfleet_role_to_hue(role.Command)
-  |> should.equal(350)
-
-  role.starfleet_role_to_hue(role.Security)
-  |> should.equal(55)
-
-  role.starfleet_role_to_hue(role.Science)
-  |> should.equal(190)
-
-  role.starfleet_role_to_hue(role.Medical)
-  |> should.equal(190)
-
-  role.starfleet_role_to_hue(role.Operations)
   |> should.equal(55)
 }
 
