@@ -87,20 +87,20 @@ pub fn decode_episodes_from_json_test() {
 }
 
 pub fn character_conversion_test() {
-  // Test character to string
-  character.BenjaminSisko
-  |> character.to_string()
+  // Test direct Character access
+  character.benjamin_sisko.name
   |> should.equal("Benjamin Sisko")
 
-  // Test string to character
-  "Benjamin Sisko"
-  |> character.from_string()
-  |> should.be_ok()
-  |> should.equal(character.BenjaminSisko)
+  // Test string to Character
+  case character.get_character_by_name("Benjamin Sisko") {
+    Ok(char_data) -> {
+      char_data.name |> should.equal("Benjamin Sisko")
+    }
+    Error(_) -> should.fail()
+  }
 
   // Test invalid character string
-  "Invalid Character"
-  |> character.from_string()
+  character.get_character_by_name("Invalid Character")
   |> should.be_error()
 }
 
@@ -162,8 +162,8 @@ fn create_test_episodes() {
       importance: 4,
       netflix_id: 1,
       characters: [
-        episode.CharacterAndContrast(character.BenjaminSisko, 4),
-        episode.CharacterAndContrast(character.KiraNerys, 3),
+        episode.CharacterAndContrast(character.benjamin_sisko, 4),
+        episode.CharacterAndContrast(character.kira_nerys, 3),
       ],
       organizations: [
         episode.OrganizationAndContrast(
@@ -181,7 +181,7 @@ fn create_test_episodes() {
       importance: 2,
       netflix_id: 2,
       characters: [
-        episode.CharacterAndContrast(character.Dax, 2),
+        episode.CharacterAndContrast(character.dax, 2),
       ],
       organizations: [
         episode.OrganizationAndContrast(organization.DominionForces, 2),
@@ -193,7 +193,7 @@ fn create_test_episodes() {
 pub fn get_character_episodes_test() {
   let test_episodes = create_test_episodes()
   let sisko_episodes =
-    episode.get_character_episodes(character.BenjaminSisko, test_episodes)
+    episode.get_character_episodes(character.benjamin_sisko, test_episodes)
   sisko_episodes
   |> should.equal([
     histogram.SeasonImportance(season: 1, episode: 1, importance: 4),

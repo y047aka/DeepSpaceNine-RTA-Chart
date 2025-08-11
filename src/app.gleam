@@ -80,33 +80,33 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
 
 fn get_characters(after_season_4: Bool) -> List(Character) {
   let base_characters = [
-    character.BenjaminSisko,
-    character.JakeSisko,
-    character.Dax,
-    character.KiraNerys,
-    character.MilesObrien,
-    character.Bashir,
-    character.Odo,
-    character.Quark,
-    character.Worf,
-    character.Rom,
-    character.Nog,
-    character.Garak,
-    character.Dukat,
+    character.benjamin_sisko,
+    character.jake_sisko,
+    character.dax,
+    character.kira_nerys,
+    character.miles_obrien,
+    character.bashir,
+    character.odo,
+    character.quark,
+    character.worf,
+    character.rom,
+    character.nog,
+    character.garak,
+    character.dukat,
   ]
 
   let extended_characters = [
-    character.KeikoObrien,
-    character.Winn,
-    character.Bareil,
-    character.MichaelEddington,
-    character.KasidyYates,
-    character.Leeta,
-    character.Gowron,
-    character.Martok,
-    character.Shakaar,
-    character.Ziyal,
-    character.Damar,
+    character.keiko_obrien,
+    character.winn,
+    character.bareil,
+    character.michael_eddington,
+    character.kasidy_yates,
+    character.leeta,
+    character.gowron,
+    character.martok,
+    character.shakaar,
+    character.ziyal,
+    character.damar,
   ]
 
   case after_season_4 {
@@ -176,13 +176,14 @@ fn view_character_section(
     html.div(
       [attribute.class("histograms-grid")],
       get_characters(after_season_4)
-        |> list.map(fn(char) {
-          let char_episodes = episode.get_character_episodes(char, episodes)
+        |> list.map(fn(character) {
+          let char_episodes =
+            episode.get_character_episodes(character, episodes)
           html.div([attribute.class("section")], [
             html.div([attribute.class("section-title")], [
-              html.text(character.to_string(char)),
+              html.text(character.name),
             ]),
-            histogram.view(character.image_hue(char), char_episodes),
+            histogram.view(character.character_hue(character), char_episodes),
           ])
         }),
     ),

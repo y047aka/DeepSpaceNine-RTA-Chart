@@ -65,7 +65,7 @@ fn episode_primitive_to_episode(primitive: EpisodePrimitive) -> Episode {
 fn name_and_contrast_to_character(
   nac: NameAndContrast,
 ) -> Result(CharacterAndContrast, AppError) {
-  case char_module.from_string(nac.name) {
+  case char_module.get_character_by_name(nac.name) {
     Ok(character) -> Ok(CharacterAndContrast(character, nac.contrast))
     Error(_) -> Error(error.UnknownCharacterError(nac.name))
   }
@@ -162,14 +162,16 @@ pub fn decode_episode(json_string: String) -> Result(Episode, json.DecodeError) 
 // Episode filtering functions (moved from json_decoder.gleam)
 
 pub fn get_character_episodes(
-  character: Character,
+  character_data: Character,
   episodes: List(Episode),
 ) -> List(SeasonImportance) {
   episodes
   |> list.map(fn(episode) {
     let contrast =
       episode.characters
-      |> list.find(fn(char_contrast) { char_contrast.character == character })
+      |> list.find(fn(char_contrast) {
+        char_contrast.character.id == character_data.id
+      })
       |> result.map(fn(char_contrast) { char_contrast.contrast })
       |> result.unwrap(0)
 

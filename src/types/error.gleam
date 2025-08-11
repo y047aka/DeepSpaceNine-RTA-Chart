@@ -1,6 +1,5 @@
 import gleam/json
 import rsvp
-import types/character.{type Character}
 
 pub type AppError {
   // Existing errors (backward compatibility)
@@ -15,7 +14,7 @@ pub type AppError {
   UnknownStarfleetRoleError(name: String)
   UnknownBajoranRoleError(name: String)
   InvalidOrganizationRoleCombination(org_name: String, role_name: String)
-  MetadataNotFoundError(character: Character)
+  MetadataNotFoundError(character_name: String)
 
   // Type variable related errors
   StarfleetRoleOrganizationMismatchError(role_name: String, org_name: String)
@@ -44,8 +43,8 @@ pub fn to_string(error: AppError) -> String {
     UnknownBajoranRoleError(name) -> "Unknown Bajoran role: " <> name
     InvalidOrganizationRoleCombination(org_name, role_name) ->
       "Invalid combination: " <> org_name <> " cannot have role " <> role_name
-    MetadataNotFoundError(character) ->
-      "Metadata not found for character: " <> character.to_string(character)
+    MetadataNotFoundError(character_name) ->
+      "Metadata not found for character: " <> character_name
 
     // Type variable related errors
     StarfleetRoleOrganizationMismatchError(role_name, org_name) ->
