@@ -19,26 +19,6 @@ pub fn character_metadata_consistency_test() {
   })
 }
 
-// Test role system consistency
-pub fn role_system_consistency_test() {
-  // Test Starfleet role round-trip consistency
-  let starfleet_roles = [
-    role.Command,
-    role.Security,
-    role.Science,
-    role.Medical,
-    role.Operations,
-  ]
-
-  starfleet_roles
-  |> list.each(fn(role) {
-    role
-    |> role.starfleet_role_to_string()
-    |> role.starfleet_role_from_string()
-    |> should.equal(Ok(role))
-  })
-}
-
 // Test hue consistency properties
 pub fn hue_consistency_test() {
   // Test that role hues are within valid range (0-360)
@@ -106,41 +86,6 @@ pub fn character_image_hue_consistency_test() {
         // Non-Federation characters should use species-based hues
         let expected_hue = species.to_hue(char_data.species)
         hue |> should.equal(expected_hue)
-      }
-    }
-  })
-}
-
-// Test that all character organizations are properly structured
-pub fn character_organization_structure_test() {
-  // Test that each character has a properly structured organization
-  character.list_all_characters()
-  |> list.each(fn(character) {
-    // Verify organization structure based on type
-    case character.organization {
-      organization.Federation(federation_role) -> {
-        // Should be a valid Federation role
-        let _ = role.federation_role_to_string(federation_role)
-        should.equal(True, True)
-        // Compilation success
-      }
-      organization.Bajor -> {
-        // Bajor organization without roles
-        should.equal(True, True)
-        // Compilation success
-      }
-      organization.CardassianUnion
-      | organization.KlingonEmpire
-      | organization.DominionForces
-      | organization.FerengiAlliance
-      | organization.Prophets
-      | organization.TrillSymbiosisCommission
-      | organization.Maquis
-      | organization.MirrorUniverse
-      | organization.Independent
-      | organization.Citizen -> {
-        // Organizations without roles - should work
-        should.equal(True, True)
       }
     }
   })

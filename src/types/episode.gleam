@@ -83,7 +83,6 @@ fn name_and_contrast_to_organization(
         organization.Federation(role.Starfleet(role.Operations)),
         nac.contrast,
       ))
-    "Bajor" -> Ok(OrganizationAndContrast(organization.Bajor, nac.contrast))
     _ ->
       case organization.from_string(nac.name) {
         Ok(organization) ->

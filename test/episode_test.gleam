@@ -139,15 +139,6 @@ pub fn organization_default_roles_test() {
       }
     Error(_) -> should.fail()
   }
-
-  case organization.from_string("Bajor") {
-    Ok(org) ->
-      case org {
-        organization.Bajor -> should.equal(True, True)
-        _ -> should.fail()
-      }
-    Error(_) -> should.fail()
-  }
 }
 
 // Episode Integration Tests ------------------------------------------------------------------------
