@@ -5,7 +5,8 @@ import gleam/list
 import gleam/result
 import types/character.{type Character} as char_module
 import types/error.{type AppError}
-import types/organization.{type Organization} as org_module
+import types/organization.{type Organization}
+import types/role
 
 pub type Episode {
   Episode(
@@ -64,7 +65,7 @@ fn episode_primitive_to_episode(primitive: EpisodePrimitive) -> Episode {
 fn name_and_contrast_to_character(
   nac: NameAndContrast,
 ) -> Result(CharacterAndContrast, AppError) {
-  case char_module.from_string(nac.name) {
+  case char_module.get_character_by_name(nac.name) {
     Ok(character) -> Ok(CharacterAndContrast(character, nac.contrast))
     Error(_) -> Error(error.UnknownCharacterError(nac.name))
   }
@@ -74,9 +75,20 @@ fn name_and_contrast_to_character(
 fn name_and_contrast_to_organization(
   nac: NameAndContrast,
 ) -> Result(OrganizationAndContrast, AppError) {
-  case org_module.from_string(nac.name) {
-    Ok(organization) -> Ok(OrganizationAndContrast(organization, nac.contrast))
-    Error(_) -> Error(error.UnknownOrganizationError(nac.name))
+  // For episode data, we need to handle organizations that may not have specific roles
+  // This is a temporary mapping until we have full role information in the episode data
+  case nac.name {
+    "Federation" ->
+      Ok(OrganizationAndContrast(
+        organization.Federation(role.Starfleet(role.Operations)),
+        nac.contrast,
+      ))
+    _ ->
+      case organization.from_string(nac.name) {
+        Ok(organization) ->
+          Ok(OrganizationAndContrast(organization, nac.contrast))
+        Error(_) -> Error(error.UnknownOrganizationError(nac.name))
+      }
   }
 }
 
@@ -149,14 +161,16 @@ pub fn decode_episode(json_string: String) -> Result(Episode, json.DecodeError) 
 // Episode filtering functions (moved from json_decoder.gleam)
 
 pub fn get_character_episodes(
-  character: Character,
+  character_data: Character,
   episodes: List(Episode),
 ) -> List(SeasonImportance) {
   episodes
   |> list.map(fn(episode) {
     let contrast =
       episode.characters
-      |> list.find(fn(char_contrast) { char_contrast.character == character })
+      |> list.find(fn(char_contrast) {
+        char_contrast.character.id == character_data.id
+      })
       |> result.map(fn(char_contrast) { char_contrast.contrast })
       |> result.unwrap(0)
 
@@ -177,7 +191,8 @@ pub fn get_organization_episodes(
     let contrast =
       episode.organizations
       |> list.find(fn(org_contrast) {
-        org_contrast.organization == organization
+        organization.to_string(org_contrast.organization)
+        == organization.to_string(organization)
       })
       |> result.map(fn(org_contrast) { org_contrast.contrast })
       |> result.unwrap(0)

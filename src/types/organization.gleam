@@ -1,48 +1,66 @@
+import types/role.{type FederationRole}
+
+// Organization type with specific role constraints
 pub type Organization {
-  Federation
-  Trill
+  Federation(member_role: FederationRole)
+  CardassianUnion
+  KlingonEmpire
+  DominionForces
   Bajor
-  Prophet
-  Cardassia
-  Ferengi
-  Klingon
+  FerengiAlliance
+
+  // Religious/Cultural Organizations
+  Prophets
+  TrillSymbiosisCommission
+
+  // Special Organizations
   Maquis
-  Dominion
   MirrorUniverse
+
+  // Independent
+  Independent
+
+  // Civilian
+  Citizen
 }
 
-pub fn to_string(organization: Organization) -> String {
-  case organization {
-    Federation -> "Federation"
-    Trill -> "Trill"
+pub fn to_string(org: Organization) -> String {
+  case org {
+    Federation(_) -> "Federation"
+    CardassianUnion -> "Cardassian Union"
+    KlingonEmpire -> "Klingon Empire"
+    DominionForces -> "Dominion"
     Bajor -> "Bajor"
-    Prophet -> "Prophet"
-    Cardassia -> "Cardassia"
-    Ferengi -> "Ferengi"
-    Klingon -> "Klingon"
+    FerengiAlliance -> "Ferengi Alliance"
+    Prophets -> "Prophets"
+    TrillSymbiosisCommission -> "Trill Symbiosis Commission"
     Maquis -> "Maquis"
-    Dominion -> "Dominion"
     MirrorUniverse -> "Mirror Universe"
+    Independent -> "Independent"
+    Citizen -> "Citizen"
   }
 }
 
 pub fn from_string(s: String) -> Result(Organization, String) {
   case s {
-    "Federation" -> Ok(Federation)
-    "Trill" -> Ok(Trill)
+    "Federation" -> Ok(Federation(role.Citizen))
+    "Federation Citizen" -> Ok(Federation(role.Citizen))
+    "Cardassian Union" | "Cardassia" -> Ok(CardassianUnion)
+    "Klingon Empire" | "Klingon" -> Ok(KlingonEmpire)
+    "Dominion" -> Ok(DominionForces)
     "Bajor" -> Ok(Bajor)
-    "Prophet" -> Ok(Prophet)
-    "Cardassia" -> Ok(Cardassia)
-    "Ferengi" -> Ok(Ferengi)
-    "Klingon" -> Ok(Klingon)
+    "Prophets" | "Prophet" -> Ok(Prophets)
+    "Ferengi Alliance" | "Ferengi" -> Ok(FerengiAlliance)
+    "Trill Symbiosis Commission" | "Trill" -> Ok(TrillSymbiosisCommission)
     "Maquis" -> Ok(Maquis)
-    "Dominion" -> Ok(Dominion)
     "Mirror Universe" -> Ok(MirrorUniverse)
+    "Independent" -> Ok(Independent)
+    "Citizen" -> Ok(Citizen)
     _ -> Error("Unknown organization: " <> s)
   }
 }
 
-pub fn image_hue(organization: Organization) -> Int {
+pub fn to_hue(org: Organization) -> Int {
   let command = 350
   let science_or_medical = 190
   let federation = 220
@@ -52,16 +70,18 @@ pub fn image_hue(organization: Organization) -> Int {
   let ferengi = 25
   let dominion = 270
 
-  case organization {
-    Federation -> federation
-    Trill -> science_or_medical
+  case org {
+    Federation(_) -> federation
+    CardassianUnion -> cardassian
+    KlingonEmpire -> klingon
+    DominionForces -> dominion
     Bajor -> bajoran
-    Prophet -> bajoran
-    Cardassia -> cardassian
-    Ferengi -> ferengi
-    Klingon -> klingon
+    FerengiAlliance -> ferengi
+    Prophets -> bajoran
+    TrillSymbiosisCommission -> science_or_medical
     Maquis -> command
-    Dominion -> dominion
     MirrorUniverse -> command
+    Independent -> federation
+    Citizen -> federation
   }
 }

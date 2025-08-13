@@ -1,13 +1,14 @@
 import gleeunit
 import gleeunit/should
 import types/organization
+import types/role
 
 pub fn main() {
   gleeunit.main()
 }
 
 pub fn organization_to_string_test() {
-  organization.to_string(organization.Federation)
+  organization.to_string(organization.Federation(role.Starfleet(role.Command)))
   |> should.equal("Federation")
 
   organization.to_string(organization.Bajor)
@@ -19,7 +20,7 @@ pub fn organization_to_string_test() {
 
 pub fn organization_from_string_test() {
   organization.from_string("Federation")
-  |> should.equal(Ok(organization.Federation))
+  |> should.equal(Ok(organization.Federation(role.Citizen)))
 
   organization.from_string("Bajor")
   |> should.equal(Ok(organization.Bajor))
@@ -28,13 +29,13 @@ pub fn organization_from_string_test() {
   |> should.be_error()
 }
 
-pub fn organization_image_hue_test() {
-  organization.image_hue(organization.Federation)
+pub fn organization_to_hue_test() {
+  organization.to_hue(organization.Federation(role.Starfleet(role.Command)))
   |> should.equal(220)
 
-  organization.image_hue(organization.Bajor)
+  organization.to_hue(organization.Bajor)
   |> should.equal(10)
 
-  organization.image_hue(organization.Dominion)
+  organization.to_hue(organization.DominionForces)
   |> should.equal(270)
 }
