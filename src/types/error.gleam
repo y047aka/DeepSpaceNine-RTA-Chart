@@ -9,21 +9,17 @@ pub type AppError {
   UnknownOrganizationError(name: String)
   DataProcessingError(message: String)
 
-  // New domain model errors
+  // Domain model errors
   UnknownSpeciesError(name: String)
-  UnknownStarfleetRoleError(name: String)
-  UnknownBajoranRoleError(name: String)
+  UnknownRoleError(name: String)
   InvalidOrganizationRoleCombination(org_name: String, role_name: String)
   MetadataNotFoundError(character_name: String)
 
-  // Type variable related errors
-  StarfleetRoleOrganizationMismatchError(role_name: String, org_name: String)
-  BajoranRoleOrganizationMismatchError(role_name: String, org_name: String)
-  GenericTypeConstraintError(message: String)
+  // Role organization mismatch
+  RoleOrganizationMismatchError(role_name: String, org_name: String)
 
   // JSON processing errors
-  LegacyDataMappingError(message: String)
-  MetadataDecodingError(message: String)
+  DataMappingError(message: String)
 }
 
 pub fn to_string(error: AppError) -> String {
@@ -37,32 +33,20 @@ pub fn to_string(error: AppError) -> String {
     UnknownOrganizationError(name) -> "Unknown organization: " <> name
     DataProcessingError(message) -> "Data processing error: " <> message
 
-    // New domain model errors
+    // Domain model errors
     UnknownSpeciesError(name) -> "Unknown species: " <> name
-    UnknownStarfleetRoleError(name) -> "Unknown Starfleet role: " <> name
-    UnknownBajoranRoleError(name) -> "Unknown Bajoran role: " <> name
+    UnknownRoleError(name) -> "Unknown role: " <> name
     InvalidOrganizationRoleCombination(org_name, role_name) ->
       "Invalid combination: " <> org_name <> " cannot have role " <> role_name
     MetadataNotFoundError(character_name) ->
       "Metadata not found for character: " <> character_name
 
-    // Type variable related errors
-    StarfleetRoleOrganizationMismatchError(role_name, org_name) ->
-      "Starfleet role "
-      <> role_name
-      <> " does not match organization "
-      <> org_name
-    BajoranRoleOrganizationMismatchError(role_name, org_name) ->
-      "Bajoran role "
-      <> role_name
-      <> " does not match organization "
-      <> org_name
-    GenericTypeConstraintError(message) ->
-      "Generic type constraint error: " <> message
+    // Role organization mismatch
+    RoleOrganizationMismatchError(role_name, org_name) ->
+      "Role " <> role_name <> " does not match organization " <> org_name
 
     // JSON processing errors
-    LegacyDataMappingError(message) -> "Legacy data mapping error: " <> message
-    MetadataDecodingError(message) -> "Metadata decoding error: " <> message
+    DataMappingError(message) -> "Data mapping error: " <> message
   }
 }
 
@@ -94,20 +78,17 @@ pub fn log_error(error: AppError) -> Nil {
     UnknownCharacterError(_)
     | UnknownOrganizationError(_)
     | UnknownSpeciesError(_)
-    | UnknownStarfleetRoleError(_)
-    | UnknownBajoranRoleError(_)
+    | UnknownRoleError(_)
     | MetadataNotFoundError(_) -> {
       // Log unknown data errors for debugging
       log_warning(message)
     }
     InvalidOrganizationRoleCombination(_, _)
-    | StarfleetRoleOrganizationMismatchError(_, _)
-    | BajoranRoleOrganizationMismatchError(_, _)
-    | GenericTypeConstraintError(_) -> {
+    | RoleOrganizationMismatchError(_, _) -> {
       // Log validation errors as warnings
       log_warning(message)
     }
-    LegacyDataMappingError(_) | MetadataDecodingError(_) -> {
+    DataMappingError(_) -> {
       // Log data processing errors for debugging
       log_warning(message)
     }
