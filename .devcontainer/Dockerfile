@@ -6,8 +6,8 @@ FROM ghcr.io/gleam-lang/gleam:v1.12.0-erlang AS gleam-stage
 # Stage 2: nushell
 FROM ghcr.io/nushell/nushell:latest-bookworm AS nushell-stage
 
-# Stage 3: Final development environment
-FROM node:22-bookworm-slim
+# Stage 3: Development environment without Claude CLI
+FROM node:22-bookworm-slim AS without-claude
 RUN npm install -g npm@latest
 
 # Copy compiled tools from previous stages
@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zsh \
     && rm -rf /var/lib/apt/lists/*
 
-# User configuration
+# Set up non-root user
 ARG USERNAME=node
 
 # Setup user directories
@@ -36,6 +36,9 @@ WORKDIR /workspace
 
 # Set the default shell to zsh rather than sh
 ENV SHELL=/bin/zsh
+
+# Stage 4: Final development environment with Claude CLI
+FROM without-claude
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
