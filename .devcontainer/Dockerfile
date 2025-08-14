@@ -12,9 +12,20 @@ RUN npm install -g npm@latest
 
 # Install basic development tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    less \
     git \
+    procps \
+    # sudo \
+    fzf \
     zsh \
-    && rm -rf /var/lib/apt/lists/*
+    man-db \
+    unzip \
+    gnupg2 \
+    gh \
+    jq \
+    nano \
+    vim \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 # Stage 4: Development environment without Claude CLI
