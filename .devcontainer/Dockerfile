@@ -7,7 +7,7 @@ FROM ghcr.io/gleam-lang/gleam:v1.12.0-erlang AS gleam-stage
 FROM ghcr.io/nushell/nushell:latest-bookworm AS nushell-stage
 
 # Stage 3: Base tools installation
-FROM node:22-bookworm-slim AS base-tools
+FROM node:22-bookworm AS base-tools
 RUN npm install -g npm@latest
 
 # Install basic development tools
