@@ -19,6 +19,5 @@
 	},
 	"remoteUser": "node",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-	"workspaceFolder": "/workspace",
-	"postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
+	"workspaceFolder": "/workspace"
 }
