@@ -51,6 +51,10 @@ ARG USERNAME=node
 RUN mkdir -p /home/$USERNAME/.cache/gleam \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME/.cache
 
+# Create workspace and config directories and set permissions
+RUN mkdir -p /workspace /home/node/.claude && \
+  chown -R node:node /workspace /home/node/.claude
+
 WORKDIR /workspace
 
 # Set the default shell to zsh rather than sh
