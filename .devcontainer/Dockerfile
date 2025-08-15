@@ -1,54 +1,77 @@
-# Multi-stage build for Gleam development environment
+ARG CLAUDE_CODE_VERSION=latest
 
-# Stage 1: Node.js environment with npm tools
-FROM node:22-bookworm-slim AS node-stage
-RUN npm install -g npm@latest
-
-# Stage 2: Gleam compiler with Erlang/OTP runtime
+# Stage 1: Gleam compiler with Erlang/OTP runtime
 FROM ghcr.io/gleam-lang/gleam:v1.12.0-erlang AS gleam-stage
 
-# Stage 3: Final development environment
-FROM mcr.microsoft.com/devcontainers/javascript-node:22
+# Stage 2: nushell
+FROM ghcr.io/nushell/nushell:latest-bookworm AS nushell-stage
 
-# Add Deno for additional JavaScript tooling
-COPY --from=denoland/deno:bin-2.3.1 /deno /usr/local/bin/deno
+# Stage 3: Base tools installation
+FROM node:22-bookworm AS base-tools
+RUN npm install -g npm@latest
+
+# Install basic development tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    less \
+    git \
+    procps \
+    sudo \
+    fzf \
+    zsh \
+    man-db \
+    unzip \
+    gnupg2 \
+    gh \
+    iptables \
+    ipset \
+    iproute2 \
+    dnsutils \
+    aggregate \
+    jq \
+    nano \
+    vim \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# Stage 4: Development environment without Claude CLI
+FROM base-tools AS without-claude
 
 # Copy compiled tools from previous stages
-COPY --from=node-stage /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/npm
 COPY --from=gleam-stage /usr/local/lib/erlang /usr/local/lib/erlang
 COPY --from=gleam-stage /usr/local/bin/erl /usr/local/bin/erl
 COPY --from=gleam-stage /usr/local/bin/erlc /usr/local/bin/erlc
 COPY --from=gleam-stage /usr/local/bin/escript /usr/local/bin/escript
 COPY --from=gleam-stage /usr/local/bin/rebar3 /usr/local/bin/rebar3
 COPY --from=gleam-stage /usr/bin/gleam /usr/local/bin/gleam
+COPY --from=nushell-stage /usr/bin/nu /usr/local/bin/nu
 
-# User configuration
 ARG USERNAME=node
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
-
-# Install development tools and dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install npm packages globally
-RUN npm install -g \
-    npm@latest \
-    nushell \
-    @anthropic-ai/claude-code
 
 # Setup user directories
 RUN mkdir -p /home/$USERNAME/.cache/gleam \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME/.cache
 
-# Update UID/GID if needed
-RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
-        groupmod --gid $USER_GID $USERNAME \
-        && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
-        && chown -R $USER_UID:$USER_GID /home/$USERNAME; \
-    fi
+# Create workspace and config directories and set permissions
+RUN mkdir -p /workspace /home/node/.claude && \
+  chown -R node:node /workspace /home/node/.claude
 
-# Set working directory
 WORKDIR /workspace
+
+# Set the default shell to zsh rather than sh
+ENV SHELL=/bin/zsh
+
+
+# Stage 5: Final development environment with Claude CLI
+FROM without-claude
+
+# Install Claude
+RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
+
+# Copy and set up firewall script
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/Dockerfile
+COPY init-firewall.sh /usr/local/bin/
+USER root
+RUN chmod +x /usr/local/bin/init-firewall.sh && \
+  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
+  chmod 0440 /etc/sudoers.d/node-firewall
+USER node

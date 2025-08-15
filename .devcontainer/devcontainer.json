@@ -1,14 +1,14 @@
-// DevContainer for Gleam development
 {
 	"name": "Gleam",
 	"dockerFile": "Dockerfile",
-
-	// Configure tool-specific properties.
+	"runArgs": [
+		"--cap-add=NET_ADMIN",
+		"--cap-add=NET_RAW"
+	],
 	"customizations": {
-		// Configure properties specific to VS Code.
 		"vscode": {
-			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				"eamodio.gitlens",
 				"gleam.gleam",
 				"anthropic.claude-code"
 			],
@@ -17,14 +17,13 @@
 			}
 		}
 	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "",
-
-	// Comment out to connect as root instead. In that case you may need to change the mounts
-	// configuration too. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "node"
+	"remoteUser": "node",
+	"mounts": [
+		"source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume"
+	],
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/node/.claude"
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+	"workspaceFolder": "/workspace"
 }
