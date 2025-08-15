@@ -1,6 +1,10 @@
 {
 	"name": "Gleam",
 	"dockerFile": "Dockerfile",
+	"runArgs": [
+		"--cap-add=NET_ADMIN",
+		"--cap-add=NET_RAW"
+	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -15,5 +19,6 @@
 	},
 	"remoteUser": "node",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-	"workspaceFolder": "/workspace"
+	"workspaceFolder": "/workspace",
+	"postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
 }

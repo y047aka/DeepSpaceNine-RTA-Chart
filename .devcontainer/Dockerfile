@@ -15,13 +15,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     less \
     git \
     procps \
-    # sudo \
+    sudo \
     fzf \
     zsh \
     man-db \
     unzip \
     gnupg2 \
     gh \
+    iptables \
+    ipset \
+    iproute2 \
+    dnsutils \
+    aggregate \
     jq \
     nano \
     vim \
@@ -40,7 +45,6 @@ COPY --from=gleam-stage /usr/local/bin/rebar3 /usr/local/bin/rebar3
 COPY --from=gleam-stage /usr/bin/gleam /usr/local/bin/gleam
 COPY --from=nushell-stage /usr/bin/nu /usr/local/bin/nu
 
-# Set up non-root user
 ARG USERNAME=node
 
 # Setup user directories
@@ -58,3 +62,12 @@ FROM without-claude
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
+
+# Copy and set up firewall script
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/Dockerfile
+COPY init-firewall.sh /usr/local/bin/
+USER root
+RUN chmod +x /usr/local/bin/init-firewall.sh && \
+  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
+  chmod 0440 /etc/sudoers.d/node-firewall
+USER node
