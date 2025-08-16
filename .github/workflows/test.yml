@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  gleam-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,3 +21,51 @@ jobs:
       - run: cd app && gleam deps download
       - run: cd app && gleam test
       - run: cd app && gleam format --check src test
+
+  visual-regression-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27.1.2"
+          gleam-version: "1.12.0"
+          rebar3-version: "3"
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Build Gleam application
+        run: cd app && gleam build
+      
+      - name: Run Playwright VRT tests
+        run: npm run test:vrt
+      
+      - name: Upload VRT test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vrt-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 30
+      
+      - name: Upload VRT screenshots on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: vrt-failed-screenshots
+          path: |
+            test-results/
+            tests/**/test-results/
+          retention-days: 30

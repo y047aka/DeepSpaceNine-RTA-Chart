@@ -1,0 +1,29 @@
+{
+  "name": "ds9-vrt",
+  "version": "1.0.0",
+  "description": "Deep Space Nine episode analysis with Visual Regression Testing",
+  "private": true,
+  "scripts": {
+    "build": "cd app && gleam build",
+    "serve": "serve app -l 3000 -s",
+    "start": "npm run build && npm run serve",
+    "test:vrt": "playwright test",
+    "test:vrt:update": "playwright test --update-snapshots",
+    "test:vrt:ui": "playwright test --ui",
+    "test:vrt:debug": "playwright test --debug",
+    "install:playwright": "playwright install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.0",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/ds9-vrt.git"
+  },
+  "author": "",
+  "license": "MIT"
+}
