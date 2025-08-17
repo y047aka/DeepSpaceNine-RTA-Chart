@@ -38,5 +38,6 @@
 			"label": "Playwright Test Report",
 			"onAutoForward": "notify"
 		}
-	}
+	},
+	"postCreateCommand": "npm install"
 }
