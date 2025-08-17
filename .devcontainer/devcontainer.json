@@ -25,8 +25,18 @@
 		"source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume"
 	],
 	"containerEnv": {
-		"CLAUDE_CONFIG_DIR": "/home/node/.claude"
+		"CLAUDE_CONFIG_DIR": "/home/node/.claude",
+		"PLAYWRIGHT_HTML_HOST": "0.0.0.0"
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-	"workspaceFolder": "/workspace"
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [
+		9323
+	],
+	"portsAttributes": {
+		"9323": {
+			"label": "Playwright Test Report",
+			"onAutoForward": "notify"
+		}
+	}
 }
