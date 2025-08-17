@@ -3,14 +3,17 @@
 	"dockerFile": "Dockerfile",
 	"runArgs": [
 		"--cap-add=NET_ADMIN",
-		"--cap-add=NET_RAW"
+		"--cap-add=NET_RAW",
+		"--init",
+		"--ipc=host"
 	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"eamodio.gitlens",
-				"gleam.gleam",
-				"anthropic.claude-code"
+				"ms-playwright.playwright",
+				"anthropic.claude-code",
+				"gleam.gleam"
 			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh"

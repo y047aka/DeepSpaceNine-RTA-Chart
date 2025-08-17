@@ -6,8 +6,11 @@ FROM ghcr.io/gleam-lang/gleam:v1.12.0-erlang AS gleam-stage
 # Stage 2: nushell
 FROM ghcr.io/nushell/nushell:latest-bookworm AS nushell-stage
 
-# Stage 3: Base tools installation
-FROM node:22-bookworm AS base-tools
+# Stage 3: Base tools installation using official Playwright image
+FROM mcr.microsoft.com/playwright:v1.54.0-noble AS base-tools
+
+RUN adduser node
+
 RUN npm install -g npm@latest
 
 # Install basic development tools

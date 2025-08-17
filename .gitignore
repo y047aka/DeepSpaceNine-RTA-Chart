@@ -4,3 +4,12 @@
 erl_crash.dump
 
 /app/priv/static/app.mjs
+
+# Node.js dependencies
+node_modules/
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
