@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "cd app && gleam build",
+    "serve": "serve app -l 3000 -s",
+    "start": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.3.0",
+    "serve": "^14.2.4"
+  }
+}

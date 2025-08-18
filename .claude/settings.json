@@ -25,7 +25,9 @@
       "Bash(rg:*)",
       "Bash(git:*)",
       "Bash(npm:*)",
+      "Bash(npx playwright:*)",
       "Bash(gleam:*)",
+      "WebSearch",
       "WebFetch(domain:docs.anthropic.com)",
       "WebFetch(domain:github.com)"
     ],
