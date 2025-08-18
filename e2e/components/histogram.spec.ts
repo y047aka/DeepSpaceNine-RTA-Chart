@@ -21,6 +21,7 @@ test.describe('Histogram Component Visual Tests', () => {
   test('should render histogram with controls correctly', async ({ page }) => {
     // Test any control elements if they exist
     const controls = page.locator('select, button, .controls').first();
+
     if (await controls.count() > 0) {
       await expect(page).toHaveScreenshot('histogram-with-controls.png');
     }
