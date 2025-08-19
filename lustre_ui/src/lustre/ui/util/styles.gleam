@@ -1,15 +1,15 @@
 // IMPORTS ---------------------------------------------------------------------
 
 import gleam/dict.{type Dict}
-import gleam/list
 import gleam/float
+import gleam/list
 import gleam/pair
+import gleam/string
+import gleam_community/colour
 import lustre/element.{type Element}
 import lustre/element/html
 import lustre/ui.{type Size, type Theme, type Value}
 import lustre/ui/util/colour.{type Scale} as _
-import gleam_community/colour
-import gleam/string
 
 // ELEMENTS --------------------------------------------------------------------
 

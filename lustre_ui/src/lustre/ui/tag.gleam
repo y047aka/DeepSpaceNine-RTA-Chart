@@ -9,18 +9,18 @@ import lustre/element/html
 /// A simple tag. This shares styles with lustre_ui's buttons, but are much
 /// smaller and uninteractive by default. They are useful for displaying small
 /// amounts of information, such as category tags or labels.
-/// 
+///
 /// If you want a tag to be interactive, you should either use the `of` function
 /// below to construct a tag with `html.button` *or* you should set the tabindex
 /// attribute and handle both click and key events for `Enter` and `Space`.
-/// 
+///
 pub fn tag(attributes: List(Attribute(msg)), children: List(Element(msg))) {
   of(html.span, attributes, children)
 }
 
 /// Use this function if you want to render something other than a `<span />`
 /// element.
-/// 
+///
 pub fn of(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attributes: List(Attribute(msg)),

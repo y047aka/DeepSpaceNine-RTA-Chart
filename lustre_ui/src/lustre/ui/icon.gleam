@@ -18,7 +18,7 @@ import lustre/element.{type Element}
 import lustre/element/html
 import lustre/element/svg
 
-// 
+//
 
 fn icon(attrs: List(Attribute(msg)), path: String) -> Element(msg) {
   html.svg(

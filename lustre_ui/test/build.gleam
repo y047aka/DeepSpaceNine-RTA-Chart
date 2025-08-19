@@ -50,7 +50,10 @@ pub fn main() {
   }
   let _ = {
     let assert Ok(regex) =
-      regexp.compile("const element_css_no_reset: String = \"(.|\n)+\"", options)
+      regexp.compile(
+        "const element_css_no_reset: String = \"(.|\n)+\"",
+        options,
+      )
     let assert [Match(content, ..)] = regexp.scan(with: regex, content: src)
     use css <- compile_css(css, "lustre-ui-no-reset")
     let css =

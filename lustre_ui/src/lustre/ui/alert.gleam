@@ -7,7 +7,7 @@ import lustre/element/html
 // ELEMENTS --------------------------------------------------------------------
 
 ///
-/// 
+///
 pub fn alert(
   attributes: List(Attribute(msg)),
   children: List(Element(msg)),
@@ -16,7 +16,7 @@ pub fn alert(
 }
 
 ///
-/// 
+///
 pub fn of(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attributes: List(Attribute(msg)),

@@ -8,7 +8,7 @@ import lustre/element/html
 
 /// A styled native HTML button. You can use the `solid`, `soft`, and `outline`
 /// attributes to configure the button's appearance.
-/// 
+///
 pub fn button(attributes: List(Attribute(msg)), children: List(Element(msg))) {
   html.button(
     [
@@ -23,10 +23,10 @@ pub fn button(attributes: List(Attribute(msg)), children: List(Element(msg))) {
 /// Use this function if you want to render something other than a `<button />`
 /// element. It will automatically have the `role` and `tabindex` attributes
 /// set.
-/// 
+///
 /// 🚨 To make your non-standard buttons accessible, it is important that you
 ///    handle click events as well as key events for the `Enter` and `Space`.
-/// 
+///
 pub fn of(
   element: fn(List(Attribute(msg)), List(Element(msg))) -> Element(msg),
   attributes: List(Attribute(msg)),
