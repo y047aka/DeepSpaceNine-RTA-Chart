@@ -1,6 +1,6 @@
 // IMPORTS ---------------------------------------------------------------------
 
-import gleam/dynamic.{type DecodeError, type Dynamic}
+import gleam/dynamic/decode
 import gleam/json.{type Json}
 import lustre/attribute.{type Attribute, attribute}
 import lustre/element.{type Element}
@@ -165,33 +165,52 @@ fn encode_value(value: Value) -> Json {
   }
 }
 
-pub fn theme_decoder(json: Dynamic) -> Result(Theme, List(DecodeError)) {
-  dynamic.decode9(
-    Theme,
-    dynamic.field("space", size_decoder),
-    dynamic.field("text", size_decoder),
-    dynamic.field("radius", value_decoder),
-    dynamic.field("primary", colour.scale_decoder),
-    dynamic.field("greyscale", colour.scale_decoder),
-    dynamic.field("error", colour.scale_decoder),
-    dynamic.field("warning", colour.scale_decoder),
-    dynamic.field("success", colour.scale_decoder),
-    dynamic.field("info", colour.scale_decoder),
-  )(json)
+pub fn theme_decoder() -> decode.Decoder(Theme) {
+  use space <- decode.field("space", size_decoder())
+  use text <- decode.field("text", size_decoder())
+  use radius <- decode.field("radius", value_decoder())
+  use primary <- decode.field("primary", colour.scale_decoder())
+  use greyscale <- decode.field("greyscale", colour.scale_decoder())
+  use error <- decode.field("error", colour.scale_decoder())
+  use warning <- decode.field("warning", colour.scale_decoder())
+  use success <- decode.field("success", colour.scale_decoder())
+  use info <- decode.field("info", colour.scale_decoder())
+
+  decode.success(Theme(
+    space,
+    text,
+    radius,
+    primary,
+    greyscale,
+    error,
+    warning,
+    success,
+    info,
+  ))
 }
 
-fn size_decoder(json: Dynamic) -> Result(Size, List(DecodeError)) {
-  dynamic.decode2(
-    Size,
-    dynamic.field("base", value_decoder),
-    dynamic.field("ratio", dynamic.float),
-  )(json)
+fn size_decoder() -> decode.Decoder(Size) {
+  use base <- decode.field("base", value_decoder())
+  use ratio <- decode.field("ratio", decode.float)
+
+  decode.success(Size(base, ratio))
 }
 
-fn value_decoder(json: Dynamic) -> Result(Value, List(DecodeError)) {
-  dynamic.any([
-    dynamic.decode1(Rem, dynamic.field("rem", dynamic.float)),
-    dynamic.decode1(Px, dynamic.field("px", dynamic.float)),
-    dynamic.decode1(Var, dynamic.field("var", dynamic.string)),
-  ])(json)
+fn value_decoder() -> decode.Decoder(Value) {
+  let rem_decoder = {
+    use value <- decode.field("rem", decode.float)
+    decode.success(Rem(value))
+  }
+
+  let px_decoder = {
+    use value <- decode.field("px", decode.float)
+    decode.success(Px(value))
+  }
+
+  let var_decoder = {
+    use value <- decode.field("var", decode.string)
+    decode.success(Var(value))
+  }
+
+  decode.one_of(rem_decoder, [px_decoder, var_decoder])
 }

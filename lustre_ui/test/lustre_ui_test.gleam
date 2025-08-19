@@ -25,6 +25,6 @@ pub fn json_identity_test() {
   theme
   |> ui.encode_theme
   |> json.to_string
-  |> json.decode(ui.theme_decoder)
+  |> json.parse(ui.theme_decoder())
   |> should.equal(Ok(theme))
 }

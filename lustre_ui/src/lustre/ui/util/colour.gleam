@@ -1,8 +1,7 @@
 // IMPORTS ---------------------------------------------------------------------
 
-import gleam/dynamic.{type DecodeError, type Dynamic}
+import gleam/dynamic/decode
 import gleam/json.{type Json}
-import gleam/result
 import gleam_community/colour.{type Colour}
 
 // TYPES -----------------------------------------------------------------------
@@ -64,25 +63,39 @@ pub fn encode_scale(scale: Scale) -> Json {
   ])
 }
 
-pub fn scale_decoder(json: Dynamic) -> Result(Scale, List(DecodeError)) {
-  let attempt = fn(field, then) {
-    result.try(dynamic.field(field, colour.decoder)(json), then)
-  }
+pub fn scale_decoder() -> decode.Decoder(Scale) {
+  use app_background <- decode.field("app_background", colour.decoder())
+  use app_background_subtle <- decode.field(
+    "app_background_subtle",
+    colour.decoder(),
+  )
+  use app_border <- decode.field("app_border", colour.decoder())
+  use element_background <- decode.field("element_background", colour.decoder())
+  use element_background_hover <- decode.field(
+    "element_background_hover",
+    colour.decoder(),
+  )
+  use element_background_strong <- decode.field(
+    "element_background_strong",
+    colour.decoder(),
+  )
+  use element_border_subtle <- decode.field(
+    "element_border_subtle",
+    colour.decoder(),
+  )
+  use element_border_strong <- decode.field(
+    "element_border_strong",
+    colour.decoder(),
+  )
+  use solid_background <- decode.field("solid_background", colour.decoder())
+  use solid_background_hover <- decode.field(
+    "solid_background_hover",
+    colour.decoder(),
+  )
+  use text_high_contrast <- decode.field("text_high_contrast", colour.decoder())
+  use text_low_contrast <- decode.field("text_low_contrast", colour.decoder())
 
-  use app_background <- attempt("app_background")
-  use app_background_subtle <- attempt("app_background_subtle")
-  use app_border <- attempt("app_border")
-  use element_background <- attempt("element_background")
-  use element_background_hover <- attempt("element_background_hover")
-  use element_background_strong <- attempt("element_background_strong")
-  use element_border_subtle <- attempt("element_border_subtle")
-  use element_border_strong <- attempt("element_border_strong")
-  use solid_background <- attempt("solid_background")
-  use solid_background_hover <- attempt("solid_background_hover")
-  use text_high_contrast <- attempt("text_high_contrast")
-  use text_low_contrast <- attempt("text_low_contrast")
-
-  Ok(Scale(
+  decode.success(Scale(
     app_background,
     app_background_subtle,
     app_border,
