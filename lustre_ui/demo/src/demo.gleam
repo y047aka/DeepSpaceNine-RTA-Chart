@@ -3,16 +3,16 @@ import lustre/attribute.{attribute}
 import lustre/element.{type Element, text}
 import lustre/element/html
 import lustre/ui
-import lustre/ui/styles
 import lustre/ui/alert
-import lustre/ui/aside
 import lustre/ui/breadcrumbs
 import lustre/ui/button
-import lustre/ui/cluster
-import lustre/ui/icon
 import lustre/ui/field
+import lustre/ui/icon
 import lustre/ui/input
+import lustre/ui/layout/aside
+import lustre/ui/layout/cluster
 import lustre/ui/prose
+import lustre/ui/util/styles
 
 // MAIN ------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ pub fn main() {
 fn view() -> Element(Nil) {
   let styles = [#("width", "80ch"), #("margin", "0 auto"), #("padding", "2rem")]
 
-  ui.stack([attribute.style(styles)], [
+  ui.stack([attribute.styles(styles)], [
     styles.without_reset(),
     html.p([], [text("Buttons:")]),
     ui.cluster([cluster.stretch()], [
