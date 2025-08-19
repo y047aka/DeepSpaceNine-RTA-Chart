@@ -57,7 +57,7 @@ pub fn of(
 /// valid.
 ///
 pub fn breakpoint(break: String) -> Attribute(msg) {
-  attribute.style([#("--break", break)])
+  attribute.styles([#("--break", break)])
 }
 
 /// This attribute forces the sequence to break once a certain number of children
@@ -119,5 +119,5 @@ pub fn loose() -> Attribute(msg) {
 /// space scale from the theme.
 /// 
 pub fn space(gap: String) -> Attribute(msg) {
-  attribute.style([#("--gap", gap)])
+  attribute.styles([#("--gap", gap)])
 }

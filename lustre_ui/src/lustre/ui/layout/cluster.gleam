@@ -99,5 +99,5 @@ pub fn loose() -> Attribute(msg) {
 /// space scale from the theme.
 /// 
 pub fn space(gap: String) -> Attribute(msg) {
-  attribute.style([#("--gap", gap)])
+  attribute.styles([#("--gap", gap)])
 }

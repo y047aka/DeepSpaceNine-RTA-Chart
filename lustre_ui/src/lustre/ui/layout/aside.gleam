@@ -122,7 +122,7 @@ pub fn loose() -> Attribute(msg) {
 /// space scale from the theme.
 /// 
 pub fn space(gap: String) -> Attribute(msg) {
-  attribute.style([#("--gap", gap)])
+  attribute.styles([#("--gap", gap)])
 }
 
 /// This attribute specifies the minimum width of the main content before forcing
@@ -131,8 +131,8 @@ pub fn space(gap: String) -> Attribute(msg) {
 /// 
 pub fn min_width(width: Int) -> Attribute(msg) {
   case width < 10, width > 90 {
-    True, _ -> attribute.style([#("--min", "10%")])
-    False, False -> attribute.style([#("--min", int.to_string(width) <> "%")])
-    _, True -> attribute.style([#("--min", "90%")])
+    True, _ -> attribute.styles([#("--min", "10%")])
+    False, False -> attribute.styles([#("--min", int.to_string(width) <> "%")])
+    _, True -> attribute.styles([#("--min", "90%")])
   }
 }
