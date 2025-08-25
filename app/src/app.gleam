@@ -2,13 +2,14 @@
 
 import components/episode_table
 import components/histogram
+import components/ui/switch
 import gleam/list
 import gleam/result
 import lustre
 import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
-import lustre/element/html
+import lustre/element/html.{text}
 import lustre/event
 import rsvp
 import types/character.{type Character}
@@ -165,14 +166,15 @@ fn view_character_section(
   episodes: List(Episode),
 ) -> Element(Msg) {
   html.div([], [
-    html.label([attribute.class("checkbox-label")], [
-      html.input([
-        attribute.type_("checkbox"),
+    switch.switch(
+      [
         attribute.checked(after_season_4),
         event.on_click(Toggle),
-      ]),
-      html.text("Show more characters"),
-    ]),
+        switch.solid(switch.Neutral),
+        switch.md(),
+      ],
+      [text("Show more characters")],
+    ),
     html.div(
       [attribute.class("histograms-grid")],
       get_characters(after_season_4)
