@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+    --color-neutral: hsl(var(--neutral));
+    --color-neutral-foreground: hsl(var(--neutral-foreground));
+
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+    --color-info: hsl(var(--info));
+    --color-info-foreground: hsl(var(--info-foreground));
+
+    --color-success: hsl(var(--success));
+    --color-success-foreground: hsl(var(--success-foreground));
+
+    --color-warning: hsl(var(--warning));
+    --color-warning-foreground: hsl(var(--warning-foreground));
+
+    --color-danger: hsl(var(--danger));
+    --color-danger-foreground: hsl(var(--danger-foreground));
+}
+
+@layer base {
+
+    :root,
+    .light {
+        --background: 240 5% 90%;
+        --foreground: 234 16% 35%;
+
+        --neutral: 240 10% 40%;
+        --neutral-foreground: 220 23% 95%;
+
+        --primary: 331 82% 64%;
+        --primary-foreground: 220 23% 95%;
+
+        --secondary: 30 81% 63%;
+        --secondary-foreground: 220 23% 95%;
+
+        --success: 109 58% 40%;
+        --success-foreground: 220 23% 95%;
+
+        --info: 220 91% 54%;
+        --info-foreground: 220 23% 95%;
+
+        --warning: 35 77% 49%;
+        --warning-foreground: 220 23% 95%;
+
+        --danger: 347 87% 44%;
+        --danger-foreground: 220 23% 95%;
+    }
+
+    .dark {
+        --background: 0 0% 7%;
+        --foreground: 226 64% 88%;
+
+        --neutral: 240 10% 60%;
+        --neutral-foreground: 240 21% 15%;
+
+        --primary: 331 82% 64%;
+        --primary-foreground: 240 21% 15%;
+
+        --secondary: 30 81% 63%;
+        --secondary-foreground: 240 21% 15%;
+
+        --success: 115 54% 76%;
+        --success-foreground: 240 21% 15%;
+
+        --info: 217 92% 76%;
+        --info-foreground: 240 21% 15%;
+
+        --warning: 41 86% 83%;
+        --warning-foreground: 240 21% 15%;
+
+        --danger: 343 81% 75%;
+        --danger-foreground: 240 21% 15%;
+    }
+}
