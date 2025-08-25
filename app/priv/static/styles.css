@@ -112,87 +112,6 @@ body {
   border-radius: 10%;
 }
 
-/* Episode Table Styles */
-.episode-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--bg-color);
-  margin: 0 auto;
-}
-
-.episode-table td {
-  padding: 5px 6px;
-  border-bottom: 1px solid hsl(0, 0%, 20%);
-}
-
-.episode-row {
-  height: 31px;
-  font-size: 10px;
-  transition: background-color 500ms ease;
-}
-
-/* Alternating row colors */
-.episode-row:nth-child(odd) {
-  background-color: hsl(0, 0%, 9.5%);
-}
-
-.episode-row:hover {
-  background-color: var(--hover-bg);
-}
-
-/* Episode columns */
-.episode-index {
-  text-align: center;
-  font-size: 12px;
-}
-
-.season-episode {
-  min-width: 4.5em;
-  text-align: center;
-}
-
-.importance-col {
-  text-align: center;
-}
-
-.title-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.title-en {
-  font-size: 12px;
-}
-
-.title-ja {
-  color: hsl(0, 0%, 40%);
-}
-
-.action-button {
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background-color: unset;
-  color: inherit;
-}
-
-/* Importance-based row coloring (like Elm's stepByImportance) */
-.episode-row[data-importance="5"], 
-.episode-row[data-importance="4"] {
-  color: hsl(0, 0%, 80%);
-}
-
-.episode-row[data-importance="3"] {
-  color: hsl(0, 0%, 50%);
-}
-
-.episode-row[data-importance="2"],
-.episode-row[data-importance="1"],
-.episode-row[data-importance="0"] {
-  color: hsl(0, 0%, 30%);
-}
-
 /* Importance Circle (using CSS pseudo-element like Elm) */
 .importance-circle::before {
   content: '';
@@ -236,30 +155,6 @@ body {
   border-radius: 5px;
   border: 1px solid hsl(0, 0%, 30%);
   max-width: 300px;
-}
-
-.episode-popover div {
-  margin-bottom: 5px;
-}
-
-.episode-popover div:last-child {
-  margin-bottom: 0;
-}
-
-/* Netflix Link Styles */
-.netflix-link {
-  display: inline-block;
-  padding: 0 10px;
-  font-size: 12px;
-  text-decoration: none;
-  background-color: hsl(350, 50%, 45%);
-  color: hsl(0, 0%, 10%);
-  border-radius: 15px;
-  margin-top: 5px;
-}
-
-.netflix-link:visited {
-  background-color: hsl(350, 50%, 20%);
 }
 
 /* Checkbox Styles */
