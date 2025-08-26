@@ -124,7 +124,7 @@ fn get_organizations() -> List(Organization) {
 // VIEW ------------------------------------------------------------------------
 
 pub fn view(model: Model) -> Element(Msg) {
-  html.div([], [
+  html.div([attribute.attribute("data-theme", "dark")], [
     html.div([attribute.class("drawer lg:drawer-open")], [
       html.input([
         attribute.type_("checkbox"),
