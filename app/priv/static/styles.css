@@ -12,16 +12,6 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 20px;
-  line-height: 1.4;
-}
-
-/* Container Layout */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 /* Section Styles */
@@ -76,10 +66,6 @@ body {
   display: grid;
   grid-template-columns: repeat(7, auto);
   max-width: 300px;
-}
-
-.list :where(.list-row):not(.list-col-wrap) .small-histogram>.season>.histogram-cell {
-  grid-row-start: unset;
 }
 
 .small-histogram .season {
