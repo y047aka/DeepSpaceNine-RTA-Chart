@@ -14,19 +14,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* Section Styles */
-.section {
-  margin-bottom: 2rem;
-}
-
-.section-title {
-  font-size: 1.2em;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--section-title-color);
-}
-
-
 /* Large Histogram (Deep Space Nine section) */
 .large-histogram {
   display: grid;

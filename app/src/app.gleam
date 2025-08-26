@@ -145,7 +145,7 @@ pub fn view(model: Model) -> Element(Msg) {
         ]),
         // main contents
         view_main_histogram(model.episodes),
-        view_episode_table_section(model.episodes),
+        episode_table.view(model.episodes),
       ]),
 
       html.div([attribute.class("drawer-side")], [
@@ -174,9 +174,16 @@ fn view_main_histogram(episodes: List(Episode)) -> Element(Msg) {
       )
     })
 
-  html.div([attribute.class("section")], [
-    html.div([attribute.class("section-title")], [
-      html.text("Deep Space Nine"),
+  html.div([], [
+    html.div([attribute.class("breadcrumbs text-sm")], [
+      html.ul([], [
+        html.li([], [
+          html.a([], [html.text("Home")]),
+        ]),
+        html.li([], [
+          html.text("Deep Space Nine"),
+        ]),
+      ]),
     ]),
     histogram.large_view(175, episodes_data),
   ])
@@ -241,8 +248,4 @@ fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
       html.ul([], organization_items),
     ]),
   ])
-}
-
-fn view_episode_table_section(episodes: List(Episode)) -> Element(Msg) {
-  html.div([attribute.class("section")], [episode_table.view(episodes)])
 }
