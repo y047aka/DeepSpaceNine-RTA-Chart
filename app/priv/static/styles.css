@@ -36,13 +36,6 @@ body {
   color: var(--section-title-color);
 }
 
-/* Histogram Grid Layout */
-.histograms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
 
 /* Large Histogram (Deep Space Nine section) */
 .large-histogram {
@@ -83,6 +76,10 @@ body {
   display: grid;
   grid-template-columns: repeat(7, auto);
   max-width: 300px;
+}
+
+.list :where(.list-row):not(.list-col-wrap) .small-histogram>.season>.histogram-cell {
+  grid-row-start: unset;
 }
 
 .small-histogram .season {

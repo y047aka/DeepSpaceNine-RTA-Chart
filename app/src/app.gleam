@@ -181,17 +181,22 @@ fn view_character_section(
       ],
       [text("Show more characters")],
     ),
-    html.div(
-      [attribute.class("histograms-grid")],
+    html.ul(
+      [attribute.class("list rounded-box shadow-md")],
       get_characters(after_season_4)
         |> list.map(fn(character) {
           let char_episodes =
             episode.get_character_episodes(character, episodes)
-          html.div([attribute.class("section")], [
-            html.div([attribute.class("section-title")], [
-              html.text(character.name),
+          html.li([attribute.class("list-row")], [
+            html.div([attribute.class("list-col-grow")], [
+              html.div(
+                [attribute.class("text-sm font-medium mb-2 text-base-content")],
+                [
+                  html.text(character.name),
+                ],
+              ),
+              histogram.view(character.character_hue(character), char_episodes),
             ]),
-            histogram.view(character.character_hue(character), char_episodes),
           ])
         }),
     ),
@@ -199,16 +204,21 @@ fn view_character_section(
 }
 
 fn view_organization_section(episodes: List(Episode)) -> Element(Msg) {
-  html.div(
-    [attribute.class("histograms-grid")],
+  html.ul(
+    [attribute.class("list rounded-box shadow-md")],
     get_organizations()
       |> list.map(fn(org) {
         let org_episodes = episode.get_organization_episodes(org, episodes)
-        html.div([attribute.class("section")], [
-          html.div([attribute.class("section-title")], [
-            html.text(organization.to_string(org)),
+        html.li([attribute.class("list-row")], [
+          html.div([attribute.class("list-col-grow")], [
+            html.div(
+              [attribute.class("text-sm font-medium mb-2 text-base-content")],
+              [
+                html.text(organization.to_string(org)),
+              ],
+            ),
+            histogram.view(organization.to_hue(org), org_episodes),
           ]),
-          histogram.view(organization.to_hue(org), org_episodes),
         ])
       }),
   )
