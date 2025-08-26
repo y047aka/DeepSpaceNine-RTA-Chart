@@ -136,9 +136,15 @@ fn get_organizations() -> List(Organization) {
 pub fn view(model: Model) -> Element(Msg) {
   html.div([attribute.class("container")], [
     view_main_histogram(model.episodes),
-    view_character_section(model.after_season_4, model.episodes),
-    view_organization_section(model.episodes),
-    view_episode_table_section(model.episodes),
+    html.div([attribute.class("grid grid-cols-1 lg:grid-cols-3 gap-6")], [
+      html.div([attribute.class("lg:col-span-1 flex flex-col gap-6")], [
+        view_character_section(model.after_season_4, model.episodes),
+        view_organization_section(model.episodes),
+      ]),
+      html.div([attribute.class("lg:col-span-2")], [
+        view_episode_table_section(model.episodes),
+      ]),
+    ]),
   ])
 }
 
@@ -209,8 +215,5 @@ fn view_organization_section(episodes: List(Episode)) -> Element(Msg) {
 }
 
 fn view_episode_table_section(episodes: List(Episode)) -> Element(Msg) {
-  html.div([attribute.class("section")], [
-    html.div([attribute.class("section-title")], [html.text("Episode List")]),
-    episode_table.view(episodes),
-  ])
+  html.div([attribute.class("section")], [episode_table.view(episodes)])
 }
