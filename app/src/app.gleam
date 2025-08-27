@@ -245,7 +245,7 @@ fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
         html.div(
           [
             attribute.class(
-              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
             ),
             event.on_click(NavigateToCharacter(character)),
           ],
@@ -274,7 +274,7 @@ fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
         html.div(
           [
             attribute.class(
-              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
             ),
             event.on_click(NavigateToCharacter(character)),
           ],
@@ -303,7 +303,7 @@ fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
         html.div(
           [
             attribute.class(
-              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
             ),
             event.on_click(NavigateToOrganization(org)),
           ],

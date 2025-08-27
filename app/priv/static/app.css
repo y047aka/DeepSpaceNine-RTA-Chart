@@ -996,6 +996,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .items-start {
+    align-items: flex-start;
+  }
   .gap-1 {
     gap: calc(var(--spacing) * 1);
   }
