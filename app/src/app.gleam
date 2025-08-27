@@ -1,6 +1,6 @@
 import components/episode_table
 import components/histogram
-import components/ui/breadcrumb
+import components/ui/breadcrumbs
 import components/ui/menu.{type MenuItem}
 import gleam/list
 import gleam/option.{None, Some}
@@ -222,9 +222,9 @@ fn get_organization_menu_items(
 }
 
 fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
-  breadcrumb.view([
-    breadcrumb.breadcrumb_item("Home", Some(NavigateToHome)),
-    breadcrumb.breadcrumb_item(
+  breadcrumbs.view([
+    breadcrumbs.breadcrumb_item("Home", Some(NavigateToHome)),
+    breadcrumbs.breadcrumb_item(
       case current_view {
         HomeView -> "Deep Space Nine"
         CharacterView(character) -> character.name
