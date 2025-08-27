@@ -163,6 +163,7 @@ pub fn view(model: Model) -> Element(Msg) {
           ),
         ]),
         // main contents
+        view_breadcrumbs(model.current_view),
         view_main_histogram(model),
         episode_table.view(model.episodes),
       ]),
@@ -209,20 +210,30 @@ fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
 }
 
 fn view_main_histogram(model: Model) -> Element(Msg) {
-  let episodes_data =
-    model.episodes
-    |> list.map(fn(ep) {
-      histogram.SeasonImportance(
-        season: ep.season,
-        episode: ep.episode,
-        importance: ep.importance,
-      )
-    })
-
-  html.div([], [
-    view_breadcrumbs(model.current_view),
-    histogram.large_view(175, episodes_data),
-  ])
+  case model.current_view {
+    HomeView -> {
+      let episodes_data =
+        model.episodes
+        |> list.map(fn(ep) {
+          histogram.SeasonImportance(
+            season: ep.season,
+            episode: ep.episode,
+            importance: ep.importance,
+          )
+        })
+      histogram.large_view(175, episodes_data)
+    }
+    CharacterView(character) -> {
+      let char_episodes =
+        episode.get_character_episodes(character, model.episodes)
+      histogram.large_view(character.character_hue(character), char_episodes)
+    }
+    OrganizationView(organization) -> {
+      let org_episodes =
+        episode.get_organization_episodes(organization, model.episodes)
+      histogram.large_view(organization.to_hue(organization), org_episodes)
+    }
+  }
 }
 
 fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
