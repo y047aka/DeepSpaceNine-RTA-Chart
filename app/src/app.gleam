@@ -1,14 +1,15 @@
 import components/episode_table
 import components/histogram
+import components/ui/breadcrumb
 import components/ui/menu.{type MenuItem}
 import gleam/list
+import gleam/option.{None, Some}
 import gleam/result
 import lustre
 import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html.{text}
-import lustre/event
 import rsvp
 import types/character.{type Character}
 import types/episode.{type Episode}
@@ -221,28 +222,16 @@ fn get_organization_menu_items(
 }
 
 fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
-  let home_link =
-    html.li([], [
-      html.a(
-        [
-          event.on_click(NavigateToHome),
-          attribute.class("cursor-pointer hover:text-primary"),
-        ],
-        [html.text("Home")],
-      ),
-    ])
-
-  let second_level_item =
-    html.li([], [
-      text(case current_view {
+  breadcrumb.view([
+    breadcrumb.breadcrumb_item("Home", Some(NavigateToHome)),
+    breadcrumb.breadcrumb_item(
+      case current_view {
         HomeView -> "Deep Space Nine"
         CharacterView(character) -> character.name
         OrganizationView(organization) -> organization.to_string(organization)
-      }),
-    ])
-
-  html.div([attribute.class("breadcrumbs text-sm")], [
-    html.ul([], [home_link, second_level_item]),
+      },
+      None,
+    ),
   ])
 }
 
