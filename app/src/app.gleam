@@ -9,6 +9,7 @@ import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html.{text}
+import lustre/event
 import rsvp
 import types/character.{type Character}
 import types/episode.{type Episode}
@@ -27,11 +28,17 @@ pub fn main() {
 // MODEL -----------------------------------------------------------------------
 
 pub type Model {
-  Model(episodes: List(Episode))
+  Model(episodes: List(Episode), current_view: CurrentView)
+}
+
+pub type CurrentView {
+  HomeView
+  CharacterView(character: Character)
+  OrganizationView(organization: Organization)
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
-  let model = Model(episodes: [])
+  let model = Model(episodes: [], current_view: HomeView)
   let effect = fetch_episodes(on_response: LoadedEpisodes)
 
   #(model, effect)
@@ -55,6 +62,9 @@ fn fetch_episodes(
 
 pub type Msg {
   LoadedEpisodes(Result(List(Episode), error.AppError))
+  NavigateToHome
+  NavigateToCharacter(character: Character)
+  NavigateToOrganization(organization: Organization)
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
@@ -67,6 +77,15 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       error.log_error(app_error)
       #(model, effect.none())
     }
+    NavigateToHome -> #(Model(..model, current_view: HomeView), effect.none())
+    NavigateToCharacter(character) -> #(
+      Model(..model, current_view: CharacterView(character)),
+      effect.none(),
+    )
+    NavigateToOrganization(organization) -> #(
+      Model(..model, current_view: OrganizationView(organization)),
+      effect.none(),
+    )
   }
 }
 
@@ -144,7 +163,7 @@ pub fn view(model: Model) -> Element(Msg) {
           ),
         ]),
         // main contents
-        view_main_histogram(model.episodes),
+        view_main_histogram(model),
         episode_table.view(model.episodes),
       ]),
 
@@ -163,9 +182,35 @@ pub fn view(model: Model) -> Element(Msg) {
   ])
 }
 
-fn view_main_histogram(episodes: List(Episode)) -> Element(Msg) {
+fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
+  let home_link =
+    html.li([], [
+      html.a(
+        [
+          event.on_click(NavigateToHome),
+          attribute.class("cursor-pointer hover:text-primary"),
+        ],
+        [html.text("Home")],
+      ),
+    ])
+
+  let second_level_item =
+    html.li([], [
+      text(case current_view {
+        HomeView -> "Deep Space Nine"
+        CharacterView(character) -> character.name
+        OrganizationView(organization) -> organization.to_string(organization)
+      }),
+    ])
+
+  html.div([attribute.class("breadcrumbs text-sm")], [
+    html.ul([], [home_link, second_level_item]),
+  ])
+}
+
+fn view_main_histogram(model: Model) -> Element(Msg) {
   let episodes_data =
-    episodes
+    model.episodes
     |> list.map(fn(ep) {
       histogram.SeasonImportance(
         season: ep.season,
@@ -175,60 +220,96 @@ fn view_main_histogram(episodes: List(Episode)) -> Element(Msg) {
     })
 
   html.div([], [
-    html.div([attribute.class("breadcrumbs text-sm")], [
-      html.ul([], [
-        html.li([], [
-          html.a([], [html.text("Home")]),
-        ]),
-        html.li([], [
-          html.text("Deep Space Nine"),
-        ]),
-      ]),
-    ]),
+    view_breadcrumbs(model.current_view),
     histogram.large_view(175, episodes_data),
   ])
 }
 
 fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
-  let base_character_items =
+  let base_character_items: List(Element(Msg)) =
     get_characters()
     |> list.map(fn(character) {
       let char_episodes = episode.get_character_episodes(character, episodes)
       html.li([], [
-        html.div([attribute.class("flex flex-col gap-2")], [
-          html.div([attribute.class("text-sm font-medium text-base-content")], [
-            text(character.name),
-          ]),
-          histogram.view(character.character_hue(character), char_episodes),
-        ]),
+        html.div(
+          [
+            attribute.class(
+              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+            ),
+            event.on_click(NavigateToCharacter(character)),
+          ],
+          [
+            html.div(
+              [
+                attribute.class(
+                  "text-sm font-medium text-base-content text-left",
+                ),
+              ],
+              [
+                text(character.name),
+              ],
+            ),
+            histogram.view(character.character_hue(character), char_episodes),
+          ],
+        ),
       ])
     })
 
-  let extended_character_items =
+  let extended_character_items: List(Element(Msg)) =
     get_extended_characters()
     |> list.map(fn(character) {
       let char_episodes = episode.get_character_episodes(character, episodes)
       html.li([], [
-        html.div([attribute.class("flex flex-col gap-2")], [
-          html.div([attribute.class("text-sm font-medium text-base-content")], [
-            text(character.name),
-          ]),
-          histogram.view(character.character_hue(character), char_episodes),
-        ]),
+        html.div(
+          [
+            attribute.class(
+              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+            ),
+            event.on_click(NavigateToCharacter(character)),
+          ],
+          [
+            html.div(
+              [
+                attribute.class(
+                  "text-sm font-medium text-base-content text-left",
+                ),
+              ],
+              [
+                text(character.name),
+              ],
+            ),
+            histogram.view(character.character_hue(character), char_episodes),
+          ],
+        ),
       ])
     })
 
-  let organization_items =
+  let organization_items: List(Element(Msg)) =
     get_organizations()
     |> list.map(fn(org) {
       let org_episodes = episode.get_organization_episodes(org, episodes)
       html.li([], [
-        html.div([attribute.class("flex flex-col gap-2")], [
-          html.div([attribute.class("text-sm font-medium text-base-content")], [
-            text(organization.to_string(org)),
-          ]),
-          histogram.view(organization.to_hue(org), org_episodes),
-        ]),
+        html.div(
+          [
+            attribute.class(
+              "flex flex-col gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
+            ),
+            event.on_click(NavigateToOrganization(org)),
+          ],
+          [
+            html.div(
+              [
+                attribute.class(
+                  "text-sm font-medium text-base-content text-left",
+                ),
+              ],
+              [
+                text(organization.to_string(org)),
+              ],
+            ),
+            histogram.view(organization.to_hue(org), org_episodes),
+          ],
+        ),
       ])
     })
 

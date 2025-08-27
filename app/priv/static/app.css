@@ -990,6 +990,9 @@
   .w-full {
     width: 100%;
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -1002,8 +1005,14 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .rounded {
+    border-radius: 0.25rem;
+  }
   .bg-base-200 {
     background-color: var(--color-base-200);
+  }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -1023,6 +1032,9 @@
   }
   .text-center {
     text-align: center;
+  }
+  .text-left {
+    text-align: left;
   }
   .text-lg {
     font-size: var(--text-lg);
@@ -1075,6 +1087,20 @@
   .btn-primary {
     --btn-color: var(--color-primary);
     --btn-fg: var(--color-primary-content);
+  }
+  .hover\:bg-base-300 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-base-300);
+      }
+    }
+  }
+  .hover\:text-primary {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-primary);
+      }
+    }
   }
   .lg\:drawer-open {
     @media (width >= 64rem) {
