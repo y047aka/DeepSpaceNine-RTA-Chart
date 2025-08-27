@@ -1,7 +1,6 @@
-// IMPORTS ---------------------------------------------------------------------
-
 import components/episode_table
 import components/histogram
+import components/ui/menu.{type MenuItem}
 import gleam/list
 import gleam/result
 import lustre
@@ -89,57 +88,6 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   }
 }
 
-// HELPERS ---------------------------------------------------------------------
-
-fn get_characters() -> List(Character) {
-  [
-    character.benjamin_sisko,
-    character.jake_sisko,
-    character.dax,
-    character.kira_nerys,
-    character.miles_obrien,
-    character.bashir,
-    character.odo,
-    character.quark,
-    character.worf,
-    character.rom,
-    character.nog,
-    character.garak,
-    character.dukat,
-  ]
-}
-
-fn get_extended_characters() -> List(Character) {
-  [
-    character.keiko_obrien,
-    character.winn,
-    character.bareil,
-    character.michael_eddington,
-    character.kasidy_yates,
-    character.leeta,
-    character.gowron,
-    character.martok,
-    character.shakaar,
-    character.ziyal,
-    character.damar,
-  ]
-}
-
-fn get_organizations() -> List(Organization) {
-  [
-    organization.Federation(role.Starfleet(role.Operations)),
-    organization.TrillSymbiosisCommission,
-    organization.Bajor,
-    organization.Prophets,
-    organization.CardassianUnion,
-    organization.FerengiAlliance,
-    organization.KlingonEmpire,
-    organization.Maquis,
-    organization.DominionForces,
-    organization.MirrorUniverse,
-  ]
-}
-
 // VIEW ------------------------------------------------------------------------
 
 pub fn view(model: Model) -> Element(Msg) {
@@ -177,10 +125,99 @@ pub fn view(model: Model) -> Element(Msg) {
           ],
           [],
         ),
-        view_sidebar_menu(model.episodes),
+        view_sidebar(model.episodes),
       ]),
     ]),
   ])
+}
+
+fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
+  let characters =
+    [
+      character.benjamin_sisko,
+      character.jake_sisko,
+      character.dax,
+      character.kira_nerys,
+      character.miles_obrien,
+      character.bashir,
+      character.odo,
+      character.quark,
+      character.worf,
+      character.rom,
+      character.nog,
+      character.garak,
+      character.dukat,
+    ]
+    |> get_character_menu_items(episodes)
+
+  let more_characters =
+    [
+      character.keiko_obrien,
+      character.winn,
+      character.bareil,
+      character.michael_eddington,
+      character.kasidy_yates,
+      character.leeta,
+      character.gowron,
+      character.martok,
+      character.shakaar,
+      character.ziyal,
+      character.damar,
+    ]
+    |> get_character_menu_items(episodes)
+
+  let organizations =
+    [
+      organization.Federation(role.Starfleet(role.Operations)),
+      organization.TrillSymbiosisCommission,
+      organization.Bajor,
+      organization.Prophets,
+      organization.CardassianUnion,
+      organization.FerengiAlliance,
+      organization.KlingonEmpire,
+      organization.Maquis,
+      organization.DominionForces,
+      organization.MirrorUniverse,
+    ]
+    |> get_organization_menu_items(episodes)
+
+  menu.view([
+    menu.menu_section("Characters", characters),
+    menu.menu_section("More Characters", more_characters),
+    menu.menu_section("Organizations", organizations),
+  ])
+}
+
+fn get_character_menu_items(
+  characters: List(Character),
+  episodes: List(Episode),
+) -> List(MenuItem(Msg)) {
+  characters
+  |> list.map(fn(character) {
+    let char_episodes = episode.get_character_episodes(character, episodes)
+    menu.menu_item(
+      character.name,
+      character.character_hue(character),
+      char_episodes,
+      NavigateToCharacter(character),
+    )
+  })
+}
+
+fn get_organization_menu_items(
+  organizations: List(Organization),
+  episodes: List(Episode),
+) -> List(MenuItem(Msg)) {
+  organizations
+  |> list.map(fn(org) {
+    let org_episodes = episode.get_organization_episodes(org, episodes)
+    menu.menu_item(
+      organization.to_string(org),
+      organization.to_hue(org),
+      org_episodes,
+      NavigateToOrganization(org),
+    )
+  })
 }
 
 fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
@@ -234,110 +271,4 @@ fn view_main_histogram(model: Model) -> Element(Msg) {
       histogram.large_view(organization.to_hue(organization), org_episodes)
     }
   }
-}
-
-fn view_sidebar_menu(episodes: List(Episode)) -> Element(Msg) {
-  let base_character_items: List(Element(Msg)) =
-    get_characters()
-    |> list.map(fn(character) {
-      let char_episodes = episode.get_character_episodes(character, episodes)
-      html.li([], [
-        html.div(
-          [
-            attribute.class(
-              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
-            ),
-            event.on_click(NavigateToCharacter(character)),
-          ],
-          [
-            html.div(
-              [
-                attribute.class(
-                  "text-sm font-medium text-base-content text-left",
-                ),
-              ],
-              [
-                text(character.name),
-              ],
-            ),
-            histogram.view(character.character_hue(character), char_episodes),
-          ],
-        ),
-      ])
-    })
-
-  let extended_character_items: List(Element(Msg)) =
-    get_extended_characters()
-    |> list.map(fn(character) {
-      let char_episodes = episode.get_character_episodes(character, episodes)
-      html.li([], [
-        html.div(
-          [
-            attribute.class(
-              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
-            ),
-            event.on_click(NavigateToCharacter(character)),
-          ],
-          [
-            html.div(
-              [
-                attribute.class(
-                  "text-sm font-medium text-base-content text-left",
-                ),
-              ],
-              [
-                text(character.name),
-              ],
-            ),
-            histogram.view(character.character_hue(character), char_episodes),
-          ],
-        ),
-      ])
-    })
-
-  let organization_items: List(Element(Msg)) =
-    get_organizations()
-    |> list.map(fn(org) {
-      let org_episodes = episode.get_organization_episodes(org, episodes)
-      html.li([], [
-        html.div(
-          [
-            attribute.class(
-              "flex flex-col items-start gap-2 cursor-pointer hover:bg-base-300 p-2 rounded",
-            ),
-            event.on_click(NavigateToOrganization(org)),
-          ],
-          [
-            html.div(
-              [
-                attribute.class(
-                  "text-sm font-medium text-base-content text-left",
-                ),
-              ],
-              [
-                text(organization.to_string(org)),
-              ],
-            ),
-            histogram.view(organization.to_hue(org), org_episodes),
-          ],
-        ),
-      ])
-    })
-
-  html.ul([attribute.class("menu bg-base-200 min-h-full w-80 p-4")], [
-    html.li([], [
-      html.h2([attribute.class("menu-title")], [text("Characters")]),
-      html.ul([], base_character_items),
-    ]),
-    html.li([], [
-      html.h2([attribute.class("menu-title")], [
-        text("More Characters"),
-      ]),
-      html.ul([], extended_character_items),
-    ]),
-    html.li([], [
-      html.h2([attribute.class("menu-title")], [text("Organizations")]),
-      html.ul([], organization_items),
-    ]),
-  ])
 }
