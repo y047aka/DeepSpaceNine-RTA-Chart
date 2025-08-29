@@ -223,18 +223,25 @@ fn get_organization_menu_items(
 }
 
 fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
-  breadcrumbs.view([
-    breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
-    breadcrumbs.breadcrumb_item(
-      case current_route {
-        route.Home -> "Deep Space Nine"
-        route.Character(char) -> char.name
-        route.Organization(org) -> organization.to_string(org)
-        route.NotFound(_) -> "Not Found"
-      },
-      None,
-    ),
-  ])
+  breadcrumbs.view(case current_route {
+    route.Home -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+    ]
+    route.Character(char) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Characters", None),
+      breadcrumbs.breadcrumb_item(char.name, None),
+    ]
+    route.Organization(org) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Organizations", None),
+      breadcrumbs.breadcrumb_item(organization.to_string(org), None),
+    ]
+    route.NotFound(_) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Not Found", None),
+    ]
+  })
 }
 
 fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
