@@ -229,7 +229,7 @@ fn get_organization_menu_items(
 
 fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
   breadcrumbs.view([
-    breadcrumbs.breadcrumb_item("Home", Some(NavigateToRoute(route.Home))),
+    breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
     breadcrumbs.breadcrumb_item(
       case current_route {
         route.Home -> "Deep Space Nine"
