@@ -276,7 +276,7 @@ fn build_id_registry() -> Dict(CharacterId, Character) {
   |> dict.insert("weyoun", weyoun)
 }
 
-pub fn get_character_by_id(id: CharacterId) -> Result(Character, String) {
+pub fn from_id(id: CharacterId) -> Result(Character, String) {
   let registry = build_id_registry()
   case dict.get(registry, id) {
     Ok(character) -> Ok(character)

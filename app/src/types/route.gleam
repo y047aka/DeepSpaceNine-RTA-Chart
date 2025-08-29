@@ -1,11 +1,13 @@
 import gleam/uri.{type Uri}
 import lustre/attribute.{type Attribute}
+import types/character.{type Character}
+import types/organization.{type Organization}
 
 /// Route type that represents all possible pages in our application
 pub type Route {
   Home
-  Character(id: String)
-  Organization(id: String)
+  Character(character: Character)
+  Organization(organization: Organization)
   NotFound(uri: Uri)
 }
 
@@ -13,20 +15,25 @@ pub type Route {
 pub fn parse_route(uri: Uri) -> Route {
   case uri.path_segments(uri.path) {
     [] | [""] -> Home
-    ["character", id] -> Character(id)
-    ["organization", id] -> Organization(id)
+    ["character", id] -> {
+      case character.from_id(id) {
+        Ok(char) -> Character(char)
+        Error(_) -> NotFound(uri)
+      }
+    }
+    ["organization", id] -> {
+      case organization.from_id(id) {
+        Ok(org) -> Organization(org)
+        Error(_) -> NotFound(uri)
+      }
+    }
     _ -> NotFound(uri)
   }
 }
 
 /// Convert a Route back to an href attribute for use in links
 pub fn href(route: Route) -> Attribute(msg) {
-  let url = case route {
-    Home -> "/"
-    Character(id) -> "/character/" <> id
-    Organization(id) -> "/organization/" <> id
-    NotFound(_) -> "/404"
-  }
+  let url = to_string(route)
   attribute.href(url)
 }
 
@@ -34,8 +41,8 @@ pub fn href(route: Route) -> Attribute(msg) {
 pub fn to_string(route: Route) -> String {
   case route {
     Home -> "/"
-    Character(id) -> "/character/" <> id
-    Organization(id) -> "/organization/" <> id
+    Character(char) -> "/character/" <> char.id
+    Organization(org) -> "/organization/" <> organization.to_id(org)
     NotFound(_) -> "/404"
   }
 }

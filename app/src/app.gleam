@@ -201,7 +201,7 @@ fn get_character_menu_items(
       character.name,
       character.character_hue(character),
       char_episodes,
-      route.to_string(route.Character(character.id)),
+      route.to_string(route.Character(character)),
     )
   })
 }
@@ -217,7 +217,7 @@ fn get_organization_menu_items(
       organization.to_string(org),
       organization.to_hue(org),
       org_episodes,
-      route.to_string(route.Organization(organization.to_id(org))),
+      route.to_string(route.Organization(org)),
     )
   })
 }
@@ -228,19 +228,9 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
     breadcrumbs.breadcrumb_item(
       case current_route {
         route.Home -> "Deep Space Nine"
-        route.Character(id) -> {
-          case character.get_character_by_id(id) {
-            Ok(char) -> char.name
-            Error(_) -> "Deep Space Nine"
-          }
-        }
-        route.Organization(id) -> {
-          case organization.from_id(id) {
-            Ok(org) -> organization.to_string(org)
-            Error(_) -> "Deep Space Nine"
-          }
-        }
-        route.NotFound(_) -> "Deep Space Nine"
+        route.Character(char) -> char.name
+        route.Organization(org) -> organization.to_string(org)
+        route.NotFound(_) -> "Not Found"
       },
       None,
     ),
@@ -261,32 +251,15 @@ fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
         })
       histogram.large_view(175, episodes_data)
     }
-    route.Character(id) -> {
-      case character.get_character_by_id(id) {
-        Ok(character) -> {
-          let char_episodes =
-            episode.get_character_episodes(character, model.episodes)
-          histogram.large_view(
-            character.character_hue(character),
-            char_episodes,
-          )
-        }
-        Error(_) -> {
-          text("Character not found")
-        }
-      }
+    route.Character(character) -> {
+      let char_episodes =
+        episode.get_character_episodes(character, model.episodes)
+      histogram.large_view(character.character_hue(character), char_episodes)
     }
-    route.Organization(id) -> {
-      case organization.from_id(id) {
-        Ok(organization) -> {
-          let org_episodes =
-            episode.get_organization_episodes(organization, model.episodes)
-          histogram.large_view(organization.to_hue(organization), org_episodes)
-        }
-        Error(_) -> {
-          text("Organization not found")
-        }
-      }
+    route.Organization(organization) -> {
+      let org_episodes =
+        episode.get_organization_episodes(organization, model.episodes)
+      histogram.large_view(organization.to_hue(organization), org_episodes)
     }
     route.NotFound(_) -> {
       text("Not found")
