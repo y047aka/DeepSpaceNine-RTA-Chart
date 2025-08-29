@@ -4,8 +4,8 @@ import lustre/attribute.{type Attribute}
 /// Route type that represents all possible pages in our application
 pub type Route {
   Home
-  Character(name: String)
-  Organization(name: String)
+  Character(id: String)
+  Organization(id: String)
   NotFound(uri: Uri)
 }
 
@@ -13,8 +13,8 @@ pub type Route {
 pub fn parse_route(uri: Uri) -> Route {
   case uri.path_segments(uri.path) {
     [] | [""] -> Home
-    ["character", name] -> Character(name)
-    ["organization", name] -> Organization(name)
+    ["character", id] -> Character(id)
+    ["organization", id] -> Organization(id)
     _ -> NotFound(uri)
   }
 }
@@ -23,8 +23,8 @@ pub fn parse_route(uri: Uri) -> Route {
 pub fn href(route: Route) -> Attribute(msg) {
   let url = case route {
     Home -> "/"
-    Character(name) -> "/character/" <> name
-    Organization(name) -> "/organization/" <> name
+    Character(id) -> "/character/" <> id
+    Organization(id) -> "/organization/" <> id
     NotFound(_) -> "/404"
   }
   attribute.href(url)
@@ -34,8 +34,8 @@ pub fn href(route: Route) -> Attribute(msg) {
 pub fn to_string(route: Route) -> String {
   case route {
     Home -> "/"
-    Character(name) -> "/character/" <> name
-    Organization(name) -> "/organization/" <> name
+    Character(id) -> "/character/" <> id
+    Organization(id) -> "/organization/" <> id
     NotFound(_) -> "/404"
   }
 }

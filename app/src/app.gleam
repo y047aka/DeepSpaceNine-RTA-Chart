@@ -201,7 +201,7 @@ fn get_character_menu_items(
       character.name,
       character.character_hue(character),
       char_episodes,
-      route.to_string(route.Character(character.name)),
+      route.to_string(route.Character(character.id)),
     )
   })
 }
@@ -217,7 +217,7 @@ fn get_organization_menu_items(
       organization.to_string(org),
       organization.to_hue(org),
       org_episodes,
-      route.to_string(route.Organization(organization.to_string(org))),
+      route.to_string(route.Organization(organization.to_id(org))),
     )
   })
 }
@@ -228,14 +228,14 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
     breadcrumbs.breadcrumb_item(
       case current_route {
         route.Home -> "Deep Space Nine"
-        route.Character(name) -> {
-          case character.get_character_by_name(name) {
+        route.Character(id) -> {
+          case character.get_character_by_id(id) {
             Ok(char) -> char.name
             Error(_) -> "Deep Space Nine"
           }
         }
-        route.Organization(name) -> {
-          case organization.from_string(name) {
+        route.Organization(id) -> {
+          case organization.from_id(id) {
             Ok(org) -> organization.to_string(org)
             Error(_) -> "Deep Space Nine"
           }
@@ -261,8 +261,8 @@ fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
         })
       histogram.large_view(175, episodes_data)
     }
-    route.Character(name) -> {
-      case character.get_character_by_name(name) {
+    route.Character(id) -> {
+      case character.get_character_by_id(id) {
         Ok(character) -> {
           let char_episodes =
             episode.get_character_episodes(character, model.episodes)
@@ -276,8 +276,8 @@ fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
         }
       }
     }
-    route.Organization(name) -> {
-      case organization.from_string(name) {
+    route.Organization(id) -> {
+      case organization.from_id(id) {
         Ok(organization) -> {
           let org_episodes =
             episode.get_organization_episodes(organization, model.episodes)
