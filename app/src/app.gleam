@@ -1,7 +1,7 @@
 import components/episode_table
 import components/histogram
 import components/ui/breadcrumbs
-import components/ui/menu.{type MenuItem}
+import components/ui/menu
 import gleam/list
 import gleam/option.{None, Some}
 import gleam/result
@@ -72,13 +72,13 @@ fn fetch_episodes(
 // UPDATE ----------------------------------------------------------------------
 
 pub type Msg {
-  LoadedEpisodes(Result(List(Episode), error.AppError))
   UserNavigatedTo(route: Route)
-  NavigateToRoute(route: Route)
+  LoadedEpisodes(Result(List(Episode), error.AppError))
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   case msg {
+    UserNavigatedTo(route) -> #(Model(..model, route: route), effect.none())
     LoadedEpisodes(Ok(episodes)) -> #(
       Model(..model, episodes: episodes),
       effect.none(),
@@ -86,11 +86,6 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
     LoadedEpisodes(Error(app_error)) -> {
       error.log_error(app_error)
       #(model, effect.none())
-    }
-    UserNavigatedTo(route) -> #(Model(..model, route: route), effect.none())
-    NavigateToRoute(route) -> {
-      // This will trigger browser navigation and modem will handle the route change
-      #(model, modem.push(route.to_string(route), option.None, option.None))
     }
   }
 }
@@ -198,7 +193,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
 fn get_character_menu_items(
   characters: List(Character),
   episodes: List(Episode),
-) -> List(MenuItem(Msg)) {
+) -> List(menu.MenuItem) {
   characters
   |> list.map(fn(character) {
     let char_episodes = episode.get_character_episodes(character, episodes)
@@ -206,7 +201,7 @@ fn get_character_menu_items(
       character.name,
       character.character_hue(character),
       char_episodes,
-      NavigateToRoute(route.Character(character.name)),
+      route.to_string(route.Character(character.name)),
     )
   })
 }
@@ -214,7 +209,7 @@ fn get_character_menu_items(
 fn get_organization_menu_items(
   organizations: List(Organization),
   episodes: List(Episode),
-) -> List(MenuItem(Msg)) {
+) -> List(menu.MenuItem) {
   organizations
   |> list.map(fn(org) {
     let org_episodes = episode.get_organization_episodes(org, episodes)
@@ -222,7 +217,7 @@ fn get_organization_menu_items(
       organization.to_string(org),
       organization.to_hue(org),
       org_episodes,
-      NavigateToRoute(route.Organization(organization.to_string(org))),
+      route.to_string(route.Organization(organization.to_string(org))),
     )
   })
 }
