@@ -10,36 +10,47 @@ import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html.{text}
+import modem
 import rsvp
 import types/character.{type Character}
 import types/episode.{type Episode}
 import types/error
 import types/organization.{type Organization}
 import types/role
+import types/route.{type Route}
 
 // MAIN ------------------------------------------------------------------------
 
 pub fn main() {
   let app = lustre.application(init, update, view)
   let assert Ok(_) = lustre.start(app, "#app", Nil)
+
   Nil
 }
 
 // MODEL -----------------------------------------------------------------------
 
 pub type Model {
-  Model(episodes: List(Episode), current_view: CurrentView)
-}
-
-pub type CurrentView {
-  HomeView
-  CharacterView(character: Character)
-  OrganizationView(organization: Organization)
+  Model(route: Route, episodes: List(Episode))
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
-  let model = Model(episodes: [], current_view: HomeView)
-  let effect = fetch_episodes(on_response: LoadedEpisodes)
+  let route = case modem.initial_uri() {
+    Ok(uri) -> route.parse_route(uri)
+    Error(_) -> route.Home
+  }
+
+  let model = Model(route: route, episodes: [])
+
+  let effect =
+    effect.batch([
+      fetch_episodes(on_response: LoadedEpisodes),
+      modem.init(fn(uri) {
+        uri
+        |> route.parse_route
+        |> UserNavigatedTo
+      }),
+    ])
 
   #(model, effect)
 }
@@ -62,9 +73,8 @@ fn fetch_episodes(
 
 pub type Msg {
   LoadedEpisodes(Result(List(Episode), error.AppError))
-  NavigateToHome
-  NavigateToCharacter(character: Character)
-  NavigateToOrganization(organization: Organization)
+  UserNavigatedTo(route: Route)
+  NavigateToRoute(route: Route)
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
@@ -77,15 +87,11 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       error.log_error(app_error)
       #(model, effect.none())
     }
-    NavigateToHome -> #(Model(..model, current_view: HomeView), effect.none())
-    NavigateToCharacter(character) -> #(
-      Model(..model, current_view: CharacterView(character)),
-      effect.none(),
-    )
-    NavigateToOrganization(organization) -> #(
-      Model(..model, current_view: OrganizationView(organization)),
-      effect.none(),
-    )
+    UserNavigatedTo(route) -> #(Model(..model, route: route), effect.none())
+    NavigateToRoute(route) -> {
+      // This will trigger browser navigation and modem will handle the route change
+      #(model, modem.push(route.to_string(route), option.None, option.None))
+    }
   }
 }
 
@@ -112,8 +118,8 @@ pub fn view(model: Model) -> Element(Msg) {
           ),
         ]),
         // main contents
-        view_breadcrumbs(model.current_view),
-        view_main_histogram(model),
+        view_breadcrumbs(model.route),
+        view_main_histogram(model, model.route),
         episode_table.view(model.episodes),
       ]),
 
@@ -200,7 +206,7 @@ fn get_character_menu_items(
       character.name,
       character.character_hue(character),
       char_episodes,
-      NavigateToCharacter(character),
+      NavigateToRoute(route.Character(character.name)),
     )
   })
 }
@@ -216,28 +222,39 @@ fn get_organization_menu_items(
       organization.to_string(org),
       organization.to_hue(org),
       org_episodes,
-      NavigateToOrganization(org),
+      NavigateToRoute(route.Organization(organization.to_string(org))),
     )
   })
 }
 
-fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
+fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
   breadcrumbs.view([
-    breadcrumbs.breadcrumb_item("Home", Some(NavigateToHome)),
+    breadcrumbs.breadcrumb_item("Home", Some(NavigateToRoute(route.Home))),
     breadcrumbs.breadcrumb_item(
-      case current_view {
-        HomeView -> "Deep Space Nine"
-        CharacterView(character) -> character.name
-        OrganizationView(organization) -> organization.to_string(organization)
+      case current_route {
+        route.Home -> "Deep Space Nine"
+        route.Character(name) -> {
+          case character.get_character_by_name(name) {
+            Ok(char) -> char.name
+            Error(_) -> "Deep Space Nine"
+          }
+        }
+        route.Organization(name) -> {
+          case organization.from_string(name) {
+            Ok(org) -> organization.to_string(org)
+            Error(_) -> "Deep Space Nine"
+          }
+        }
+        route.NotFound(_) -> "Deep Space Nine"
       },
       None,
     ),
   ])
 }
 
-fn view_main_histogram(model: Model) -> Element(Msg) {
-  case model.current_view {
-    HomeView -> {
+fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
+  case current_route {
+    route.Home -> {
       let episodes_data =
         model.episodes
         |> list.map(fn(ep) {
@@ -249,15 +266,35 @@ fn view_main_histogram(model: Model) -> Element(Msg) {
         })
       histogram.large_view(175, episodes_data)
     }
-    CharacterView(character) -> {
-      let char_episodes =
-        episode.get_character_episodes(character, model.episodes)
-      histogram.large_view(character.character_hue(character), char_episodes)
+    route.Character(name) -> {
+      case character.get_character_by_name(name) {
+        Ok(character) -> {
+          let char_episodes =
+            episode.get_character_episodes(character, model.episodes)
+          histogram.large_view(
+            character.character_hue(character),
+            char_episodes,
+          )
+        }
+        Error(_) -> {
+          text("Character not found")
+        }
+      }
     }
-    OrganizationView(organization) -> {
-      let org_episodes =
-        episode.get_organization_episodes(organization, model.episodes)
-      histogram.large_view(organization.to_hue(organization), org_episodes)
+    route.Organization(name) -> {
+      case organization.from_string(name) {
+        Ok(organization) -> {
+          let org_episodes =
+            episode.get_organization_episodes(organization, model.episodes)
+          histogram.large_view(organization.to_hue(organization), org_episodes)
+        }
+        Error(_) -> {
+          text("Organization not found")
+        }
+      }
+    }
+    route.NotFound(_) -> {
+      text("Not found")
     }
   }
 }
