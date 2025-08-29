@@ -1,7 +1,7 @@
 import components/episode_table
 import components/histogram
 import components/ui/breadcrumbs
-import components/ui/menu.{type MenuItem}
+import components/ui/menu
 import gleam/list
 import gleam/option.{None, Some}
 import gleam/result
@@ -10,36 +10,47 @@ import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html.{text}
+import modem
 import rsvp
 import types/character.{type Character}
 import types/episode.{type Episode}
 import types/error
 import types/organization.{type Organization}
 import types/role
+import types/route.{type Route}
 
 // MAIN ------------------------------------------------------------------------
 
 pub fn main() {
   let app = lustre.application(init, update, view)
   let assert Ok(_) = lustre.start(app, "#app", Nil)
+
   Nil
 }
 
 // MODEL -----------------------------------------------------------------------
 
 pub type Model {
-  Model(episodes: List(Episode), current_view: CurrentView)
-}
-
-pub type CurrentView {
-  HomeView
-  CharacterView(character: Character)
-  OrganizationView(organization: Organization)
+  Model(route: Route, episodes: List(Episode))
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
-  let model = Model(episodes: [], current_view: HomeView)
-  let effect = fetch_episodes(on_response: LoadedEpisodes)
+  let route = case modem.initial_uri() {
+    Ok(uri) -> route.parse_route(uri)
+    Error(_) -> route.Home
+  }
+
+  let model = Model(route: route, episodes: [])
+
+  let effect =
+    effect.batch([
+      fetch_episodes(on_response: LoadedEpisodes),
+      modem.init(fn(uri) {
+        uri
+        |> route.parse_route
+        |> UserNavigatedTo
+      }),
+    ])
 
   #(model, effect)
 }
@@ -61,14 +72,13 @@ fn fetch_episodes(
 // UPDATE ----------------------------------------------------------------------
 
 pub type Msg {
+  UserNavigatedTo(route: Route)
   LoadedEpisodes(Result(List(Episode), error.AppError))
-  NavigateToHome
-  NavigateToCharacter(character: Character)
-  NavigateToOrganization(organization: Organization)
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   case msg {
+    UserNavigatedTo(route) -> #(Model(..model, route: route), effect.none())
     LoadedEpisodes(Ok(episodes)) -> #(
       Model(..model, episodes: episodes),
       effect.none(),
@@ -77,15 +87,6 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       error.log_error(app_error)
       #(model, effect.none())
     }
-    NavigateToHome -> #(Model(..model, current_view: HomeView), effect.none())
-    NavigateToCharacter(character) -> #(
-      Model(..model, current_view: CharacterView(character)),
-      effect.none(),
-    )
-    NavigateToOrganization(organization) -> #(
-      Model(..model, current_view: OrganizationView(organization)),
-      effect.none(),
-    )
   }
 }
 
@@ -112,8 +113,8 @@ pub fn view(model: Model) -> Element(Msg) {
           ),
         ]),
         // main contents
-        view_breadcrumbs(model.current_view),
-        view_main_histogram(model),
+        view_breadcrumbs(model.route),
+        view_main_histogram(model, model.route),
         episode_table.view(model.episodes),
       ]),
 
@@ -192,7 +193,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
 fn get_character_menu_items(
   characters: List(Character),
   episodes: List(Episode),
-) -> List(MenuItem(Msg)) {
+) -> List(menu.MenuItem) {
   characters
   |> list.map(fn(character) {
     let char_episodes = episode.get_character_episodes(character, episodes)
@@ -200,7 +201,7 @@ fn get_character_menu_items(
       character.name,
       character.character_hue(character),
       char_episodes,
-      NavigateToCharacter(character),
+      route.to_string(route.Character(character)),
     )
   })
 }
@@ -208,7 +209,7 @@ fn get_character_menu_items(
 fn get_organization_menu_items(
   organizations: List(Organization),
   episodes: List(Episode),
-) -> List(MenuItem(Msg)) {
+) -> List(menu.MenuItem) {
   organizations
   |> list.map(fn(org) {
     let org_episodes = episode.get_organization_episodes(org, episodes)
@@ -216,28 +217,36 @@ fn get_organization_menu_items(
       organization.to_string(org),
       organization.to_hue(org),
       org_episodes,
-      NavigateToOrganization(org),
+      route.to_string(route.Organization(org)),
     )
   })
 }
 
-fn view_breadcrumbs(current_view: CurrentView) -> Element(Msg) {
-  breadcrumbs.view([
-    breadcrumbs.breadcrumb_item("Home", Some(NavigateToHome)),
-    breadcrumbs.breadcrumb_item(
-      case current_view {
-        HomeView -> "Deep Space Nine"
-        CharacterView(character) -> character.name
-        OrganizationView(organization) -> organization.to_string(organization)
-      },
-      None,
-    ),
-  ])
+fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
+  breadcrumbs.view(case current_route {
+    route.Home -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+    ]
+    route.Character(char) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Characters", None),
+      breadcrumbs.breadcrumb_item(char.name, None),
+    ]
+    route.Organization(org) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Organizations", None),
+      breadcrumbs.breadcrumb_item(organization.to_string(org), None),
+    ]
+    route.NotFound(_) -> [
+      breadcrumbs.breadcrumb_item("Home", Some(route.to_string(route.Home))),
+      breadcrumbs.breadcrumb_item("Not Found", None),
+    ]
+  })
 }
 
-fn view_main_histogram(model: Model) -> Element(Msg) {
-  case model.current_view {
-    HomeView -> {
+fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
+  case current_route {
+    route.Home -> {
       let episodes_data =
         model.episodes
         |> list.map(fn(ep) {
@@ -249,15 +258,18 @@ fn view_main_histogram(model: Model) -> Element(Msg) {
         })
       histogram.large_view(175, episodes_data)
     }
-    CharacterView(character) -> {
+    route.Character(character) -> {
       let char_episodes =
         episode.get_character_episodes(character, model.episodes)
       histogram.large_view(character.character_hue(character), char_episodes)
     }
-    OrganizationView(organization) -> {
+    route.Organization(organization) -> {
       let org_episodes =
         episode.get_organization_episodes(organization, model.episodes)
       histogram.large_view(organization.to_hue(organization), org_episodes)
+    }
+    route.NotFound(_) -> {
+      text("Not found")
     }
   }
 }

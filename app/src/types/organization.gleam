@@ -60,6 +60,41 @@ pub fn from_string(s: String) -> Result(Organization, String) {
   }
 }
 
+pub fn to_id(org: Organization) -> String {
+  case org {
+    Federation(_) -> "federation"
+    CardassianUnion -> "cardassian_union"
+    KlingonEmpire -> "klingon_empire"
+    DominionForces -> "dominion"
+    Bajor -> "bajor"
+    FerengiAlliance -> "ferengi_alliance"
+    Prophets -> "prophets"
+    TrillSymbiosisCommission -> "trill_symbiosis_commission"
+    Maquis -> "maquis"
+    MirrorUniverse -> "mirror_universe"
+    Independent -> "independent"
+    Citizen -> "citizen"
+  }
+}
+
+pub fn from_id(id: String) -> Result(Organization, String) {
+  case id {
+    "federation" -> Ok(Federation(role.Citizen))
+    "cardassian_union" -> Ok(CardassianUnion)
+    "klingon_empire" -> Ok(KlingonEmpire)
+    "dominion" -> Ok(DominionForces)
+    "bajor" -> Ok(Bajor)
+    "ferengi_alliance" -> Ok(FerengiAlliance)
+    "prophets" -> Ok(Prophets)
+    "trill_symbiosis_commission" -> Ok(TrillSymbiosisCommission)
+    "maquis" -> Ok(Maquis)
+    "mirror_universe" -> Ok(MirrorUniverse)
+    "independent" -> Ok(Independent)
+    "citizen" -> Ok(Citizen)
+    _ -> Error("Unknown organization id: " <> id)
+  }
+}
+
 pub fn to_hue(org: Organization) -> Int {
   let command = 350
   let science_or_medical = 190

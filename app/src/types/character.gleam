@@ -245,6 +245,45 @@ pub fn get_character_by_name(name: String) -> Result(Character, String) {
   }
 }
 
+fn build_id_registry() -> Dict(CharacterId, Character) {
+  dict.new()
+  |> dict.insert("benjamin_sisko", benjamin_sisko)
+  |> dict.insert("jake_sisko", jake_sisko)
+  |> dict.insert("dax", dax)
+  |> dict.insert("kira_nerys", kira_nerys)
+  |> dict.insert("miles_obrien", miles_obrien)
+  |> dict.insert("keiko_obrien", keiko_obrien)
+  |> dict.insert("bashir", bashir)
+  |> dict.insert("odo", odo)
+  |> dict.insert("worf", worf)
+  |> dict.insert("quark", quark)
+  |> dict.insert("rom", rom)
+  |> dict.insert("nog", nog)
+  |> dict.insert("winn", winn)
+  |> dict.insert("bareil", bareil)
+  |> dict.insert("garak", garak)
+  |> dict.insert("dukat", dukat)
+  |> dict.insert("zek", zek)
+  |> dict.insert("michael_eddington", michael_eddington)
+  |> dict.insert("kasidy_yates", kasidy_yates)
+  |> dict.insert("leeta", leeta)
+  |> dict.insert("gowron", gowron)
+  |> dict.insert("martok", martok)
+  |> dict.insert("shakaar", shakaar)
+  |> dict.insert("ziyal", ziyal)
+  |> dict.insert("damar", damar)
+  |> dict.insert("brunt", brunt)
+  |> dict.insert("weyoun", weyoun)
+}
+
+pub fn from_id(id: CharacterId) -> Result(Character, String) {
+  let registry = build_id_registry()
+  case dict.get(registry, id) {
+    Ok(character) -> Ok(character)
+    Error(_) -> Error("Unknown character id: " <> id)
+  }
+}
+
 pub fn list_all_characters() -> List(Character) {
   let registry = build_name_registry()
   dict.values(registry)
