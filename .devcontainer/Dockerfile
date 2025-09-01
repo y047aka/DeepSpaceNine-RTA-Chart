@@ -33,6 +33,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
     nano \
     vim \
+    wget \
+    ca-certificates \
+    lsb-release \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PostgreSQL 17 repository and client tools
+RUN wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgresql-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/postgresql-keyring.gpg] https://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-client-17 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
