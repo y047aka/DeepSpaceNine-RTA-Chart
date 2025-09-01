@@ -1,0 +1,26 @@
+name: deep-space-nine-rta-chart
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - CLAUDE_CONFIG_DIR=/home/node/.claude
+      - PLAYWRIGHT_HTML_HOST=0.0.0.0
+    init: true
+    ipc: host
+    ports:
+      - "9323:9323"
+    tty: true
+    user: node
+    volumes:
+      - ../:/workspace:delegated
+      - claude-code-config:/home/node/.claude
+
+volumes:
+  claude-code-config:
+    name: claude-code-config-${COMPOSE_PROJECT_NAME:-default}
+    driver: local

@@ -1,12 +1,7 @@
 {
 	"name": "Gleam",
-	"dockerFile": "Dockerfile",
-	"runArgs": [
-		"--cap-add=NET_ADMIN",
-		"--cap-add=NET_RAW",
-		"--init",
-		"--ipc=host"
-	],
+	"dockerComposeFile": "./compose.yaml",
+	"service": "app",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -20,24 +15,6 @@
 			}
 		}
 	},
-	"remoteUser": "node",
-	"mounts": [
-		"source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume"
-	],
-	"containerEnv": {
-		"CLAUDE_CONFIG_DIR": "/home/node/.claude",
-		"PLAYWRIGHT_HTML_HOST": "0.0.0.0"
-	},
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
 	"workspaceFolder": "/workspace",
-	"forwardPorts": [
-		9323
-	],
-	"portsAttributes": {
-		"9323": {
-			"label": "Playwright Test Report",
-			"onAutoForward": "notify"
-		}
-	},
 	"postCreateCommand": "npm install"
 }
