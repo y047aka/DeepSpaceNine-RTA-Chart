@@ -1,6 +1,6 @@
 *.beam
 *.ez
-/app/build
+/**/build
 erl_crash.dump
 
 /app/priv/static/app.mjs
