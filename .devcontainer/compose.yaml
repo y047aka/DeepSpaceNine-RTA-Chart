@@ -20,6 +20,7 @@ services:
       - NET_ADMIN
       - NET_RAW
     environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
       - CLAUDE_CONFIG_DIR=/home/node/.claude
       - PLAYWRIGHT_HTML_HOST=0.0.0.0
       - DATABASE_URL=postgresql://user:passw0rd@postgres:5432/app_db
@@ -36,6 +37,7 @@ services:
     user: node
     volumes:
       - ../:/workspace:delegated
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - claude-code-config:/home/node/.claude
     depends_on:
       - postgres

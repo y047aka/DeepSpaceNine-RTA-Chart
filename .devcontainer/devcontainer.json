@@ -16,5 +16,9 @@
 		}
 	},
 	"workspaceFolder": "/workspace",
-	"postCreateCommand": "npm install"
+	"remoteUser": "root",
+	"postCreateCommand": "su node -c 'npm install'",
+	"runArgs": [
+		"--user=root"
+	]
 }
