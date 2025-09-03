@@ -1,5 +1,5 @@
-import gleam/io
+import migrate_episodes
 
 pub fn main() -> Nil {
-  io.println("Hello from backend!")
+  migrate_episodes.main()
 }

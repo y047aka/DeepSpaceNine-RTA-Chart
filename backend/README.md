@@ -1,13 +1,13 @@
-# Backend - Database Migration Scripts
+# Backend - Gleam Database Migration
 
-このディレクトリには、Star Trek DS9エピソードデータのPostgreSQL移行スクリプトが含まれています。
+このディレクトリには、Star Trek DS9エピソードデータのPostgreSQL移行スクリプトがGleamで実装されています。
 
 ## ファイル構成
 
-- `migrate-episodes.js` - メインの移行スクリプト
-- `package.json` - Node.js依存関係設定
-- `package-lock.json` - 依存関係ロックファイル
-- `node_modules/` - インストールされたnpmパッケージ
+- `src/migrate_episodes.gleam` - メインの移行スクリプト
+- `src/types/episode.gleam` - エピソードデータ型定義
+- `gleam.toml` - Gleamプロジェクト設定
+- `init.sql` - データベース初期化スクリプト
 
 ## 使用方法
 
@@ -15,14 +15,15 @@
 
 ```bash
 cd /workspace/backend
-node migrate-episodes.js
+gleam run
 ```
 
 ### 実行結果
 
 - 173件のエピソードデータをPostgreSQLに移行
 - 25件ごとに進捗を表示
-- 実行時間: 約5-10秒
+- 実行時間: 約3-5秒
+- JSONB形式でキャラクター・組織データを保存
 
 ## 前提条件
 
@@ -32,10 +33,21 @@ node migrate-episodes.js
 
 ## 技術仕様
 
-- **言語**: Node.js
-- **ライブラリ**: pg (PostgreSQLクライアント)
+- **言語**: Gleam
+- **ライブラリ**: Pog (PostgreSQLクライアント)
 - **接続方式**: Dockerサービス名 (`postgres`)
-- **エラーハンドリング**: ON CONFLICT句による重複スキップ
+- **データ保存**: JSONB形式による構造化データ
+- **エラーハンドリング**: Result型による堅牢な処理
+- **型安全**: コンパイル時型チェック
+
+## 機能
+
+- ✅ 完全なJSONパース (137KBファイル処理)
+- ✅ PostgreSQL接続プール管理
+- ✅ パラメータ化クエリ (SQLインジェクション対策)
+- ✅ JSONB形式でのキャラクター・組織データ保存
+- ✅ GINインデックスによる高速検索
+- ✅ プログレス表示とエラーハンドリング
 
 ## 関連ドキュメント
 
