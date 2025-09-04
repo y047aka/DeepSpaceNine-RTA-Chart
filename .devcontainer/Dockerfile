@@ -33,8 +33,37 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
     nano \
     vim \
+    wget \
+    ca-certificates \
+    lsb-release \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install PostgreSQL 17 repository and client tools
+RUN wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgresql-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/postgresql-keyring.gpg] https://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-client-17 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Docker CLI and Docker Compose
+RUN wget -qO- https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    docker-ce-cli \
+    docker-compose-plugin \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Setup Docker group for DooD (Docker outside of Docker)
+# Find available GID for docker group or use existing one
+RUN set -e && \
+    if getent group docker > /dev/null 2>&1; then \
+    echo "Docker group already exists, adding node user to it"; \
+    usermod -aG docker node; \
+    else \
+    echo "Creating docker group with GID 995"; \
+    groupadd -g 995 docker && \
+    usermod -aG docker node; \
+    fi
 
 # Stage 4: Development environment without Claude CLI
 FROM base-tools AS without-claude

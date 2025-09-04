@@ -1,5 +1,17 @@
 name: deep-space-nine-rta-chart
 services:
+  postgres:
+    image: postgres:17-bookworm
+    environment:
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=passw0rd
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
   app:
     build:
       context: .
@@ -8,8 +20,15 @@ services:
       - NET_ADMIN
       - NET_RAW
     environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
       - CLAUDE_CONFIG_DIR=/home/node/.claude
       - PLAYWRIGHT_HTML_HOST=0.0.0.0
+      - DATABASE_URL=postgresql://user:passw0rd@postgres:5432/app_db
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=passw0rd
     init: true
     ipc: host
     ports:
@@ -18,9 +37,15 @@ services:
     user: node
     volumes:
       - ../:/workspace:delegated
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - claude-code-config:/home/node/.claude
+    depends_on:
+      - postgres
 
 volumes:
+  postgres_data:
+    name: postgres_data-${COMPOSE_PROJECT_NAME:-default}
+    driver: local
   claude-code-config:
     name: claude-code-config-${COMPOSE_PROJECT_NAME:-default}
     driver: local
