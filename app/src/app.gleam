@@ -58,7 +58,7 @@ pub fn init(_) -> #(Model, Effect(Msg)) {
 fn fetch_episodes(
   on_response handle_response: fn(Result(List(Episode), error.AppError)) -> msg,
 ) -> Effect(msg) {
-  let url = "http://localhost:8001/episodes"
+  let url = "./priv/static/episodes.json"
   let handler =
     rsvp.expect_json(episode.episodes_decoder(), fn(result) {
       result
