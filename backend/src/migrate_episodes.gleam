@@ -1,3 +1,4 @@
+import fixtures/episodes as fixture_episodes
 import gleam/dynamic/decode
 import gleam/erlang/process
 import gleam/int
@@ -15,55 +16,67 @@ import types/episode.{
 }
 
 pub fn main() {
-  io.println("Starting episode migration...")
+  io.println("🚀 Starting episode migration with fixture priority...")
 
-  // Try to read JSON file
-  let episodes_result = load_episodes_from_json()
+  // Priority: Use development fixture data first
+  let episodes = fixture_episodes.development_episodes()
+  let total_episodes = list.length(episodes)
+  io.println(
+    "📊 Using "
+    <> int.to_string(total_episodes)
+    <> " development fixture episodes",
+  )
 
-  case episodes_result {
-    Ok(episodes) -> {
-      let total_episodes = list.length(episodes)
+  // PostgreSQL migration with fixture data
+  let migration_result = migrate_episodes_to_postgres(episodes)
+  case migration_result {
+    Ok(migrated_count) -> {
+      io.println("✅ Fixture migration completed successfully!")
       io.println(
-        "Successfully loaded "
-        <> int.to_string(total_episodes)
-        <> " episodes from JSON file",
+        "📈 Migrated "
+        <> int.to_string(migrated_count)
+        <> " episodes from fixture",
       )
-
-      // PostgreSQL migration
-      let migration_result = migrate_episodes_to_postgres(episodes)
-      case migration_result {
-        Ok(migrated_count) -> {
-          io.println("Migration completed successfully!")
-          io.println(
-            "Migrated " <> int.to_string(migrated_count) <> " episodes",
-          )
-        }
-        Error(err) -> {
-          io.println_error("Migration failed: " <> string.inspect(err))
-        }
-      }
     }
     Error(err) -> {
-      io.println_error("Failed to load episodes: " <> err)
-      io.println("Falling back to sample data...")
+      io.println_error("❌ Fixture migration failed: " <> string.inspect(err))
 
-      let episodes = sample_episodes()
-      let total_episodes = list.length(episodes)
-      io.println(
-        "Using " <> int.to_string(total_episodes) <> " sample episodes",
-      )
+      // Fallback: Try to read JSON file
+      io.println("🔄 Attempting fallback to JSON file...")
+      let episodes_result = load_episodes_from_json()
 
-      // Test with sample data
-      let migration_result = migrate_episodes_to_postgres(episodes)
-      case migration_result {
-        Ok(migrated_count) -> {
-          io.println("Sample migration completed!")
+      case episodes_result {
+        Ok(json_episodes) -> {
+          let json_total = list.length(json_episodes)
           io.println(
-            "Migrated " <> int.to_string(migrated_count) <> " sample episodes",
+            "📁 Successfully loaded "
+            <> int.to_string(json_total)
+            <> " episodes from JSON file",
           )
+
+          let json_migration_result =
+            migrate_episodes_to_postgres(json_episodes)
+          case json_migration_result {
+            Ok(migrated_count) -> {
+              io.println("✅ JSON fallback migration completed successfully!")
+              io.println(
+                "📈 Migrated "
+                <> int.to_string(migrated_count)
+                <> " episodes from JSON",
+              )
+            }
+            Error(json_err) -> {
+              io.println_error(
+                "❌ JSON migration failed: " <> string.inspect(json_err),
+              )
+            }
+          }
         }
-        Error(err) -> {
-          io.println_error("Sample migration failed: " <> string.inspect(err))
+        Error(json_err) -> {
+          io.println_error("❌ Failed to load JSON file: " <> json_err)
+          io.println(
+            "💡 Consider using only fixture data or checking JSON file path",
+          )
         }
       }
     }
