@@ -28,7 +28,7 @@ gleam run
 ## 前提条件
 
 - PostgreSQLコンテナが実行中 (`deep-space-nine-rta-chart-postgres-1`)
-- `app/priv/static/episodes.json` が存在
+- `frontend/priv/static/episodes.json` が存在
 - Docker Composeネットワークが有効
 
 ## 技術仕様

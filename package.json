@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "cd app && gleam build",
-    "serve": "serve app -l 3000 -s",
+    "build": "cd frontend && gleam build",
+    "serve": "serve frontend -l 3000 -s",
     "start": "npm run build && npm run serve"
   },
   "devDependencies": {

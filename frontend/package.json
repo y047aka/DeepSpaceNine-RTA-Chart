@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "frontend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -16,7 +16,7 @@ jobs:
         gleam-version: "1.12.0"
         rebar3-version: "3"
     - name: Install Gleam dependencies
-      run: cd app && gleam deps download
+      run: cd frontend && gleam deps download
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*

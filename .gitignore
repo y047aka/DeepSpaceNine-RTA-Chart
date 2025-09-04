@@ -3,7 +3,7 @@
 /**/build
 erl_crash.dump
 
-/app/priv/static/app.mjs
+frontend/priv/static/frontend.mjs
 
 # Node.js dependencies
 node_modules/

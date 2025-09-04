@@ -269,7 +269,7 @@ fn organization_to_json(organization: Organization) -> json.Json {
 }
 
 fn load_episodes_from_json() -> Result(List(Episode), String) {
-  let json_file_path = "../app/priv/static/episodes.json"
+  let json_file_path = "../frontend/priv/static/episodes.json"
 
   case simplifile.read(json_file_path) {
     Ok(json_content) -> {

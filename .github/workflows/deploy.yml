@@ -25,16 +25,16 @@ jobs:
           gleam-version: "1.12.0"
           rebar3-version: "3"
       - name: Install dependencies
-        run: cd app && gleam deps download
+        run: cd frontend && gleam deps download
       - name: Build app
-        run: cd app && gleam run -m lustre/dev build app --minify
+        run: cd frontend && gleam run -m lustre/dev build app --minify
       - name: Copy output to dist
         run: |
           mkdir -p dist
-          cp app/index.html dist/index.html
-          cp -r app/priv dist/priv
+          cp frontend/index.html dist/index.html
+          cp -r frontend/priv dist/priv
       - name: Update path in index.html to use minified app
-        run: sed -i 's|priv/static/app.mjs|priv/static/app.min.mjs|' dist/index.html
+        run: sed -i 's|priv/static/frontend.mjs|priv/static/frontend.min.mjs|' dist/index.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
