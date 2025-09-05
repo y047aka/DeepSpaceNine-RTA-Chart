@@ -9,11 +9,7 @@ import gleam/option.{Some}
 import gleam/otp/actor
 import gleam/string
 import pog
-import simplifile
-import types/episode.{
-  type Character, type Episode, type Organization, Character, Episode,
-  Organization, sample_episodes,
-}
+import types/episode.{type Character, type Episode, type Organization}
 
 pub fn main() {
   io.println("🚀 Starting episode migration with fixture priority...")
@@ -40,45 +36,7 @@ pub fn main() {
     }
     Error(err) -> {
       io.println_error("❌ Fixture migration failed: " <> string.inspect(err))
-
-      // Fallback: Try to read JSON file
-      io.println("🔄 Attempting fallback to JSON file...")
-      let episodes_result = load_episodes_from_json()
-
-      case episodes_result {
-        Ok(json_episodes) -> {
-          let json_total = list.length(json_episodes)
-          io.println(
-            "📁 Successfully loaded "
-            <> int.to_string(json_total)
-            <> " episodes from JSON file",
-          )
-
-          let json_migration_result =
-            migrate_episodes_to_postgres(json_episodes)
-          case json_migration_result {
-            Ok(migrated_count) -> {
-              io.println("✅ JSON fallback migration completed successfully!")
-              io.println(
-                "📈 Migrated "
-                <> int.to_string(migrated_count)
-                <> " episodes from JSON",
-              )
-            }
-            Error(json_err) -> {
-              io.println_error(
-                "❌ JSON migration failed: " <> string.inspect(json_err),
-              )
-            }
-          }
-        }
-        Error(json_err) -> {
-          io.println_error("❌ Failed to load JSON file: " <> json_err)
-          io.println(
-            "💡 Consider using only fixture data or checking JSON file path",
-          )
-        }
-      }
+      // No longer attempting JSON fallback; fixtures are used exclusively.
     }
   }
 }
@@ -127,55 +85,6 @@ fn migrate_episodes_to_postgres(episodes: List(Episode)) -> Result(Int, String) 
       Error("Failed to connect to PostgreSQL: " <> string.inspect(err))
     }
   }
-}
-
-// JSON decoders for episodes, characters, and organizations
-fn episodes_decoder() -> decode.Decoder(List(Episode)) {
-  decode.list(episode_decoder())
-}
-
-fn episode_decoder() -> decode.Decoder(Episode) {
-  use season <- decode.field("season", decode.int)
-  use episode <- decode.field("episode", decode.int)
-  use title <- decode.field("title", decode.string)
-  use title_ja <- decode.field("title_ja", decode.optional(decode.string))
-  use importance <- decode.field("importance", decode.int)
-  use netflix_id <- decode.field("netflix_id", decode.optional(decode.int))
-  use netflix_synopsis <- decode.field(
-    "netflix_synopsis",
-    decode.optional(decode.string),
-  )
-  use url_imdb <- decode.field("url_imdb", decode.optional(decode.string))
-  use characters <- decode.field("characters", decode.list(character_decoder()))
-  use organizations <- decode.field(
-    "organizations",
-    decode.list(organization_decoder()),
-  )
-
-  decode.success(Episode(
-    season: season,
-    episode: episode,
-    title: title,
-    title_ja: title_ja,
-    importance: importance,
-    netflix_id: netflix_id,
-    netflix_synopsis: netflix_synopsis,
-    url_imdb: url_imdb,
-    characters: characters,
-    organizations: organizations,
-  ))
-}
-
-fn character_decoder() -> decode.Decoder(Character) {
-  use name <- decode.field("name", decode.string)
-  use contrast <- decode.field("contrast", decode.int)
-  decode.success(Character(name: name, contrast: contrast))
-}
-
-fn organization_decoder() -> decode.Decoder(Organization) {
-  use name <- decode.field("name", decode.string)
-  use contrast <- decode.field("contrast", decode.int)
-  decode.success(Organization(name: name, contrast: contrast))
 }
 
 // PostgreSQL migration functions
@@ -279,40 +188,4 @@ fn organization_to_json(organization: Organization) -> json.Json {
     #("name", json.string(organization.name)),
     #("contrast", json.int(organization.contrast)),
   ])
-}
-
-fn load_episodes_from_json() -> Result(List(Episode), String) {
-  let json_file_path = "../frontend/priv/static/episodes.json"
-
-  case simplifile.read(json_file_path) {
-    Ok(json_content) -> {
-      io.println("Successfully read JSON file")
-      io.println(
-        "JSON content length: " <> int.to_string(string.length(json_content)),
-      )
-
-      // Parse JSON using Gleam's json.parse and decode
-      io.println("Parsing JSON content...")
-      case json.parse(json_content, episodes_decoder()) {
-        Ok(episodes) -> {
-          io.println(
-            "Successfully parsed "
-            <> int.to_string(list.length(episodes))
-            <> " episodes from JSON",
-          )
-          Ok(episodes)
-        }
-        Error(parse_err) -> {
-          io.println_error(
-            "Failed to parse JSON: " <> string.inspect(parse_err),
-          )
-          io.println("Falling back to sample data")
-          Ok(sample_episodes())
-        }
-      }
-    }
-    Error(err) -> {
-      Error("Failed to read JSON file: " <> string.inspect(err))
-    }
-  }
 }
