@@ -14,7 +14,6 @@ import types/episode.{type Character, type Episode, type Organization}
 pub fn main() {
   io.println("🚀 Starting episode migration with fixture priority...")
 
-  // Priority: Use development fixture data first
   let episodes = fixture_episodes.development_episodes()
   let total_episodes = list.length(episodes)
   io.println(
@@ -36,7 +35,6 @@ pub fn main() {
     }
     Error(err) -> {
       io.println_error("❌ Fixture migration failed: " <> string.inspect(err))
-      // No longer attempting JSON fallback; fixtures are used exclusively.
     }
   }
 }
