@@ -77,14 +77,11 @@ fn episode_decoder() -> decode.Decoder(Episode) {
   use season <- decode.field("season", decode.int)
   use episode <- decode.field("episode", decode.int)
   use title <- decode.field("title", decode.string)
-  use title_ja <- decode.field("title_ja", decode.optional(decode.string))
+  use title_ja <- decode.field("title_ja", decode.string)
   use importance <- decode.field("importance", decode.int)
-  use netflix_id <- decode.field("netflix_id", decode.optional(decode.int))
-  use netflix_synopsis <- decode.field(
-    "netflix_synopsis",
-    decode.optional(decode.string),
-  )
-  use url_imdb <- decode.field("url_imdb", decode.optional(decode.string))
+  use netflix_id <- decode.field("netflix_id", decode.int)
+  use netflix_synopsis <- decode.field("netflix_synopsis", decode.string)
+  use url_imdb <- decode.field("url_imdb", decode.string)
   use characters_json <- decode.field("characters", decode.string)
   use organizations_json <- decode.field("organizations", decode.string)
 
@@ -163,11 +160,11 @@ fn episode_to_json(episode: Episode) -> json.Json {
     #("season", json.int(episode.season)),
     #("episode", json.int(episode.episode)),
     #("title", json.string(episode.title)),
-    #("title_ja", json.nullable(episode.title_ja, json.string)),
+    #("title_ja", json.string(episode.title_ja)),
     #("importance", json.int(episode.importance)),
-    #("netflix_id", json.nullable(episode.netflix_id, json.int)),
-    #("netflix_synopsis", json.nullable(episode.netflix_synopsis, json.string)),
-    #("url_imdb", json.nullable(episode.url_imdb, json.string)),
+    #("netflix_id", json.int(episode.netflix_id)),
+    #("netflix_synopsis", json.string(episode.netflix_synopsis)),
+    #("url_imdb", json.string(episode.url_imdb)),
     #("characters", json.array(episode.characters, character_to_json)),
     #("organizations", json.array(episode.organizations, organization_to_json)),
   ])

@@ -1,4 +1,4 @@
-import gleam/option.{type Option, Some}
+import gleam/json
 
 /// Character appearing in an episode
 pub type Character {
@@ -16,54 +16,86 @@ pub type Episode {
     season: Int,
     episode: Int,
     title: String,
-    title_ja: Option(String),
+    title_ja: String,
     importance: Int,
-    netflix_id: Option(Int),
-    netflix_synopsis: Option(String),
-    url_imdb: Option(String),
+    netflix_id: Int,
+    netflix_synopsis: String,
+    url_imdb: String,
     characters: List(Character),
     organizations: List(Organization),
   )
 }
 
-/// Sample episode data for testing
-pub fn sample_episodes() -> List(Episode) {
+pub fn episodes_to_json(episodes: List(Episode)) -> String {
+  json.to_string(
+    json.object([
+      #("episodes", json.array(episodes, episode_to_json)),
+    ]),
+  )
+}
+
+pub fn episode_to_json(episode: Episode) -> json.Json {
+  json.object([
+    #("season", json.int(episode.season)),
+    #("episode", json.int(episode.episode)),
+    #("title", json.string(episode.title)),
+    #("title_ja", json.string(episode.title_ja)),
+    #("importance", json.int(episode.importance)),
+    #("netflix_id", json.int(episode.netflix_id)),
+    #("netflix_synopsis", json.string(episode.netflix_synopsis)),
+    #("url_imdb", json.string(episode.url_imdb)),
+    #("characters", json.array(episode.characters, character_to_json)),
+    #("organizations", json.array(episode.organizations, organization_to_json)),
+  ])
+}
+
+fn character_to_json(character: Character) -> json.Json {
+  json.object([
+    #("name", json.string(character.name)),
+    #("contrast", json.int(character.contrast)),
+  ])
+}
+
+fn organization_to_json(organization: Organization) -> json.Json {
+  json.object([
+    #("name", json.string(organization.name)),
+    #("contrast", json.int(organization.contrast)),
+  ])
+}
+
+pub fn test_episodes() -> List(Episode) {
   [
     Episode(
       season: 1,
       episode: 1,
-      title: "Emissary",
-      title_ja: Some("聖なる神殿の謎"),
-      importance: 4,
-      netflix_id: Some(70_205_806),
-      netflix_synopsis: Some("宇宙ステーション..."),
-      url_imdb: Some("https://www.imdb.com/title/..."),
+      title: "Test Episode One",
+      title_ja: "テストエピソード1",
+      importance: 3,
+      netflix_id: 123_456_789,
+      netflix_synopsis: "テスト用のエピソード概要です。",
+      url_imdb: "https://www.imdb.com/title/tt1234567/",
       characters: [
-        Character("Benjamin Sisko", 4),
-        Character("Kira Nerys", 3),
-        Character("Odo", 3),
+        Character("Test Character 1", 4),
+        Character("Test Character 2", 3),
       ],
       organizations: [
-        Organization("Federation", 5),
-        Organization("Bajoran", 4),
+        Organization("Test Organization", 3),
       ],
     ),
     Episode(
       season: 1,
       episode: 2,
-      title: "Past Prologue",
-      title_ja: Some("過去の序章"),
-      importance: 3,
-      netflix_id: Some(70_205_807),
-      netflix_synopsis: Some("Another episode..."),
-      url_imdb: Some("https://www.imdb.com/title/...2"),
+      title: "Test Episode Two",
+      title_ja: "テストエピソード2",
+      importance: 2,
+      netflix_id: 987_654_321,
+      netflix_synopsis: "2番目のテストエピソードです。",
+      url_imdb: "https://www.imdb.com/title/tt7654321/",
       characters: [
-        Character("Benjamin Sisko", 4),
-        Character("Kira Nerys", 3),
+        Character("Test Character 3", 2),
       ],
       organizations: [
-        Organization("Federation", 5),
-        Organization("Cardassian", 3),
+        Organization("Another Test Org", 2),
       ],
     ),
   ]
