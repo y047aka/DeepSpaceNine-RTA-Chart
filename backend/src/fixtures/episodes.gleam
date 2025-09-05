@@ -1109,7 +1109,7 @@ pub fn development_episodes() -> List(Episode) {
         Character("Quark", 2),
         Character("Kira Nerys", 2),
       ],
-      organizations: [Organization("Cardassia", 4)],
+      organizations: [],
     ),
     Episode(
       season: 3,
@@ -1152,7 +1152,7 @@ pub fn development_episodes() -> List(Episode) {
         Character("Quark", 2),
         Character("Kira Nerys", 3),
       ],
-      organizations: [Organization("Cardassia", 2)],
+      organizations: [],
     ),
     Episode(
       season: 3,
@@ -1217,7 +1217,7 @@ pub fn development_episodes() -> List(Episode) {
         Character("Quark", 1),
         Character("Kira Nerys", 2),
       ],
-      organizations: [Organization("Federation", 5)],
+      organizations: [],
     ),
     Episode(
       season: 3,
@@ -1236,7 +1236,7 @@ pub fn development_episodes() -> List(Episode) {
         Character("Miles O'Brien", 2),
         Character("Kira Nerys", 2),
       ],
-      organizations: [Organization("Federation", 5)],
+      organizations: [],
     ),
     Episode(
       season: 3,
