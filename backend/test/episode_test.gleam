@@ -26,7 +26,7 @@ pub fn development_episodes_test() {
 }
 
 pub fn test_episodes_test() {
-  let episodes = episodes.test_episodes()
+  let episodes = episode.test_episodes()
 
   // Should have exactly 2 test episodes
   list.length(episodes) |> should.equal(2)
@@ -64,8 +64,8 @@ pub fn episode_characters_test() {
 }
 
 pub fn json_export_test() {
-  let test_episodes = episodes.test_episodes()
-  let json_string = episodes.episodes_to_json(test_episodes)
+  let test_episodes = episode.test_episodes()
+  let json_string = episode.episodes_to_json(test_episodes)
 
   // JSON should contain the episodes
   string.contains(json_string, "\"episodes\"") |> should.be_true
