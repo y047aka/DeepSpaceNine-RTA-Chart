@@ -66,7 +66,7 @@ RUN set -e && \
     fi
 
 # Stage 4: Development environment without Claude CLI
-FROM base-tools AS without-claude
+FROM base-tools AS without-agent-cli
 
 # Copy compiled tools from previous stages
 COPY --from=gleam-stage /usr/local/lib/erlang /usr/local/lib/erlang
@@ -94,7 +94,10 @@ ENV SHELL=/bin/zsh
 
 
 # Stage 5: Final development environment with Claude CLI
-FROM without-claude
+FROM without-agent-cli
+
+# Install Codex CLI
+RUN npm install -g @openai/codex@latest
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
