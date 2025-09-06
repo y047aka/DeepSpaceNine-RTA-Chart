@@ -1,76 +1,64 @@
----
+<meta>
 description: Generate comprehensive requirements for a specification
-allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
----
+argument-hint: [feature-name]
+</meta>
 
-# Requirements Generation
+<requirements_command>
 
-Generate comprehensive requirements for feature: **$ARGUMENTS**
+  <requirements_generation>
 
-## Context Validation
+    <context_validation>
+      <steering_context>
+      - Architecture: @.kiro/steering/structure.md
+      - Technical constraints: @.kiro/steering/tech.md
+      - Product context: @.kiro/steering/product.md
+      - Custom steering: Load all "Always" mode custom steering files from .kiro/steering/
+      </steering_context>
 
-### Steering Context
-- Architecture context: @.kiro/steering/structure.md
-- Technical constraints: @.kiro/steering/tech.md
-- Product context: @.kiro/steering/product.md
+      <existing_spec_context>
+      - Spec directory: Use list_dir or glob_file_search (no shell) for `.kiro/specs/[feature-name]/`
+      - Requirements: `.kiro/specs/[feature-name]/requirements.md`
+      - Spec metadata: `.kiro/specs/[feature-name]/spec.json`
+      </existing_spec_context>
+    </context_validation>
 
-### Existing Spec Context
-- Current spec directory: !`ls -la .kiro/specs/$ARGUMENTS/`
-- Current requirements: @.kiro/specs/$ARGUMENTS/requirements.md
-- Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
+    <language_policy>
+    - Purpose: `spec.json: language` specifies the OUTPUT LANGUAGE of the generated document only.
+    - Validation: Read and parse JSON; ensure `language` is a non-empty string (e.g., `ja`, `en`).
+    - Behavior:
+      - If valid: Generate all document text strictly in `language`.
+      - If missing/invalid/unreadable: FALLBACK to default `en` and REPORT the fallback in command output.
+    - Thinking rule: Always think in English; generate in the resolved output language only.
+    </language_policy>
 
-## Task: Generate Initial Requirements
+    <task>
+      <step id="1">Read existing requirements.md created by spec-init to extract the project description.</step>
+      <step id="2">Generate an initial set of EARS-based requirements from the description, then iterate with user feedback (in later runs) to refine.</step>
+      <note>Do not focus on code exploration in this phase; concentrate on writing requirements that will inform the design.</note>
+    </task>
 
-Generate an initial set of requirements in EARS format based on the feature idea, then iterate with the user to refine them until they are complete and accurate.
+    <guidelines>
+    1. Focus on core functionality from the user's idea.
+    2. Use EARS format for all acceptance criteria.
+    3. Avoid sequential questions on first pass; propose an initial version.
+    4. Keep scope manageable; enable expansion through review.
+    </guidelines>
 
-Don't focus on code exploration in this phase. Instead, just focus on writing requirements which will later be turned into a design.
+    <ears_format>
+      <primary_patterns>
+      - WHEN [event/condition] THEN [system] SHALL [response]
+      - IF [precondition/state] THEN [system] SHALL [response]
+      - WHILE [ongoing condition] THE [system] SHALL [continuous behavior]
+      - WHERE [location/context/trigger] THE [system] SHALL [contextual behavior]
+      </primary_patterns>
+      <combined_patterns>
+      - WHEN [event] AND [additional condition] THEN [system] SHALL [response]
+      - IF [condition] AND [additional condition] THEN [system] SHALL [response]
+      </combined_patterns>
+    </ears_format>
 
-### Requirements Generation Guidelines
-1. **Focus on Core Functionality**: Start with the essential features from the user's idea
-2. **Use EARS Format**: All acceptance criteria must use proper EARS syntax
-3. **No Sequential Questions**: Generate initial version first, then iterate based on user feedback
-4. **Keep It Manageable**: Create a solid foundation that can be expanded through user review
-
-### 1. EARS Format Requirements
-
-**EARS (Easy Approach to Requirements Syntax)** is the mandatory format for acceptance criteria:
-
-**Primary EARS Patterns:**
-- **WHEN** [event/condition] **THEN** [system] **SHALL** [response]
-- **IF** [precondition/state] **THEN** [system] **SHALL** [response]
-- **WHILE** [ongoing condition] **THE SYSTEM SHALL** [continuous behavior]
-- **WHERE** [location/context] **THE SYSTEM SHALL** [contextual behavior]
-
-**Combined Patterns:**
-- **WHEN** [event] **AND** [additional condition] **THEN** [system] **SHALL** [response]
-- **IF** [condition] **AND** [additional condition] **THEN** [system] **SHALL** [response]
-
-### 2. Requirements Hierarchy and Granularity
-
-**Structure Requirements with Clear Hierarchy:**
-
-```
-# Requirements Document
-├── Introduction (feature overview)
-├── Requirements
-│   ├── Requirement 1 (Major Feature Area)
-│   │   ├── User Story (high-level need)
-│   │   └── Acceptance Criteria (detailed EARS)
-│   │       ├── Happy path scenarios
-│   │       ├── Edge cases and error conditions
-│   │       ├── User experience considerations
-│   │       └── Technical constraints
-│   ├── Requirement 2 (Next Feature Area)
-│   └── ...
-```
-
-**Granularity Guidelines:**
-- **High-level Requirements**: Major functional areas from the feature idea
-- **User Stories**: Specific user needs within each requirement area  
-- **Acceptance Criteria**: Testable conditions using EARS format
-
-### 3. Requirements Document Structure
-Generate requirements.md in the language specified in spec.json (check `@.kiro/specs/$ARGUMENTS/spec.json` for "language" field):
+    <document_structure>
+Update requirements.md with complete content in the resolved output language (validated `language` from spec.json or fallback `en`).
 
 ```markdown
 # Requirements Document
@@ -88,8 +76,8 @@ This section should have EARS requirements
 
 1. WHEN [event] THEN [system] SHALL [response]
 2. IF [precondition] THEN [system] SHALL [response]
-3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
-4. WHERE [location/context] THE SYSTEM SHALL [contextual behavior]
+3. WHILE [ongoing condition] THE [system] SHALL [continuous behavior]
+4. WHERE [location/context/trigger] THE [system] SHALL [contextual behavior]
 
 ### Requirement 2: [Next Major Feature Area]
 **User Story:** As a [role], I want [feature], so that [benefit]
@@ -100,8 +88,9 @@ This section should have EARS requirements
 ### Requirement 3: [Additional Major Areas]
 [Continue pattern for all major functional areas]
 ```
+    </document_structure>
 
-### 4. Update Metadata
+    <metadata_update>
 Update spec.json with:
 ```json
 {
@@ -115,64 +104,48 @@ Update spec.json with:
   "updated_at": "current_timestamp"
 }
 ```
+JSON update: update via file tools, set ISO `updated_at`, merge only needed keys; avoid duplicates.
+    </metadata_update>
 
-### 5. Document Generation Only
-Generate the requirements document content ONLY. Do not include any review or approval instructions in the actual document file.
+    <document_generation_only>
+    Generate the requirements document content ONLY. Do not include any review or approval instructions in the actual document file.
+    </document_generation_only>
 
----
+  </requirements_generation>
 
-## INTERACTIVE APPROVAL AVAILABLE (Not included in document)
+  <ears_validation_checks>
+  - Every acceptance criterion strictly follows EARS syntax (WHEN/IF/WHILE/WHERE, with optional AND).
+  - Each criterion is observable and yields a single, testable outcome.
+  - No ambiguous or subjective wording (e.g., quickly, appropriately); quantify where necessary.
+  - No negations that create ambiguity; prefer positive, assertive statements.
+  - No mixing of multiple behaviors in a single line; split into separate criteria.
+  - Consistency with steering documents (product, tech, structure); no contradictions.
+  - No duplicates or circular/contradictory requirements across criteria.
+  </ears_validation_checks>
 
-The following is for Claude Code conversation only - NOT for the generated document:
+  <next_phase>
+  After generating requirements.md, review the requirements and choose:
 
-### Next Phase Uses Interactive Approval
-After generating requirements.md, the next phase (`/kiro:spec-design $ARGUMENTS`) will use interactive approval:
+  - If requirements look good: Run `/kiro/spec-design [feature-name] -y` to proceed to design phase.
+  - If requirements need modification: Request changes, then re-run this command after modifications.
 
-**Next interaction will be**:
-```
-/kiro:spec-design feature-name
-# → "requirements.mdをレビューしましたか？ [y/N]"
-# → If 'y': Auto-approval + design generation
-# → If 'N': Stop and request review first
-```
+  The `-y` flag auto-approves requirements and generates design directly, streamlining the workflow while maintaining review enforcement.
+  </next_phase>
 
-### Benefits of Interactive Approval
-1. **Streamlined workflow**: No manual spec.json editing required
-2. **Review enforcement**: Still requires human confirmation of review
-3. **Immediate progression**: Approved phases proceed automatically
-4. **Safety maintained**: 'N' response stops execution for proper review
+  <instructions>
+  1. Validate spec.json `language` — if valid, generate strictly in that language; if missing/invalid, fall back to `en` and report the fallback.
+  2. Generate initial requirements based on the feature idea WITHOUT asking sequential questions first.
+  3. Apply EARS format — use proper EARS syntax patterns for all acceptance criteria.
+  4. Focus on core functionality — start with essential features and user workflows.
+  5. Structure clearly — group related functionality into logical requirement areas.
+  6. Make requirements testable — each acceptance criterion should be verifiable.
+  7. Update tracking metadata upon completion.
+  </instructions>
 
-### Review Checklist (for user reference):
-- [ ] Requirements are clear and complete
-- [ ] User stories cover all necessary functionality
-- [ ] Acceptance criteria are testable
-- [ ] Requirements align with project goals
+  <self_reflection>
+  - Before output, internally verify the EARS Validation Checks above.
+  - If any check fails, silently revise and regenerate up to two times.
+  - Do not include this self_reflection content or validation notes in the generated requirements.md.
+  </self_reflection>
 
-### Traditional Manual Approval Still Available
-If needed, you can still manually approve by updating `.kiro/specs/$ARGUMENTS/spec.json`:
-```json
-{
-  "approvals": {
-    "requirements": {
-      "generated": true,
-      "approved": true
-    }
-  },
-  "phase": "requirements-approved"
-}
-```
-
-**Recommended**: Use the interactive approval in `/kiro:spec-design $ARGUMENTS` for better user experience.
-
-## Instructions
-
-1. **Check spec.json for language** - Use the language specified in the metadata
-2. **Generate initial requirements** based on the feature idea WITHOUT asking sequential questions first
-3. **Apply EARS format** - Use proper EARS syntax patterns for all acceptance criteria
-4. **Focus on core functionality** - Start with essential features and user workflows
-5. **Structure clearly** - Group related functionality into logical requirement areas
-6. **Make requirements testable** - Each acceptance criterion should be verifiable
-7. **Update tracking metadata** upon completion
-
-Generate requirements that provide a solid foundation for the design phase, focusing on the core functionality from the feature idea.
-think
+</requirements_command>
