@@ -9,7 +9,7 @@ model = "openai/gpt-oss-120b"
 #
 # See https://github.com/openai/codex/issues/1260 for the plan to enable
 # end-users to define their own trusted commands.
-approval_policy = "on-request"
+approval_policy = "on-failure"
 
 sandbox_mode = "workspace-write"
 
