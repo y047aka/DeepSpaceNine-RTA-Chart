@@ -97,7 +97,7 @@ ENV SHELL=/bin/zsh
 FROM without-agent-cli
 
 # Install Codex CLI
-RUN npm install -g @openai/codex
+RUN npm install -g @openai/codex@latest
 
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
