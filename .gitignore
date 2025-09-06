@@ -1,5 +1,7 @@
-.codex/
-!.codex/config.toml
+.codex/history.jsonl
+.codex/version.json
+.codex/log
+.codex/sessions
 
 *.beam
 *.ez
