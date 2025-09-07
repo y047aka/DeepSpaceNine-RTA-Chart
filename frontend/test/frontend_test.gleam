@@ -8,8 +8,7 @@ pub fn main() {
 }
 
 pub fn model_test() {
-  let model =
-    frontend.Model(episodes: [], route: route.Home, histogram_data: [])
+  let model = frontend.Model(episodes: [], route: route.Home, histograms: [])
   model.episodes |> should.equal([])
 }
 

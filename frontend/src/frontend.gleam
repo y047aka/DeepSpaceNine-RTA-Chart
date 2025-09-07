@@ -31,11 +31,11 @@ pub fn main() {
 // MODEL -----------------------------------------------------------------------
 
 pub type Model {
-  Model(
-    route: Route,
-    episodes: List(Episode),
-    histogram_data: List(histogram.SeasonImportance),
-  )
+  Model(route: Route, episodes: List(Episode), histograms: List(Histogram))
+}
+
+pub type Histogram {
+  Histogram(route: Route, data: List(histogram.SeasonImportance))
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
@@ -44,7 +44,7 @@ pub fn init(_) -> #(Model, Effect(Msg)) {
     Error(_) -> route.Home
   }
 
-  let model = Model(route: route, episodes: [], histogram_data: [])
+  let model = Model(route: route, episodes: [], histograms: [])
 
   let effect =
     effect.batch([
@@ -83,26 +83,10 @@ pub type Msg {
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   case msg {
     UserNavigatedTo(route) -> {
-      let histogram_data = histogram_data_for_route(route, model.episodes)
-
-      #(
-        Model(..model, route: route, histogram_data: histogram_data),
-        effect.none(),
-      )
+      #(Model(..model, route: route), effect.none())
     }
     LoadedEpisodes(Ok(episodes)) -> #(
-      Model(
-        ..model,
-        episodes: episodes,
-        histogram_data: episodes
-          |> list.map(fn(ep) {
-            histogram.SeasonImportance(
-              season: ep.season,
-              episode: ep.episode,
-              importance: ep.importance,
-            )
-          }),
-      ),
+      Model(..model, episodes: episodes, histograms: build_histograms(episodes)),
       effect.none(),
     )
     LoadedEpisodes(Error(app_error)) -> {
@@ -112,41 +96,71 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   }
 }
 
-// Helper: generate `SeasonImportance` list appropriate for a given route.
-fn histogram_data_for_route(
-  route: Route,
-  episodes: List(Episode),
-) -> List(histogram.SeasonImportance) {
-  case route {
-    route.Home ->
-      episodes
-      |> list.map(fn(ep) {
-        histogram.SeasonImportance(
-          season: ep.season,
-          episode: ep.episode,
-          importance: ep.importance,
-        )
-      })
-    route.Character(char) ->
-      episode.get_character_episodes(char, episodes)
-      |> list.map(fn(ep) {
-        histogram.SeasonImportance(
-          season: ep.season,
-          episode: ep.episode,
-          importance: ep.importance,
-        )
-      })
-    route.Organization(org) ->
-      episode.get_organization_episodes(org, episodes)
-      |> list.map(fn(ep) {
-        histogram.SeasonImportance(
-          season: ep.season,
-          episode: ep.episode,
-          importance: ep.importance,
-        )
-      })
-    route.NotFound(_) -> []
-  }
+fn build_histograms(episodes: List(Episode)) -> List(Histogram) {
+  list.append(
+    [
+      Histogram(
+        route: route.Home,
+        data: episodes
+          |> list.map(fn(ep) {
+            histogram.SeasonImportance(
+              season: ep.season,
+              episode: ep.episode,
+              importance: ep.importance,
+            )
+          }),
+      ),
+    ],
+    list.append(
+      [
+        character.benjamin_sisko, character.jake_sisko, character.dax,
+        character.kira_nerys, character.miles_obrien, character.bashir,
+        character.odo, character.quark, character.worf, character.rom,
+        character.nog, character.garak, character.dukat, character.keiko_obrien,
+        character.winn, character.bareil, character.michael_eddington,
+        character.kasidy_yates, character.leeta, character.gowron,
+        character.martok, character.shakaar, character.ziyal, character.damar,
+      ]
+        |> list.map(fn(char) {
+          Histogram(
+            route: route.Character(char),
+            data: episode.get_character_episodes(char, episodes)
+              |> list.map(fn(ep) {
+                histogram.SeasonImportance(
+                  season: ep.season,
+                  episode: ep.episode,
+                  importance: ep.importance,
+                )
+              }),
+          )
+        }),
+      [
+        organization.Federation(role.Citizen),
+        organization.TrillSymbiosisCommission,
+        organization.Bajor,
+        organization.Prophets,
+        organization.CardassianUnion,
+        organization.FerengiAlliance,
+        organization.KlingonEmpire,
+        organization.Maquis,
+        organization.DominionForces,
+        organization.MirrorUniverse,
+      ]
+        |> list.map(fn(org) {
+          Histogram(
+            route: route.Organization(org),
+            data: episode.get_organization_episodes(org, episodes)
+              |> list.map(fn(ep) {
+                histogram.SeasonImportance(
+                  season: ep.season,
+                  episode: ep.episode,
+                  importance: ep.importance,
+                )
+              }),
+          )
+        }),
+    ),
+  )
 }
 
 // VIEW ------------------------------------------------------------------------
@@ -305,18 +319,17 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
 
 fn view_main_histogram(model: Model) -> Element(Msg) {
   // Hue depends on the current route, but data is shared.
-  case model.route {
-    route.Home -> histogram.large_view(175, model.histogram_data)
-    route.Character(character) ->
-      histogram.large_view(
-        character.character_hue(character),
-        model.histogram_data,
-      )
-    route.Organization(organization) ->
-      histogram.large_view(
-        organization.to_hue(organization),
-        model.histogram_data,
-      )
-    route.NotFound(_) -> text("Not found")
+  case
+    model.route,
+    model.histograms
+    |> list.find(fn(h) { h.route == model.route })
+    |> result.map(fn(h) { h.data })
+  {
+    route.Home, Ok(data) -> histogram.large_view(175, data)
+    route.Character(character), Ok(data) ->
+      histogram.large_view(character.character_hue(character), data)
+    route.Organization(organization), Ok(data) ->
+      histogram.large_view(organization.to_hue(organization), data)
+    _, _ -> text("Not found")
   }
 }
