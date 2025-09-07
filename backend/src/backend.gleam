@@ -9,6 +9,10 @@ import gleam/string
 import mist
 import pog
 import types/episode.{type Character, type Episode, type Organization}
+import types/histogram
+import types/histograms
+import types/organization
+import types/route
 import wisp.{type Request, type Response}
 import wisp/wisp_mist
 
@@ -184,6 +188,49 @@ fn organization_to_json(organization: Organization) -> json.Json {
   ])
 }
 
+// Histogram JSON conversion functions
+fn histograms_to_json(histograms: List(histogram.Histogram)) -> json.Json {
+  json.array(histograms, histogram_to_json)
+}
+
+fn histogram_to_json(h: histogram.Histogram) -> json.Json {
+  json.object([
+    #("route", route_to_json(h.route)),
+    #("data", json.array(h.data, season_importance_to_json)),
+  ])
+}
+
+fn route_to_json(r: route.Route) -> json.Json {
+  case r {
+    route.Home -> json.object([#("type", json.string("home"))])
+    route.Character(char) ->
+      json.object([
+        #("type", json.string("character")),
+        #("id", json.string(char.id)),
+        #("name", json.string(char.name)),
+      ])
+    route.Organization(org) ->
+      json.object([
+        #("type", json.string("organization")),
+        #("name", json.string(organization.to_string(org))),
+        #("id", json.string(organization.to_id(org))),
+      ])
+    route.NotFound(uri) ->
+      json.object([
+        #("type", json.string("not_found")),
+        #("uri", json.string(uri.path)),
+      ])
+  }
+}
+
+fn season_importance_to_json(si: histogram.SeasonImportance) -> json.Json {
+  json.object([
+    #("season", json.int(si.season)),
+    #("episode", json.int(si.episode)),
+    #("importance", json.int(si.importance)),
+  ])
+}
+
 // メイン関数
 pub fn main() {
   io.println("🚀 Starting Star Trek DS9 API Server...")
@@ -205,6 +252,7 @@ fn handle_request(req: Request) -> Response {
   case wisp.path_segments(req) {
     [] -> handle_episodes(req)
     ["episodes"] -> handle_episodes(req)
+    ["histograms"] -> handle_histograms(req)
     _ -> wisp.not_found()
   }
 }
@@ -232,6 +280,38 @@ fn handle_episodes(_req: Request) -> Response {
     }
     Error(err) -> {
       io.println_error("❌ Failed to retrieve episodes from database: " <> err)
+      let error_data =
+        json.object([
+          #("error", json.string("Database query failed")),
+          #("message", json.string(err)),
+        ])
+      wisp.internal_server_error()
+      |> wisp.set_header("content-type", "application/json")
+      |> wisp.string_body(json.to_string(error_data))
+    }
+  }
+}
+
+// ヒストグラムAPIハンドラー
+fn handle_histograms(_req: Request) -> Response {
+  io.println("📥 Received request for histograms")
+
+  // データベースからepisodesを取得し、histogramsを構築
+  case get_episodes_from_db() {
+    Ok(episodes) -> {
+      io.println(
+        "✅ Successfully retrieved episodes from database for histograms",
+      )
+      let histograms_data = histograms.build_histograms(episodes)
+      let histograms_json = histograms_to_json(histograms_data)
+      wisp.ok()
+      |> wisp.set_header("content-type", "application/json")
+      |> wisp.string_body(json.to_string(histograms_json))
+    }
+    Error(err) -> {
+      io.println_error(
+        "❌ Failed to retrieve episodes from database for histograms: " <> err,
+      )
       let error_data =
         json.object([
           #("error", json.string("Database query failed")),

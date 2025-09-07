@@ -1,4 +1,9 @@
 import gleam/json
+import gleam/list
+import gleam/result
+import types/character
+import types/histogram
+import types/organization
 
 /// Character appearing in an episode
 pub type Character {
@@ -99,4 +104,49 @@ pub fn test_episodes() -> List(Episode) {
       ],
     ),
   ]
+}
+
+// Episode filtering functions
+pub fn get_character_episodes(
+  character_data: character.Character,
+  episodes: List(Episode),
+) -> List(histogram.SeasonImportance) {
+  episodes
+  |> list.map(fn(episode) {
+    let contrast =
+      episode.characters
+      |> list.find(fn(char_contrast) {
+        char_contrast.name == character_data.name
+      })
+      |> result.map(fn(char_contrast) { char_contrast.contrast })
+      |> result.unwrap(0)
+
+    histogram.SeasonImportance(
+      season: episode.season,
+      episode: episode.episode,
+      importance: contrast,
+    )
+  })
+}
+
+pub fn get_organization_episodes(
+  organization: organization.Organization,
+  episodes: List(Episode),
+) -> List(histogram.SeasonImportance) {
+  episodes
+  |> list.map(fn(episode) {
+    let contrast =
+      episode.organizations
+      |> list.find(fn(org_contrast) {
+        org_contrast.name == organization.to_string(organization)
+      })
+      |> result.map(fn(org_contrast) { org_contrast.contrast })
+      |> result.unwrap(0)
+
+    histogram.SeasonImportance(
+      season: episode.season,
+      episode: episode.episode,
+      importance: contrast,
+    )
+  })
 }
