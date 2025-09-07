@@ -31,7 +31,11 @@ pub fn main() {
 // MODEL -----------------------------------------------------------------------
 
 pub type Model {
-  Model(route: Route, episodes: List(Episode))
+  Model(
+    route: Route,
+    episodes: List(Episode),
+    histogram_data: List(histogram.SeasonImportance),
+  )
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
@@ -40,7 +44,7 @@ pub fn init(_) -> #(Model, Effect(Msg)) {
     Error(_) -> route.Home
   }
 
-  let model = Model(route: route, episodes: [])
+  let model = Model(route: route, episodes: [], histogram_data: [])
 
   let effect =
     effect.batch([
@@ -78,15 +82,70 @@ pub type Msg {
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
   case msg {
-    UserNavigatedTo(route) -> #(Model(..model, route: route), effect.none())
+    UserNavigatedTo(route) -> {
+      let histogram_data = histogram_data_for_route(route, model.episodes)
+
+      #(
+        Model(..model, route: route, histogram_data: histogram_data),
+        effect.none(),
+      )
+    }
     LoadedEpisodes(Ok(episodes)) -> #(
-      Model(..model, episodes: episodes),
+      Model(
+        ..model,
+        episodes: episodes,
+        histogram_data: episodes
+          |> list.map(fn(ep) {
+            histogram.SeasonImportance(
+              season: ep.season,
+              episode: ep.episode,
+              importance: ep.importance,
+            )
+          }),
+      ),
       effect.none(),
     )
     LoadedEpisodes(Error(app_error)) -> {
       error.log_error(app_error)
       #(model, effect.none())
     }
+  }
+}
+
+// Helper: generate `SeasonImportance` list appropriate for a given route.
+fn histogram_data_for_route(
+  route: Route,
+  episodes: List(Episode),
+) -> List(histogram.SeasonImportance) {
+  case route {
+    route.Home ->
+      episodes
+      |> list.map(fn(ep) {
+        histogram.SeasonImportance(
+          season: ep.season,
+          episode: ep.episode,
+          importance: ep.importance,
+        )
+      })
+    route.Character(char) ->
+      episode.get_character_episodes(char, episodes)
+      |> list.map(fn(ep) {
+        histogram.SeasonImportance(
+          season: ep.season,
+          episode: ep.episode,
+          importance: ep.importance,
+        )
+      })
+    route.Organization(org) ->
+      episode.get_organization_episodes(org, episodes)
+      |> list.map(fn(ep) {
+        histogram.SeasonImportance(
+          season: ep.season,
+          episode: ep.episode,
+          importance: ep.importance,
+        )
+      })
+    route.NotFound(_) -> []
   }
 }
 
@@ -114,7 +173,7 @@ pub fn view(model: Model) -> Element(Msg) {
         ]),
         // main contents
         view_breadcrumbs(model.route),
-        view_main_histogram(model, model.route),
+        view_main_histogram(model),
         episode_table.view(model.episodes),
       ]),
 
@@ -244,32 +303,20 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
   })
 }
 
-fn view_main_histogram(model: Model, current_route: Route) -> Element(Msg) {
-  case current_route {
-    route.Home -> {
-      let episodes_data =
-        model.episodes
-        |> list.map(fn(ep) {
-          histogram.SeasonImportance(
-            season: ep.season,
-            episode: ep.episode,
-            importance: ep.importance,
-          )
-        })
-      histogram.large_view(175, episodes_data)
-    }
-    route.Character(character) -> {
-      let char_episodes =
-        episode.get_character_episodes(character, model.episodes)
-      histogram.large_view(character.character_hue(character), char_episodes)
-    }
-    route.Organization(organization) -> {
-      let org_episodes =
-        episode.get_organization_episodes(organization, model.episodes)
-      histogram.large_view(organization.to_hue(organization), org_episodes)
-    }
-    route.NotFound(_) -> {
-      text("Not found")
-    }
+fn view_main_histogram(model: Model) -> Element(Msg) {
+  // Hue depends on the current route, but data is shared.
+  case model.route {
+    route.Home -> histogram.large_view(175, model.histogram_data)
+    route.Character(character) ->
+      histogram.large_view(
+        character.character_hue(character),
+        model.histogram_data,
+      )
+    route.Organization(organization) ->
+      histogram.large_view(
+        organization.to_hue(organization),
+        model.histogram_data,
+      )
+    route.NotFound(_) -> text("Not found")
   }
 }
