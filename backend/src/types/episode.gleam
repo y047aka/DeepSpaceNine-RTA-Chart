@@ -39,7 +39,7 @@ pub fn episodes_to_json(episodes: List(Episode)) -> String {
   )
 }
 
-pub fn episode_to_json(episode: Episode) -> json.Json {
+fn episode_to_json(episode: Episode) -> json.Json {
   json.object([
     #("season", json.int(episode.season)),
     #("episode", json.int(episode.episode)),
@@ -49,22 +49,6 @@ pub fn episode_to_json(episode: Episode) -> json.Json {
     #("netflix_id", json.int(episode.netflix_id)),
     #("netflix_synopsis", json.string(episode.netflix_synopsis)),
     #("url_imdb", json.string(episode.url_imdb)),
-    #("characters", json.array(episode.characters, character_to_json)),
-    #("organizations", json.array(episode.organizations, organization_to_json)),
-  ])
-}
-
-fn character_to_json(character: Character) -> json.Json {
-  json.object([
-    #("name", json.string(character.name)),
-    #("contrast", json.int(character.contrast)),
-  ])
-}
-
-fn organization_to_json(organization: Organization) -> json.Json {
-  json.object([
-    #("name", json.string(organization.name)),
-    #("contrast", json.int(organization.contrast)),
   ])
 }
 

@@ -41,25 +41,6 @@ pub fn to_string(org: Organization) -> String {
   }
 }
 
-pub fn from_string(s: String) -> Result(Organization, String) {
-  case s {
-    "Federation" -> Ok(Federation(role.Citizen))
-    "Federation Citizen" -> Ok(Federation(role.Citizen))
-    "Cardassian Union" | "Cardassia" -> Ok(CardassianUnion)
-    "Klingon Empire" | "Klingon" -> Ok(KlingonEmpire)
-    "Dominion" -> Ok(DominionForces)
-    "Bajor" -> Ok(Bajor)
-    "Prophets" | "Prophet" -> Ok(Prophets)
-    "Ferengi Alliance" | "Ferengi" -> Ok(FerengiAlliance)
-    "Trill Symbiosis Commission" | "Trill" -> Ok(TrillSymbiosisCommission)
-    "Maquis" -> Ok(Maquis)
-    "Mirror Universe" -> Ok(MirrorUniverse)
-    "Independent" -> Ok(Independent)
-    "Citizen" -> Ok(Citizen)
-    _ -> Error("Unknown organization: " <> s)
-  }
-}
-
 pub fn to_id(org: Organization) -> String {
   case org {
     Federation(_) -> "federation"
@@ -74,49 +55,5 @@ pub fn to_id(org: Organization) -> String {
     MirrorUniverse -> "mirror_universe"
     Independent -> "independent"
     Citizen -> "citizen"
-  }
-}
-
-pub fn from_id(id: String) -> Result(Organization, String) {
-  case id {
-    "federation" -> Ok(Federation(role.Citizen))
-    "cardassian_union" -> Ok(CardassianUnion)
-    "klingon_empire" -> Ok(KlingonEmpire)
-    "dominion" -> Ok(DominionForces)
-    "bajor" -> Ok(Bajor)
-    "ferengi_alliance" -> Ok(FerengiAlliance)
-    "prophets" -> Ok(Prophets)
-    "trill_symbiosis_commission" -> Ok(TrillSymbiosisCommission)
-    "maquis" -> Ok(Maquis)
-    "mirror_universe" -> Ok(MirrorUniverse)
-    "independent" -> Ok(Independent)
-    "citizen" -> Ok(Citizen)
-    _ -> Error("Unknown organization id: " <> id)
-  }
-}
-
-pub fn to_hue(org: Organization) -> Int {
-  let command = 350
-  let science_or_medical = 190
-  let federation = 220
-  let bajoran = 10
-  let cardassian = 175
-  let klingon = 120
-  let ferengi = 25
-  let dominion = 270
-
-  case org {
-    Federation(_) -> federation
-    CardassianUnion -> cardassian
-    KlingonEmpire -> klingon
-    DominionForces -> dominion
-    Bajor -> bajoran
-    FerengiAlliance -> ferengi
-    Prophets -> bajoran
-    TrillSymbiosisCommission -> science_or_medical
-    Maquis -> command
-    MirrorUniverse -> command
-    Independent -> federation
-    Citizen -> federation
   }
 }

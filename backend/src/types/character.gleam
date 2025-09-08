@@ -206,45 +206,6 @@ pub const weyoun = Character(
   organization: organization.DominionForces,
 )
 
-fn build_name_registry() -> Dict(String, Character) {
-  dict.new()
-  |> dict.insert("Benjamin Sisko", benjamin_sisko)
-  |> dict.insert("Jake Sisko", jake_sisko)
-  |> dict.insert("Dax", dax)
-  |> dict.insert("Kira Nerys", kira_nerys)
-  |> dict.insert("Miles O'Brien", miles_obrien)
-  |> dict.insert("Keiko O'Brien", keiko_obrien)
-  |> dict.insert("Bashir", bashir)
-  |> dict.insert("Odo", odo)
-  |> dict.insert("Worf", worf)
-  |> dict.insert("Quark", quark)
-  |> dict.insert("Rom", rom)
-  |> dict.insert("Nog", nog)
-  |> dict.insert("Winn", winn)
-  |> dict.insert("Bareil", bareil)
-  |> dict.insert("Garak", garak)
-  |> dict.insert("Dukat", dukat)
-  |> dict.insert("Zek", zek)
-  |> dict.insert("Michael Eddington", michael_eddington)
-  |> dict.insert("Kasidy Yates", kasidy_yates)
-  |> dict.insert("Leeta", leeta)
-  |> dict.insert("Gowron", gowron)
-  |> dict.insert("Martok", martok)
-  |> dict.insert("Shakaar", shakaar)
-  |> dict.insert("Ziyal", ziyal)
-  |> dict.insert("Damar", damar)
-  |> dict.insert("Brunt", brunt)
-  |> dict.insert("Weyoun", weyoun)
-}
-
-pub fn get_character_by_name(name: String) -> Result(Character, String) {
-  let registry = build_name_registry()
-  case dict.get(registry, name) {
-    Ok(character) -> Ok(character)
-    Error(_) -> Error("Unknown character name: " <> name)
-  }
-}
-
 fn build_id_registry() -> Dict(CharacterId, Character) {
   dict.new()
   |> dict.insert("benjamin_sisko", benjamin_sisko)
@@ -281,18 +242,5 @@ pub fn from_id(id: CharacterId) -> Result(Character, String) {
   case dict.get(registry, id) {
     Ok(character) -> Ok(character)
     Error(_) -> Error("Unknown character id: " <> id)
-  }
-}
-
-pub fn list_all_characters() -> List(Character) {
-  let registry = build_name_registry()
-  dict.values(registry)
-}
-
-// Character hue calculation based on organization/species
-pub fn character_hue(character: Character) -> Int {
-  case character.organization {
-    organization.Federation(role) -> role.federation_role_to_hue(role)
-    _ -> species.to_hue(character.species)
   }
 }
