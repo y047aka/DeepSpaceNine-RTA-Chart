@@ -11,8 +11,6 @@ import mist
 import pog
 import types/episode.{type Episode}
 import types/histogram
-import types/organization
-import types/route
 import wisp.{type Request, type Response}
 import wisp/wisp_mist
 
@@ -120,32 +118,9 @@ fn histograms_to_json(histograms: List(histogram.Histogram)) -> json.Json {
 
 fn histogram_to_json(h: histogram.Histogram) -> json.Json {
   json.object([
-    #("route", route_to_json(h.route)),
+    #("path", json.array(h.path, json.string)),
     #("data", json.array(h.data, season_importance_to_json)),
   ])
-}
-
-fn route_to_json(r: route.Route) -> json.Json {
-  case r {
-    route.Home -> json.object([#("type", json.string("home"))])
-    route.Character(char) ->
-      json.object([
-        #("type", json.string("character")),
-        #("id", json.string(char.id)),
-        #("name", json.string(char.name)),
-      ])
-    route.Organization(org) ->
-      json.object([
-        #("type", json.string("organization")),
-        #("name", json.string(organization.to_string(org))),
-        #("id", json.string(organization.to_id(org))),
-      ])
-    route.NotFound(uri) ->
-      json.object([
-        #("type", json.string("not_found")),
-        #("uri", json.string(uri.path)),
-      ])
-  }
 }
 
 fn season_importance_to_json(si: histogram.SeasonImportance) -> json.Json {

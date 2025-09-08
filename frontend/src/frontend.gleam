@@ -36,7 +36,7 @@ pub type Model {
 }
 
 pub type Histogram {
-  Histogram(route: Route, data: List(histogram.SeasonImportance))
+  Histogram(path: List(String), data: List(histogram.SeasonImportance))
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
@@ -97,33 +97,17 @@ fn histograms_decoder() -> decode.Decoder(List(Histogram)) {
 }
 
 fn histogram_decoder() -> decode.Decoder(Histogram) {
-  use route <- decode.field("route", route_decoder())
+  use path <- decode.field("path", decode.list(decode.string))
   use data <- decode.field("data", decode.list(season_importance_decoder()))
-  decode.success(Histogram(route: route, data: data))
+  decode.success(Histogram(path: path, data: data))
 }
 
-fn route_decoder() -> decode.Decoder(Route) {
-  use type_str <- decode.field("type", decode.string)
-  case type_str {
-    "home" -> decode.success(route.Home)
-    "character" -> {
-      use char_id <- decode.field("id", decode.string)
-      case character.from_id(char_id) {
-        Ok(char) -> decode.success(route.Character(char))
-        Error(_) -> decode.success(route.Home)
-        // fallback
-      }
-    }
-    "organization" -> {
-      use org_id <- decode.field("id", decode.string)
-      case organization.from_id(org_id) {
-        Ok(org) -> decode.success(route.Organization(org))
-        Error(_) -> decode.success(route.Home)
-        // fallback
-      }
-    }
-    _ -> decode.success(route.Home)
-    // fallback for unknown types
+fn route_to_path(route: Route) -> List(String) {
+  case route {
+    route.Home -> []
+    route.Character(char) -> ["characters", char.id]
+    route.Organization(org) -> ["organizations", organization.to_id(org)]
+    route.NotFound(_) -> []
   }
 }
 
@@ -303,8 +287,9 @@ fn get_histogram_data(
   histograms: List(Histogram),
   target_route: Route,
 ) -> List(histogram.SeasonImportance) {
+  let target_path = route_to_path(target_route)
   histograms
-  |> list.find(fn(h) { h.route == target_route })
+  |> list.find(fn(h) { h.path == target_path })
   |> result.map(fn(h) { h.data })
   |> result.unwrap([])
 }
@@ -333,10 +318,11 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
 
 fn view_main_histogram(model: Model) -> Element(Msg) {
   // Hue depends on the current route, but data is shared.
+  let target_path = route_to_path(model.route)
   case
     model.route,
     model.histograms
-    |> list.find(fn(h) { h.route == model.route })
+    |> list.find(fn(h) { h.path == target_path })
     |> result.map(fn(h) { h.data })
   {
     route.Home, Ok(data) -> histogram.large_view(175, data)

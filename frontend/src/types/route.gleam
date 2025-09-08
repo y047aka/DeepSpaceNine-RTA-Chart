@@ -15,13 +15,13 @@ pub type Route {
 pub fn parse_route(uri: Uri) -> Route {
   case uri.path_segments(uri.path) {
     [] | [""] -> Home
-    ["character", id] -> {
+    ["characters", id] -> {
       case character.from_id(id) {
         Ok(char) -> Character(char)
         Error(_) -> NotFound(uri)
       }
     }
-    ["organization", id] -> {
+    ["organizations", id] -> {
       case organization.from_id(id) {
         Ok(org) -> Organization(org)
         Error(_) -> NotFound(uri)
@@ -41,8 +41,8 @@ pub fn href(route: Route) -> Attribute(msg) {
 pub fn to_string(route: Route) -> String {
   case route {
     Home -> "/"
-    Character(char) -> "/character/" <> char.id
-    Organization(org) -> "/organization/" <> organization.to_id(org)
+    Character(char) -> "/characters/" <> char.id
+    Organization(org) -> "/organizations/" <> organization.to_id(org)
     NotFound(_) -> "/404"
   }
 }

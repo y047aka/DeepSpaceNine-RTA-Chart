@@ -1,8 +1,6 @@
 [
   {
-    "route": {
-      "type": "home"
-    },
+    "path": [],
     "data": [
       {
         "season": 1,
@@ -872,11 +870,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "benjamin_sisko",
-      "name": "Benjamin Sisko"
-    },
+    "path": [
+      "characters",
+      "benjamin_sisko"
+    ],
     "data": [
       {
         "season": 1,
@@ -1746,11 +1743,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "jake_sisko",
-      "name": "Jake Sisko"
-    },
+    "path": [
+      "characters",
+      "jake_sisko"
+    ],
     "data": [
       {
         "season": 1,
@@ -2620,11 +2616,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "dax",
-      "name": "Dax"
-    },
+    "path": [
+      "characters",
+      "dax"
+    ],
     "data": [
       {
         "season": 1,
@@ -3494,11 +3489,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "kira_nerys",
-      "name": "Kira Nerys"
-    },
+    "path": [
+      "characters",
+      "kira_nerys"
+    ],
     "data": [
       {
         "season": 1,
@@ -4368,11 +4362,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "miles_obrien",
-      "name": "Miles O'Brien"
-    },
+    "path": [
+      "characters",
+      "miles_obrien"
+    ],
     "data": [
       {
         "season": 1,
@@ -5242,11 +5235,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "bashir",
-      "name": "Bashir"
-    },
+    "path": [
+      "characters",
+      "bashir"
+    ],
     "data": [
       {
         "season": 1,
@@ -6116,11 +6108,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "odo",
-      "name": "Odo"
-    },
+    "path": [
+      "characters",
+      "odo"
+    ],
     "data": [
       {
         "season": 1,
@@ -6990,11 +6981,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "quark",
-      "name": "Quark"
-    },
+    "path": [
+      "characters",
+      "quark"
+    ],
     "data": [
       {
         "season": 1,
@@ -7864,11 +7854,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "worf",
-      "name": "Worf"
-    },
+    "path": [
+      "characters",
+      "worf"
+    ],
     "data": [
       {
         "season": 1,
@@ -8738,11 +8727,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "rom",
-      "name": "Rom"
-    },
+    "path": [
+      "characters",
+      "rom"
+    ],
     "data": [
       {
         "season": 1,
@@ -9612,11 +9600,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "nog",
-      "name": "Nog"
-    },
+    "path": [
+      "characters",
+      "nog"
+    ],
     "data": [
       {
         "season": 1,
@@ -10486,11 +10473,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "garak",
-      "name": "Garak"
-    },
+    "path": [
+      "characters",
+      "garak"
+    ],
     "data": [
       {
         "season": 1,
@@ -11360,11 +11346,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "dukat",
-      "name": "Dukat"
-    },
+    "path": [
+      "characters",
+      "dukat"
+    ],
     "data": [
       {
         "season": 1,
@@ -12234,11 +12219,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "keiko_obrien",
-      "name": "Keiko O'Brien"
-    },
+    "path": [
+      "characters",
+      "keiko_obrien"
+    ],
     "data": [
       {
         "season": 1,
@@ -13108,11 +13092,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "winn",
-      "name": "Winn"
-    },
+    "path": [
+      "characters",
+      "winn"
+    ],
     "data": [
       {
         "season": 1,
@@ -13982,11 +13965,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "bareil",
-      "name": "Bareil"
-    },
+    "path": [
+      "characters",
+      "bareil"
+    ],
     "data": [
       {
         "season": 1,
@@ -14856,11 +14838,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "michael_eddington",
-      "name": "Michael Eddington"
-    },
+    "path": [
+      "characters",
+      "michael_eddington"
+    ],
     "data": [
       {
         "season": 1,
@@ -15730,11 +15711,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "kasidy_yates",
-      "name": "Kasidy Yates"
-    },
+    "path": [
+      "characters",
+      "kasidy_yates"
+    ],
     "data": [
       {
         "season": 1,
@@ -16604,11 +16584,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "leeta",
-      "name": "Leeta"
-    },
+    "path": [
+      "characters",
+      "leeta"
+    ],
     "data": [
       {
         "season": 1,
@@ -17478,11 +17457,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "gowron",
-      "name": "Gowron"
-    },
+    "path": [
+      "characters",
+      "gowron"
+    ],
     "data": [
       {
         "season": 1,
@@ -18352,11 +18330,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "martok",
-      "name": "Martok"
-    },
+    "path": [
+      "characters",
+      "martok"
+    ],
     "data": [
       {
         "season": 1,
@@ -19226,11 +19203,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "shakaar",
-      "name": "Shakaar"
-    },
+    "path": [
+      "characters",
+      "shakaar"
+    ],
     "data": [
       {
         "season": 1,
@@ -20100,11 +20076,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "ziyal",
-      "name": "Ziyal"
-    },
+    "path": [
+      "characters",
+      "ziyal"
+    ],
     "data": [
       {
         "season": 1,
@@ -20974,11 +20949,10 @@
     ]
   },
   {
-    "route": {
-      "type": "character",
-      "id": "damar",
-      "name": "Damar"
-    },
+    "path": [
+      "characters",
+      "damar"
+    ],
     "data": [
       {
         "season": 1,
@@ -21848,11 +21822,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Federation",
-      "id": "federation"
-    },
+    "path": [
+      "organizations",
+      "federation"
+    ],
     "data": [
       {
         "season": 1,
@@ -22722,11 +22695,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Trill Symbiosis Commission",
-      "id": "trill_symbiosis_commission"
-    },
+    "path": [
+      "organizations",
+      "trill_symbiosis_commission"
+    ],
     "data": [
       {
         "season": 1,
@@ -23596,11 +23568,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Bajor",
-      "id": "bajor"
-    },
+    "path": [
+      "organizations",
+      "bajor"
+    ],
     "data": [
       {
         "season": 1,
@@ -24470,11 +24441,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Prophets",
-      "id": "prophets"
-    },
+    "path": [
+      "organizations",
+      "prophets"
+    ],
     "data": [
       {
         "season": 1,
@@ -25344,11 +25314,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Cardassian Union",
-      "id": "cardassian_union"
-    },
+    "path": [
+      "organizations",
+      "cardassian_union"
+    ],
     "data": [
       {
         "season": 1,
@@ -26218,11 +26187,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Ferengi Alliance",
-      "id": "ferengi_alliance"
-    },
+    "path": [
+      "organizations",
+      "ferengi_alliance"
+    ],
     "data": [
       {
         "season": 1,
@@ -27092,11 +27060,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Klingon Empire",
-      "id": "klingon_empire"
-    },
+    "path": [
+      "organizations",
+      "klingon_empire"
+    ],
     "data": [
       {
         "season": 1,
@@ -27966,11 +27933,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Maquis",
-      "id": "maquis"
-    },
+    "path": [
+      "organizations",
+      "maquis"
+    ],
     "data": [
       {
         "season": 1,
@@ -28840,11 +28806,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Dominion",
-      "id": "dominion"
-    },
+    "path": [
+      "organizations",
+      "dominion"
+    ],
     "data": [
       {
         "season": 1,
@@ -29714,11 +29679,10 @@
     ]
   },
   {
-    "route": {
-      "type": "organization",
-      "name": "Mirror Universe",
-      "id": "mirror_universe"
-    },
+    "path": [
+      "organizations",
+      "mirror_universe"
+    ],
     "data": [
       {
         "season": 1,
