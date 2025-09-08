@@ -207,13 +207,13 @@ pub fn view(model: Model) -> Element(Msg) {
           ],
           [],
         ),
-        view_sidebar(model.episodes),
+        view_sidebar(model.histograms),
       ]),
     ]),
   ])
 }
 
-fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
+fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
   let characters =
     [
       character.benjamin_sisko,
@@ -230,7 +230,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       character.garak,
       character.dukat,
     ]
-    |> get_character_menu_items(episodes)
+    |> get_character_menu_items(histograms)
 
   let more_characters =
     [
@@ -246,7 +246,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       character.ziyal,
       character.damar,
     ]
-    |> get_character_menu_items(episodes)
+    |> get_character_menu_items(histograms)
 
   let organizations =
     [
@@ -261,7 +261,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       organization.DominionForces,
       organization.MirrorUniverse,
     ]
-    |> get_organization_menu_items(episodes)
+    |> get_organization_menu_items(histograms)
 
   menu.view([
     menu.menu_section("Characters", characters),
@@ -272,34 +272,47 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
 
 fn get_character_menu_items(
   characters: List(Character),
-  episodes: List(Episode),
+  histograms: List(Histogram),
 ) -> List(menu.MenuItem) {
   characters
   |> list.map(fn(character) {
-    let char_episodes = episode.get_character_episodes(character, episodes)
+    let char_route = route.Character(character)
+    let char_data = get_histogram_data(histograms, char_route)
     menu.menu_item(
       character.name,
       character.character_hue(character),
-      char_episodes,
-      route.to_string(route.Character(character)),
+      char_data,
+      route.to_string(char_route),
     )
   })
 }
 
 fn get_organization_menu_items(
   organizations: List(Organization),
-  episodes: List(Episode),
+  histograms: List(Histogram),
 ) -> List(menu.MenuItem) {
   organizations
   |> list.map(fn(org) {
-    let org_episodes = episode.get_organization_episodes(org, episodes)
+    let org_route = route.Organization(org)
+    let org_data = get_histogram_data(histograms, org_route)
     menu.menu_item(
       organization.to_string(org),
       organization.to_hue(org),
-      org_episodes,
-      route.to_string(route.Organization(org)),
+      org_data,
+      route.to_string(org_route),
     )
   })
+}
+
+// Helper function to get histogram data for a specific route
+fn get_histogram_data(
+  histograms: List(Histogram),
+  target_route: Route,
+) -> List(histogram.SeasonImportance) {
+  histograms
+  |> list.find(fn(h) { h.route == target_route })
+  |> result.map(fn(h) { h.data })
+  |> result.unwrap([])
 }
 
 fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
