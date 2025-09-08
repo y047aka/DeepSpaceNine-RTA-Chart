@@ -3,13 +3,12 @@ import gleam/dynamic/decode
 import gleam/erlang/process
 import gleam/int
 import gleam/io
-import gleam/json
 import gleam/list
 import gleam/option.{Some}
 import gleam/otp/actor
 import gleam/string
 import pog
-import types/episode.{type Character, type Episode, type Organization}
+import types/episode.{type Episode}
 
 pub fn main() {
   io.println("🚀 Starting episode migration with fixture priority...")
@@ -96,10 +95,9 @@ fn insert_episodes(
     "
     INSERT INTO episodes (
       season, episode, title, title_ja, importance,
-      netflix_id, netflix_synopsis, url_imdb,
-      characters, organizations
+      netflix_id, netflix_synopsis, url_imdb
     ) VALUES (
-      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10
+      $1, $2, $3, $4, $5, $6, $7, $8
     )
     ON CONFLICT (season, episode) DO NOTHING
   "
@@ -139,24 +137,6 @@ fn insert_episode(
   sql: String,
   episode: Episode,
 ) -> Result(pog.Returned(Nil), pog.QueryError) {
-  // Convert characters and organizations to JSON strings for JSONB storage
-  let characters_json =
-    json.to_string(
-      json.object([
-        #("characters", json.array(episode.characters, character_to_json)),
-      ]),
-    )
-
-  let organizations_json =
-    json.to_string(
-      json.object([
-        #(
-          "organizations",
-          json.array(episode.organizations, organization_to_json),
-        ),
-      ]),
-    )
-
   let query =
     pog.query(sql)
     |> pog.parameter(pog.int(episode.season))
@@ -167,23 +147,7 @@ fn insert_episode(
     |> pog.parameter(pog.int(episode.netflix_id))
     |> pog.parameter(pog.text(episode.netflix_synopsis))
     |> pog.parameter(pog.text(episode.url_imdb))
-    |> pog.parameter(pog.text(characters_json))
-    |> pog.parameter(pog.text(organizations_json))
     |> pog.returning(decode.success(Nil))
 
   pog.execute(query, connection)
-}
-
-fn character_to_json(character: Character) -> json.Json {
-  json.object([
-    #("name", json.string(character.name)),
-    #("contrast", json.int(character.contrast)),
-  ])
-}
-
-fn organization_to_json(organization: Organization) -> json.Json {
-  json.object([
-    #("name", json.string(organization.name)),
-    #("contrast", json.int(organization.contrast)),
-  ])
 }

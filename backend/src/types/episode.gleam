@@ -21,8 +21,6 @@ pub type Episode {
     netflix_id: Int,
     netflix_synopsis: String,
     url_imdb: String,
-    characters: List(Character),
-    organizations: List(Organization),
   )
 }
 
@@ -34,7 +32,7 @@ pub fn episodes_to_json(episodes: List(Episode)) -> String {
   )
 }
 
-pub fn episode_to_json(episode: Episode) -> json.Json {
+fn episode_to_json(episode: Episode) -> json.Json {
   json.object([
     #("season", json.int(episode.season)),
     #("episode", json.int(episode.episode)),
@@ -44,22 +42,6 @@ pub fn episode_to_json(episode: Episode) -> json.Json {
     #("netflix_id", json.int(episode.netflix_id)),
     #("netflix_synopsis", json.string(episode.netflix_synopsis)),
     #("url_imdb", json.string(episode.url_imdb)),
-    #("characters", json.array(episode.characters, character_to_json)),
-    #("organizations", json.array(episode.organizations, organization_to_json)),
-  ])
-}
-
-fn character_to_json(character: Character) -> json.Json {
-  json.object([
-    #("name", json.string(character.name)),
-    #("contrast", json.int(character.contrast)),
-  ])
-}
-
-fn organization_to_json(organization: Organization) -> json.Json {
-  json.object([
-    #("name", json.string(organization.name)),
-    #("contrast", json.int(organization.contrast)),
   ])
 }
 
@@ -74,13 +56,6 @@ pub fn test_episodes() -> List(Episode) {
       netflix_id: 123_456_789,
       netflix_synopsis: "テスト用のエピソード概要です。",
       url_imdb: "https://www.imdb.com/title/tt1234567/",
-      characters: [
-        Character("Test Character 1", 4),
-        Character("Test Character 2", 3),
-      ],
-      organizations: [
-        Organization("Test Organization", 3),
-      ],
     ),
     Episode(
       season: 1,
@@ -91,12 +66,6 @@ pub fn test_episodes() -> List(Episode) {
       netflix_id: 987_654_321,
       netflix_synopsis: "2番目のテストエピソードです。",
       url_imdb: "https://www.imdb.com/title/tt7654321/",
-      characters: [
-        Character("Test Character 3", 2),
-      ],
-      organizations: [
-        Organization("Another Test Org", 2),
-      ],
     ),
   ]
 }

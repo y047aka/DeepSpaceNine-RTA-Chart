@@ -53,16 +53,6 @@ pub fn episode_importance_test() {
   })
 }
 
-pub fn episode_characters_test() {
-  let episodes = episodes.development_episodes()
-
-  // Most episodes should have characters
-  let episodes_with_characters =
-    list.filter(episodes, fn(ep: Episode) { list.length(ep.characters) > 0 })
-
-  list.length(episodes_with_characters) |> should.equal(list.length(episodes))
-}
-
 pub fn json_export_test() {
   let test_episodes = episode.test_episodes()
   let json_string = episode.episodes_to_json(test_episodes)

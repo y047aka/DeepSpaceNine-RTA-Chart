@@ -11,8 +11,6 @@ CREATE TABLE episodes (
     netflix_id BIGINT,
     netflix_synopsis TEXT,
     url_imdb TEXT,
-    characters JSONB NOT NULL DEFAULT '[]',
-    organizations JSONB NOT NULL DEFAULT '[]',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
 
     UNIQUE(season, episode)
@@ -20,4 +18,3 @@ CREATE TABLE episodes (
 
 CREATE INDEX idx_episodes_season_episode ON episodes (season, episode);
 CREATE INDEX idx_episodes_importance ON episodes (importance);
-CREATE INDEX idx_episodes_characters_gin ON episodes USING GIN (characters);

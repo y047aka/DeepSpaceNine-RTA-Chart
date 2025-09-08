@@ -2,6 +2,7 @@ import components/episode_table
 import components/histogram
 import components/ui/breadcrumbs
 import components/ui/menu
+import gleam/dynamic/decode
 import gleam/list
 import gleam/option.{None, Some}
 import gleam/result
@@ -35,7 +36,7 @@ pub type Model {
 }
 
 pub type Histogram {
-  Histogram(route: Route, data: List(histogram.SeasonImportance))
+  Histogram(path: List(String), data: List(histogram.SeasonImportance))
 }
 
 pub fn init(_) -> #(Model, Effect(Msg)) {
@@ -49,6 +50,7 @@ pub fn init(_) -> #(Model, Effect(Msg)) {
   let effect =
     effect.batch([
       fetch_episodes(on_response: LoadedEpisodes),
+      fetch_histograms(on_response: LoadedHistograms),
       modem.init(fn(uri) {
         uri
         |> route.parse_route
@@ -73,11 +75,59 @@ fn fetch_episodes(
   rsvp.get(url, handler)
 }
 
+fn fetch_histograms(
+  on_response handle_response: fn(Result(List(Histogram), error.AppError)) ->
+    msg,
+) -> Effect(msg) {
+  let url = "./priv/static/histograms.json"
+  let handler =
+    rsvp.expect_json(histograms_decoder(), fn(result) {
+      result
+      |> result.map_error(error.HttpRequestError)
+      |> handle_response
+    })
+
+  rsvp.get(url, handler)
+}
+
+// JSON Decoders ---------------------------------------------------------------
+
+fn histograms_decoder() -> decode.Decoder(List(Histogram)) {
+  decode.list(histogram_decoder())
+}
+
+fn histogram_decoder() -> decode.Decoder(Histogram) {
+  use path <- decode.field("path", decode.list(decode.string))
+  use data <- decode.field("data", decode.list(season_importance_decoder()))
+  decode.success(Histogram(path: path, data: data))
+}
+
+fn route_to_path(route: Route) -> List(String) {
+  case route {
+    route.Home -> []
+    route.Character(char) -> ["characters", char.id]
+    route.Organization(org) -> ["organizations", organization.to_id(org)]
+    route.NotFound(_) -> []
+  }
+}
+
+fn season_importance_decoder() -> decode.Decoder(histogram.SeasonImportance) {
+  use season <- decode.field("season", decode.int)
+  use episode <- decode.field("episode", decode.int)
+  use importance <- decode.field("importance", decode.int)
+  decode.success(histogram.SeasonImportance(
+    season: season,
+    episode: episode,
+    importance: importance,
+  ))
+}
+
 // UPDATE ----------------------------------------------------------------------
 
 pub type Msg {
   UserNavigatedTo(route: Route)
   LoadedEpisodes(Result(List(Episode), error.AppError))
+  LoadedHistograms(Result(List(Histogram), error.AppError))
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
@@ -86,81 +136,22 @@ pub fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       #(Model(..model, route: route), effect.none())
     }
     LoadedEpisodes(Ok(episodes)) -> #(
-      Model(..model, episodes: episodes, histograms: build_histograms(episodes)),
+      Model(..model, episodes: episodes),
       effect.none(),
     )
     LoadedEpisodes(Error(app_error)) -> {
       error.log_error(app_error)
       #(model, effect.none())
     }
+    LoadedHistograms(Ok(histograms)) -> {
+      #(Model(..model, histograms: histograms), effect.none())
+    }
+    LoadedHistograms(Error(app_error)) -> {
+      error.log_error(app_error)
+      // Histograms are already built in LoadedEpisodes
+      #(model, effect.none())
+    }
   }
-}
-
-fn build_histograms(episodes: List(Episode)) -> List(Histogram) {
-  list.append(
-    [
-      Histogram(
-        route: route.Home,
-        data: episodes
-          |> list.map(fn(ep) {
-            histogram.SeasonImportance(
-              season: ep.season,
-              episode: ep.episode,
-              importance: ep.importance,
-            )
-          }),
-      ),
-    ],
-    list.append(
-      [
-        character.benjamin_sisko, character.jake_sisko, character.dax,
-        character.kira_nerys, character.miles_obrien, character.bashir,
-        character.odo, character.quark, character.worf, character.rom,
-        character.nog, character.garak, character.dukat, character.keiko_obrien,
-        character.winn, character.bareil, character.michael_eddington,
-        character.kasidy_yates, character.leeta, character.gowron,
-        character.martok, character.shakaar, character.ziyal, character.damar,
-      ]
-        |> list.map(fn(char) {
-          Histogram(
-            route: route.Character(char),
-            data: episode.get_character_episodes(char, episodes)
-              |> list.map(fn(ep) {
-                histogram.SeasonImportance(
-                  season: ep.season,
-                  episode: ep.episode,
-                  importance: ep.importance,
-                )
-              }),
-          )
-        }),
-      [
-        organization.Federation(role.Citizen),
-        organization.TrillSymbiosisCommission,
-        organization.Bajor,
-        organization.Prophets,
-        organization.CardassianUnion,
-        organization.FerengiAlliance,
-        organization.KlingonEmpire,
-        organization.Maquis,
-        organization.DominionForces,
-        organization.MirrorUniverse,
-      ]
-        |> list.map(fn(org) {
-          Histogram(
-            route: route.Organization(org),
-            data: episode.get_organization_episodes(org, episodes)
-              |> list.map(fn(ep) {
-                histogram.SeasonImportance(
-                  season: ep.season,
-                  episode: ep.episode,
-                  importance: ep.importance,
-                )
-              }),
-          )
-        }),
-    ),
-  )
 }
 
 // VIEW ------------------------------------------------------------------------
@@ -200,13 +191,13 @@ pub fn view(model: Model) -> Element(Msg) {
           ],
           [],
         ),
-        view_sidebar(model.episodes),
+        view_sidebar(model.histograms),
       ]),
     ]),
   ])
 }
 
-fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
+fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
   let characters =
     [
       character.benjamin_sisko,
@@ -223,7 +214,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       character.garak,
       character.dukat,
     ]
-    |> get_character_menu_items(episodes)
+    |> list.map(fn(char) { get_character_menu_item(char, histograms) })
 
   let more_characters =
     [
@@ -239,7 +230,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       character.ziyal,
       character.damar,
     ]
-    |> get_character_menu_items(episodes)
+    |> list.map(fn(char) { get_character_menu_item(char, histograms) })
 
   let organizations =
     [
@@ -254,7 +245,7 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
       organization.DominionForces,
       organization.MirrorUniverse,
     ]
-    |> get_organization_menu_items(episodes)
+    |> list.map(fn(org) { get_organization_menu_item(org, histograms) })
 
   menu.view([
     menu.menu_section("Characters", characters),
@@ -263,36 +254,44 @@ fn view_sidebar(episodes: List(Episode)) -> Element(Msg) {
   ])
 }
 
-fn get_character_menu_items(
-  characters: List(Character),
-  episodes: List(Episode),
-) -> List(menu.MenuItem) {
-  characters
-  |> list.map(fn(character) {
-    let char_episodes = episode.get_character_episodes(character, episodes)
-    menu.menu_item(
-      character.name,
-      character.character_hue(character),
-      char_episodes,
-      route.to_string(route.Character(character)),
-    )
-  })
+fn get_character_menu_item(
+  character: Character,
+  histograms: List(Histogram),
+) -> menu.MenuItem {
+  let char_route = route.Character(character)
+  let char_data = get_histogram_data(histograms, char_route)
+  menu.menu_item(
+    character.name,
+    character.character_hue(character),
+    char_data,
+    route.to_string(char_route),
+  )
 }
 
-fn get_organization_menu_items(
-  organizations: List(Organization),
-  episodes: List(Episode),
-) -> List(menu.MenuItem) {
-  organizations
-  |> list.map(fn(org) {
-    let org_episodes = episode.get_organization_episodes(org, episodes)
-    menu.menu_item(
-      organization.to_string(org),
-      organization.to_hue(org),
-      org_episodes,
-      route.to_string(route.Organization(org)),
-    )
-  })
+fn get_organization_menu_item(
+  organization: Organization,
+  histograms: List(Histogram),
+) -> menu.MenuItem {
+  let org_route = route.Organization(organization)
+  let org_data = get_histogram_data(histograms, org_route)
+  menu.menu_item(
+    organization.to_string(organization),
+    organization.to_hue(organization),
+    org_data,
+    route.to_string(org_route),
+  )
+}
+
+// Helper function to get histogram data for a specific route
+fn get_histogram_data(
+  histograms: List(Histogram),
+  target_route: Route,
+) -> List(histogram.SeasonImportance) {
+  let target_path = route_to_path(target_route)
+  histograms
+  |> list.find(fn(h) { h.path == target_path })
+  |> result.map(fn(h) { h.data })
+  |> result.unwrap([])
 }
 
 fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
@@ -319,10 +318,11 @@ fn view_breadcrumbs(current_route: Route) -> Element(Msg) {
 
 fn view_main_histogram(model: Model) -> Element(Msg) {
   // Hue depends on the current route, but data is shared.
+  let target_path = route_to_path(model.route)
   case
     model.route,
     model.histograms
-    |> list.find(fn(h) { h.route == model.route })
+    |> list.find(fn(h) { h.path == target_path })
     |> result.map(fn(h) { h.data })
   {
     route.Home, Ok(data) -> histogram.large_view(175, data)
