@@ -48,7 +48,7 @@ fn get_episodes_from_db() -> Result(List(Episode), String) {
 
       let query =
         pog.query(
-          "SELECT season, episode, title, title_ja, importance, netflix_id, netflix_synopsis, url_imdb, characters::text, organizations::text FROM episodes ORDER BY season, episode",
+          "SELECT season, episode, title, title_ja, importance, netflix_id, netflix_synopsis, url_imdb FROM episodes ORDER BY season, episode",
         )
         |> pog.returning(episode_decoder())
 

@@ -95,10 +95,9 @@ fn insert_episodes(
     "
     INSERT INTO episodes (
       season, episode, title, title_ja, importance,
-      netflix_id, netflix_synopsis, url_imdb,
-      characters, organizations
+      netflix_id, netflix_synopsis, url_imdb
     ) VALUES (
-      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10
+      $1, $2, $3, $4, $5, $6, $7, $8
     )
     ON CONFLICT (season, episode) DO NOTHING
   "
