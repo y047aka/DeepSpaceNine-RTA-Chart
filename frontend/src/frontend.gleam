@@ -230,7 +230,7 @@ fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
       character.garak,
       character.dukat,
     ]
-    |> get_character_menu_items(histograms)
+    |> list.map(fn(char) { get_character_menu_item(char, histograms) })
 
   let more_characters =
     [
@@ -246,7 +246,7 @@ fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
       character.ziyal,
       character.damar,
     ]
-    |> get_character_menu_items(histograms)
+    |> list.map(fn(char) { get_character_menu_item(char, histograms) })
 
   let organizations =
     [
@@ -261,7 +261,7 @@ fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
       organization.DominionForces,
       organization.MirrorUniverse,
     ]
-    |> get_organization_menu_items(histograms)
+    |> list.map(fn(org) { get_organization_menu_item(org, histograms) })
 
   menu.view([
     menu.menu_section("Characters", characters),
@@ -270,38 +270,32 @@ fn view_sidebar(histograms: List(Histogram)) -> Element(Msg) {
   ])
 }
 
-fn get_character_menu_items(
-  characters: List(Character),
+fn get_character_menu_item(
+  character: Character,
   histograms: List(Histogram),
-) -> List(menu.MenuItem) {
-  characters
-  |> list.map(fn(character) {
-    let char_route = route.Character(character)
-    let char_data = get_histogram_data(histograms, char_route)
-    menu.menu_item(
-      character.name,
-      character.character_hue(character),
-      char_data,
-      route.to_string(char_route),
-    )
-  })
+) -> menu.MenuItem {
+  let char_route = route.Character(character)
+  let char_data = get_histogram_data(histograms, char_route)
+  menu.menu_item(
+    character.name,
+    character.character_hue(character),
+    char_data,
+    route.to_string(char_route),
+  )
 }
 
-fn get_organization_menu_items(
-  organizations: List(Organization),
+fn get_organization_menu_item(
+  organization: Organization,
   histograms: List(Histogram),
-) -> List(menu.MenuItem) {
-  organizations
-  |> list.map(fn(org) {
-    let org_route = route.Organization(org)
-    let org_data = get_histogram_data(histograms, org_route)
-    menu.menu_item(
-      organization.to_string(org),
-      organization.to_hue(org),
-      org_data,
-      route.to_string(org_route),
-    )
-  })
+) -> menu.MenuItem {
+  let org_route = route.Organization(organization)
+  let org_data = get_histogram_data(histograms, org_route)
+  menu.menu_item(
+    organization.to_string(organization),
+    organization.to_hue(organization),
+    org_data,
+    route.to_string(org_route),
+  )
 }
 
 // Helper function to get histogram data for a specific route
