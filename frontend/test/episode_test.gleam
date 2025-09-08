@@ -1,4 +1,3 @@
-import components/histogram
 import gleam/json
 import gleam/list
 import gleeunit
@@ -15,17 +14,6 @@ pub fn main() {
 // JSON Decoding Tests ------------------------------------------------------------------------
 
 // Test gleam/dynamic/decode based JSON decoder
-pub fn decode_name_and_contrast_test() {
-  let json_string = "{\"name\": \"Benjamin Sisko\", \"contrast\": 85}"
-
-  let result = episode.decode_name_and_contrast(json_string)
-
-  result
-  |> should.be_ok()
-  |> should.equal(episode.NameAndContrast("Benjamin Sisko", 85))
-}
-
-// Test gleam/dynamic/decode based JSON decoder
 pub fn decode_episode_test() {
   let json_string =
     "{
@@ -34,15 +22,7 @@ pub fn decode_episode_test() {
     \"title\": \"Emissary\",
     \"title_ja\": \"聖なる神殿の謎\",
     \"importance\": 4,
-    \"netflix_id\": 70205806,
-    \"characters\": [
-      {\"name\": \"Benjamin Sisko\", \"contrast\": 4},
-      {\"name\": \"Dax\", \"contrast\": 4}
-    ],
-    \"organizations\": [
-      {\"name\": \"Federation\", \"contrast\": 5},
-      {\"name\": \"Bajor\", \"contrast\": 5}
-    ]
+    \"netflix_id\": 70205806
   }"
 
   let result = episode.decode_episode(json_string)
@@ -55,9 +35,6 @@ pub fn decode_episode_test() {
       ep.title_ja |> should.equal("聖なる神殿の謎")
       ep.importance |> should.equal(4)
       ep.netflix_id |> should.equal(70_205_806)
-      // Check lists have correct length
-      ep.characters |> list.length() |> should.equal(2)
-      ep.organizations |> list.length() |> should.equal(2)
     }
     Error(_) -> should.fail()
   }
@@ -66,7 +43,14 @@ pub fn decode_episode_test() {
 // Test gleam/dynamic/decode based JSON decoder
 pub fn decode_episodes_from_json_test() {
   let sample_json =
-    "[{\"season\":1,\"episode\":1,\"title\":\"Emissary\",\"title_ja\":\"聖なる神殿の謎\",\"importance\":4,\"netflix_id\":70205806,\"characters\":[{\"name\":\"Benjamin Sisko\",\"contrast\":4},{\"name\":\"Dax\",\"contrast\":4}],\"organizations\":[{\"name\":\"Federation\",\"contrast\":5},{\"name\":\"Bajor\",\"contrast\":5}]}]"
+    "[{
+    \"season\":1,
+    \"episode\":1,
+    \"title\":\"Emissary\",
+    \"title_ja\":\"聖なる神殿の謎\",
+    \"importance\":4,
+    \"netflix_id\":70205806
+    }]"
 
   let result = json.parse(sample_json, episode.episodes_decoder())
 
@@ -139,69 +123,4 @@ pub fn organization_default_roles_test() {
       }
     Error(_) -> should.fail()
   }
-}
-
-// Episode Integration Tests ------------------------------------------------------------------------
-
-fn create_test_episodes() {
-  [
-    episode.Episode(
-      season: 1,
-      episode: 1,
-      title: "Emissary",
-      title_ja: "エミサリー",
-      importance: 4,
-      netflix_id: 1,
-      characters: [
-        episode.CharacterAndContrast(character.benjamin_sisko, 4),
-        episode.CharacterAndContrast(character.kira_nerys, 3),
-      ],
-      organizations: [
-        episode.OrganizationAndContrast(
-          organization.Federation(role.Starfleet(role.Operations)),
-          4,
-        ),
-        episode.OrganizationAndContrast(organization.Bajor, 3),
-      ],
-    ),
-    episode.Episode(
-      season: 1,
-      episode: 2,
-      title: "Test Episode",
-      title_ja: "テストエピソード",
-      importance: 2,
-      netflix_id: 2,
-      characters: [
-        episode.CharacterAndContrast(character.dax, 2),
-      ],
-      organizations: [
-        episode.OrganizationAndContrast(organization.DominionForces, 2),
-      ],
-    ),
-  ]
-}
-
-pub fn get_character_episodes_test() {
-  let test_episodes = create_test_episodes()
-  let sisko_episodes =
-    episode.get_character_episodes(character.benjamin_sisko, test_episodes)
-  sisko_episodes
-  |> should.equal([
-    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
-    histogram.SeasonImportance(season: 1, episode: 2, importance: 0),
-  ])
-}
-
-pub fn get_organization_episodes_test() {
-  let test_episodes = create_test_episodes()
-  let federation_episodes =
-    episode.get_organization_episodes(
-      organization.Federation(role.Starfleet(role.Operations)),
-      test_episodes,
-    )
-  federation_episodes
-  |> should.equal([
-    histogram.SeasonImportance(season: 1, episode: 1, importance: 4),
-    histogram.SeasonImportance(season: 1, episode: 2, importance: 0),
-  ])
 }
