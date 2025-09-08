@@ -1,9 +1,4 @@
 import gleam/json
-import gleam/list
-import gleam/result
-import types/character
-import types/histogram
-import types/organization
 
 /// Character appearing in an episode
 pub type Character {
@@ -26,8 +21,6 @@ pub type Episode {
     netflix_id: Int,
     netflix_synopsis: String,
     url_imdb: String,
-    characters: List(Character),
-    organizations: List(Organization),
   )
 }
 
@@ -63,13 +56,6 @@ pub fn test_episodes() -> List(Episode) {
       netflix_id: 123_456_789,
       netflix_synopsis: "テスト用のエピソード概要です。",
       url_imdb: "https://www.imdb.com/title/tt1234567/",
-      characters: [
-        Character("Test Character 1", 4),
-        Character("Test Character 2", 3),
-      ],
-      organizations: [
-        Organization("Test Organization", 3),
-      ],
     ),
     Episode(
       season: 1,
@@ -80,57 +66,6 @@ pub fn test_episodes() -> List(Episode) {
       netflix_id: 987_654_321,
       netflix_synopsis: "2番目のテストエピソードです。",
       url_imdb: "https://www.imdb.com/title/tt7654321/",
-      characters: [
-        Character("Test Character 3", 2),
-      ],
-      organizations: [
-        Organization("Another Test Org", 2),
-      ],
     ),
   ]
-}
-
-// Episode filtering functions
-pub fn get_character_episodes(
-  character_data: character.Character,
-  episodes: List(Episode),
-) -> List(histogram.SeasonImportance) {
-  episodes
-  |> list.map(fn(episode) {
-    let contrast =
-      episode.characters
-      |> list.find(fn(char_contrast) {
-        char_contrast.name == character_data.name
-      })
-      |> result.map(fn(char_contrast) { char_contrast.contrast })
-      |> result.unwrap(0)
-
-    histogram.SeasonImportance(
-      season: episode.season,
-      episode: episode.episode,
-      importance: contrast,
-    )
-  })
-}
-
-pub fn get_organization_episodes(
-  organization: organization.Organization,
-  episodes: List(Episode),
-) -> List(histogram.SeasonImportance) {
-  episodes
-  |> list.map(fn(episode) {
-    let contrast =
-      episode.organizations
-      |> list.find(fn(org_contrast) {
-        org_contrast.name == organization.to_string(organization)
-      })
-      |> result.map(fn(org_contrast) { org_contrast.contrast })
-      |> result.unwrap(0)
-
-    histogram.SeasonImportance(
-      season: episode.season,
-      episode: episode.episode,
-      importance: contrast,
-    )
-  })
 }

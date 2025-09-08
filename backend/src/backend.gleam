@@ -1,3 +1,4 @@
+import fixtures/histograms
 import gleam/dynamic/decode
 import gleam/erlang/process
 import gleam/io
@@ -8,9 +9,8 @@ import gleam/otp/actor
 import gleam/string
 import mist
 import pog
-import types/episode.{type Character, type Episode, type Organization}
+import types/episode.{type Episode}
 import types/histogram
-import types/histograms
 import types/organization
 import types/route
 import wisp.{type Request, type Response}
@@ -86,39 +86,6 @@ fn episode_decoder() -> decode.Decoder(Episode) {
   use netflix_id <- decode.field("netflix_id", decode.int)
   use netflix_synopsis <- decode.field("netflix_synopsis", decode.string)
   use url_imdb <- decode.field("url_imdb", decode.string)
-  use characters_json <- decode.field("characters", decode.string)
-  use organizations_json <- decode.field("organizations", decode.string)
-
-  // JSON文字列からcharactersとorganizationsをパース
-  let characters = case json.parse(characters_json, characters_decoder()) {
-    Ok(chars) -> {
-      io.println(
-        "✅ Successfully parsed characters: "
-        <> string.inspect(list.length(chars)),
-      )
-      chars
-    }
-    Error(err) -> {
-      io.println("❌ Failed to parse characters: " <> string.inspect(err))
-      []
-    }
-  }
-
-  let organizations = case
-    json.parse(organizations_json, organizations_decoder())
-  {
-    Ok(orgs) -> {
-      io.println(
-        "✅ Successfully parsed organizations: "
-        <> string.inspect(list.length(orgs)),
-      )
-      orgs
-    }
-    Error(err) -> {
-      io.println("❌ Failed to parse organizations: " <> string.inspect(err))
-      []
-    }
-  }
 
   decode.success(episode.Episode(
     season: season,
@@ -129,33 +96,7 @@ fn episode_decoder() -> decode.Decoder(Episode) {
     netflix_id: netflix_id,
     netflix_synopsis: netflix_synopsis,
     url_imdb: url_imdb,
-    characters: characters,
-    organizations: organizations,
   ))
-}
-
-// Charactersデコーダー
-fn characters_decoder() -> decode.Decoder(List(Character)) {
-  use chars <- decode.field("characters", decode.list(character_decoder()))
-  decode.success(chars)
-}
-
-// Organizationsデコーダー
-fn organizations_decoder() -> decode.Decoder(List(Organization)) {
-  use orgs <- decode.field("organizations", decode.list(organization_decoder()))
-  decode.success(orgs)
-}
-
-fn character_decoder() -> decode.Decoder(Character) {
-  use name <- decode.field("name", decode.string)
-  use contrast <- decode.field("contrast", decode.int)
-  decode.success(episode.Character(name: name, contrast: contrast))
-}
-
-fn organization_decoder() -> decode.Decoder(Organization) {
-  use name <- decode.field("name", decode.string)
-  use contrast <- decode.field("contrast", decode.int)
-  decode.success(episode.Organization(name: name, contrast: contrast))
 }
 
 // EpisodeをJSONに変換
@@ -280,30 +221,11 @@ fn handle_episodes(_req: Request) -> Response {
 fn handle_histograms(_req: Request) -> Response {
   io.println("📥 Received request for histograms")
 
-  // データベースからepisodesを取得し、histogramsを構築
-  case get_episodes_from_db() {
-    Ok(episodes) -> {
-      io.println(
-        "✅ Successfully retrieved episodes from database for histograms",
-      )
-      let histograms_data = histograms.build_histograms(episodes)
-      let histograms_json = histograms_to_json(histograms_data)
-      wisp.ok()
-      |> wisp.set_header("content-type", "application/json")
-      |> wisp.string_body(json.to_string(histograms_json))
-    }
-    Error(err) -> {
-      io.println_error(
-        "❌ Failed to retrieve episodes from database for histograms: " <> err,
-      )
-      let error_data =
-        json.object([
-          #("error", json.string("Database query failed")),
-          #("message", json.string(err)),
-        ])
-      wisp.internal_server_error()
-      |> wisp.set_header("content-type", "application/json")
-      |> wisp.string_body(json.to_string(error_data))
-    }
-  }
+  // fixtures/histogramsから直接histogramsデータを取得
+  io.println("✅ Using histograms data from fixtures/histograms.gleam")
+  let histograms_data = histograms.histograms()
+  let histograms_json = histograms_to_json(histograms_data)
+  wisp.ok()
+  |> wisp.set_header("content-type", "application/json")
+  |> wisp.string_body(json.to_string(histograms_json))
 }
