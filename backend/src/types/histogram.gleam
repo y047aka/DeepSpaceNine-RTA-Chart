@@ -3,5 +3,5 @@ pub type SeasonImportance {
 }
 
 pub type Histogram {
-  Histogram(path: List(String), data: List(SeasonImportance))
+  Histogram(name: String, path: List(String), data: List(SeasonImportance))
 }

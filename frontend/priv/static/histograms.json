@@ -1,5 +1,6 @@
 [
   {
+    "name": "Deep Space Nine",
     "path": [],
     "data": [
       {
@@ -870,6 +871,7 @@
     ]
   },
   {
+    "name": "Benjamin Sisko",
     "path": [
       "characters",
       "benjamin_sisko"
@@ -1743,6 +1745,7 @@
     ]
   },
   {
+    "name": "Jake Sisko",
     "path": [
       "characters",
       "jake_sisko"
@@ -2616,6 +2619,7 @@
     ]
   },
   {
+    "name": "Dax",
     "path": [
       "characters",
       "dax"
@@ -3489,6 +3493,7 @@
     ]
   },
   {
+    "name": "Kira Nerys",
     "path": [
       "characters",
       "kira_nerys"
@@ -4362,6 +4367,7 @@
     ]
   },
   {
+    "name": "Miles O'Brien",
     "path": [
       "characters",
       "miles_obrien"
@@ -5235,6 +5241,7 @@
     ]
   },
   {
+    "name": "Bashir",
     "path": [
       "characters",
       "bashir"
@@ -6108,6 +6115,7 @@
     ]
   },
   {
+    "name": "Odo",
     "path": [
       "characters",
       "odo"
@@ -6981,6 +6989,7 @@
     ]
   },
   {
+    "name": "Quark",
     "path": [
       "characters",
       "quark"
@@ -7854,6 +7863,7 @@
     ]
   },
   {
+    "name": "Worf",
     "path": [
       "characters",
       "worf"
@@ -8727,6 +8737,7 @@
     ]
   },
   {
+    "name": "Rom",
     "path": [
       "characters",
       "rom"
@@ -9600,6 +9611,7 @@
     ]
   },
   {
+    "name": "Nog",
     "path": [
       "characters",
       "nog"
@@ -10473,6 +10485,7 @@
     ]
   },
   {
+    "name": "Garak",
     "path": [
       "characters",
       "garak"
@@ -11346,6 +11359,7 @@
     ]
   },
   {
+    "name": "Dukat",
     "path": [
       "characters",
       "dukat"
@@ -12219,6 +12233,7 @@
     ]
   },
   {
+    "name": "Keiko O'Brien",
     "path": [
       "characters",
       "keiko_obrien"
@@ -13092,6 +13107,7 @@
     ]
   },
   {
+    "name": "Winn",
     "path": [
       "characters",
       "winn"
@@ -13965,6 +13981,7 @@
     ]
   },
   {
+    "name": "Bareil",
     "path": [
       "characters",
       "bareil"
@@ -14838,6 +14855,7 @@
     ]
   },
   {
+    "name": "Michael Eddington",
     "path": [
       "characters",
       "michael_eddington"
@@ -15711,6 +15729,7 @@
     ]
   },
   {
+    "name": "Kasidy Yates",
     "path": [
       "characters",
       "kasidy_yates"
@@ -16584,6 +16603,7 @@
     ]
   },
   {
+    "name": "Leeta",
     "path": [
       "characters",
       "leeta"
@@ -17457,6 +17477,7 @@
     ]
   },
   {
+    "name": "Gowron",
     "path": [
       "characters",
       "gowron"
@@ -18330,6 +18351,7 @@
     ]
   },
   {
+    "name": "Martok",
     "path": [
       "characters",
       "martok"
@@ -19203,6 +19225,7 @@
     ]
   },
   {
+    "name": "Shakaar",
     "path": [
       "characters",
       "shakaar"
@@ -20076,6 +20099,7 @@
     ]
   },
   {
+    "name": "Ziyal",
     "path": [
       "characters",
       "ziyal"
@@ -20949,6 +20973,7 @@
     ]
   },
   {
+    "name": "Damar",
     "path": [
       "characters",
       "damar"
@@ -21822,6 +21847,7 @@
     ]
   },
   {
+    "name": "Federation",
     "path": [
       "organizations",
       "federation"
@@ -22695,6 +22721,7 @@
     ]
   },
   {
+    "name": "Trill Symbiosis Commission",
     "path": [
       "organizations",
       "trill_symbiosis_commission"
@@ -23568,6 +23595,7 @@
     ]
   },
   {
+    "name": "Bajor",
     "path": [
       "organizations",
       "bajor"
@@ -24441,6 +24469,7 @@
     ]
   },
   {
+    "name": "Prophets",
     "path": [
       "organizations",
       "prophets"
@@ -25314,6 +25343,7 @@
     ]
   },
   {
+    "name": "Cardassian Union",
     "path": [
       "organizations",
       "cardassian_union"
@@ -26187,6 +26217,7 @@
     ]
   },
   {
+    "name": "Ferengi Alliance",
     "path": [
       "organizations",
       "ferengi_alliance"
@@ -27060,6 +27091,7 @@
     ]
   },
   {
+    "name": "Klingon Empire",
     "path": [
       "organizations",
       "klingon_empire"
@@ -27933,6 +27965,7 @@
     ]
   },
   {
+    "name": "Maquis",
     "path": [
       "organizations",
       "maquis"
@@ -28806,6 +28839,7 @@
     ]
   },
   {
+    "name": "Dominion",
     "path": [
       "organizations",
       "dominion"
@@ -29679,6 +29713,7 @@
     ]
   },
   {
+    "name": "Mirror Universe",
     "path": [
       "organizations",
       "mirror_universe"

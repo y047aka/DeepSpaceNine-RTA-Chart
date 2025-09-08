@@ -118,6 +118,7 @@ fn histograms_to_json(histograms: List(histogram.Histogram)) -> json.Json {
 
 fn histogram_to_json(h: histogram.Histogram) -> json.Json {
   json.object([
+    #("name", json.string(h.name)),
     #("path", json.array(h.path, json.string)),
     #("data", json.array(h.data, season_importance_to_json)),
   ])
