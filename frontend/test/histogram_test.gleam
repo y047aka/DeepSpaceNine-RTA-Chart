@@ -16,8 +16,8 @@ pub fn step_by_importance_test() {
 }
 
 pub fn hsl_color_test() {
-  let color = histogram.hsl_color(175, 0.8, 0.5)
-  color.hue |> should.equal(175)
+  let color = histogram.hsl_color("var(--hue-cardassian)", 0.8, 0.5)
+  color.hue_var |> should.equal("var(--hue-cardassian)")
   color.saturation |> should.equal(0.8)
   color.lightness |> should.equal(0.5)
   color.alpha |> should.equal(1.0)

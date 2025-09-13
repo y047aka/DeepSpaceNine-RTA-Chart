@@ -7,7 +7,7 @@ import lustre/element.{type Element}
 import lustre/element/html
 
 pub type Color {
-  Color(hue: Int, saturation: Float, lightness: Float, alpha: Float)
+  Color(hue_var: String, saturation: Float, lightness: Float, alpha: Float)
 }
 
 pub type SeasonImportance {
@@ -25,13 +25,18 @@ pub fn step_by_importance(importance: Int) -> Float {
   }
 }
 
-pub fn hsl_color(hue: Int, saturation: Float, lightness: Float) -> Color {
-  Color(hue: hue, saturation: saturation, lightness: lightness, alpha: 1.0)
+pub fn hsl_color(hue_var: String, saturation: Float, lightness: Float) -> Color {
+  Color(
+    hue_var: hue_var,
+    saturation: saturation,
+    lightness: lightness,
+    alpha: 1.0,
+  )
 }
 
 pub fn color_to_css_string(color: Color) -> String {
   "hsla("
-  <> int.to_string(color.hue)
+  <> color.hue_var
   <> ", "
   <> float.to_string(color.saturation *. 100.0)
   <> "%, "
@@ -53,11 +58,11 @@ pub fn colored_cell(background_color: Color) -> Element(msg) {
 
 fn render_histogram_with_class(
   class_name: String,
-  hue: Int,
+  hue_var: String,
   episodes: List(SeasonImportance),
 ) -> Element(msg) {
   let to_color = fn(ep: SeasonImportance) {
-    hsl_color(hue, 0.8, step_by_importance(ep.importance))
+    hsl_color(hue_var, 0.8, step_by_importance(ep.importance))
   }
 
   let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
@@ -81,10 +86,13 @@ fn render_histogram_with_class(
   )
 }
 
-pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  render_histogram_with_class("small-histogram", hue, episodes)
+pub fn view(hue_var: String, episodes: List(SeasonImportance)) -> Element(msg) {
+  render_histogram_with_class("small-histogram", hue_var, episodes)
 }
 
-pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  render_histogram_with_class("large-histogram", hue, episodes)
+pub fn large_view(
+  hue_var: String,
+  episodes: List(SeasonImportance),
+) -> Element(msg) {
+  render_histogram_with_class("large-histogram", hue_var, episodes)
 }

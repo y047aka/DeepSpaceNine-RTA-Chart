@@ -13,17 +13,17 @@ pub type StarfleetRole {
   Operations
 }
 
-pub fn federation_role_to_hue(role: FederationRole) -> Int {
+pub fn federation_role_to_hue_var(role: FederationRole) -> String {
   case role {
-    Starfleet(starfleet_role) -> starfleet_role_to_hue(starfleet_role)
-    Citizen -> 220
+    Starfleet(starfleet_role) -> starfleet_role_to_hue_var(starfleet_role)
+    Citizen -> "var(--hue-federation)"
   }
 }
 
-pub fn starfleet_role_to_hue(role: StarfleetRole) -> Int {
+pub fn starfleet_role_to_hue_var(role: StarfleetRole) -> String {
   case role {
-    Command -> 350
-    Operations | Security -> 55
-    Science | Medical -> 190
+    Command -> "var(--hue-command)"
+    Operations | Security -> "55"
+    Science | Medical -> "var(--hue-science-medical)"
   }
 }

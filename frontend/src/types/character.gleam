@@ -290,9 +290,9 @@ pub fn list_all_characters() -> List(Character) {
 }
 
 // Character hue calculation based on organization/species
-pub fn character_hue(character: Character) -> Int {
+pub fn character_hue_var(character: Character) -> String {
   case character.organization {
-    organization.Federation(role) -> role.federation_role_to_hue(role)
-    _ -> species.to_hue(character.species)
+    organization.Federation(role) -> role.federation_role_to_hue_var(role)
+    _ -> species.to_hue_var(character.species)
   }
 }

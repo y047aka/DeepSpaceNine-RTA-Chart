@@ -1179,6 +1179,19 @@
     }
   }
 }
+@layer theme {
+  :root {
+    --hue-ds9: 175;
+    --hue-federation: 220;
+    --hue-bajor: 10;
+    --hue-cardassian: 175;
+    --hue-klingon: 120;
+    --hue-ferengi: 25;
+    --hue-dominion: 270;
+    --hue-command: 350;
+    --hue-science-medical: 190;
+  }
+}
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {
     color-scheme: light;

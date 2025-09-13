@@ -53,20 +53,20 @@ pub fn from_string(s: String) -> Result(Species, String) {
   }
 }
 
-pub fn to_hue(species: Species) -> Int {
+pub fn to_hue_var(species: Species) -> String {
   case species {
-    Human -> 220
-    Bajoran -> 10
-    Cardassian -> 175
-    Klingon -> 120
-    Ferengi -> 25
-    Trill -> 280
-    Changeling -> 300
-    Vorta -> 270
-    JemHadar -> 270
-    Vulcan -> 160
-    Andorian -> 200
-    Betazoid -> 240
-    ElAurian -> 320
+    Human -> "var(--hue-federation)"
+    Bajoran -> "var(--hue-bajor)"
+    Cardassian -> "var(--hue-cardassian)"
+    Klingon -> "var(--hue-klingon)"
+    Ferengi -> "var(--hue-ferengi)"
+    Trill -> "280"
+    Changeling -> "300"
+    Vorta -> "var(--hue-dominion)"
+    JemHadar -> "var(--hue-dominion)"
+    Vulcan -> "160"
+    Andorian -> "200"
+    Betazoid -> "240"
+    ElAurian -> "320"
   }
 }
