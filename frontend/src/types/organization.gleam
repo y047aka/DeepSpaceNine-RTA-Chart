@@ -95,28 +95,19 @@ pub fn from_id(id: String) -> Result(Organization, String) {
   }
 }
 
-pub fn to_hue(org: Organization) -> Int {
-  let command = 350
-  let science_or_medical = 190
-  let federation = 220
-  let bajoran = 10
-  let cardassian = 175
-  let klingon = 120
-  let ferengi = 25
-  let dominion = 270
-
+pub fn to_hue_var(org: Organization) -> String {
   case org {
-    Federation(_) -> federation
-    CardassianUnion -> cardassian
-    KlingonEmpire -> klingon
-    DominionForces -> dominion
-    Bajor -> bajoran
-    FerengiAlliance -> ferengi
-    Prophets -> bajoran
-    TrillSymbiosisCommission -> science_or_medical
-    Maquis -> command
-    MirrorUniverse -> command
-    Independent -> federation
-    Citizen -> federation
+    Federation(_) -> "var(--hue-federation)"
+    CardassianUnion -> "var(--hue-cardassian)"
+    KlingonEmpire -> "var(--hue-klingon)"
+    DominionForces -> "var(--hue-dominion)"
+    Bajor -> "var(--hue-bajoran)"
+    FerengiAlliance -> "var(--hue-ferengi)"
+    Prophets -> "var(--hue-bajoran)"
+    TrillSymbiosisCommission -> "var(--hue-starfleet-science-or-medical)"
+    Maquis -> "var(--hue-starfleet-command)"
+    MirrorUniverse -> "var(--hue-starfleet-command)"
+    Independent -> "var(--hue-federation)"
+    Citizen -> "var(--hue-federation)"
   }
 }

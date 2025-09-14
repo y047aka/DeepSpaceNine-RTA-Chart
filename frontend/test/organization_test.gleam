@@ -29,13 +29,13 @@ pub fn organization_from_string_test() {
   |> should.be_error()
 }
 
-pub fn organization_to_hue_test() {
-  organization.to_hue(organization.Federation(role.Starfleet(role.Command)))
-  |> should.equal(220)
+pub fn organization_to_hue_var_test() {
+  organization.to_hue_var(organization.Federation(role.Starfleet(role.Command)))
+  |> should.equal("var(--hue-federation)")
 
-  organization.to_hue(organization.Bajor)
-  |> should.equal(10)
+  organization.to_hue_var(organization.Bajor)
+  |> should.equal("var(--hue-bajoran)")
 
-  organization.to_hue(organization.DominionForces)
-  |> should.equal(270)
+  organization.to_hue_var(organization.DominionForces)
+  |> should.equal("var(--hue-dominion)")
 }

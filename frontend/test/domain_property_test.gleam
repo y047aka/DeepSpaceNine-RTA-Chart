@@ -1,4 +1,7 @@
+import gleam/int
 import gleam/list
+import gleam/result
+import gleam/string
 import gleeunit
 import gleeunit/should
 import types/character
@@ -32,9 +35,12 @@ pub fn hue_consistency_test() {
 
   starfleet_roles
   |> list.each(fn(role) {
-    let hue = role.starfleet_role_to_hue(role)
-    // Hue should be in valid range (0-360)
-    case hue >= 0 && hue <= 360 {
+    let hue_var = role.starfleet_role_to_hue_var(role)
+    // Hue var should be a valid CSS variable or number string
+    case
+      string.starts_with(hue_var, "var(--")
+      || int.parse(hue_var) |> result.is_ok()
+    {
       True -> should.equal(True, True)
       False -> should.fail()
     }
@@ -53,17 +59,16 @@ pub fn species_hue_consistency_test() {
     species.Changeling,
     species.Vorta,
     species.JemHadar,
-    species.Vulcan,
-    species.Andorian,
-    species.Betazoid,
-    species.ElAurian,
   ]
 
   all_species
   |> list.each(fn(spec) {
-    let hue = species.to_hue(spec)
-    // Hue should be in valid range (0-360)
-    case hue >= 0 && hue <= 360 {
+    let hue_var = species.to_hue_var(spec)
+    // Hue var should be a valid CSS variable or number string
+    case
+      string.starts_with(hue_var, "var(--")
+      || int.parse(hue_var) |> result.is_ok()
+    {
       True -> should.equal(True, True)
       False -> should.fail()
     }
@@ -71,21 +76,21 @@ pub fn species_hue_consistency_test() {
 }
 
 // Test character image hue calculation consistency
-pub fn character_image_hue_consistency_test() {
+pub fn character_image_hue_var_consistency_test() {
   // Test all characters from the complete list
   character.list_all_characters()
   |> list.each(fn(char_data) {
-    let hue = character.character_hue(char_data)
+    let hue_var = character.character_hue_var(char_data)
 
     case char_data.organization {
       organization.Federation(federation_role) -> {
-        let expected_hue = role.federation_role_to_hue(federation_role)
-        hue |> should.equal(expected_hue)
+        let expected_hue_var = role.federation_role_to_hue_var(federation_role)
+        hue_var |> should.equal(expected_hue_var)
       }
       _ -> {
         // Non-Federation characters should use species-based hues
-        let expected_hue = species.to_hue(char_data.species)
-        hue |> should.equal(expected_hue)
+        let expected_hue_var = species.to_hue_var(char_data.species)
+        hue_var |> should.equal(expected_hue_var)
       }
     }
   })

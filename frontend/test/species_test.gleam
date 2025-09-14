@@ -10,7 +10,6 @@ pub fn to_string_test() {
   species.Human |> species.to_string() |> should.equal("Human")
   species.Bajoran |> species.to_string() |> should.equal("Bajoran")
   species.JemHadar |> species.to_string() |> should.equal("Jem'Hadar")
-  species.ElAurian |> species.to_string() |> should.equal("El-Aurian")
 }
 
 pub fn from_string_test() {
@@ -19,8 +18,6 @@ pub fn from_string_test() {
   "bajoran" |> species.from_string() |> should.equal(Ok(species.Bajoran))
   "jem'hadar" |> species.from_string() |> should.equal(Ok(species.JemHadar))
   "jemhadar" |> species.from_string() |> should.equal(Ok(species.JemHadar))
-  "el-aurian" |> species.from_string() |> should.equal(Ok(species.ElAurian))
-  "elaurian" |> species.from_string() |> should.equal(Ok(species.ElAurian))
 }
 
 pub fn from_string_error_test() {

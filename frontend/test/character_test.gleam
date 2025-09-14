@@ -41,26 +41,26 @@ pub fn character_by_name_test() {
   |> should.be_error()
 }
 
-pub fn character_image_hue_test() {
+pub fn character_image_hue_var_test() {
   // Federation characters use role-based hue
-  character.character_hue(character.benjamin_sisko)
-  |> should.equal(350)
+  character.character_hue_var(character.benjamin_sisko)
+  |> should.equal("var(--hue-starfleet-command)")
 
-  character.character_hue(character.dax)
-  |> should.equal(190)
+  character.character_hue_var(character.dax)
+  |> should.equal("var(--hue-starfleet-science-or-medical)")
 
   // Non-Federation characters use species-based hue
-  character.character_hue(character.kira_nerys)
-  |> should.equal(10)
+  character.character_hue_var(character.kira_nerys)
+  |> should.equal("var(--hue-bajoran)")
 
-  character.character_hue(character.quark)
-  |> should.equal(25)
+  character.character_hue_var(character.quark)
+  |> should.equal("var(--hue-ferengi)")
 
-  character.character_hue(character.garak)
-  |> should.equal(175)
+  character.character_hue_var(character.garak)
+  |> should.equal("var(--hue-cardassian)")
 
-  character.character_hue(character.gowron)
-  |> should.equal(120)
+  character.character_hue_var(character.gowron)
+  |> should.equal("var(--hue-klingon)")
 }
 
 // New API tests

@@ -1179,6 +1179,100 @@
     }
   }
 }
+@layer theme {
+  :root {
+    --importance-5: 80%;
+    --importance-4: 60%;
+    --importance-3: 30%;
+    --importance-2: 17%;
+    --importance-1: 10%;
+    --importance-0: 0%;
+    --hue-deep-space-nine: 175;
+    --deep-space-nine-5: hsl(var(--hue-deep-space-nine) 80% var(--importance-5));
+    --deep-space-nine-4: hsl(var(--hue-deep-space-nine) 80% var(--importance-4));
+    --deep-space-nine-3: hsl(var(--hue-deep-space-nine) 80% var(--importance-3));
+    --deep-space-nine-2: hsl(var(--hue-deep-space-nine) 80% var(--importance-2));
+    --deep-space-nine-1: hsl(var(--hue-deep-space-nine) 80% var(--importance-1));
+    --deep-space-nine-0: hsl(var(--hue-deep-space-nine) 80% var(--importance-0));
+    --hue-federation: 220;
+    --federation-5: hsl(var(--hue-federation) 80% var(--importance-5));
+    --federation-4: hsl(var(--hue-federation) 80% var(--importance-4));
+    --federation-3: hsl(var(--hue-federation) 80% var(--importance-3));
+    --federation-2: hsl(var(--hue-federation) 80% var(--importance-2));
+    --federation-1: hsl(var(--hue-federation) 80% var(--importance-1));
+    --federation-0: hsl(var(--hue-federation) 80% var(--importance-0));
+    --hue-starfleet-command: 350;
+    --starfleet-command-5: hsl(var(--hue-starfleet-command) 80% var(--importance-5));
+    --starfleet-command-4: hsl(var(--hue-starfleet-command) 80% var(--importance-4));
+    --starfleet-command-3: hsl(var(--hue-starfleet-command) 80% var(--importance-3));
+    --starfleet-command-2: hsl(var(--hue-starfleet-command) 80% var(--importance-2));
+    --starfleet-command-1: hsl(var(--hue-starfleet-command) 80% var(--importance-1));
+    --starfleet-command-0: hsl(var(--hue-starfleet-command) 80% var(--importance-0));
+    --hue-starfleet-science-or-medical: 190;
+    --starfleet-science-or-medical-5: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-5));
+    --starfleet-science-or-medical-4: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-4));
+    --starfleet-science-or-medical-3: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-3));
+    --starfleet-science-or-medical-2: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-2));
+    --starfleet-science-or-medical-1: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-1));
+    --starfleet-science-or-medical-0: hsl(var(--hue-starfleet-science-or-medical) 80% var(--importance-0));
+    --hue-starfleet-operations-or-security: 55;
+    --starfleet-operations-or-security-5: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-5));
+    --starfleet-operations-or-security-4: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-4));
+    --starfleet-operations-or-security-3: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-3));
+    --starfleet-operations-or-security-2: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-2));
+    --starfleet-operations-or-security-1: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-1));
+    --starfleet-operations-or-security-0: hsl(var(--hue-starfleet-operations-or-security) 80% var(--importance-0));
+    --hue-bajoran: 10;
+    --bajoran-5: hsl(var(--hue-bajoran) 80% var(--importance-5));
+    --bajoran-4: hsl(var(--hue-bajoran) 80% var(--importance-4));
+    --bajoran-3: hsl(var(--hue-bajoran) 80% var(--importance-3));
+    --bajoran-2: hsl(var(--hue-bajoran) 80% var(--importance-2));
+    --bajoran-1: hsl(var(--hue-bajoran) 80% var(--importance-1));
+    --bajoran-0: hsl(var(--hue-bajoran) 80% var(--importance-0));
+    --hue-cardassian: 175;
+    --cardassian-5: hsl(var(--hue-cardassian) 80% var(--importance-5));
+    --cardassian-4: hsl(var(--hue-cardassian) 80% var(--importance-4));
+    --cardassian-3: hsl(var(--hue-cardassian) 80% var(--importance-3));
+    --cardassian-2: hsl(var(--hue-cardassian) 80% var(--importance-2));
+    --cardassian-1: hsl(var(--hue-cardassian) 80% var(--importance-1));
+    --cardassian-0: hsl(var(--hue-cardassian) 80% var(--importance-0));
+    --hue-klingon: 120;
+    --klingon-5: hsl(var(--hue-klingon) 80% var(--importance-5));
+    --klingon-4: hsl(var(--hue-klingon) 80% var(--importance-4));
+    --klingon-3: hsl(var(--hue-klingon) 80% var(--importance-3));
+    --klingon-2: hsl(var(--hue-klingon) 80% var(--importance-2));
+    --klingon-1: hsl(var(--hue-klingon) 80% var(--importance-1));
+    --klingon-0: hsl(var(--hue-klingon) 80% var(--importance-0));
+    --hue-trill: 280;
+    --trill-5: hsl(var(--hue-trill) 80% var(--importance-5));
+    --trill-4: hsl(var(--hue-trill) 80% var(--importance-4));
+    --trill-3: hsl(var(--hue-trill) 80% var(--importance-3));
+    --trill-2: hsl(var(--hue-trill) 80% var(--importance-2));
+    --trill-1: hsl(var(--hue-trill) 80% var(--importance-1));
+    --trill-0: hsl(var(--hue-trill) 80% var(--importance-0));
+    --hue-ferengi: 25;
+    --ferengi-5: hsl(var(--hue-ferengi) 80% var(--importance-5));
+    --ferengi-4: hsl(var(--hue-ferengi) 80% var(--importance-4));
+    --ferengi-3: hsl(var(--hue-ferengi) 80% var(--importance-3));
+    --ferengi-2: hsl(var(--hue-ferengi) 80% var(--importance-2));
+    --ferengi-1: hsl(var(--hue-ferengi) 80% var(--importance-1));
+    --ferengi-0: hsl(var(--hue-ferengi) 80% var(--importance-0));
+    --hue-dominion: 270;
+    --dominion-5: hsl(var(--hue-dominion) 80% var(--importance-5));
+    --dominion-4: hsl(var(--hue-dominion) 80% var(--importance-4));
+    --dominion-3: hsl(var(--hue-dominion) 80% var(--importance-3));
+    --dominion-2: hsl(var(--hue-dominion) 80% var(--importance-2));
+    --dominion-1: hsl(var(--hue-dominion) 80% var(--importance-1));
+    --dominion-0: hsl(var(--hue-dominion) 80% var(--importance-0));
+    --hue-changeling: 300;
+    --changeling-5: hsl(var(--hue-changeling) 80% var(--importance-5));
+    --changeling-4: hsl(var(--hue-changeling) 80% var(--importance-4));
+    --changeling-3: hsl(var(--hue-changeling) 80% var(--importance-3));
+    --changeling-2: hsl(var(--hue-changeling) 80% var(--importance-2));
+    --changeling-1: hsl(var(--hue-changeling) 80% var(--importance-1));
+    --changeling-0: hsl(var(--hue-changeling) 80% var(--importance-0));
+  }
+}
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {
     color-scheme: light;

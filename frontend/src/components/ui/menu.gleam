@@ -8,7 +8,7 @@ import lustre/element/html.{text}
 pub type MenuItem {
   MenuItem(
     name: String,
-    hue: Int,
+    hue_var: String,
     episodes: List(histogram.SeasonImportance),
     url: String,
   )
@@ -24,11 +24,11 @@ pub type MenuSection {
 
 pub fn menu_item(
   name: String,
-  hue: Int,
+  hue_var: String,
   episodes: List(histogram.SeasonImportance),
   url: String,
 ) -> MenuItem {
-  MenuItem(name: name, hue: hue, episodes: episodes, url: url)
+  MenuItem(name: name, hue_var: hue_var, episodes: episodes, url: url)
 }
 
 // VIEW ----------------------------------------------------------------------
@@ -63,7 +63,7 @@ fn view_menu_item(item: MenuItem) -> Element(msg) {
           ],
           [text(item.name)],
         ),
-        histogram.view(item.hue, item.episodes),
+        histogram.view(item.hue_var, item.episodes),
       ],
     ),
   ])

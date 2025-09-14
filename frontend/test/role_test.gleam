@@ -17,39 +17,39 @@ pub fn role_construction_test() {
 
 // Role Hue Tests ------------------------------------------------------------------------
 
-pub fn starfleet_role_hue_test() {
-  role.starfleet_role_to_hue(role.Command)
-  |> should.equal(350)
+pub fn starfleet_role_hue_var_test() {
+  role.starfleet_role_to_hue_var(role.Command)
+  |> should.equal("var(--hue-starfleet-command)")
 
-  role.starfleet_role_to_hue(role.Security)
-  |> should.equal(55)
+  role.starfleet_role_to_hue_var(role.Security)
+  |> should.equal("var(--hue-starfleet-operations-or-security)")
 
-  role.starfleet_role_to_hue(role.Science)
-  |> should.equal(190)
+  role.starfleet_role_to_hue_var(role.Science)
+  |> should.equal("var(--hue-starfleet-science-or-medical)")
 
-  role.starfleet_role_to_hue(role.Medical)
-  |> should.equal(190)
+  role.starfleet_role_to_hue_var(role.Medical)
+  |> should.equal("var(--hue-starfleet-science-or-medical)")
 
-  role.starfleet_role_to_hue(role.Operations)
-  |> should.equal(55)
+  role.starfleet_role_to_hue_var(role.Operations)
+  |> should.equal("var(--hue-starfleet-operations-or-security)")
 }
 
-pub fn federation_role_hue_test() {
-  role.federation_role_to_hue(role.Starfleet(role.Command))
-  |> should.equal(350)
+pub fn federation_role_hue_var_test() {
+  role.federation_role_to_hue_var(role.Starfleet(role.Command))
+  |> should.equal("var(--hue-starfleet-command)")
 
-  role.federation_role_to_hue(role.Starfleet(role.Security))
-  |> should.equal(55)
+  role.federation_role_to_hue_var(role.Starfleet(role.Security))
+  |> should.equal("var(--hue-starfleet-operations-or-security)")
 
-  role.federation_role_to_hue(role.Starfleet(role.Science))
-  |> should.equal(190)
+  role.federation_role_to_hue_var(role.Starfleet(role.Science))
+  |> should.equal("var(--hue-starfleet-science-or-medical)")
 
-  role.federation_role_to_hue(role.Starfleet(role.Medical))
-  |> should.equal(190)
+  role.federation_role_to_hue_var(role.Starfleet(role.Medical))
+  |> should.equal("var(--hue-starfleet-science-or-medical)")
 
-  role.federation_role_to_hue(role.Starfleet(role.Operations))
-  |> should.equal(55)
+  role.federation_role_to_hue_var(role.Starfleet(role.Operations))
+  |> should.equal("var(--hue-starfleet-operations-or-security)")
 
-  role.federation_role_to_hue(role.Citizen)
-  |> should.equal(220)
+  role.federation_role_to_hue_var(role.Citizen)
+  |> should.equal("var(--hue-federation)")
 }

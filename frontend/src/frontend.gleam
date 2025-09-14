@@ -262,7 +262,7 @@ fn get_character_menu_item(
   let char_data = get_histogram_data(histograms, char_route)
   menu.menu_item(
     character.name,
-    character.character_hue(character),
+    character.character_hue_var(character),
     char_data,
     route.to_string(char_route),
   )
@@ -276,7 +276,7 @@ fn get_organization_menu_item(
   let org_data = get_histogram_data(histograms, org_route)
   menu.menu_item(
     organization.to_string(organization),
-    organization.to_hue(organization),
+    organization.to_hue_var(organization),
     org_data,
     route.to_string(org_route),
   )
@@ -325,11 +325,12 @@ fn view_main_histogram(model: Model) -> Element(Msg) {
     |> list.find(fn(h) { h.path == target_path })
     |> result.map(fn(h) { h.data })
   {
-    route.Home, Ok(data) -> histogram.large_view(175, data)
+    route.Home, Ok(data) ->
+      histogram.large_view("var(--hue-deep-space-nine)", data)
     route.Character(character), Ok(data) ->
-      histogram.large_view(character.character_hue(character), data)
+      histogram.large_view(character.character_hue_var(character), data)
     route.Organization(organization), Ok(data) ->
-      histogram.large_view(organization.to_hue(organization), data)
+      histogram.large_view(organization.to_hue_var(organization), data)
     _, _ -> text("Not found")
   }
 }

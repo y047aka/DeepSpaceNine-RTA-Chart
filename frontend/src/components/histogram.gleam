@@ -1,51 +1,53 @@
 import gleam/dict
-import gleam/float
 import gleam/int
 import gleam/list
+import gleam/result
 import lustre/attribute
 import lustre/element.{type Element}
 import lustre/element/html
 
 pub type Color {
-  Color(hue: Int, saturation: Float, lightness: Float, alpha: Float)
+  Color(variable: String)
 }
 
 pub type SeasonImportance {
   SeasonImportance(season: Int, episode: Int, importance: Int)
 }
 
-pub fn step_by_importance(importance: Int) -> Float {
-  case importance {
-    5 -> 0.8
-    4 -> 0.6
-    3 -> 0.3
-    2 -> 0.17
-    1 -> 0.1
-    _ -> 0.0
+fn extract_organization_from_hue_var(hue_var: String) -> Result(String, String) {
+  case hue_var {
+    "var(--hue-federation)" -> Ok("federation")
+    "var(--hue-cardassian)" -> Ok("cardassian")
+    "var(--hue-deep-space-nine)" -> Ok("deep-space-nine")
+    "var(--hue-bajoran)" -> Ok("bajoran")
+    "var(--hue-klingon)" -> Ok("klingon")
+    "var(--hue-ferengi)" -> Ok("ferengi")
+    "var(--hue-dominion)" -> Ok("dominion")
+    "var(--hue-starfleet-command)" -> Ok("starfleet-command")
+    "var(--hue-starfleet-science-or-medical)" ->
+      Ok("starfleet-science-or-medical")
+    "var(--hue-starfleet-operations-or-security)" ->
+      Ok("starfleet-operations-or-security")
+    "var(--hue-trill)" -> Ok("trill")
+    "var(--hue-changeling)" -> Ok("changeling")
+    _ -> Error("Unknown hue var: " <> hue_var)
   }
 }
 
-pub fn hsl_color(hue: Int, saturation: Float, lightness: Float) -> Color {
-  Color(hue: hue, saturation: saturation, lightness: lightness, alpha: 1.0)
-}
-
-pub fn color_to_css_string(color: Color) -> String {
-  "hsla("
-  <> int.to_string(color.hue)
-  <> ", "
-  <> float.to_string(color.saturation *. 100.0)
-  <> "%, "
-  <> float.to_string(color.lightness *. 100.0)
-  <> "%, "
-  <> float.to_string(color.alpha)
-  <> ")"
+pub fn hsl_color(hue_var: String, importance: Int) -> Color {
+  let organization = extract_organization_from_hue_var(hue_var)
+  let css_var_name =
+    organization
+    |> result.map(fn(org) { org <> "-" <> int.to_string(importance) })
+    |> result.unwrap("unknown")
+  Color(variable: "var(--" <> css_var_name <> ")")
 }
 
 pub fn colored_cell(background_color: Color) -> Element(msg) {
   html.div(
     [
       attribute.class("histogram-cell"),
-      attribute.style("background-color", color_to_css_string(background_color)),
+      attribute.style("background-color", background_color.variable),
     ],
     [],
   )
@@ -53,12 +55,10 @@ pub fn colored_cell(background_color: Color) -> Element(msg) {
 
 fn render_histogram_with_class(
   class_name: String,
-  hue: Int,
+  hue_var: String,
   episodes: List(SeasonImportance),
 ) -> Element(msg) {
-  let to_color = fn(ep: SeasonImportance) {
-    hsl_color(hue, 0.8, step_by_importance(ep.importance))
-  }
+  let to_color = fn(ep: SeasonImportance) { hsl_color(hue_var, ep.importance) }
 
   let grouped_episodes = list.group(episodes, fn(ep) { ep.season })
 
@@ -81,10 +81,13 @@ fn render_histogram_with_class(
   )
 }
 
-pub fn view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  render_histogram_with_class("small-histogram", hue, episodes)
+pub fn view(hue_var: String, episodes: List(SeasonImportance)) -> Element(msg) {
+  render_histogram_with_class("small-histogram", hue_var, episodes)
 }
 
-pub fn large_view(hue: Int, episodes: List(SeasonImportance)) -> Element(msg) {
-  render_histogram_with_class("large-histogram", hue, episodes)
+pub fn large_view(
+  hue_var: String,
+  episodes: List(SeasonImportance),
+) -> Element(msg) {
+  render_histogram_with_class("large-histogram", hue_var, episodes)
 }
