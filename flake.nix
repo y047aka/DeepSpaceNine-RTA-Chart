@@ -11,19 +11,11 @@
         devShells.default = with pkgs;
           mkShell {
             buildInputs = [
-              nushell
               rebar3
               erlang
               gleam
               nodejs_24
             ];
-
-            shellHook = ''
-              # Only launch nushell if running interactively
-              if [ -t 0 ]; then
-                exec nu
-              fi
-            '';
           };
       });
 }
